@@ -6,6 +6,7 @@
 #include <tuple>
 
 #include "TypeSelection.h"
+#include "WrapTypeMember.h"
 
 
 template <typename targetIndex, typename index, typename... list>
@@ -21,12 +22,12 @@ template <int targetIndex, int i, typename t, typename... list>
 struct NthTupleElementTypeImplLoop<std::integral_constant<int, targetIndex>, std::integral_constant<int, i>, t, list...>
 {
     using type = typename SelectTypeIf<std::integral_constant<bool, targetIndex == i>,
-                                t,
-                                typename NthTupleElementTypeImplLoop<
-                                                std::integral_constant<int, targetIndex>,
-                                                std::integral_constant<int, i + 1>,
-                                                list...
-                                            >::type // TODO: remove this 'type' by using SFINAE.
+                                WrapAsTypeMember<t>,
+                                NthTupleElementTypeImplLoop<
+                                        std::integral_constant<int, targetIndex>,
+                                        std::integral_constant<int, i + 1>,
+                                        list...
+                                >
                             >::type;
 };
 
