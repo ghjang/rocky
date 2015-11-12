@@ -7,7 +7,7 @@ include_directories(${ROCKY_ROOT})
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
 
 set(SOURCE_FILES
-        main.cpp TupleSizeTest.cpp NthTupleTypeTest.cpp HasTypeMemberTest.cpp WrapTypeMemberTest.cpp TypeSelectionTest.cpp)
+        main.cpp TupleSizeTest.cpp NthTupleTypeTest.cpp HasTypeMemberTest.cpp WrapTypeMemberTest.cpp TypeSelectionTest.cpp ReverseTupleTest.cpp)
 
 add_executable(RockyTest ${SOURCE_FILES})
 

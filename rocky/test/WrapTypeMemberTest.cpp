@@ -7,7 +7,7 @@
 #include "rocky/HasTypeMember.h"
 
 
-TEST_CASE("Wrap as type member", "[WrapTypeMember]")
+TEST_CASE("Wrapping as type member", "[WrapTypeMember]")
 {
     using std::is_same;
 

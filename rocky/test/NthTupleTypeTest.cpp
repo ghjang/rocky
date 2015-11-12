@@ -3,7 +3,7 @@
 #include "rocky/NthTupleType.h"
 
 
-TEST_CASE("N-th tuple element type", "[tuple]")
+TEST_CASE("N-th tuple element type", "[NthTupleType]")
 {
     using std::tuple;
     using std::is_same;

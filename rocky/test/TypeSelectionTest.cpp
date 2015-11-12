@@ -3,7 +3,7 @@
 #include "rocky/TypeSelection.h"
 
 
-TEST_CASE("Select type on compile time bool condition", "[TypeSelection]")
+TEST_CASE("Selecting type on compile time bool condition", "[TypeSelection]")
 {
     using std::is_same;
 
