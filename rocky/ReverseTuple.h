@@ -4,8 +4,6 @@
 
 #include <tuple>
 
-#include "NthTupleType.h"
-
 
 template <typename Tuple, size_t sizeOfTuple, typename indexSequence>
 struct ReverseTupleImpl;
@@ -14,7 +12,7 @@ template <typename... list, size_t sizeOfTuple, size_t... i>
 struct ReverseTupleImpl<std::tuple<list...>, sizeOfTuple, std::index_sequence<i...>>
 {
     using type = std::tuple<
-                        typename NthTupleElementType<std::tuple<list...>, sizeOfTuple - i - 1>::type...
+                        std::tuple_element_t<sizeOfTuple - i - 1, std::tuple<list...>>...
                     >;
 };
 
