@@ -2,6 +2,9 @@
 #define ROCKY_NTHTUPLEELEMENTTYPE_H
 
 
+// NOTE: prefer to use std::tuple_element instead of NthTupleElementType.
+
+
 #include <type_traits>
 #include <tuple>
 
