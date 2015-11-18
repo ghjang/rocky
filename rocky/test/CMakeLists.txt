@@ -13,7 +13,8 @@ set(SOURCE_FILES
         HasTypeMemberTest.cpp
         IdentityTest.cpp
         TypeSelectionTest.cpp
-        ReverseTupleTest.cpp IntegralConstantUtility.cpp)
+        ReverseTupleTest.cpp
+        IntegralConstantUtilityTest.cpp)
 
 add_executable(RockyTest ${SOURCE_FILES})
 
