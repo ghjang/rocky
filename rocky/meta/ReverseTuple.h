@@ -22,13 +22,12 @@ struct ReverseTuple;
 
 template <typename... list>
 struct ReverseTuple<std::tuple<list...>>
-{
-    using type = typename ReverseTupleImpl<
-                                std::tuple<list...>,
-                                sizeof...(list),
-                                std::make_index_sequence<sizeof...(list)>
-                            >::type;
-};
+        : ReverseTupleImpl<
+                std::tuple<list...>,
+                sizeof...(list),
+                std::make_index_sequence<sizeof...(list)>
+            >
+{ };
 
 
 #endif //ROCKY_REVERSETUPLE_H
