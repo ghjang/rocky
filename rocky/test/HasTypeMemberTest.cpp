@@ -1,9 +1,9 @@
 #include "catch.hpp"
 
-#include "rocky/HasTypeMember.h"
+#include "rocky/HasMember.h"
 
 
-TEST_CASE("class without 'type' member", "[HasTypeMember]")
+TEST_CASE("class without 'type' member", "[HasMember]")
 {
     static_assert(!HasTypeMember<int>::value, "int has no type member.");
 
@@ -11,7 +11,7 @@ TEST_CASE("class without 'type' member", "[HasTypeMember]")
     static_assert(!HasTypeMember<S>::value, "struct S has no type member.");
 }
 
-TEST_CASE("class with 'type' member", "[HasTypeMember]")
+TEST_CASE("class with 'type' member", "[HasMember]")
 {
     struct S
     {

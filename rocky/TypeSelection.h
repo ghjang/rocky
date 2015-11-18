@@ -4,7 +4,7 @@
 
 #include <type_traits>
 
-#include "rocky/HasTypeMember.h"
+#include "HasMember.h"
 
 
 template <typename T>

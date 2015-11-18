@@ -4,7 +4,7 @@
 
 #include <type_traits>
 
-#include "rocky/HasTypeMember.h"
+#include "rocky/HasMember.h"
 
 
 TEST_CASE("Wrapping as type member", "[Identity]")
