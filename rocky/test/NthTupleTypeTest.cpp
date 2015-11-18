@@ -1,6 +1,6 @@
 #include "catch.hpp"
 
-#include "rocky/NthTupleElementType.h"
+#include "rocky/meta/NthTupleElementType.h"
 
 
 TEST_CASE("N-th tuple element type", "[NthTupleType]")

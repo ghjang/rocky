@@ -12,9 +12,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="932c8e01-f7f8-4592-bd6e-bfec34de8cb6" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../NthTupleType.h" afterPath="$PROJECT_DIR$/../NthTupleType.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/test.iml" afterPath="$PROJECT_DIR$/.idea/test.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/HasTypeMemberTest.cpp" afterPath="$PROJECT_DIR$/HasTypeMemberTest.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/IdentityTest.cpp" afterPath="$PROJECT_DIR$/IdentityTest.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/IntegralConstantUtilityTest.cpp" afterPath="$PROJECT_DIR$/IntegralConstantUtilityTest.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NthTupleTypeTest.cpp" afterPath="$PROJECT_DIR$/NthTupleTypeTest.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ReverseTupleTest.cpp" afterPath="$PROJECT_DIR$/ReverseTupleTest.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TupleSizeTest.cpp" afterPath="$PROJECT_DIR$/TupleSizeTest.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TypeSelectionTest.cpp" afterPath="$PROJECT_DIR$/TypeSelectionTest.cpp" />
     </list>
     <ignored path="test.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -45,21 +50,22 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="IntegralConstantUtility.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../IntegralConstantUtility.h">
+      <file leaf-file-name="TupleSizeTest.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/TupleSizeTest.cpp">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="68" column="70" selection-start-line="68" selection-start-column="70" selection-end-line="68" selection-end-column="70" />
-              <folding>
-                <element signature="e#82#104#0" expanded="true" />
-                <element signature="e#135#175#0" expanded="true" />
-                <element signature="e#342#382#0" expanded="true" />
-                <element signature="e#549#589#0" expanded="true" />
-                <element signature="e#815#822#0" expanded="true" />
-                <element signature="e#1078#1089#0" expanded="true" />
-                <element signature="e#1779#1790#0" expanded="true" />
-                <element signature="e#2358#2369#0" expanded="true" />
-              </folding>
+              <caret line="2" column="20" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IntegralConstantUtilityTest.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/IntegralConstantUtilityTest.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="2" column="20" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -68,37 +74,19 @@
         <entry file="file://$PROJECT_DIR$/NthTupleTypeTest.cpp">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="2" column="26" selection-start-line="2" selection-start-column="26" selection-end-line="2" selection-end-column="26" />
+              <caret line="2" column="20" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HasTypeMemberTest.cpp" pinned="false" current-in-tab="false">
+      <file leaf-file-name="HasTypeMemberTest.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/HasTypeMemberTest.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.10583942">
+              <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
               <folding>
                 <element signature="e#0#20#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NthTupleType.h" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/../NthTupleType.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.4967742">
-              <caret line="64" column="0" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
-              <folding>
-                <element signature="e#229#251#0" expanded="true" />
-                <element signature="e#330#386#0" expanded="true" />
-                <element signature="e#433#469#0" expanded="true" />
-                <element signature="e#617#671#0" expanded="true" />
-                <element signature="e#1148#1186#0" expanded="true" />
-                <element signature="e#1229#1254#0" expanded="true" />
-                <element signature="e#1606#1629#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -108,17 +96,7 @@
         <entry file="file://$PROJECT_DIR$/IdentityTest.cpp">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="6" column="19" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TypeSelection.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../TypeSelection.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="6" column="10" selection-start-line="6" selection-start-column="10" selection-end-line="6" selection-end-column="10" />
+              <caret line="6" column="20" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -128,25 +106,8 @@
         <entry file="file://$PROJECT_DIR$/ReverseTupleTest.cpp">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="12" column="43" selection-start-line="12" selection-start-column="43" selection-end-line="12" selection-end-column="43" />
-              <folding>
-                <element signature="e#0#20#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ReverseTuple.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../ReverseTuple.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="22" column="26" selection-start-line="22" selection-start-column="26" selection-end-line="22" selection-end-column="26" />
-              <folding>
-                <element signature="e#88#148#0" expanded="true" />
-                <element signature="e#184#235#0" expanded="true" />
-                <element signature="e#479#495#0" expanded="true" />
-                <marker date="1447861154000" expanded="true" signature="350:463" placeholder="&lt;~&gt;" />
-              </folding>
+              <caret line="2" column="20" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -155,10 +116,8 @@
         <entry file="file://$PROJECT_DIR$/TypeSelectionTest.cpp">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#20#0" expanded="true" />
-              </folding>
+              <caret line="2" column="20" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -175,19 +134,20 @@
         <option value="$PROJECT_DIR$/../TupleSize.h" />
         <option value="$PROJECT_DIR$/../HasTypeMember.h" />
         <option value="$PROJECT_DIR$/../WrapTypeMember.h" />
-        <option value="$PROJECT_DIR$/TypeSelectionTest.cpp" />
-        <option value="$PROJECT_DIR$/TupleSizeTest.cpp" />
-        <option value="$PROJECT_DIR$/NthTupleTypeTest.cpp" />
-        <option value="$PROJECT_DIR$/ReverseTupleTest.cpp" />
         <option value="$PROJECT_DIR$/WrapTypeMemberTest.cpp" />
         <option value="$PROJECT_DIR$/../ReverseTuple.h" />
         <option value="$PROJECT_DIR$/../IntegralConstantUtility.h" />
         <option value="$PROJECT_DIR$/IntegralConstantUtility.cpp" />
-        <option value="$PROJECT_DIR$/HasTypeMemberTest.cpp" />
-        <option value="$PROJECT_DIR$/IdentityTest.cpp" />
         <option value="$PROJECT_DIR$/../TypeSelection.h" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/../NthTupleType.h" />
+        <option value="$PROJECT_DIR$/NthTupleTypeTest.cpp" />
+        <option value="$PROJECT_DIR$/ReverseTupleTest.cpp" />
+        <option value="$PROJECT_DIR$/IdentityTest.cpp" />
+        <option value="$PROJECT_DIR$/TupleSizeTest.cpp" />
+        <option value="$PROJECT_DIR$/IntegralConstantUtilityTest.cpp" />
+        <option value="$PROJECT_DIR$/TypeSelectionTest.cpp" />
+        <option value="$PROJECT_DIR$/HasTypeMemberTest.cpp" />
       </list>
     </option>
   </component>
@@ -309,7 +269,7 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19492188" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -340,13 +300,6 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/../IntegralConstantUtility.h</url>
-          <line>81</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
       <option name="time" value="2" />
     </breakpoint-manager>
     <watches-manager />
@@ -378,22 +331,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../NthTupleType.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#229#251#0" expanded="true" />
-            <element signature="e#330#386#0" expanded="true" />
-            <element signature="e#433#469#0" expanded="true" />
-            <element signature="e#617#671#0" expanded="true" />
-            <element signature="e#1148#1186#0" expanded="true" />
-            <element signature="e#1229#1254#0" expanded="true" />
-            <element signature="e#1606#1629#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/HasTypeMemberTest.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -404,44 +341,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../TypeSelection.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
-          <folding>
-            <element signature="e#62#84#0" expanded="false" />
-            <element signature="e#120#132#0" expanded="false" />
-            <element signature="e#168#234#0" expanded="false" />
-            <element signature="e#286#335#0" expanded="false" />
-            <element signature="e#367#393#0" expanded="false" />
-            <element signature="e#509#535#0" expanded="false" />
-            <element signature="e#653#702#0" expanded="false" />
-            <element signature="e#743#769#0" expanded="false" />
-            <element signature="e#859#885#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/TypeSelectionTest.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="5" column="19" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../ReverseTuple.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="16" column="32" selection-start-line="16" selection-start-column="32" selection-end-line="16" selection-end-column="32" />
-          <folding>
-            <element signature="e#88#148#0" expanded="true" />
-            <element signature="e#184#235#0" expanded="true" />
-            <element signature="e#479#495#0" expanded="true" />
-            <marker date="1447861154000" expanded="true" signature="350:463" placeholder="&lt;~&gt;" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -449,9 +353,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="12" column="43" selection-start-line="12" selection-start-column="43" selection-end-line="12" selection-end-column="43" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -487,45 +389,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../TupleSize.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///Library/Developer/CommandLineTools/usr/include/c++/v1/type_traits">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="262" column="39" selection-start-line="262" selection-start-column="39" selection-end-line="262" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TupleSizeTest.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#20#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TypeSelectionTest.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/NthTupleTypeTest.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="2" column="26" selection-start-line="2" selection-start-column="26" selection-end-line="2" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -537,72 +404,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../ReverseTuple.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="22" column="26" selection-start-line="22" selection-start-column="26" selection-end-line="22" selection-end-column="26" />
-          <folding>
-            <element signature="e#88#148#0" expanded="true" />
-            <element signature="e#184#235#0" expanded="true" />
-            <element signature="e#479#495#0" expanded="true" />
-            <marker date="1447861154000" expanded="true" signature="350:463" placeholder="&lt;~&gt;" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ReverseTupleTest.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="12" column="43" selection-start-line="12" selection-start-column="43" selection-end-line="12" selection-end-column="43" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../IntegralConstantUtility.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="68" column="70" selection-start-line="68" selection-start-column="70" selection-end-line="68" selection-end-column="70" />
-          <folding>
-            <element signature="e#82#104#0" expanded="true" />
-            <element signature="e#135#175#0" expanded="true" />
-            <element signature="e#342#382#0" expanded="true" />
-            <element signature="e#549#589#0" expanded="true" />
-            <element signature="e#815#822#0" expanded="true" />
-            <element signature="e#1078#1089#0" expanded="true" />
-            <element signature="e#1779#1790#0" expanded="true" />
-            <element signature="e#2358#2369#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IdentityTest.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="6" column="19" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../TypeSelection.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="6" column="10" selection-start-line="6" selection-start-column="10" selection-end-line="6" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/HasTypeMemberTest.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -611,18 +412,60 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../NthTupleType.h">
+    <entry file="file://$PROJECT_DIR$/NthTupleTypeTest.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.4967742">
-          <caret line="64" column="0" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="2" column="20" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ReverseTupleTest.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="2" column="20" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IdentityTest.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="6" column="20" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TupleSizeTest.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="2" column="20" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IntegralConstantUtilityTest.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="2" column="20" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TypeSelectionTest.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="2" column="20" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HasTypeMemberTest.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.10583942">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
           <folding>
-            <element signature="e#229#251#0" expanded="true" />
-            <element signature="e#330#386#0" expanded="true" />
-            <element signature="e#433#469#0" expanded="true" />
-            <element signature="e#617#671#0" expanded="true" />
-            <element signature="e#1148#1186#0" expanded="true" />
-            <element signature="e#1229#1254#0" expanded="true" />
-            <element signature="e#1606#1629#0" expanded="true" />
+            <element signature="e#0#20#0" expanded="true" />
           </folding>
         </state>
       </provider>

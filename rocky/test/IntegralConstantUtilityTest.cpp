@@ -1,6 +1,6 @@
 #include "catch.hpp"
 
-#include "rocky/IntegralConstantUtility.h"
+#include "rocky/meta/IntegralConstantUtility.h"
 #include <iostream>
 
 
