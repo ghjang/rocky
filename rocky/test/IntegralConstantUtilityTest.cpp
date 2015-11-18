@@ -18,6 +18,24 @@ TEST_CASE("- operator overloading", "[IntegralConstantUtility]")
     static_assert(int_c<15> - int_c<25> == std::integral_constant<int, -10>{}, "15 - 25 = -10");
 }
 
+TEST_CASE("* operator overloading", "[IntegralConstantUtility]")
+{
+    static_assert(int_c<5> * int_c<5> == int_c<25>, "5 * 5 = 25");
+    static_assert(int_c<5> * int_c<5> == std::integral_constant<int, 25>{}, "5 * 5 = 25");
+
+    static_assert(int_c<5> * int_c<-5> == int_c<-25>, "5 * -5 = -25");
+}
+
+TEST_CASE("/ operator overloading", "[IntegralConstantUtility]")
+{
+    static_assert(int_c<5> / int_c<5> == int_c<1>, "5 / 5 = 1");
+    static_assert(int_c<5> / int_c<5> == std::integral_constant<int, 1>{}, "5 / 5 = 1");
+
+    static_assert(int_c<5> / int_c<-5> == int_c<-1>, "5 / -5 = -1");
+
+    static_assert(int_c<5> / int_c<2> == int_c<2>, "5 / 2 = 2");
+}
+
 TEST_CASE("char to int", "[IntegralConstantUtility]")
 {
     // expected static asserion fail.
