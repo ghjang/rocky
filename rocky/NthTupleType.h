@@ -2,7 +2,10 @@
 #define ROCKY_NTHTUPLEELEMENTTYPE_H
 
 
-// NOTE: prefer to use std::tuple_element instead of NthTupleElementType.
+/**
+ * NOTE: prefer to use std::tuple_element over NthTupleElementType.
+ *       But it's an useful example for the variadic parameter pack looping.
+ */
 
 
 #include <type_traits>
