@@ -1,15 +1,7 @@
 #include "catch.hpp"
 
 #include "rocky/meta/IntegralConstantUtility.h"
-#include <iostream>
 
-
-TEST_CASE("Power", "[IntegralConstantUtility]")
-{
-    static_assert(Power(10, 0) == 1, "10^0 = 1");
-    static_assert(Power(10, 2) == 100, "10^2 = 100");
-    static_assert(Power(2, 10) == 1024, "2^10 = 1024");
-}
 
 TEST_CASE("+ operator overloading", "[IntegralConstantUtility]")
 {

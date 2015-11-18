@@ -14,7 +14,8 @@ set(SOURCE_FILES
         IdentityTest.cpp
         TypeSelectionTest.cpp
         ReverseTupleTest.cpp
-        IntegralConstantUtilityTest.cpp)
+        IntegralConstantUtilityTest.cpp
+        PowerTest.cpp)
 
 add_executable(RockyTest ${SOURCE_FILES})
 
