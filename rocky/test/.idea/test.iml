@@ -4,12 +4,13 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/HasTypeMemberTest.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/IdentityTest.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/IntegralConstantUtility.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/main.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/NthTupleTypeTest.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/ReverseTupleTest.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/TupleSizeTest.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/TypeSelectionTest.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/WrapTypeMemberTest.cpp" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
@@ -375,10 +376,11 @@
           <root url="file://$MODULE_DIR$/ReverseTupleTest.cpp" />
           <root url="file://$MODULE_DIR$/main.cpp" />
           <root url="file://$MODULE_DIR$/TypeSelectionTest.cpp" />
+          <root url="file://$MODULE_DIR$/IdentityTest.cpp" />
           <root url="file://$MODULE_DIR$/HasTypeMemberTest.cpp" />
           <root url="file://$MODULE_DIR$/CMakeLists.txt" />
           <root url="file://$MODULE_DIR$" />
-          <root url="file://$MODULE_DIR$/WrapTypeMemberTest.cpp" />
+          <root url="file://$MODULE_DIR$/IntegralConstantUtility.cpp" />
           <root url="file://$MODULE_DIR$/NthTupleTypeTest.cpp" />
           <root url="file://$MODULE_DIR$/TupleSizeTest.cpp" />
         </excluded>
