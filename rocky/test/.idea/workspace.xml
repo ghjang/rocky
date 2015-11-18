@@ -12,8 +12,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="932c8e01-f7f8-4592-bd6e-bfec34de8cb6" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../NthTupleType.h" afterPath="$PROJECT_DIR$/../NthTupleType.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/test.iml" afterPath="$PROJECT_DIR$/.idea/test.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMakeLists.txt" afterPath="$PROJECT_DIR$/CMakeLists.txt" />
     </list>
     <ignored path="test.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -34,11 +35,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5644769">
-              <caret line="16" column="34" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -80,6 +81,24 @@
               <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
               <folding>
                 <element signature="e#0#20#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NthTupleType.h" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../NthTupleType.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="1.4967742">
+              <caret line="64" column="0" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
+              <folding>
+                <element signature="e#229#251#0" expanded="true" />
+                <element signature="e#330#386#0" expanded="true" />
+                <element signature="e#433#469#0" expanded="true" />
+                <element signature="e#617#671#0" expanded="true" />
+                <element signature="e#1148#1186#0" expanded="true" />
+                <element signature="e#1229#1254#0" expanded="true" />
+                <element signature="e#1606#1629#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -161,7 +180,6 @@
         <option value="$PROJECT_DIR$/NthTupleTypeTest.cpp" />
         <option value="$PROJECT_DIR$/ReverseTupleTest.cpp" />
         <option value="$PROJECT_DIR$/WrapTypeMemberTest.cpp" />
-        <option value="$PROJECT_DIR$/../NthTupleType.h" />
         <option value="$PROJECT_DIR$/../ReverseTuple.h" />
         <option value="$PROJECT_DIR$/../IntegralConstantUtility.h" />
         <option value="$PROJECT_DIR$/IntegralConstantUtility.cpp" />
@@ -169,6 +187,7 @@
         <option value="$PROJECT_DIR$/IdentityTest.cpp" />
         <option value="$PROJECT_DIR$/../TypeSelection.h" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/../NthTupleType.h" />
       </list>
     </option>
   </component>
@@ -230,7 +249,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../IntegralConstantUtility.h" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../NthTupleType.h" />
   </component>
   <component name="RunManager" selected="Application.RockyTest">
     <configuration default="true" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="RockyTest" TARGET_NAME="RockyTest" CONFIG_NAME="Debug" TEST_MODE="SUITE_TEST">
@@ -290,7 +309,7 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19492188" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -364,13 +383,13 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#150#172#0" expanded="false" />
-            <element signature="e#251#307#0" expanded="false" />
-            <element signature="e#354#390#0" expanded="false" />
-            <element signature="e#538#592#0" expanded="false" />
-            <element signature="e#1204#1242#0" expanded="false" />
-            <element signature="e#1285#1310#0" expanded="false" />
-            <element signature="e#1749#1772#0" expanded="false" />
+            <element signature="e#229#251#0" expanded="true" />
+            <element signature="e#330#386#0" expanded="true" />
+            <element signature="e#433#469#0" expanded="true" />
+            <element signature="e#617#671#0" expanded="true" />
+            <element signature="e#1148#1186#0" expanded="true" />
+            <element signature="e#1229#1254#0" expanded="true" />
+            <element signature="e#1606#1629#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -482,22 +501,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../NthTupleType.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="63" column="0" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
-          <folding>
-            <element signature="e#150#172#0" expanded="false" />
-            <element signature="e#251#307#0" expanded="false" />
-            <element signature="e#354#390#0" expanded="false" />
-            <element signature="e#538#592#0" expanded="false" />
-            <element signature="e#1204#1242#0" expanded="false" />
-            <element signature="e#1285#1310#0" expanded="false" />
-            <element signature="e#1749#1772#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/TupleSizeTest.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -602,9 +605,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5644769">
-          <caret line="16" column="34" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../NthTupleType.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.4967742">
+          <caret line="64" column="0" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
+          <folding>
+            <element signature="e#229#251#0" expanded="true" />
+            <element signature="e#330#386#0" expanded="true" />
+            <element signature="e#433#469#0" expanded="true" />
+            <element signature="e#617#671#0" expanded="true" />
+            <element signature="e#1148#1186#0" expanded="true" />
+            <element signature="e#1229#1254#0" expanded="true" />
+            <element signature="e#1606#1629#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

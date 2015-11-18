@@ -5,7 +5,7 @@
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/HasTypeMemberTest.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/IdentityTest.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/IntegralConstantUtility.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/IntegralConstantUtilityTest.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/main.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/NthTupleTypeTest.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/ReverseTupleTest.cpp" isTestSource="false" />
@@ -373,16 +373,16 @@
           <root url="file:///usr/include" />
         </SOURCES>
         <excluded>
-          <root url="file://$MODULE_DIR$/ReverseTupleTest.cpp" />
-          <root url="file://$MODULE_DIR$/main.cpp" />
+          <root url="file://$MODULE_DIR$" />
           <root url="file://$MODULE_DIR$/TypeSelectionTest.cpp" />
+          <root url="file://$MODULE_DIR$/ReverseTupleTest.cpp" />
           <root url="file://$MODULE_DIR$/IdentityTest.cpp" />
           <root url="file://$MODULE_DIR$/HasTypeMemberTest.cpp" />
           <root url="file://$MODULE_DIR$/CMakeLists.txt" />
-          <root url="file://$MODULE_DIR$" />
-          <root url="file://$MODULE_DIR$/IntegralConstantUtility.cpp" />
-          <root url="file://$MODULE_DIR$/NthTupleTypeTest.cpp" />
+          <root url="file://$MODULE_DIR$/IntegralConstantUtilityTest.cpp" />
+          <root url="file://$MODULE_DIR$/main.cpp" />
           <root url="file://$MODULE_DIR$/TupleSizeTest.cpp" />
+          <root url="file://$MODULE_DIR$/NthTupleTypeTest.cpp" />
         </excluded>
       </library>
     </orderEntry>
