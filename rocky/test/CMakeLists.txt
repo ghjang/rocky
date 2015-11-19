@@ -17,7 +17,8 @@ set(SOURCE_FILES
         IntegralConstantUtilityTest.cpp
         PowerTest.cpp
         StringNumberConversionTest.cpp
-        MultipleInheritance.cpp)
+        MultipleInheritance.cpp
+        ForEachArgumentTest.cpp)
 
 add_executable(RockyTest ${SOURCE_FILES})
 
