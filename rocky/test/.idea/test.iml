@@ -7,6 +7,7 @@
       <sourceFolder url="file://$MODULE_DIR$/IdentityTest.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/IntegralConstantUtilityTest.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/main.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/MultipleInheritance.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/NthTupleTypeTest.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/PowerTest.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/ReverseTupleTest.cpp" isTestSource="false" />
@@ -377,9 +378,10 @@
         <excluded>
           <root url="file://$MODULE_DIR$/ReverseTupleTest.cpp" />
           <root url="file://$MODULE_DIR$/main.cpp" />
+          <root url="file://$MODULE_DIR$/HasTypeMemberTest.cpp" />
           <root url="file://$MODULE_DIR$/TypeSelectionTest.cpp" />
           <root url="file://$MODULE_DIR$/IdentityTest.cpp" />
-          <root url="file://$MODULE_DIR$/HasTypeMemberTest.cpp" />
+          <root url="file://$MODULE_DIR$/MultipleInheritance.cpp" />
           <root url="file://$MODULE_DIR$/CMakeLists.txt" />
           <root url="file://$MODULE_DIR$/StringNumberConversionTest.cpp" />
           <root url="file://$MODULE_DIR$/IntegralConstantUtilityTest.cpp" />
