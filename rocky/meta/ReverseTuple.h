@@ -25,7 +25,7 @@ struct ReverseTuple<std::tuple<list...>>
         : ReverseTupleImpl<
                 std::tuple<list...>,
                 sizeof...(list),
-                std::make_index_sequence<sizeof...(list)>
+                std::index_sequence_for<list...>
             >
 { };
 
