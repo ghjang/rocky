@@ -18,7 +18,9 @@ set(SOURCE_FILES
         PowerTest.cpp
         StringNumberConversionTest.cpp
         MultipleInheritance.cpp
-        ForEachArgumentTest.cpp IntegerSequenceUtilityTest.cpp)
+        ForEachArgumentTest.cpp
+        IntegerSequenceUtilityTest.cpp
+        ForEachTupleElementTest.cpp)
 
 add_executable(RockyTest ${SOURCE_FILES})
 
