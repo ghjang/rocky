@@ -54,5 +54,14 @@ struct IntegralConstantSum<std::integral_constant<T1, v1>, std::integral_constan
 { };
 
 
+template <typename lhs, typename rhs>
+struct IntegralConstantMultiply;
+
+template <typename T1, T1 v1, typename T2, T2 v2>
+struct IntegralConstantMultiply<std::integral_constant<T1, v1>, std::integral_constant<T2, v2>>
+        : std::integral_constant<decltype(v1 * v2), v1 * v2>
+{ };
+
+
 #endif //ROCKY_INTEGRALCONSTANTUTILITY_H
 
