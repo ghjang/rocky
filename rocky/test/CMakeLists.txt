@@ -21,7 +21,7 @@ set(SOURCE_FILES
         ForEachArgumentTest.cpp
         IntegerSequenceUtilityTest.cpp
         ForEachTupleElementTest.cpp
-        TypeUtilityTest.cpp)
+        TypeUtilityTest.cpp ForEachTupleTypeTest.cpp)
 
 add_executable(RockyTest ${SOURCE_FILES})
 
