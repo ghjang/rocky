@@ -20,7 +20,8 @@ set(SOURCE_FILES
         MultipleInheritance.cpp
         ForEachArgumentTest.cpp
         IntegerSequenceUtilityTest.cpp
-        ForEachTupleElementTest.cpp)
+        ForEachTupleElementTest.cpp
+        TypeUtilityTest.cpp)
 
 add_executable(RockyTest ${SOURCE_FILES})
 

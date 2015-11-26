@@ -4,7 +4,7 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/ForEachArgumentTest.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/ForEachTupleElement.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/ForEachTupleElementTest.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/HasTypeMemberTest.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/IdentityTest.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/IntegerSequenceUtilityTest.cpp" isTestSource="false" />
@@ -17,6 +17,7 @@
       <sourceFolder url="file://$MODULE_DIR$/StringNumberConversionTest.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/TupleSizeTest.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/TypeSelectionTest.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/TypeUtilityTest.cpp" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
@@ -380,21 +381,22 @@
         </SOURCES>
         <excluded>
           <root url="file://$MODULE_DIR$/ReverseTupleTest.cpp" />
-          <root url="file://$MODULE_DIR$/StringNumberConversionTest.cpp" />
+          <root url="file://$MODULE_DIR$/main.cpp" />
           <root url="file://$MODULE_DIR$/IntegralConstantUtilityTest.cpp" />
           <root url="file://$MODULE_DIR$/CMakeLists.txt" />
-          <root url="file://$MODULE_DIR$/ForEachTupleElement.cpp" />
           <root url="file://$MODULE_DIR$/TypeSelectionTest.cpp" />
           <root url="file://$MODULE_DIR$/IntegerSequenceUtilityTest.cpp" />
           <root url="file://$MODULE_DIR$/PowerTest.cpp" />
           <root url="file://$MODULE_DIR$/IdentityTest.cpp" />
+          <root url="file://$MODULE_DIR$/MultipleInheritance.cpp" />
           <root url="file://$MODULE_DIR$/NthTupleTypeTest.cpp" />
+          <root url="file://$MODULE_DIR$/TypeUtilityTest.cpp" />
           <root url="file://$MODULE_DIR$/HasTypeMemberTest.cpp" />
           <root url="file://$MODULE_DIR$/TupleSizeTest.cpp" />
           <root url="file://$MODULE_DIR$/ForEachArgumentTest.cpp" />
+          <root url="file://$MODULE_DIR$/ForEachTupleElementTest.cpp" />
+          <root url="file://$MODULE_DIR$/StringNumberConversionTest.cpp" />
           <root url="file://$MODULE_DIR$" />
-          <root url="file://$MODULE_DIR$/main.cpp" />
-          <root url="file://$MODULE_DIR$/MultipleInheritance.cpp" />
         </excluded>
       </library>
     </orderEntry>
