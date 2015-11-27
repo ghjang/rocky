@@ -7,7 +7,7 @@
 
 /**
  * assumed that F is op:
- *  t0 op (t1 op (t2 op ...(tn op init)...)
+ *  (t0 op (t1 op (t2 op ...(tn op init)...)
  */
 template <template <typename, typename> class F, typename init, typename... list>
 struct FoldRight;
@@ -25,4 +25,13 @@ struct FoldRight<F, init, head, tail...>
 };
 
 
+/**
+ * assumed that F is op:
+ *  (...(init op t0) op t1) op t2)... op tn)
+ */
+template <template <typename, typename> class F, typename init, typename... list>
+struct FoldLeft;
+
+
 #endif //ROCKY_FOLD_H
+
