@@ -1,12 +1,12 @@
 #include "catch.hpp"
 
 
-#include "rocky/meta/ForEachTupleElement.h"
+#include "rocky/meta/ForEachTuple.h"
 
 #include <type_traits>
 
 
-TEST_CASE("for each tuple element", "[ForEachTupleElement]")
+TEST_CASE("for each tuple element", "[ForEachTuple]")
 {
     using std::tuple;
     using std::make_tuple;
@@ -19,13 +19,13 @@ TEST_CASE("for each tuple element", "[ForEachTupleElement]")
             void operator()(int i) { sum_ += i; }
         };
 
-        auto sumObj = ForEachTupleElement(Sum(), make_tuple(1, 2, 3, 4, 5));
+        auto sumObj = ForEachElement(Sum(), make_tuple(1, 2, 3, 4, 5));
         REQUIRE(15 == sumObj.sum_);
     }
 
     {
         int sum = 0;
-        ForEachTupleElement([&sum](int i) { sum += i; }, make_tuple(1, 2, 3, 4, 5));
+        ForEachElement([&sum](int i) { sum += i; }, make_tuple(1, 2, 3, 4, 5));
         REQUIRE(15 == sum);
     }
 }
