@@ -5,7 +5,7 @@
 #include <type_traits>
 #include <tuple>
 
-#include "rocky/meta/FoldRight.h"
+#include "rocky/meta/Fold.h"
 #include "rocky/meta/IntegralConstantUtility.h"
 
 

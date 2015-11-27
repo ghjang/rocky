@@ -1,11 +1,11 @@
 #include "catch.hpp"
 
-#include "rocky/meta/FoldRight.h"
+#include "rocky/meta/Fold.h"
 
 #include "rocky/meta/IntegralConstantUtility.h"
 
 
-TEST_CASE("integral constant sum", "[FoldRight]")
+TEST_CASE("fold right, integral constant sum", "[Fold]")
 {
     using std::integral_constant;
 
@@ -21,7 +21,7 @@ TEST_CASE("integral constant sum", "[FoldRight]")
     static_assert(sum_t() == 15, "1 + (2 + (3 + (4 + (5 + 0)))) = 15");
 }
 
-TEST_CASE("integral constant multiply", "[FoldRight]")
+TEST_CASE("fold right, integral constant multiply", "[Fold]")
 {
     using std::integral_constant;
 

@@ -22,7 +22,7 @@ set(SOURCE_FILES
         IntegerSequenceUtilityTest.cpp
         ForEachTupleTest.cpp
         TypeUtilityTest.cpp
-        FoldRightTest.cpp
+        FoldTest.cpp
         TransformTupleTest.cpp)
 
 add_executable(RockyTest ${SOURCE_FILES})
