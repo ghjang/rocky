@@ -6,11 +6,11 @@
 
 
 template <typename T>
-constexpr IdentityType<T> type_c{};
+constexpr Identity<T> type_c{};
 
 
 template <typename T>
-constexpr std::size_t TypeSizeOf(IdentityType<T>)
+constexpr std::size_t TypeSizeOf(Identity<T>)
 { return sizeof(T); }
 
 
