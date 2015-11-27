@@ -1,5 +1,5 @@
-#ifndef ROCKY_HASTYPEMEMBER_H
-#define ROCKY_HASTYPEMEMBER_H
+#ifndef ROCKY_HASMEMBER_H
+#define ROCKY_HASMEMBER_H
 
 
 #include <type_traits>
@@ -16,5 +16,5 @@ struct HasTypeMember : decltype(HasTypeMemberImpl<T>(int{}))
 { };
 
 
-#endif //ROCKY_HASTYPEMEMBER_H
+#endif //ROCKY_HASMEMBER_H
 
