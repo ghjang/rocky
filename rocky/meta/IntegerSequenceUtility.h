@@ -10,7 +10,7 @@ struct CustomIntegerSequenceImpl;
 
 template <std::size_t... i, template<std::size_t> class GeneratorFunc>
 struct CustomIntegerSequenceImpl<
-            std::integer_sequence<std::size_t, i...>,
+            std::index_sequence<i...>,
             GeneratorFunc
         >
 {
