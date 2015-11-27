@@ -1,6 +1,10 @@
 #ifndef ROCKY_FOLDRIGHT_H
 #define ROCKY_FOLDRIGHT_H
 
+
+// accumulation
+
+
 /**
  * assumed that F is op:
  *  t0 op (t1 op (t2 op ...(tn op init)...)
