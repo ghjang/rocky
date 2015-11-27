@@ -1,5 +1,5 @@
-#ifndef ROCKY_FOLDRIGHT_H
-#define ROCKY_FOLDRIGHT_H
+#ifndef ROCKY_FOLD_H
+#define ROCKY_FOLD_H
 
 
 // accumulation
@@ -25,5 +25,4 @@ struct FoldRight<F, init, head, tail...>
 };
 
 
-#endif //ROCKY_FOLDRIGHT_H
-
+#endif //ROCKY_FOLD_H
