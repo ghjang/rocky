@@ -12,8 +12,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="932c8e01-f7f8-4592-bd6e-bfec34de8cb6" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../meta/ReverseTuple.h" afterPath="$PROJECT_DIR$/../meta/ReverseTuple.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMakeLists.txt" afterPath="$PROJECT_DIR$/CMakeLists.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ReverseTupleTest.cpp" afterPath="$PROJECT_DIR$/ReverseTupleTest.cpp" />
     </list>
     <ignored path="test.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -34,35 +35,42 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.42335767">
-              <caret line="12" column="11" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="11" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="11" column="16" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TypeUtility.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../meta/TypeUtility.h">
+      <file leaf-file-name="NthTupleTest.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/NthTupleTest.cpp">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+              <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
               <folding>
-                <element signature="e#102#114#0" expanded="true" />
-                <element signature="e#158#170#0" expanded="true" />
+                <element signature="e#0#20#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NthTupleElementType.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../meta/NthTupleElementType.h">
+      <file leaf-file-name="NthTuple.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../meta/NthTuple.h">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="29" column="23" selection-start-line="29" selection-start-column="23" selection-end-line="29" selection-end-column="23" />
-              <folding />
+              <caret line="64" column="0" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
+              <folding>
+                <element signature="e#202#224#0" expanded="true" />
+                <element signature="e#303#359#0" expanded="true" />
+                <element signature="e#401#437#0" expanded="true" />
+                <element signature="e#580#634#0" expanded="true" />
+                <element signature="e#1097#1135#0" expanded="true" />
+                <element signature="e#1173#1198#0" expanded="true" />
+                <element signature="e#1540#1563#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -74,6 +82,19 @@
               <caret line="11" column="82" selection-start-line="11" selection-start-column="82" selection-end-line="11" selection-end-column="82" />
               <folding>
                 <element signature="e#0#20#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ReverseTuple.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../meta/ReverseTuple.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="20" column="17" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
+              <folding>
+                <element signature="e#477#493#0" expanded="true" />
+                <element signature="e#524#542#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -125,6 +146,18 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="ReverseTupleTest.cpp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ReverseTupleTest.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.17639902">
+              <caret line="5" column="60" selection-start-line="5" selection-start-column="60" selection-end-line="5" selection-end-column="60" />
+              <folding>
+                <element signature="e#0#20#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
   </component>
   <component name="Git.Settings">
@@ -144,7 +177,6 @@
         <option value="$PROJECT_DIR$/../TypeSelection.h" />
         <option value="$PROJECT_DIR$/../NthTupleType.h" />
         <option value="$PROJECT_DIR$/NthTupleTypeTest.cpp" />
-        <option value="$PROJECT_DIR$/ReverseTupleTest.cpp" />
         <option value="$PROJECT_DIR$/TypeSelectionTest.cpp" />
         <option value="$PROJECT_DIR$/HasTypeMemberTest.cpp" />
         <option value="$PROJECT_DIR$/PowerTest.cpp" />
@@ -157,7 +189,6 @@
         <option value="$PROJECT_DIR$/MultipleInheritance.cpp" />
         <option value="$PROJECT_DIR$/../meta/ForEachArgument.h" />
         <option value="$PROJECT_DIR$/ForEachArgumentTest.cpp" />
-        <option value="$PROJECT_DIR$/../meta/ReverseTuple.h" />
         <option value="$PROJECT_DIR$/IntegerSequenceUtilityTest.cpp" />
         <option value="$PROJECT_DIR$/ForEachTupleElement.cpp" />
         <option value="$PROJECT_DIR$/../meta/ForEachTupleElement.h" />
@@ -178,6 +209,10 @@
         <option value="$PROJECT_DIR$/../meta/ForEachTuple.h" />
         <option value="$PROJECT_DIR$/ForEachTupleElementTest.cpp" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/../meta/NthTuple.h" />
+        <option value="$PROJECT_DIR$/NthTupleTest.cpp" />
+        <option value="$PROJECT_DIR$/../meta/ReverseTuple.h" />
+        <option value="$PROJECT_DIR$/ReverseTupleTest.cpp" />
       </list>
     </option>
   </component>
@@ -358,8 +393,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
           <folding>
-            <element signature="e#479#495#0" expanded="false" />
-            <element signature="e#527#545#0" expanded="false" />
+            <element signature="e#477#493#0" expanded="true" />
+            <element signature="e#524#542#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -418,14 +453,6 @@
           <folding>
             <element signature="e#0#20#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/NthTupleTypeTest.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="19" selection-start-line="0" selection-start-column="19" selection-end-line="0" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -492,14 +519,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/NthTupleTypeTest.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="2" column="20" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../math/Power.h">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -525,14 +544,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ReverseTupleTest.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="2" column="27" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -586,17 +597,6 @@
             <element signature="e#653#702#0" expanded="false" />
             <element signature="e#743#769#0" expanded="false" />
             <element signature="e#859#885#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../meta/ReverseTuple.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-          <folding>
-            <element signature="e#479#495#0" expanded="false" />
-            <element signature="e#527#545#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -709,14 +709,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../meta/NthTupleElementType.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="29" column="23" selection-start-line="29" selection-start-column="23" selection-end-line="29" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/TypeUtilityTest.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -767,9 +759,56 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.42335767">
-          <caret line="12" column="11" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="11" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="11" column="16" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../meta/NthTuple.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="64" column="0" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
+          <folding>
+            <element signature="e#202#224#0" expanded="true" />
+            <element signature="e#303#359#0" expanded="true" />
+            <element signature="e#401#437#0" expanded="true" />
+            <element signature="e#580#634#0" expanded="true" />
+            <element signature="e#1097#1135#0" expanded="true" />
+            <element signature="e#1173#1198#0" expanded="true" />
+            <element signature="e#1540#1563#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NthTupleTest.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../meta/ReverseTuple.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="20" column="17" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
+          <folding>
+            <element signature="e#477#493#0" expanded="true" />
+            <element signature="e#524#542#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ReverseTupleTest.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.17639902">
+          <caret line="5" column="60" selection-start-line="5" selection-start-column="60" selection-end-line="5" selection-end-column="60" />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

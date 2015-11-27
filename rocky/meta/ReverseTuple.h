@@ -6,10 +6,10 @@
 
 
 template <typename Tuple, size_t sizeOfTuple, typename indexSequence>
-struct ReverseTupleImpl;
+struct ReverseTypeImpl;
 
 template <typename... list, size_t sizeOfTuple, size_t... i>
-struct ReverseTupleImpl<std::tuple<list...>, sizeOfTuple, std::index_sequence<i...>>
+struct ReverseTypeImpl<std::tuple<list...>, sizeOfTuple, std::index_sequence<i...>>
 {
     using type = std::tuple<
                         std::tuple_element_t<sizeOfTuple - i - 1, std::tuple<list...>>...
@@ -18,11 +18,11 @@ struct ReverseTupleImpl<std::tuple<list...>, sizeOfTuple, std::index_sequence<i.
 
 
 template <typename Tuple>
-struct ReverseTuple;
+struct ReverseType;
 
 template <typename... list>
-struct ReverseTuple<std::tuple<list...>>
-        : ReverseTupleImpl<
+struct ReverseType<std::tuple<list...>>
+        : ReverseTypeImpl<
                 std::tuple<list...>,
                 sizeof...(list),
                 std::index_sequence_for<list...>
