@@ -10,10 +10,10 @@
 
 
 template <typename Tuple>
-struct SumOfTupleElementTypeSize;
+struct SumOfElementTypeSize;
 
 template <typename... list>
-struct SumOfTupleElementTypeSize<std::tuple<list...>>
+struct SumOfElementTypeSize<std::tuple<list...>>
             : FoldRight<
                     IntegralConstantSum,
                     std::integral_constant<std::size_t, 0>,
