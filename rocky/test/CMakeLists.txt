@@ -10,7 +10,7 @@ set(SOURCE_FILES
         main.cpp
         TupleSizeTest.cpp
         NthTupleTypeTest.cpp
-        HasTypeMemberTest.cpp
+        HasMemberTest.cpp
         IdentityTest.cpp
         TypeSelectionTest.cpp
         ReverseTupleTest.cpp
@@ -20,9 +20,8 @@ set(SOURCE_FILES
         MultipleInheritance.cpp
         ForEachArgumentTest.cpp
         IntegerSequenceUtilityTest.cpp
-        ForEachTupleElementTest.cpp
+        ForEachTupleTest.cpp
         TypeUtilityTest.cpp
-        ForEachTupleTypeTest.cpp
         FoldRightTest.cpp)
 
 add_executable(RockyTest ${SOURCE_FILES})
