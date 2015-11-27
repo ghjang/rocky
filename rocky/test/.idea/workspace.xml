@@ -12,9 +12,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="932c8e01-f7f8-4592-bd6e-bfec34de8cb6" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../meta/ReverseTuple.h" afterPath="$PROJECT_DIR$/../meta/ReverseTuple.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../meta/FoldRight.h" afterPath="$PROJECT_DIR$/../meta/FoldRight.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ReverseTupleTest.cpp" afterPath="$PROJECT_DIR$/ReverseTupleTest.cpp" />
     </list>
     <ignored path="test.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -41,6 +40,42 @@
             <state vertical-scroll-proportion="0.0">
               <caret line="11" column="16" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TupleSizeTest.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/TupleSizeTest.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="2" column="27" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TupleSize.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../meta/TupleSize.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="7" column="28" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
+              <folding>
+                <element signature="e#244#262#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FoldRight.h" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../meta/FoldRight.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.5612903">
+              <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+              <folding>
+                <element signature="e#139#211#0" expanded="true" />
+                <element signature="e#149#169#0" expanded="true" />
+                <element signature="e#240#294#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -75,18 +110,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TypeUtilityTest.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/TypeUtilityTest.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="11" column="82" selection-start-line="11" selection-start-column="82" selection-end-line="11" selection-end-column="82" />
-              <folding>
-                <element signature="e#0#20#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="ReverseTuple.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../meta/ReverseTuple.h">
           <provider selected="true" editor-type-id="text-editor">
@@ -96,28 +119,6 @@
                 <element signature="e#477#493#0" expanded="true" />
                 <element signature="e#524#542#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="IdentityTest.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/IdentityTest.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="20" column="29" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
-              <folding>
-                <element signature="e#0#20#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="IntegerSequenceUtilityTest.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/IntegerSequenceUtilityTest.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="2" column="35" selection-start-line="2" selection-start-column="35" selection-end-line="2" selection-end-column="35" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -146,10 +147,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ReverseTupleTest.cpp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ReverseTupleTest.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ReverseTupleTest.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.17639902">
+            <state vertical-scroll-proportion="0.0">
               <caret line="5" column="60" selection-start-line="5" selection-start-column="60" selection-end-line="5" selection-end-column="60" />
               <folding>
                 <element signature="e#0#20#0" expanded="true" />
@@ -193,12 +194,9 @@
         <option value="$PROJECT_DIR$/ForEachTupleElement.cpp" />
         <option value="$PROJECT_DIR$/../meta/ForEachTupleElement.h" />
         <option value="$PROJECT_DIR$/../meta/ForEachTupleType.h" />
-        <option value="$PROJECT_DIR$/../meta/FoldRight.h" />
         <option value="$PROJECT_DIR$/../meta/IntegralConstantUtility.h" />
         <option value="$PROJECT_DIR$/FoldRight.cpp" />
         <option value="$PROJECT_DIR$/IntegralConstantUtilityTest.cpp" />
-        <option value="$PROJECT_DIR$/../meta/TupleSize.h" />
-        <option value="$PROJECT_DIR$/TupleSizeTest.cpp" />
         <option value="$PROJECT_DIR$/../meta/ForEachTupleElementType.h" />
         <option value="$PROJECT_DIR$/ForEachTupleTypeTest.cpp" />
         <option value="$PROJECT_DIR$/../meta/TypeUtility.h" />
@@ -213,6 +211,9 @@
         <option value="$PROJECT_DIR$/NthTupleTest.cpp" />
         <option value="$PROJECT_DIR$/../meta/ReverseTuple.h" />
         <option value="$PROJECT_DIR$/ReverseTupleTest.cpp" />
+        <option value="$PROJECT_DIR$/../meta/TupleSize.h" />
+        <option value="$PROJECT_DIR$/TupleSizeTest.cpp" />
+        <option value="$PROJECT_DIR$/../meta/FoldRight.h" />
       </list>
     </option>
   </component>
@@ -338,7 +339,7 @@
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -450,9 +451,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#20#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -484,9 +483,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#20#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -664,40 +661,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../meta/TupleSize.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding>
-            <element signature="e#188#204#0" expanded="false" />
-            <element signature="e#249#267#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TupleSizeTest.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#20#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../meta/FoldRight.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="24" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
-          <folding>
-            <element signature="e#241#295#0" expanded="false" />
-            <element signature="e#251#271#0" expanded="false" />
-            <element signature="e#360#447#0" expanded="false" />
-            <element signature="e#370#390#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../meta/TypeUtility.h">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -804,10 +767,40 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ReverseTupleTest.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.17639902">
+        <state vertical-scroll-proportion="0.0">
           <caret line="5" column="60" selection-start-line="5" selection-start-column="60" selection-end-line="5" selection-end-column="60" />
           <folding>
             <element signature="e#0#20#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TupleSizeTest.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="2" column="27" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../meta/TupleSize.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="7" column="28" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
+          <folding>
+            <element signature="e#244#262#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../meta/FoldRight.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5612903">
+          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+          <folding>
+            <element signature="e#139#211#0" expanded="true" />
+            <element signature="e#149#169#0" expanded="true" />
+            <element signature="e#240#294#0" expanded="true" />
           </folding>
         </state>
       </provider>

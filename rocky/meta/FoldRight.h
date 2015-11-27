@@ -5,7 +5,6 @@
  * assumed that F is op:
  *  t0 op (t1 op (t2 op ...(tn op init)...)
  */
-
 template <template <typename, typename> class F, typename init, typename... list>
 struct FoldRight;
 
