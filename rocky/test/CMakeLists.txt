@@ -23,7 +23,8 @@ set(SOURCE_FILES
         ForEachTupleTest.cpp
         TypeUtilityTest.cpp
         FoldTest.cpp
-        TransformTupleTest.cpp)
+        TransformTupleTest.cpp
+        CountTupleTest.cpp)
 
 add_executable(RockyTest ${SOURCE_FILES})
 

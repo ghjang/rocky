@@ -3,6 +3,7 @@
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/CountTupleTest.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/FoldTest.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/ForEachArgumentTest.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/ForEachTupleTest.cpp" isTestSource="false" />
@@ -384,7 +385,7 @@
         <excluded>
           <root url="file://$MODULE_DIR$/NthTupleTest.cpp" />
           <root url="file://$MODULE_DIR$/ReverseTupleTest.cpp" />
-          <root url="file://$MODULE_DIR$/ForEachTupleTest.cpp" />
+          <root url="file://$MODULE_DIR$/StringNumberConversionTest.cpp" />
           <root url="file://$MODULE_DIR$/IntegralConstantUtilityTest.cpp" />
           <root url="file://$MODULE_DIR$/CMakeLists.txt" />
           <root url="file://$MODULE_DIR$/TypeSelectionTest.cpp" />
@@ -392,10 +393,11 @@
           <root url="file://$MODULE_DIR$/PowerTest.cpp" />
           <root url="file://$MODULE_DIR$/IntegerSequenceUtilityTest.cpp" />
           <root url="file://$MODULE_DIR$/FoldTest.cpp" />
+          <root url="file://$MODULE_DIR$/ForEachTupleTest.cpp" />
           <root url="file://$MODULE_DIR$/IdentityTest.cpp" />
           <root url="file://$MODULE_DIR$/TransformTupleTest.cpp" />
-          <root url="file://$MODULE_DIR$/StringNumberConversionTest.cpp" />
           <root url="file://$MODULE_DIR$/TypeUtilityTest.cpp" />
+          <root url="file://$MODULE_DIR$/CountTupleTest.cpp" />
           <root url="file://$MODULE_DIR$/TupleSizeTest.cpp" />
           <root url="file://$MODULE_DIR$/ForEachArgumentTest.cpp" />
           <root url="file://$MODULE_DIR$" />
