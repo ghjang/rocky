@@ -2,7 +2,7 @@
 #define ROCKY_IDENTITY_H
 
 template <typename T>
-struct IdentityType
+struct Identity
 {
     using type = T;
 };
