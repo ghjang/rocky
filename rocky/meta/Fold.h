@@ -24,6 +24,11 @@ struct FoldRight<F, init, head, tail...>
     using type = typename F<head, typename FoldRight<F, init, tail...>::type>::type;
 };
 
+template <template <typename, typename> class F, typename init, typename... list>
+struct FoldRight<F, init, std::tuple<list...>>
+        : FoldRight<F, init, list...>
+{ };
+
 
 /**
  * assumed that F is op:
