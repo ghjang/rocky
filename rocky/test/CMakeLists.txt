@@ -9,7 +9,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
 set(SOURCE_FILES
         main.cpp
         TupleSizeTest.cpp
-        NthTupleTypeTest.cpp
+        NthTupleTest.cpp
         HasMemberTest.cpp
         IdentityTest.cpp
         TypeSelectionTest.cpp

@@ -1,9 +1,9 @@
-#ifndef ROCKY_NTHTUPLEELEMENTTYPE_H
-#define ROCKY_NTHTUPLEELEMENTTYPE_H
+#ifndef ROCKY_NTHTUPLE_H
+#define ROCKY_NTHTUPLE_H
 
 
 /**
- * NOTE: prefer to use std::tuple_element over NthTupleElementType.
+ * NOTE: prefer to use std::tuple_element over NthElementType.
  *       But it's an useful example for the variadic parameter pack looping.
  */
 
@@ -16,19 +16,19 @@
 
 
 template <typename targetIndex, typename index, typename... list>
-struct NthTupleElementTypeImplLoop;
+struct NthElementTypeImplLoop;
 
 template <int targetIndex, int i, typename t>
-struct NthTupleElementTypeImplLoop<std::integral_constant<int, targetIndex>, std::integral_constant<int, i>, t>
+struct NthElementTypeImplLoop<std::integral_constant<int, targetIndex>, std::integral_constant<int, i>, t>
 {
     using type = t;
 };
 
 template <int targetIndex, int i, typename t, typename... list>
-struct NthTupleElementTypeImplLoop<std::integral_constant<int, targetIndex>, std::integral_constant<int, i>, t, list...>
+struct NthElementTypeImplLoop<std::integral_constant<int, targetIndex>, std::integral_constant<int, i>, t, list...>
         : SelectTypeIf<std::integral_constant<bool, targetIndex == i>,
                 Identity<t>,
-                NthTupleElementTypeImplLoop<
+                NthElementTypeImplLoop<
                         std::integral_constant<int, targetIndex>,
                         std::integral_constant<int, i + 1>,
                         list...
@@ -38,11 +38,11 @@ struct NthTupleElementTypeImplLoop<std::integral_constant<int, targetIndex>, std
 
 
 template <typename Tuple, typename TargetIndex>
-struct NthTupleElementTypeImpl;
+struct NthElementTypeImpl;
 
 template <typename... list, int i>
-struct NthTupleElementTypeImpl<std::tuple<list...>, std::integral_constant<int, i>>
-        : NthTupleElementTypeImplLoop<
+struct NthElementTypeImpl<std::tuple<list...>, std::integral_constant<int, i>>
+        : NthElementTypeImplLoop<
                 std::integral_constant<int, i>,
                 std::integral_constant<int, 0>,
                 list...
@@ -53,13 +53,13 @@ struct NthTupleElementTypeImpl<std::tuple<list...>, std::integral_constant<int, 
 
 
 template <typename Tuple, int i>
-struct NthTupleElementType
-        : NthTupleElementTypeImpl<
+struct NthElementType
+        : NthElementTypeImpl<
                 Tuple,
                 std::integral_constant<int, i>
             >
 { };
 
 
-#endif //ROCKY_NTHTUPLEELEMENTTYPE_H
+#endif //ROCKY_NTHTUPLE_H
 
