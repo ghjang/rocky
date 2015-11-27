@@ -2,9 +2,16 @@
 #define ROCKY_TRANSFORMTUPLE_H
 
 
+// list comprehension
+
+
 #include <tuple>
 #include <utility>
 
+
+//==============================================================================
+// runtime functions
+//==============================================================================
 
 template <typename... list, typename F, std::size_t... i>
 decltype(auto) TransformElementImpl(std::tuple<list...> const& t, F const& f, std::index_sequence<i...>)
@@ -17,6 +24,32 @@ decltype(auto) TransformElement(std::tuple<list...> const& t, F const& f)
 {
     return TransformElementImpl(t, f, std::index_sequence_for<list...>{});
 }
+
+
+//==============================================================================
+// compiletime metafunctions
+//==============================================================================
+
+template <typename Tuple, template <typename> class F, typename IndexSequence>
+struct TransformElementTypeImpl;
+
+template <typename... list, template <typename> class F, std::size_t... i>
+struct TransformElementTypeImpl<std::tuple<list...>, F, std::index_sequence<i...>>
+{
+    using type = std::tuple<typename F<std::tuple_element_t<i, std::tuple<list...>>>::type...>;
+};
+
+template <typename Tuple, template <typename> class F>
+struct TransformElementType;
+
+template <typename... list, template <typename> class F>
+struct TransformElementType<std::tuple<list...>, F>
+            : TransformElementTypeImpl<
+                    std::tuple<list...>,
+                    F,
+                    std::index_sequence_for<list...>
+                >
+{ };
 
 
 #endif //ROCKY_TRANSFORMTUPLE_H
