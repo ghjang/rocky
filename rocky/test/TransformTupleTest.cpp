@@ -26,9 +26,6 @@ namespace
     { };
 
 
-    using zero_t = std::integral_constant<int, 0>;
-    using one_t = std::integral_constant<int, 1>;
-
     template <typename T>
     struct IntegralTypeToOne
             : SelectTypeIf<
@@ -96,12 +93,30 @@ TEST_CASE("transforming tuple integral element types to integral value 1", "[Tra
 {
     using std::is_same;
     using std::tuple;
-    using std::integral_constant;
 
     using tuple_t = tuple<char, int, double, uint64_t, float>;
     using integral_tuple_t = tuple<one_t, one_t, zero_t, one_t, zero_t>;
     static_assert(
             is_same<integral_tuple_t, typename TransformElementType<tuple_t, IntegralTypeToOne>::type>(),
+            "transformed tuple_t should be integral_tuple_t."
+    );
+}
+
+TEST_CASE("transforming tuple integral element types to integral value 1"
+          "by using TransformElementTypeToBoolIntegralConstant",
+          "[TransformTuple]")
+{
+    using std::is_same;
+    using std::is_integral;
+    using std::tuple;
+
+    using tuple_t = tuple<char, int, double, uint64_t, float>;
+    using integral_tuple_t = tuple<one_t, one_t, zero_t, one_t, zero_t>;
+    static_assert(
+            is_same<integral_tuple_t, typename TransformElementTypeToBoolIntegralConstant<
+                                                    tuple_t,
+                                                    is_integral
+                                                >::type>(),
             "transformed tuple_t should be integral_tuple_t."
     );
 }
