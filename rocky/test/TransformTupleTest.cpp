@@ -97,7 +97,13 @@ TEST_CASE("transforming tuple integral element types to integral value 1", "[Tra
     using tuple_t = tuple<char, int, double, uint64_t, float>;
     using integral_tuple_t = tuple<one_t, one_t, zero_t, one_t, zero_t>;
     static_assert(
-            is_same<integral_tuple_t, typename TransformElementType<tuple_t, IntegralTypeToOne>::type>(),
+            is_same<
+                integral_tuple_t,
+                typename TransformElementType<
+                                tuple_t,
+                                IntegralTypeToOne   // should have 'type' member.
+                            >::type
+            >(),
             "transformed tuple_t should be integral_tuple_t."
     );
 }
@@ -113,10 +119,13 @@ TEST_CASE("transforming tuple integral element types to integral value 1"
     using tuple_t = tuple<char, int, double, uint64_t, float>;
     using integral_tuple_t = tuple<one_t, one_t, zero_t, one_t, zero_t>;
     static_assert(
-            is_same<integral_tuple_t, typename TransformElementTypeToBoolIntegralConstant<
-                                                    tuple_t,
-                                                    is_integral
-                                                >::type>(),
+            is_same<
+                integral_tuple_t,
+                typename TransformElementTypeToBoolIntegralConstant<
+                                tuple_t,
+                                is_integral // should have 'value' member.
+                            >::type
+            >(),
             "transformed tuple_t should be integral_tuple_t."
     );
 }
