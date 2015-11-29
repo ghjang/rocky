@@ -142,7 +142,7 @@ TEST_CASE("integral constant element type to bool array", "[TransformTuple]")
     using std::false_type;
 
     using tuple_t = tuple<true_type, true_type, false_type, true_type, false_type>;
-    auto arr = IntegralConstantElementTypeToBoolArray<tuple_t>;
+    auto arr = IntegralConstantElementTypeToArray<tuple_t>;
     REQUIRE(arr.size() == tuple_size<tuple_t>());
     REQUIRE(tuple_size<tuple_t>() == 5);
     REQUIRE(arr[0] == 1);
@@ -152,19 +152,19 @@ TEST_CASE("integral constant element type to bool array", "[TransformTuple]")
     REQUIRE(arr[4] == 0);
 }
 
-TEST_CASE("integral constant element type to sequence", "[TransformTuple]")
+TEST_CASE("integral constant element type to integer sequence", "[TransformTuple]")
 {
     using std::is_same;
     using std::tuple;
-    using std::index_sequence;
+    using std::integer_sequence;
     using std::true_type;
     using std::false_type;
 
     using tuple_t = tuple<true_type, true_type, false_type, true_type, false_type>;
-    using sequence_t = index_sequence<1, 1, 0, 1, 0>;
+    using sequence_t = integer_sequence<int, 1, 1, 0, 1, 0>;
 
     static_assert(
-            is_same<sequence_t, typename TransformToSequenceType<tuple_t>::type>(),
+            is_same<sequence_t, typename TransformToIntegerSequenceType<tuple_t>::type>(),
             "transformed tuple_t should be same as sequence_t."
     );
 }

@@ -34,26 +34,26 @@ decltype(auto) TransformElement(std::tuple<list...> const& t, F const& f)
 //==============================================================================
 
 template <typename Tuple, typename IndexSequence, std::size_t N = std::tuple_size<Tuple>::value>
-constexpr std::array<bool, N> IntegralConstantElementTypeToBoolArrayImpl;
+constexpr std::array<int, N> IntegralConstantElementTypeToArrayImpl;
 
 template <typename... list, std::size_t... i>
-constexpr std::array<bool, sizeof...(list)> IntegralConstantElementTypeToBoolArrayImpl<
-                                                    std::tuple<list...>,
-                                                    std::index_sequence<i...>,
-                                                    sizeof...(list)
+constexpr std::array<int, sizeof...(list)> IntegralConstantElementTypeToArrayImpl<
+                                                std::tuple<list...>,
+                                                std::index_sequence<i...>,
+                                                sizeof...(list)
                                             >{
         std::tuple_element_t<i, std::tuple<list...>>()...
 };
 
 template <typename Tuple, std::size_t N = std::tuple_size<Tuple>::value>
-constexpr std::array<bool, N> IntegralConstantElementTypeToBoolArray;
+constexpr std::array<int, N> IntegralConstantElementTypeToArray;
 
 template <typename... list>
-constexpr std::array<bool, sizeof...(list)> IntegralConstantElementTypeToBoolArray<
-                                                    std::tuple<list...>,
-                                                    sizeof...(list)
+constexpr std::array<int, sizeof...(list)> IntegralConstantElementTypeToArray<
+                                                std::tuple<list...>,
+                                                sizeof...(list)
                                             >{
-        IntegralConstantElementTypeToBoolArrayImpl<std::tuple<list...>, std::index_sequence_for<list...>>
+        IntegralConstantElementTypeToArrayImpl<std::tuple<list...>, std::index_sequence_for<list...>>
 };
 
 
@@ -98,23 +98,24 @@ struct TransformElementTypeToBoolConstantType
 
 
 template <typename Tuple>
-struct TransformToSequenceType;
+struct TransformToIntegerSequenceType;
 
 template <typename... list>
-struct TransformToSequenceType<std::tuple<list...>>
+struct TransformToIntegerSequenceType<std::tuple<list...>>
 {
-    constexpr static auto boolArray_ = IntegralConstantElementTypeToBoolArray<std::tuple<list...>>;
+    constexpr static auto array_ = IntegralConstantElementTypeToArray<std::tuple<list...>>;
 
     template <typename IndexSequence>
-    struct ConvertToIndexSequenceImpl;
+    struct ConvertToSequenceImpl;
 
     template <std::size_t... i>
-    struct ConvertToIndexSequenceImpl<std::index_sequence<i...>>
+    struct ConvertToSequenceImpl<std::index_sequence<i...>>
     {
-        using type = std::index_sequence<boolArray_[i]...>;
+        using array_element_type_t = std::decay_t<decltype(array_[0])>;
+        using type = std::integer_sequence<array_element_type_t, array_[i]...>;
     };
 
-    using type = typename ConvertToIndexSequenceImpl<std::make_index_sequence<sizeof...(list)>>::type;
+    using type = typename ConvertToSequenceImpl<std::make_index_sequence<sizeof...(list)>>::type;
 };
 
 
