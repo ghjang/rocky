@@ -5,6 +5,7 @@
 // list comprehension
 
 
+#include <array>
 #include <tuple>
 #include <utility>
 
@@ -58,13 +59,22 @@ struct TransformElementType<std::tuple<list...>, F>
 
 
 template <typename Tuple, template <typename> class Predicate>
-struct TransformElementTypeToBoolIntegralConstantType
+struct TransformElementTypeToBoolConstantType
             : TransformElementType<
                     Tuple,
-                    TypeToBoolIntegralConstant<Predicate>::template Convert
+                    TypeToBoolConstant<Predicate>::template Convert
                 >
 {
     static_assert(HasValueMember<Predicate<int>>(), "Predicate should have 'value' member.");
+};
+
+
+template <typename Tuple, std::size_t N = std::tuple_size<Tuple>::value>
+constexpr std::array<bool, N> BoolIntegralConstantElementTypeToBoolArray;
+
+template <typename... list>
+constexpr std::array<bool, sizeof...(list)> BoolIntegralConstantElementTypeToBoolArray<std::tuple<list...>, sizeof...(list)>{
+        BoolIntegralConstantElementTypeToBoolArray<std::tuple<list...>, std::index_sequence_for<list...>>
 };
 
 

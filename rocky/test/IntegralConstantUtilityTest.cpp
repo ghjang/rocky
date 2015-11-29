@@ -84,22 +84,22 @@ TEST_CASE("type to bool integral constant", "[IntegralConstantUtility]")
     using std::is_pointer;
 
     static_assert(
-            is_same<one_t, TypeToBoolIntegralConstant<is_integral>::template Convert<int>::type>(),
+            is_same<one_t, TypeToBoolConstant<is_integral>::template Convert<int>::type>(),
             "int should convert to one_t."
     );
 
     static_assert(
-            is_same<zero_t, TypeToBoolIntegralConstant<is_integral>::template Convert<double>::type>(),
+            is_same<zero_t, TypeToBoolConstant<is_integral>::template Convert<double>::type>(),
             "double should convert to zero_t."
     );
 
     static_assert(
-            is_same<one_t, TypeToBoolIntegralConstant<is_pointer>::template Convert<int *>::type>(),
+            is_same<one_t, TypeToBoolConstant<is_pointer>::template Convert<int *>::type>(),
             "'int *' should convert to one_t."
     );
 
     static_assert(
-            is_same<zero_t, TypeToBoolIntegralConstant<is_pointer>::template Convert<int>::type>(),
+            is_same<zero_t, TypeToBoolConstant<is_pointer>::template Convert<int>::type>(),
             "int should convert to zero_t."
     );
 }
