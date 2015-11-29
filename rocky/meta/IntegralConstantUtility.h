@@ -36,6 +36,9 @@ template <int i>
 constexpr std::integral_constant<int, i> int_c{};
 
 
+/**
+ * user-defined literal
+ */
 template <char... s>
 constexpr auto operator ""_c ()
 {
@@ -44,6 +47,13 @@ constexpr auto operator ""_c ()
                     CharArrayToInt<s...>()
             >{};
 }
+
+
+/**
+ * type alias for ease use of std::integral_constant
+ */
+template <int i>
+using int_c_t = std::integral_constant<int, i>;
 
 
 template <typename lhs, typename rhs>

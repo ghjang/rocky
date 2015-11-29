@@ -5,8 +5,6 @@
 #include <type_traits>
 #include <memory>
 
-#include "rocky/meta/TypeSelection.h"
-
 
 namespace
 {
@@ -162,6 +160,21 @@ TEST_CASE("integral constant element type to integer sequence", "[TransformTuple
 
     using tuple_t = tuple<true_type, true_type, false_type, true_type, false_type>;
     using sequence_t = integer_sequence<int, 1, 1, 0, 1, 0>;
+
+    static_assert(
+            is_same<sequence_t, typename TransformToIntegerSequenceType<tuple_t>::type>(),
+            "transformed tuple_t should be same as sequence_t."
+    );
+}
+
+TEST_CASE("integral constant element type to integer sequence with type alias int_c_t", "[TransformTuple]")
+{
+    using std::is_same;
+    using std::tuple;
+    using std::integer_sequence;
+
+    using tuple_t = tuple<int_c_t<1>, int_c_t<2>, int_c_t<0>, int_c_t<100>, int_c_t<123>>;
+    using sequence_t = integer_sequence<int, 1, 2, 0, 100, 123>;
 
     static_assert(
             is_same<sequence_t, typename TransformToIntegerSequenceType<tuple_t>::type>(),
