@@ -109,7 +109,7 @@ TEST_CASE("transforming tuple integral element types to integral value 1", "[Tra
 }
 
 TEST_CASE("transforming tuple integral element types to integral value 1"
-          "by using TransformElementTypeToBoolIntegralConstant",
+          "by using TransformElementTypeToBoolIntegralConstantType",
           "[TransformTuple]")
 {
     using std::is_same;
@@ -121,7 +121,7 @@ TEST_CASE("transforming tuple integral element types to integral value 1"
     static_assert(
             is_same<
                 integral_tuple_t,
-                typename TransformElementTypeToBoolIntegralConstant<
+                typename TransformElementTypeToBoolIntegralConstantType<
                                 tuple_t,
                                 is_integral // should have 'value' member.
                             >::type

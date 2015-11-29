@@ -12,6 +12,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="932c8e01-f7f8-4592-bd6e-bfec34de8cb6" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../meta/CountTuple.h" afterPath="$PROJECT_DIR$/../meta/CountTuple.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../meta/TransformTuple.h" afterPath="$PROJECT_DIR$/../meta/TransformTuple.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TransformTupleTest.cpp" afterPath="$PROJECT_DIR$/TransformTupleTest.cpp" />
     </list>
@@ -38,7 +40,7 @@
         <entry file="file://$PROJECT_DIR$/../meta/IntegralConstantUtility.h">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="71" column="7" selection-start-line="71" selection-start-column="7" selection-end-line="71" selection-end-column="7" />
+              <caret line="85" column="0" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
               <folding>
                 <element signature="e#82#104#0" expanded="true" />
                 <element signature="e#1455#1466#0" expanded="true" />
@@ -108,22 +110,22 @@
         <entry file="file://$PROJECT_DIR$/../meta/TypeSelection.h">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+              <caret line="6" column="20" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
               <folding>
-                <element signature="e#120#132#0" expanded="true" />
-                <element signature="e#168#234#0" expanded="true" />
-                <element signature="e#367#393#0" expanded="true" />
-                <element signature="e#509#535#0" expanded="true" />
+                <element signature="e#131#143#0" expanded="true" />
+                <element signature="e#179#245#0" expanded="true" />
+                <element signature="e#378#404#0" expanded="true" />
+                <element signature="e#520#546#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TransformTupleTest.cpp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="TransformTupleTest.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/TransformTupleTest.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.95887095">
-              <caret line="131" column="0" selection-start-line="131" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="111" column="65" selection-start-line="111" selection-start-column="65" selection-end-line="111" selection-end-column="65" />
               <folding>
                 <element signature="e#274#286#0" expanded="true" />
                 <element signature="e#551#563#0" expanded="true" />
@@ -142,18 +144,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CountTuple.h" pinned="false" current-in-tab="false">
+      <file leaf-file-name="CountTuple.h" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../meta/CountTuple.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.39758065">
+              <caret line="17" column="74" selection-start-line="17" selection-start-column="74" selection-end-line="17" selection-end-column="74" />
               <folding>
                 <element signature="e#56#94#0" expanded="true" />
                 <element signature="e#183#236#0" expanded="true" />
                 <element signature="e#209#219#0" expanded="true" />
                 <element signature="e#272#327#0" expanded="true" />
                 <element signature="e#300#310#0" expanded="true" />
-                <marker date="1448792894000" expanded="true" signature="581:719" placeholder="&lt;~&gt;" />
               </folding>
             </state>
           </provider>
@@ -163,13 +164,13 @@
         <entry file="file://$PROJECT_DIR$/../meta/TransformTuple.h">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="72" column="0" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
+              <caret line="60" column="52" selection-start-line="60" selection-start-column="52" selection-end-line="60" selection-end-column="52" />
               <folding>
                 <element signature="e#88#104#0" expanded="true" />
-                <element signature="e#1465#1512#0" expanded="true" />
-                <element signature="e#1493#1503#0" expanded="true" />
-                <element signature="e#1967#2020#0" expanded="true" />
-                <element signature="e#1993#2003#0" expanded="true" />
+                <element signature="e#1431#1478#0" expanded="true" />
+                <element signature="e#1459#1469#0" expanded="true" />
+                <element signature="e#1933#1986#0" expanded="true" />
+                <element signature="e#1959#1969#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -183,7 +184,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/WrapTypeMemberTest.cpp" />
         <option value="$PROJECT_DIR$/../ReverseTuple.h" />
         <option value="$PROJECT_DIR$/../IntegralConstantUtility.h" />
         <option value="$PROJECT_DIR$/IntegralConstantUtility.cpp" />
@@ -226,14 +226,15 @@
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/../meta/Fold.h" />
         <option value="$PROJECT_DIR$/FoldTest.cpp" />
-        <option value="$PROJECT_DIR$/../meta/IntegralConstantUtility.h" />
         <option value="$PROJECT_DIR$/CountTupleTest.cpp" />
         <option value="$PROJECT_DIR$/IntegralConstantUtilityTest.cpp" />
-        <option value="$PROJECT_DIR$/../meta/CountTuple.h" />
         <option value="$PROJECT_DIR$/../meta/HasMember.h" />
         <option value="$PROJECT_DIR$/HasMemberTest.cpp" />
+        <option value="$PROJECT_DIR$/../meta/TypeSelection.h" />
+        <option value="$PROJECT_DIR$/../meta/IntegralConstantUtility.h" />
         <option value="$PROJECT_DIR$/../meta/TransformTuple.h" />
         <option value="$PROJECT_DIR$/TransformTupleTest.cpp" />
+        <option value="$PROJECT_DIR$/../meta/CountTuple.h" />
       </list>
     </option>
   </component>
@@ -398,14 +399,14 @@
           <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
           <folding>
             <element signature="e#62#84#0" expanded="false" />
-            <element signature="e#120#132#0" expanded="true" />
-            <element signature="e#168#234#0" expanded="true" />
-            <element signature="e#286#335#0" expanded="false" />
-            <element signature="e#367#393#0" expanded="true" />
-            <element signature="e#509#535#0" expanded="true" />
-            <element signature="e#653#702#0" expanded="false" />
-            <element signature="e#743#769#0" expanded="false" />
-            <element signature="e#859#885#0" expanded="false" />
+            <element signature="e#131#143#0" expanded="true" />
+            <element signature="e#179#245#0" expanded="true" />
+            <element signature="e#297#346#0" expanded="false" />
+            <element signature="e#378#404#0" expanded="true" />
+            <element signature="e#520#546#0" expanded="true" />
+            <element signature="e#664#713#0" expanded="false" />
+            <element signature="e#754#780#0" expanded="false" />
+            <element signature="e#870#896#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -781,34 +782,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../meta/TypeSelection.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding>
-            <element signature="e#120#132#0" expanded="true" />
-            <element signature="e#168#234#0" expanded="true" />
-            <element signature="e#367#393#0" expanded="true" />
-            <element signature="e#509#535#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../meta/CountTuple.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-          <folding>
-            <element signature="e#56#94#0" expanded="true" />
-            <element signature="e#183#236#0" expanded="true" />
-            <element signature="e#209#219#0" expanded="true" />
-            <element signature="e#272#327#0" expanded="true" />
-            <element signature="e#300#310#0" expanded="true" />
-            <marker date="1448792894000" expanded="true" signature="581:719" placeholder="&lt;~&gt;" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///Library/Developer/CommandLineTools/usr/include/c++/v1/type_traits">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -847,10 +820,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../meta/TypeSelection.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="6" column="20" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
+          <folding>
+            <element signature="e#131#143#0" expanded="true" />
+            <element signature="e#179#245#0" expanded="true" />
+            <element signature="e#378#404#0" expanded="true" />
+            <element signature="e#520#546#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/../meta/IntegralConstantUtility.h">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="71" column="7" selection-start-line="71" selection-start-column="7" selection-end-line="71" selection-end-column="7" />
+          <caret line="85" column="0" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
           <folding>
             <element signature="e#82#104#0" expanded="true" />
             <element signature="e#1455#1466#0" expanded="true" />
@@ -864,24 +850,38 @@
     <entry file="file://$PROJECT_DIR$/../meta/TransformTuple.h">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="72" column="0" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
+          <caret line="60" column="52" selection-start-line="60" selection-start-column="52" selection-end-line="60" selection-end-column="52" />
           <folding>
             <element signature="e#88#104#0" expanded="true" />
-            <element signature="e#1465#1512#0" expanded="true" />
-            <element signature="e#1493#1503#0" expanded="true" />
-            <element signature="e#1967#2020#0" expanded="true" />
-            <element signature="e#1993#2003#0" expanded="true" />
+            <element signature="e#1431#1478#0" expanded="true" />
+            <element signature="e#1459#1469#0" expanded="true" />
+            <element signature="e#1933#1986#0" expanded="true" />
+            <element signature="e#1959#1969#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/TransformTupleTest.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.95887095">
-          <caret line="131" column="0" selection-start-line="131" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="111" column="65" selection-start-line="111" selection-start-column="65" selection-end-line="111" selection-end-column="65" />
           <folding>
             <element signature="e#274#286#0" expanded="true" />
             <element signature="e#551#563#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../meta/CountTuple.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.39758065">
+          <caret line="17" column="74" selection-start-line="17" selection-start-column="74" selection-end-line="17" selection-end-column="74" />
+          <folding>
+            <element signature="e#56#94#0" expanded="true" />
+            <element signature="e#183#236#0" expanded="true" />
+            <element signature="e#209#219#0" expanded="true" />
+            <element signature="e#272#327#0" expanded="true" />
+            <element signature="e#300#310#0" expanded="true" />
           </folding>
         </state>
       </provider>

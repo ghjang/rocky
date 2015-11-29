@@ -58,7 +58,7 @@ struct TransformElementType<std::tuple<list...>, F>
 
 
 template <typename Tuple, template <typename> class Predicate>
-struct TransformElementTypeToBoolIntegralConstant
+struct TransformElementTypeToBoolIntegralConstantType
             : TransformElementType<
                     Tuple,
                     TypeToBoolIntegralConstant<Predicate>::template Convert
