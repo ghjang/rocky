@@ -8,6 +8,7 @@
 #include <tuple>
 #include <utility>
 
+#include "rocky/meta/HasMember.h"
 #include "rocky/meta/IntegralConstantUtility.h"
 
 
@@ -51,7 +52,10 @@ struct TransformElementType<std::tuple<list...>, F>
                     F,
                     std::index_sequence_for<list...>
                 >
-{ };
+{
+    static_assert(sizeof...(list) > 0, "tuple should have at least one template parameter.");
+    static_assert(HasTypeMember<F<std::tuple_element_t<0, std::tuple<list...>>>>(), "F should have 'type' member.");
+};
 
 
 template <typename Tuple, template <typename> class Predicate>
@@ -60,7 +64,9 @@ struct TransformElementTypeToBoolIntegralConstant
                     Tuple,
                     TypeToBoolIntegralConstant<Predicate>::template Convert
                 >
-{ };
+{
+    static_assert(HasValueMember<Predicate<int>>(), "Predicate should have 'value' member.");
+};
 
 
 #endif //ROCKY_TRANSFORMTUPLE_H
