@@ -130,3 +130,19 @@ TEST_CASE("transforming tuple integral element types to integral value 1"
     );
 }
 
+TEST_CASE("bool const element type to bool array", "[TransformTuple]")
+{
+    using std::tuple;
+    using std::tuple_size;
+
+    using tuple_t = tuple<one_t, one_t, zero_t, one_t, zero_t>;
+    auto arr = BoolConstantElementTypeToBoolArray<tuple_t>;
+    REQUIRE(arr.size() == tuple_size<tuple_t>());
+    REQUIRE(tuple_size<tuple_t>() == 5);
+    REQUIRE(arr[0] == 1);
+    REQUIRE(arr[1] == 1);
+    REQUIRE(arr[2] == 0);
+    REQUIRE(arr[3] == 1);
+    REQUIRE(arr[4] == 0);
+}
+

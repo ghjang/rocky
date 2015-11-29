@@ -69,12 +69,28 @@ struct TransformElementTypeToBoolConstantType
 };
 
 
+//==============================================================================
+// compiletime variable templates
+//==============================================================================
+
+template <typename Tuple, typename IndexSequence, std::size_t N = std::tuple_size<Tuple>::value>
+constexpr std::array<bool, N> BoolConstantElementTypeToBoolArrayImpl;
+
+template <typename... list, std::size_t... i>
+constexpr std::array<bool, sizeof...(list)> BoolConstantElementTypeToBoolArrayImpl<
+                                                std::tuple<list...>,
+                                                std::index_sequence<i...>,
+                                                sizeof...(list)
+                                            >{
+        std::tuple_element_t<i, std::tuple<list...>>()...
+};
+
 template <typename Tuple, std::size_t N = std::tuple_size<Tuple>::value>
-constexpr std::array<bool, N> BoolIntegralConstantElementTypeToBoolArray;
+constexpr std::array<bool, N> BoolConstantElementTypeToBoolArray;
 
 template <typename... list>
-constexpr std::array<bool, sizeof...(list)> BoolIntegralConstantElementTypeToBoolArray<std::tuple<list...>, sizeof...(list)>{
-        BoolIntegralConstantElementTypeToBoolArray<std::tuple<list...>, std::index_sequence_for<list...>>
+constexpr std::array<bool, sizeof...(list)> BoolConstantElementTypeToBoolArray<std::tuple<list...>, sizeof...(list)>{
+        BoolConstantElementTypeToBoolArrayImpl<std::tuple<list...>, std::index_sequence_for<list...>>
 };
 
 
