@@ -62,7 +62,7 @@ template <typename Tuple, template <typename> class Predicate>
 struct TransformElementTypeToBoolConstantType
             : TransformElementType<
                     Tuple,
-                    TypeToBoolConstant<Predicate>::template Convert
+                    TypeToBoolConstantType<Predicate>::template Convert
                 >
 {
     static_assert(HasValueMember<Predicate<int>>(), "Predicate should have 'value' member.");

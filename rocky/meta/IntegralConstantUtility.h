@@ -69,7 +69,7 @@ struct IntegralConstantMultiply<std::integral_constant<T1, v1>, std::integral_co
 
 
 template <template <typename> class Predicate>
-struct TypeToBoolConstant
+struct TypeToBoolConstantType
 {
     template <typename T>
     struct Convert
