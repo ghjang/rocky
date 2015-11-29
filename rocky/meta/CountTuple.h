@@ -15,9 +15,9 @@ struct CountElementType<std::tuple<list...>, Predicate>
             : FoldRight<
                     IntegralConstantSum,
                     std::integral_constant<int, 0>, // init
-                    typename TransformElementType<
+                    typename TransformElementTypeToBoolIntegralConstant<
                                     std::tuple<list...>,
-                                    TypeToBoolIntegralConstant<Predicate>::template Convert
+                                    Predicate
                                 >::type
                 >::type
 { };

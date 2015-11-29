@@ -8,6 +8,8 @@
 #include <tuple>
 #include <utility>
 
+#include "rocky/meta/IntegralConstantUtility.h"
+
 
 //==============================================================================
 // runtime functions
@@ -48,6 +50,15 @@ struct TransformElementType<std::tuple<list...>, F>
                     std::tuple<list...>,
                     F,
                     std::index_sequence_for<list...>
+                >
+{ };
+
+
+template <typename Tuple, template <typename> class Predicate>
+struct TransformElementTypeToBoolIntegralConstant
+            : TransformElementType<
+                    Tuple,
+                    TypeToBoolIntegralConstant<Predicate>::template Convert
                 >
 { };
 
