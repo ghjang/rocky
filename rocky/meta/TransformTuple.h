@@ -8,7 +8,6 @@
 #include <tuple>
 #include <utility>
 
-#include "rocky/meta/HasMember.h"
 #include "rocky/meta/IntegralConstantUtility.h"
 
 
