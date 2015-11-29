@@ -126,7 +126,7 @@
         <entry file="file://$PROJECT_DIR$/TransformTupleTest.cpp">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="140" column="12" selection-start-line="140" selection-start-column="12" selection-end-line="140" selection-end-column="12" />
+              <caret line="151" column="4" selection-start-line="151" selection-start-column="4" selection-end-line="151" selection-end-column="4" />
               <folding>
                 <element signature="e#274#286#0" expanded="true" />
                 <element signature="e#551#563#0" expanded="true" />
@@ -164,20 +164,22 @@
       <file leaf-file-name="TransformTuple.h" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../meta/TransformTuple.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.62580645">
-              <caret line="88" column="63" selection-start-line="88" selection-start-column="30" selection-end-line="88" selection-end-column="64" />
+            <state vertical-scroll-proportion="0.5997567">
+              <caret line="67" column="0" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
               <folding>
                 <element signature="e#88#104#0" expanded="true" />
-                <element signature="e#990#1059#0" expanded="true" />
-                <element signature="e#1103#1168#0" expanded="true" />
-                <element signature="e#1448#1495#0" expanded="true" />
-                <element signature="e#1476#1486#0" expanded="true" />
-                <element signature="e#1950#2003#0" expanded="true" />
-                <element signature="e#1976#1986#0" expanded="true" />
-                <element signature="e#2510#2597#0" expanded="true" />
-                <element signature="e#2678#2714#0" expanded="true" />
-                <element signature="e#3125#3188#0" expanded="true" />
-                <element signature="e#3265#3283#0" expanded="true" />
+                <element signature="e#995#1082#0" expanded="true" />
+                <element signature="e#1163#1199#0" expanded="true" />
+                <element signature="e#1622#1685#0" expanded="true" />
+                <element signature="e#1762#1780#0" expanded="true" />
+                <element signature="e#2201#2276#0" expanded="true" />
+                <element signature="e#2656#2671#0" expanded="true" />
+                <element signature="e#3070#3139#0" expanded="true" />
+                <element signature="e#3183#3248#0" expanded="true" />
+                <element signature="e#3528#3575#0" expanded="true" />
+                <element signature="e#3556#3566#0" expanded="true" />
+                <element signature="e#4030#4083#0" expanded="true" />
+                <element signature="e#4056#4066#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -364,7 +366,7 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19492188" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -873,7 +875,7 @@
     <entry file="file://$PROJECT_DIR$/TransformTupleTest.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="140" column="12" selection-start-line="140" selection-start-column="12" selection-end-line="140" selection-end-column="12" />
+          <caret line="151" column="4" selection-start-line="151" selection-start-column="4" selection-end-line="151" selection-end-column="4" />
           <folding>
             <element signature="e#274#286#0" expanded="true" />
             <element signature="e#551#563#0" expanded="true" />
@@ -883,20 +885,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../meta/TransformTuple.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.62580645">
-          <caret line="88" column="63" selection-start-line="88" selection-start-column="30" selection-end-line="88" selection-end-column="64" />
+        <state vertical-scroll-proportion="0.5997567">
+          <caret line="67" column="0" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
           <folding>
             <element signature="e#88#104#0" expanded="true" />
-            <element signature="e#990#1059#0" expanded="true" />
-            <element signature="e#1103#1168#0" expanded="true" />
-            <element signature="e#1448#1495#0" expanded="true" />
-            <element signature="e#1476#1486#0" expanded="true" />
-            <element signature="e#1950#2003#0" expanded="true" />
-            <element signature="e#1976#1986#0" expanded="true" />
-            <element signature="e#2510#2597#0" expanded="true" />
-            <element signature="e#2678#2714#0" expanded="true" />
-            <element signature="e#3125#3188#0" expanded="true" />
-            <element signature="e#3265#3283#0" expanded="true" />
+            <element signature="e#995#1082#0" expanded="true" />
+            <element signature="e#1163#1199#0" expanded="true" />
+            <element signature="e#1622#1685#0" expanded="true" />
+            <element signature="e#1762#1780#0" expanded="true" />
+            <element signature="e#2201#2276#0" expanded="true" />
+            <element signature="e#2656#2671#0" expanded="true" />
+            <element signature="e#3070#3139#0" expanded="true" />
+            <element signature="e#3183#3248#0" expanded="true" />
+            <element signature="e#3528#3575#0" expanded="true" />
+            <element signature="e#3556#3566#0" expanded="true" />
+            <element signature="e#4030#4083#0" expanded="true" />
+            <element signature="e#4056#4066#0" expanded="true" />
           </folding>
         </state>
       </provider>
