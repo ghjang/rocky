@@ -16,5 +16,16 @@ struct HasTypeMember : decltype(HasTypeMemberImpl<T>(int{}))
 { };
 
 
+template <typename T, typename = decltype(T::value)>
+std::true_type HasValueMemberImpl(int);
+
+template <typename T>
+std::false_type HasValueMemberImpl(...);
+
+template <typename T>
+struct HasValueMember : decltype(HasValueMemberImpl<T>(int{}))
+{ };
+
+
 #endif //ROCKY_HASMEMBER_H
 
