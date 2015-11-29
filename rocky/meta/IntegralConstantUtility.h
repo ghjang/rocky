@@ -36,10 +36,6 @@ template <int i>
 constexpr std::integral_constant<int, i> int_c{};
 
 
-using zero_t = std::integral_constant<int, 0>;
-using one_t = std::integral_constant<int, 1>;
-
-
 template <char... s>
 constexpr auto operator ""_c ()
 {
@@ -75,8 +71,8 @@ struct TypeToBoolConstantType
     struct Convert
             : SelectTypeIf<
                     std::integral_constant<bool, Predicate<T>::value>,
-                    one_t,
-                    zero_t
+                    std::true_type,
+                    std::false_type
                 >
     { };
 };

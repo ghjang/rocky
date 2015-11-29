@@ -30,8 +30,8 @@ namespace
     struct IntegralTypeToOne
             : SelectTypeIf<
                     std::integral_constant<bool, std::is_integral<T>::value>,
-                    one_t,
-                    zero_t
+                    std::true_type,
+                    std::false_type
                 >
     { };
 }
@@ -93,9 +93,11 @@ TEST_CASE("transforming tuple integral element types to integral value 1", "[Tra
 {
     using std::is_same;
     using std::tuple;
+    using std::true_type;
+    using std::false_type;
 
     using tuple_t = tuple<char, int, double, uint64_t, float>;
-    using integral_tuple_t = tuple<one_t, one_t, zero_t, one_t, zero_t>;
+    using integral_tuple_t = tuple<true_type, true_type, false_type, true_type, false_type>;
     static_assert(
             is_same<
                 integral_tuple_t,
@@ -115,9 +117,11 @@ TEST_CASE("transforming tuple integral element types to integral value 1"
     using std::is_same;
     using std::is_integral;
     using std::tuple;
+    using std::true_type;
+    using std::false_type;
 
     using tuple_t = tuple<char, int, double, uint64_t, float>;
-    using integral_tuple_t = tuple<one_t, one_t, zero_t, one_t, zero_t>;
+    using integral_tuple_t = tuple<true_type, true_type, false_type, true_type, false_type>;
     static_assert(
             is_same<
                 integral_tuple_t,
@@ -134,8 +138,10 @@ TEST_CASE("integral constant element type to bool array", "[TransformTuple]")
 {
     using std::tuple;
     using std::tuple_size;
+    using std::true_type;
+    using std::false_type;
 
-    using tuple_t = tuple<one_t, one_t, zero_t, one_t, zero_t>;
+    using tuple_t = tuple<true_type, true_type, false_type, true_type, false_type>;
     auto arr = IntegralConstantElementTypeToBoolArray<tuple_t>;
     REQUIRE(arr.size() == tuple_size<tuple_t>());
     REQUIRE(tuple_size<tuple_t>() == 5);
@@ -151,10 +157,15 @@ TEST_CASE("integral constant element type to sequence", "[TransformTuple]")
     using std::is_same;
     using std::tuple;
     using std::index_sequence;
+    using std::true_type;
+    using std::false_type;
 
-    using tuple_t = tuple<one_t, one_t, zero_t, one_t, zero_t>;
+    using tuple_t = tuple<true_type, true_type, false_type, true_type, false_type>;
     using sequence_t = index_sequence<1, 1, 0, 1, 0>;
 
-    static_assert(is_same<sequence_t, typename TransformToSequenceType<tuple_t>::type>(), "");
+    static_assert(
+            is_same<sequence_t, typename TransformToSequenceType<tuple_t>::type>(),
+            "transformed tuple_t should be same as sequence_t."
+    );
 }
 
