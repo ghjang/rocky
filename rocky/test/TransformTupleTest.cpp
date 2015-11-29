@@ -89,7 +89,7 @@ TEST_CASE("transforming tuple integral element types to shard_ptr types", "[Tran
     );
 }
 
-TEST_CASE("transforming tuple integral element types to integral value 1", "[TransformTuple]")
+TEST_CASE("transforming tuple integral element types to integral value true_type or false_type", "[TransformTuple]")
 {
     using std::is_same;
     using std::tuple;
@@ -110,7 +110,7 @@ TEST_CASE("transforming tuple integral element types to integral value 1", "[Tra
     );
 }
 
-TEST_CASE("transforming tuple integral element types to integral value 1"
+TEST_CASE("transforming tuple integral element types to integral value true_type or false_type"
           "by using TransformElementTypeToBoolConstantType",
           "[TransformTuple]")
 {
@@ -134,7 +134,7 @@ TEST_CASE("transforming tuple integral element types to integral value 1"
     );
 }
 
-TEST_CASE("integral constant element type to bool array", "[TransformTuple]")
+TEST_CASE("integral constant element type to array", "[TransformTuple]")
 {
     using std::tuple;
     using std::tuple_size;

@@ -12,9 +12,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="932c8e01-f7f8-4592-bd6e-bfec34de8cb6" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../meta/IntegralConstantUtility.h" afterPath="$PROJECT_DIR$/../meta/IntegralConstantUtility.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/IntegralConstantUtilityTest.cpp" afterPath="$PROJECT_DIR$/IntegralConstantUtilityTest.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TransformTupleTest.cpp" afterPath="$PROJECT_DIR$/TransformTupleTest.cpp" />
     </list>
     <ignored path="test.iws" />
@@ -126,8 +124,8 @@
       <file leaf-file-name="TransformTupleTest.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/TransformTupleTest.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.2615572">
-              <caret line="167" column="61" selection-start-line="167" selection-start-column="61" selection-end-line="167" selection-end-column="61" />
+            <state vertical-scroll-proportion="0.6618005">
+              <caret line="91" column="93" selection-start-line="91" selection-start-column="93" selection-end-line="91" selection-end-column="93" />
               <folding>
                 <element signature="e#0#20#0" expanded="true" />
                 <element signature="e#274#286#0" expanded="true" />
@@ -167,23 +165,23 @@
         <entry file="file://$PROJECT_DIR$/../meta/TransformTuple.h">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="92" column="34" selection-start-line="92" selection-start-column="34" selection-end-line="92" selection-end-column="34" />
+              <caret line="122" column="0" selection-start-line="122" selection-start-column="0" selection-end-line="122" selection-end-column="0" />
               <folding>
                 <element signature="e#88#104#0" expanded="true" />
                 <element signature="e#995#1082#0" expanded="true" />
-                <element signature="e#1167#1203#0" expanded="true" />
-                <element signature="e#1630#1693#0" expanded="true" />
-                <element signature="e#1774#1792#0" expanded="true" />
-                <element signature="e#2377#2446#0" expanded="true" />
-                <element signature="e#2490#2555#0" expanded="true" />
-                <element signature="e#2835#2882#0" expanded="true" />
-                <element signature="e#2863#2873#0" expanded="true" />
-                <element signature="e#3337#3390#0" expanded="true" />
-                <element signature="e#3363#3373#0" expanded="true" />
-                <element signature="e#3700#3716#0" expanded="true" />
-                <element signature="e#3759#3777#0" expanded="true" />
-                <element signature="e#3946#3970#0" expanded="true" />
-                <element signature="e#4024#4042#0" expanded="true" />
+                <element signature="e#1162#1198#0" expanded="true" />
+                <element signature="e#1608#1671#0" expanded="true" />
+                <element signature="e#1747#1765#0" expanded="true" />
+                <element signature="e#2333#2402#0" expanded="true" />
+                <element signature="e#2446#2511#0" expanded="true" />
+                <element signature="e#2791#2838#0" expanded="true" />
+                <element signature="e#2819#2829#0" expanded="true" />
+                <element signature="e#3293#3346#0" expanded="true" />
+                <element signature="e#3319#3329#0" expanded="true" />
+                <element signature="e#3656#3672#0" expanded="true" />
+                <element signature="e#3722#3740#0" expanded="true" />
+                <element signature="e#3908#3932#0" expanded="true" />
+                <element signature="e#3981#3999#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -244,9 +242,9 @@
         <option value="$PROJECT_DIR$/HasMemberTest.cpp" />
         <option value="$PROJECT_DIR$/../meta/TypeSelection.h" />
         <option value="$PROJECT_DIR$/../meta/CountTuple.h" />
-        <option value="$PROJECT_DIR$/../meta/TransformTuple.h" />
         <option value="$PROJECT_DIR$/../meta/IntegralConstantUtility.h" />
         <option value="$PROJECT_DIR$/IntegralConstantUtilityTest.cpp" />
+        <option value="$PROJECT_DIR$/../meta/TransformTuple.h" />
         <option value="$PROJECT_DIR$/TransformTupleTest.cpp" />
       </list>
     </option>
@@ -852,30 +850,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../meta/TransformTuple.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="92" column="34" selection-start-line="92" selection-start-column="34" selection-end-line="92" selection-end-column="34" />
-          <folding>
-            <element signature="e#88#104#0" expanded="true" />
-            <element signature="e#995#1082#0" expanded="true" />
-            <element signature="e#1167#1203#0" expanded="true" />
-            <element signature="e#1630#1693#0" expanded="true" />
-            <element signature="e#1774#1792#0" expanded="true" />
-            <element signature="e#2377#2446#0" expanded="true" />
-            <element signature="e#2490#2555#0" expanded="true" />
-            <element signature="e#2835#2882#0" expanded="true" />
-            <element signature="e#2863#2873#0" expanded="true" />
-            <element signature="e#3337#3390#0" expanded="true" />
-            <element signature="e#3363#3373#0" expanded="true" />
-            <element signature="e#3700#3716#0" expanded="true" />
-            <element signature="e#3759#3777#0" expanded="true" />
-            <element signature="e#3946#3970#0" expanded="true" />
-            <element signature="e#4024#4042#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../meta/IntegralConstantUtility.h">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -900,10 +874,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../meta/TransformTuple.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="122" column="0" selection-start-line="122" selection-start-column="0" selection-end-line="122" selection-end-column="0" />
+          <folding>
+            <element signature="e#88#104#0" expanded="true" />
+            <element signature="e#995#1082#0" expanded="true" />
+            <element signature="e#1162#1198#0" expanded="true" />
+            <element signature="e#1608#1671#0" expanded="true" />
+            <element signature="e#1747#1765#0" expanded="true" />
+            <element signature="e#2333#2402#0" expanded="true" />
+            <element signature="e#2446#2511#0" expanded="true" />
+            <element signature="e#2791#2838#0" expanded="true" />
+            <element signature="e#2819#2829#0" expanded="true" />
+            <element signature="e#3293#3346#0" expanded="true" />
+            <element signature="e#3319#3329#0" expanded="true" />
+            <element signature="e#3656#3672#0" expanded="true" />
+            <element signature="e#3722#3740#0" expanded="true" />
+            <element signature="e#3908#3932#0" expanded="true" />
+            <element signature="e#3981#3999#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/TransformTupleTest.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.2615572">
-          <caret line="167" column="61" selection-start-line="167" selection-start-column="61" selection-end-line="167" selection-end-column="61" />
+        <state vertical-scroll-proportion="0.6618005">
+          <caret line="91" column="93" selection-start-line="91" selection-start-column="93" selection-end-line="91" selection-end-column="93" />
           <folding>
             <element signature="e#0#20#0" expanded="true" />
             <element signature="e#274#286#0" expanded="true" />
