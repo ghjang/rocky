@@ -2,8 +2,6 @@
 #define ROCKY_REMOVETUPLE_H
 
 
-#include <tuple>
-
 #include "rocky/meta/TransformTuple.h"
 
 

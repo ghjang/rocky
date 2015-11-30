@@ -12,10 +12,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="932c8e01-f7f8-4592-bd6e-bfec34de8cb6" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../meta/RemoveTuple.h" afterPath="$PROJECT_DIR$/../meta/RemoveTuple.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../meta/TransformTuple.h" afterPath="$PROJECT_DIR$/../meta/TransformTuple.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TransformTupleTest.cpp" afterPath="$PROJECT_DIR$/TransformTupleTest.cpp" />
     </list>
     <ignored path="test.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -67,11 +64,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TransformTupleTest.cpp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="TransformTupleTest.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/TransformTupleTest.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6265207">
-              <caret line="240" column="64" selection-start-line="240" selection-start-column="64" selection-end-line="240" selection-end-column="64" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="237" column="55" selection-start-line="237" selection-start-column="55" selection-end-line="237" selection-end-column="55" />
               <folding>
                 <element signature="e#0#20#0" expanded="true" />
                 <element signature="e#235#247#0" expanded="true" />
@@ -137,6 +134,7 @@
               <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
               <folding>
                 <element signature="e#0#20#0" expanded="true" />
+                <marker date="1448901509000" expanded="true" signature="140:936" placeholder="{...}" />
               </folding>
             </state>
           </provider>
@@ -154,17 +152,16 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RemoveTuple.h" pinned="false" current-in-tab="false">
+      <file leaf-file-name="RemoveTuple.h" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../meta/RemoveTuple.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="18" column="59" selection-start-line="18" selection-start-column="59" selection-end-line="18" selection-end-column="59" />
+            <state vertical-scroll-proportion="0.17639902">
+              <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
               <folding>
-                <element signature="e#58#74#0" expanded="true" />
-                <element signature="e#126#179#0" expanded="true" />
-                <element signature="e#152#162#0" expanded="true" />
-                <element signature="e#216#271#0" expanded="true" />
-                <element signature="e#244#254#0" expanded="true" />
+                <element signature="e#108#161#0" expanded="true" />
+                <element signature="e#134#144#0" expanded="true" />
+                <element signature="e#198#253#0" expanded="true" />
+                <element signature="e#226#236#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -248,9 +245,9 @@
         <option value="$PROJECT_DIR$/ConstExprArrayTest.cpp" />
         <option value="$PROJECT_DIR$/RemoveTupleTest.cpp" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
-        <option value="$PROJECT_DIR$/../meta/RemoveTuple.h" />
         <option value="$PROJECT_DIR$/../meta/TransformTuple.h" />
         <option value="$PROJECT_DIR$/TransformTupleTest.cpp" />
+        <option value="$PROJECT_DIR$/../meta/RemoveTuple.h" />
       </list>
     </option>
   </component>
@@ -842,35 +839,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/RemoveTupleTest.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="28" column="7" selection-start-line="28" selection-start-column="7" selection-end-line="28" selection-end-column="7" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../meta/RemoveTuple.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="18" column="59" selection-start-line="18" selection-start-column="59" selection-end-line="18" selection-end-column="59" />
-          <folding>
-            <element signature="e#58#74#0" expanded="true" />
-            <element signature="e#126#179#0" expanded="true" />
-            <element signature="e#152#162#0" expanded="true" />
-            <element signature="e#216#271#0" expanded="true" />
-            <element signature="e#244#254#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -910,12 +883,36 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/TransformTupleTest.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6265207">
-          <caret line="240" column="64" selection-start-line="240" selection-start-column="64" selection-end-line="240" selection-end-column="64" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="237" column="55" selection-start-line="237" selection-start-column="55" selection-end-line="237" selection-end-column="55" />
           <folding>
             <element signature="e#0#20#0" expanded="true" />
             <element signature="e#235#247#0" expanded="true" />
             <element signature="e#512#524#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RemoveTupleTest.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+            <marker date="1448901509000" expanded="true" signature="140:936" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../meta/RemoveTuple.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.17639902">
+          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding>
+            <element signature="e#108#161#0" expanded="true" />
+            <element signature="e#134#144#0" expanded="true" />
+            <element signature="e#198#253#0" expanded="true" />
+            <element signature="e#226#236#0" expanded="true" />
           </folding>
         </state>
       </provider>
