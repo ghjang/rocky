@@ -9,6 +9,7 @@
 #include <tuple>
 #include <utility>
 
+#include "rocky/ConstExprArray.h"
 #include "rocky/meta/IntegralConstantUtility.h"
 
 
@@ -101,22 +102,6 @@ private:
 
 public:
     using type = typename ConvertToSequenceImpl<std::make_index_sequence<sizeof...(list)>>::type;
-};
-
-
-template <typename T, std::size_t N>
-struct ConstExprArray
-{
-    constexpr std::size_t size() const
-    { return N; }
-
-    constexpr T const& operator [] (std::size_t i) const
-    { return array_[i]; }
-
-    constexpr T & operator [] (std::size_t i)
-    { return array_[i]; }
-
-    T array_[N]{};
 };
 
 
