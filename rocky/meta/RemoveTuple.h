@@ -17,9 +17,7 @@ private:
     using bool_result_t = typename TransformElementTypeToBoolConstantType<std::tuple<list...>, Predicate>::type;
     using bool_seq_t = typename ConvertToIntegerSequenceType<bool_result_t>::type;
     using inverted_bool_seq_t = typename InvertBoolSequenceType<bool_seq_t>::type;
-    using target_element_index_seq_t = typename TransformBoolSequenceToTrueValueIndexSequence<
-                                                        inverted_bool_seq_t
-                                                >::type;
+    using target_element_index_seq_t = typename ConvertBoolSequenceToTrueValueIndexSequence<inverted_bool_seq_t >::type;
 
     template <typename IndexSequence>
     struct ExtractElementTypeImpl;

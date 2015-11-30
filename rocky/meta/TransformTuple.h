@@ -106,10 +106,10 @@ public:
 
 
 template <typename BoolSequence>
-struct TransformBoolSequenceToTrueValueIndexSequence;
+struct ConvertBoolSequenceToTrueValueIndexSequence;
 
 template <typename T, T... list>
-struct TransformBoolSequenceToTrueValueIndexSequence<std::integer_sequence<T, list...>>
+struct ConvertBoolSequenceToTrueValueIndexSequence<std::integer_sequence<T, list...>>
 {
 private:
     constexpr static std::array<T, sizeof...(list)> array_ = { list... };

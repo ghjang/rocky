@@ -178,7 +178,7 @@ TEST_CASE("integral constant element type to integer sequence with type alias in
 
     static_assert(
             is_same<sequence_t, typename ConvertToIntegerSequenceType<tuple_t>::type>(),
-            "transformed tuple_t should be same as sequence_t."
+            "converted tuple_t should be same as sequence_t."
     );
 }
 
@@ -194,8 +194,8 @@ TEST_CASE("bool value sequence to true value index sequence", "[TransformTuple]"
         using sequence_t = integer_sequence<int>;
 
         static_assert(
-                is_same<sequence_t, typename TransformBoolSequenceToTrueValueIndexSequence<bool_t>::type>(),
-                "transformed bool_t should be same as sequence_t."
+                is_same<sequence_t, typename ConvertBoolSequenceToTrueValueIndexSequence<bool_t>::type>(),
+                "converted bool_t should be same as sequence_t."
         );
     }
 
@@ -204,8 +204,8 @@ TEST_CASE("bool value sequence to true value index sequence", "[TransformTuple]"
         using sequence_t = integer_sequence<int, 0>;
 
         static_assert(
-                is_same<sequence_t, typename TransformBoolSequenceToTrueValueIndexSequence<bool_t>::type>(),
-                "transformed bool_t should be same as sequence_t."
+                is_same<sequence_t, typename ConvertBoolSequenceToTrueValueIndexSequence<bool_t>::type>(),
+                "converted bool_t should be same as sequence_t."
         );
     }
 
@@ -214,8 +214,8 @@ TEST_CASE("bool value sequence to true value index sequence", "[TransformTuple]"
         using sequence_t = integer_sequence<int, 4>;
 
         static_assert(
-                is_same<sequence_t, typename TransformBoolSequenceToTrueValueIndexSequence<bool_t>::type>(),
-                "transformed bool_t should be same as sequence_t."
+                is_same<sequence_t, typename ConvertBoolSequenceToTrueValueIndexSequence<bool_t>::type>(),
+                "converted bool_t should be same as sequence_t."
         );
     }
 
@@ -224,8 +224,8 @@ TEST_CASE("bool value sequence to true value index sequence", "[TransformTuple]"
         using sequence_t = integer_sequence<int, 0, 1, 3>;
 
         static_assert(
-                is_same<sequence_t, typename TransformBoolSequenceToTrueValueIndexSequence<bool_t>::type>(),
-                "transformed bool_t should be same as sequence_t."
+                is_same<sequence_t, typename ConvertBoolSequenceToTrueValueIndexSequence<bool_t>::type>(),
+                "converted bool_t should be same as sequence_t."
         );
     }
 }
