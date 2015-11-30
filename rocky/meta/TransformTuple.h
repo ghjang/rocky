@@ -165,6 +165,16 @@ struct InvertBoolSequenceType<std::integer_sequence<T, i...>>
 };
 
 
+template <typename Tuple, typename IndexSequence>
+struct ExtractElementType;
+
+template <typename... list, typename T, T... i>
+struct ExtractElementType<std::tuple<list...>, std::integer_sequence<T, i...>>
+{
+    using type = std::tuple<std::tuple_element_t<i, std::tuple<list...>>...>;
+};
+
+
 //==============================================================================
 // runtime functions
 //==============================================================================

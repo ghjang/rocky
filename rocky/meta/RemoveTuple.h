@@ -19,17 +19,8 @@ private:
     using inverted_bool_seq_t = typename InvertBoolSequenceType<bool_seq_t>::type;
     using target_element_index_seq_t = typename ConvertBoolSequenceToTrueValueIndexSequence<inverted_bool_seq_t >::type;
 
-    template <typename IndexSequence>
-    struct ExtractElementTypeImpl;
-
-    template <typename T, T... i>
-    struct ExtractElementTypeImpl<std::integer_sequence<T, i...>>
-    {
-        using type = std::tuple<std::tuple_element_t<i, std::tuple<list...>>...>;
-    };
-
 public:
-    using type = typename ExtractElementTypeImpl<target_element_index_seq_t>::type;
+    using type = typename ExtractElementType<std::tuple<list...>, target_element_index_seq_t>::type;
 };
 
 

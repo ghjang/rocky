@@ -243,3 +243,17 @@ TEST_CASE("bool value sequence inversion", "[TransformTuple]")
     );
 }
 
+TEST_CASE("tuple element type extraction", "[TransformTuple]")
+{
+    using std::is_same;
+    using std::tuple;
+    using std::index_sequence;
+
+    using tuple_t = tuple<char, int, double, uint64_t, float>;
+    using extracted_t = tuple<int, uint64_t>;
+    static_assert(
+            is_same<extracted_t, typename ExtractElementType<tuple_t, index_sequence<1, 3>>::type>(),
+            "extracted tuple_t should be same as extracted_t."
+    );
+}
+
