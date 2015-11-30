@@ -182,3 +182,51 @@ TEST_CASE("integral constant element type to integer sequence with type alias in
     );
 }
 
+TEST_CASE("bool value sequence to true value index sequence", "[TransformTuple]")
+{
+    using std::is_same;
+    using std::integer_sequence;
+    using std::true_type;
+    using std::false_type;
+
+    {
+        using bool_t = integer_sequence<int, 0, 0, 0, 0, 0>;
+        using sequence_t = integer_sequence<int>;
+
+        static_assert(
+                is_same<sequence_t, typename TransformBoolSequenceToTrueValueIndexSequence<bool_t>::type>(),
+                "transformed bool_t should be same as sequence_t."
+        );
+    }
+
+    {
+        using bool_t = integer_sequence<int, 1, 0, 0, 0, 0>;
+        using sequence_t = integer_sequence<int, 0>;
+
+        static_assert(
+                is_same<sequence_t, typename TransformBoolSequenceToTrueValueIndexSequence<bool_t>::type>(),
+                "transformed bool_t should be same as sequence_t."
+        );
+    }
+
+    {
+        using bool_t = integer_sequence<int, 0, 0, 0, 0, 1>;
+        using sequence_t = integer_sequence<int, 4>;
+
+        static_assert(
+                is_same<sequence_t, typename TransformBoolSequenceToTrueValueIndexSequence<bool_t>::type>(),
+                "transformed bool_t should be same as sequence_t."
+        );
+    }
+
+    {
+        using bool_t = integer_sequence<int, 1, 1, 0, 1, 0>;
+        using sequence_t = integer_sequence<int, 0, 1, 3>;
+
+        static_assert(
+                is_same<sequence_t, typename TransformBoolSequenceToTrueValueIndexSequence<bool_t>::type>(),
+                "transformed bool_t should be same as sequence_t."
+        );
+    }
+}
+

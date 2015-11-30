@@ -86,6 +86,7 @@ struct TransformToIntegerSequenceType;
 template <typename... list>
 struct TransformToIntegerSequenceType<std::tuple<list...>>
 {
+private:
     constexpr static auto array_ = IntegralConstantElementTypeToArray<std::tuple<list...>>;
 
     template <typename IndexSequence>
@@ -98,7 +99,74 @@ struct TransformToIntegerSequenceType<std::tuple<list...>>
         using type = std::integer_sequence<array_element_type_t, array_[i]...>;
     };
 
+public:
     using type = typename ConvertToSequenceImpl<std::make_index_sequence<sizeof...(list)>>::type;
+};
+
+
+template <typename T, std::size_t N>
+struct ConstExprArray
+{
+    constexpr std::size_t size() const
+    { return N; }
+
+    constexpr T const& operator [] (std::size_t i) const
+    { return array_[i]; }
+
+    constexpr T & operator [] (std::size_t i)
+    { return array_[i]; }
+
+    T array_[N]{};
+};
+
+
+template <typename BoolSequence>
+struct TransformBoolSequenceToTrueValueIndexSequence;
+
+template <typename T, T... list>
+struct TransformBoolSequenceToTrueValueIndexSequence<std::integer_sequence<T, list...>>
+{
+private:
+    constexpr static std::array<T, sizeof...(list)> array_ = { list... };
+
+    constexpr static auto CountTrueValue()
+    {
+        T count = 0;
+        for (int i = 0; i < array_.size(); ++i) {
+            if (array_[i]) {
+                ++count;
+            }
+        }
+        return count;
+    }
+
+    constexpr static auto ConvertToTrueValueIndexArray()
+    {
+        constexpr auto count = CountTrueValue();
+        ConstExprArray<T, count> result;
+        int j = 0;
+        for (int i = 0; i < array_.size(); ++i) {
+            if (array_[i]) {
+                result[j++] = i;
+            }
+        }
+        return result;
+    }
+
+    constexpr static auto trueValueIndexArray_ = ConvertToTrueValueIndexArray();
+
+    template <typename IndexSequence>
+    struct ConvertToSequenceImpl;
+
+    template <std::size_t... i>
+    struct ConvertToSequenceImpl<std::index_sequence<i...>>
+    {
+        using array_element_type_t = std::decay_t<decltype(trueValueIndexArray_[0])>;
+        using type = std::integer_sequence<array_element_type_t, trueValueIndexArray_[i]...>;
+    };
+
+public:
+    using type = typename ConvertToSequenceImpl<std::make_index_sequence<trueValueIndexArray_.size()>>::type;
 };
 
 
