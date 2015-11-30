@@ -156,10 +156,10 @@ public:
 
 
 template <typename BoolSequence>
-struct InvertBoolSequenceType;
+struct InvertBoolSequence;
 
 template <typename T, T... i>
-struct InvertBoolSequenceType<std::integer_sequence<T, i...>>
+struct InvertBoolSequence<std::integer_sequence<T, i...>>
 {
     using type = std::integer_sequence<T, (!i)...>;
 };
