@@ -24,7 +24,8 @@ set(SOURCE_FILES
         TypeUtilityTest.cpp
         FoldTest.cpp
         TransformTupleTest.cpp
-        CountTupleTest.cpp)
+        CountTupleTest.cpp
+        ConstExprArrayTest.cpp)
 
 add_executable(RockyTest ${SOURCE_FILES})
 
