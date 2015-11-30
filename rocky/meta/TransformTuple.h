@@ -155,6 +155,16 @@ public:
 };
 
 
+template <typename BoolSequence>
+struct InvertBoolSequenceType;
+
+template <typename T, T... i>
+struct InvertBoolSequenceType<std::integer_sequence<T, i...>>
+{
+    using type = std::integer_sequence<T, (!i)...>;
+};
+
+
 //==============================================================================
 // runtime functions
 //==============================================================================
