@@ -15,7 +15,7 @@ struct RemoveElementType<std::tuple<list...>, Predicate>
 {
 private:
     using bool_result_t = typename TransformElementTypeToBoolConstantType<std::tuple<list...>, Predicate>::type;
-    using bool_seq_t = typename TransformToIntegerSequenceType<bool_result_t>::type;
+    using bool_seq_t = typename ConvertToIntegerSequenceType<bool_result_t>::type;
     using inverted_bool_seq_t = typename InvertBoolSequenceType<bool_seq_t>::type;
     using target_element_index_seq_t = typename TransformBoolSequenceToTrueValueIndexSequence<
                                                         inverted_bool_seq_t

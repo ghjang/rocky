@@ -82,10 +82,10 @@ struct TransformElementTypeToBoolConstantType
 
 
 template <typename Tuple>
-struct TransformToIntegerSequenceType;
+struct ConvertToIntegerSequenceType;
 
 template <typename... list>
-struct TransformToIntegerSequenceType<std::tuple<list...>>
+struct ConvertToIntegerSequenceType<std::tuple<list...>>
 {
 private:
     constexpr static auto array_ = IntegralConstantElementTypeToArray<std::tuple<list...>>;
