@@ -41,6 +41,12 @@ public:
     constexpr static int value = FindFirstTrueValue();
 };
 
+template <typename TargetType>
+struct FindElementType<std::tuple<>, TargetType>
+{
+    constexpr static int value = -1;
+};
+
 
 template <typename Tuple, typename TargetType>
 struct ReverseFindElementType;

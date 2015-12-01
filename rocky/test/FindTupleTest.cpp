@@ -9,6 +9,11 @@ TEST_CASE("find tuple element type", "[FindTuple]")
     using std::tuple;
 
     {
+        using tuple_t = tuple<>;
+        static_assert(-1 == FindElementType<tuple_t, int>::value, "tuple_t doesn't have 'int' type.");
+    }
+
+    {
         using tuple_t = tuple<char, char, char, char, char>;
         static_assert(-1 == FindElementType<tuple_t, int>::value, "tuple_t doesn't have 'int' type.");
     }
@@ -38,6 +43,11 @@ TEST_CASE("reverse find tuple element type", "[FindTuple]")
 {
     using std::is_same;
     using std::tuple;
+
+    {
+        using tuple_t = tuple<>;
+        static_assert(-1 == ReverseFindElementType<tuple_t, int>::value, "tuple_t doesn't have 'int' type.");
+    }
 
     {
         using tuple_t = tuple<char, char, char, char, char>;
