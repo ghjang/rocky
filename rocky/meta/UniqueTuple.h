@@ -16,20 +16,20 @@ struct UniqueElementType<std::tuple<list...>>
 private:
     using init_t = std::tuple<>;
 
-    template <typename lhsType, typename rhsTuple>
+    template <typename lhsTuple, typename rhsType>
     struct AppendTypeIfNotExist;
 
-    template <typename lhsType, typename... rhsList>
-    struct AppendTypeIfNotExist<lhsType, std::tuple<rhsList...>>
+    template <typename... lhsList, typename rhsType>
+    struct AppendTypeIfNotExist<std::tuple<lhsList...>, rhsType>
                 : SelectTypeIf<
-                        FindElementType<std::tuple<rhsList...>, lhsType>::value == -1,
-                        std::tuple<lhsType, rhsList...>,
-                        std::tuple<rhsList...>
+                        FindElementType<std::tuple<lhsList...>, rhsType>::value == -1,
+                        std::tuple<lhsList..., rhsType>,
+                        std::tuple<lhsList...>
                     >
     { };
 
 public:
-    using type = typename FoldRight<AppendTypeIfNotExist, init_t, list...>::type;
+    using type = typename FoldLeft<AppendTypeIfNotExist, init_t, list...>::type;
 };
 
 
