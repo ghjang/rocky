@@ -26,7 +26,8 @@ struct NthElementTypeImplLoop<std::integral_constant<int, targetIndex>, std::int
 
 template <int targetIndex, int i, typename t, typename... list>
 struct NthElementTypeImplLoop<std::integral_constant<int, targetIndex>, std::integral_constant<int, i>, t, list...>
-        : SelectTypeIf<std::integral_constant<bool, targetIndex == i>,
+        : SelectTypeIf<
+                targetIndex == i,
                 Identity<t>,
                 NthElementTypeImplLoop<
                         std::integral_constant<int, targetIndex>,

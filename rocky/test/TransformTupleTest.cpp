@@ -17,7 +17,7 @@ namespace
     template <typename T>
     struct AddSharedPtrIfIntegral
                 : SelectTypeIf<
-                        std::integral_constant<bool, std::is_integral<T>::value>,
+                        std::is_integral<T>::value,
                         std::shared_ptr<T>,
                         T
                     >
@@ -27,7 +27,7 @@ namespace
     template <typename T>
     struct IntegralTypeToOne
             : SelectTypeIf<
-                    std::integral_constant<bool, std::is_integral<T>::value>,
+                    std::is_integral<T>::value,
                     std::true_type,
                     std::false_type
                 >

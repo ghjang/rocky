@@ -80,7 +80,7 @@ struct TypeToBoolConstantType
     template <typename T>
     struct Convert
             : SelectTypeIf<
-                    std::integral_constant<bool, Predicate<T>::value>,
+                    Predicate<T>::value,
                     std::true_type,
                     std::false_type
                 >
