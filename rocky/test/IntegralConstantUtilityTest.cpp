@@ -67,6 +67,16 @@ TEST_CASE("integral constant sum through class template IntegralConstantSum", "I
     );
 }
 
+TEST_CASE("integral constant subtract through class template IntegralConstantSubtract", "IntegralConstantUtility")
+{
+    using std::integral_constant;
+
+    static_assert(
+            IntegralConstantSubtract<integral_constant<int, 1>, integral_constant<int, 2>>() == -1,
+            "integral constant subtract: 1 - 2 = -1"
+    );
+}
+
 TEST_CASE("integral constant multiplication through class template IntegralConstantMultiply", "IntegralConstantUtility")
 {
     using std::integral_constant;
@@ -74,6 +84,16 @@ TEST_CASE("integral constant multiplication through class template IntegralConst
     static_assert(
             IntegralConstantMultiply<integral_constant<int, 2>, integral_constant<int, 3>>() == 6,
             "integral constant multiply: 2 * 3 = 6"
+    );
+}
+
+TEST_CASE("integral constant divide through class template IntegralConstantDivide", "IntegralConstantUtility")
+{
+    using std::integral_constant;
+
+    static_assert(
+            IntegralConstantDivide<integral_constant<int, 10>, integral_constant<int, 2>>() == 5,
+            "integral constant divide: 10 / 2 = 5"
     );
 }
 
