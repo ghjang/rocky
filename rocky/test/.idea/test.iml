@@ -25,6 +25,7 @@
       <sourceFolder url="file://$MODULE_DIR$/TupleSizeTest.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/TypeSelectionTest.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/TypeUtilityTest.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/UniqueTupleTest.cpp" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
@@ -402,6 +403,7 @@
           <root url="file://$MODULE_DIR$/FoldTest.cpp" />
           <root url="file://$MODULE_DIR$/ConstExprArrayTest.cpp" />
           <root url="file://$MODULE_DIR$/TransformTupleTest.cpp" />
+          <root url="file://$MODULE_DIR$/UniqueTupleTest.cpp" />
           <root url="file://$MODULE_DIR$/StringNumberConversionTest.cpp" />
           <root url="file://$MODULE_DIR$/TypeUtilityTest.cpp" />
           <root url="file://$MODULE_DIR$/CountTupleTest.cpp" />
