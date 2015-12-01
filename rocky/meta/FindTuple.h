@@ -3,6 +3,7 @@
 
 
 #include "rocky/meta/TransformTuple.h"
+#include "rocky/meta/ReverseTuple.h"
 
 
 template <typename Tuple, typename TargetType>
@@ -38,6 +39,23 @@ private:
 
 public:
     constexpr static int value = FindFirstTrueValue();
+};
+
+
+template <typename Tuple, typename TargetType>
+struct ReverseFindElementType;
+
+template <typename... list, typename TargetType>
+struct ReverseFindElementType<std::tuple<list...>, TargetType>
+{
+private:
+    using reversed_tuple_t = typename ReverseElementType<std::tuple<list...>>::type;
+
+    constexpr static auto targetTypeIndex_ = FindElementType<reversed_tuple_t, TargetType>::value;
+
+public:
+    constexpr static int value = (-1 == targetTypeIndex_) ? -1
+                                                          : (sizeof...(list) - targetTypeIndex_ - 1);
 };
 
 

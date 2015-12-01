@@ -5,6 +5,7 @@
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/ConstExprArrayTest.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CountTupleTest.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/FindTupleTest.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/FoldTest.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/ForEachArgumentTest.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/ForEachTupleTest.cpp" isTestSource="false" />
@@ -392,6 +393,7 @@
           <root url="file://$MODULE_DIR$/RemoveTupleTest.cpp" />
           <root url="file://$MODULE_DIR$/IntegralConstantUtilityTest.cpp" />
           <root url="file://$MODULE_DIR$/CMakeLists.txt" />
+          <root url="file://$MODULE_DIR$/FindTupleTest.cpp" />
           <root url="file://$MODULE_DIR$/TypeSelectionTest.cpp" />
           <root url="file://$MODULE_DIR$/HasMemberTest.cpp" />
           <root url="file://$MODULE_DIR$/IntegerSequenceUtilityTest.cpp" />
