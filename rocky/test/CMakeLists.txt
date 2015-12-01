@@ -27,7 +27,8 @@ set(SOURCE_FILES
         CountTupleTest.cpp
         ConstExprArrayTest.cpp
         RemoveTupleTest.cpp
-        ReplaceTupleTest.cpp)
+        ReplaceTupleTest.cpp
+        FindTupleTest.cpp)
 
 add_executable(RockyTest ${SOURCE_FILES})
 
