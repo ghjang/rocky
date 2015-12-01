@@ -40,6 +40,23 @@ struct FoldRight<F, init, std::tuple<list...>>
 template <template <typename, typename> class F, typename init, typename... list>
 struct FoldLeft;
 
+template <template <typename, typename> class F, typename last>
+struct FoldLeft<F, last>
+{
+    using type = last;
+};
+
+template <template <typename, typename> class F, typename init, typename head, typename... tail>
+struct FoldLeft<F, init, head, tail...>
+{
+    using type = typename FoldLeft<F, typename F<init, head>::type, tail...>::type;
+};
+
+template <template <typename, typename> class F, typename init, typename... list>
+struct FoldLeft<F, init, std::tuple<list...>>
+        : FoldLeft<F, init, list...>
+{ };
+
 
 #endif //ROCKY_FOLD_H
 
