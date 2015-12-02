@@ -5,7 +5,7 @@
 #include <tuple>
 
 
-template <typename Tuple, size_t sizeOfTuple, typename indexSequence>
+template <typename Tuple, size_t sizeOfTuple, typename IndexSequence>
 struct ReverseElementTypeImpl;
 
 template <typename... list, size_t sizeOfTuple, size_t... i>
