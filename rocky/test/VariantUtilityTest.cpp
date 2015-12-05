@@ -3,9 +3,6 @@
 #include "rocky/VariantUtility.h"
 
 
-#include <iostream>
-
-
 namespace
 {
     struct IsEqual
