@@ -33,5 +33,11 @@ public:
 };
 
 
+template <typename... T>
+struct MakeUniqueElementTypeTuple
+            : UniqueElementType<std::tuple<T...>>
+{ };
+
+
 #endif //ROCKY_UNIQUETUPLE_H
 

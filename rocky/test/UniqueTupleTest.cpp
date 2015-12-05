@@ -47,3 +47,20 @@ TEST_CASE("unique tuple element type", "[UniqueTuple]")
     }
 }
 
+TEST_CASE("MakeUniqueElementTypeTuple", "[UniqueTuple]")
+{
+    using std::is_same;
+    using std::tuple;
+    using std::tuple_size;
+    using std::tuple_element_t;
+
+    {
+        using result_unique_t = typename MakeUniqueElementTypeTuple<char, char, char>::type;
+        using unique_t = tuple<char>;
+
+        static_assert(1 == tuple_size<result_unique_t>(), "result_unique_t's size should be 1.");
+        static_assert(is_same<char, tuple_element_t<0, result_unique_t>>(), "");
+        static_assert(is_same<unique_t, result_unique_t>(), "unique tuple_t should be same as result_unique_t.");
+    }
+}
+
