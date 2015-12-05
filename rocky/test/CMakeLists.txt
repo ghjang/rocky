@@ -37,7 +37,8 @@ set(SOURCE_FILES
         RemoveTupleTest.cpp
         ReplaceTupleTest.cpp
         FindTupleTest.cpp
-        UniqueTupleTest.cpp)
+        UniqueTupleTest.cpp
+        VariantUtilityTest.cpp)
 
 add_executable(RockyTest ${SOURCE_FILES})
 
