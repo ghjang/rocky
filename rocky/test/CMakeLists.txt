@@ -1,6 +1,14 @@
 cmake_minimum_required(VERSION 3.3)
 project(RockyTest)
 
+set(BOOST_ROOT "../../../boost_1_59_0")
+find_package(Boost 1.59.0)
+if(Boost_FOUND)
+    include_directories(${BOOST_ROOT})
+else()
+    message(FATAL_ERROR "Could not find boost!")
+endif()
+
 set(ROCKY_ROOT "../..")
 include_directories(${ROCKY_ROOT})
 
