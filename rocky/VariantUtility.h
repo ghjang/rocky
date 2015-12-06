@@ -8,6 +8,7 @@
 
 #include "boost/variant.hpp"
 
+#include "rocky/meta/TypeUtility.h"
 #include "rocky/meta/ForEachArgument.h"
 #include "rocky/meta/UniqueTuple.h"
 
@@ -19,61 +20,6 @@ template <typename... list>
 struct TupleToVariant<std::tuple<list...>>
 {
     using type = boost::variant<list...>;
-};
-
-
-template <typename T>
-struct CharPtrTypeToStrType
-{
-    using type = T;
-};
-
-template <std::size_t N>
-struct CharPtrTypeToStrType<char [N]>
-{
-    using type = std::string;
-};
-
-template <std::size_t N>
-struct CharPtrTypeToStrType<char const (&) [N]>
-{
-    using type = std::string;
-};
-
-template <>
-struct CharPtrTypeToStrType<char const *>
-{
-    using type = std::string;
-};
-
-template <>
-struct CharPtrTypeToStrType<char *>
-{
-    using type = std::string;
-};
-
-template <std::size_t N>
-struct CharPtrTypeToStrType<wchar_t [N]>
-{
-    using type = std::wstring;
-};
-
-template <std::size_t N>
-struct CharPtrTypeToStrType<wchar_t const (&) [N]>
-{
-    using type = std::wstring;
-};
-
-template <>
-struct CharPtrTypeToStrType<wchar_t const *>
-{
-    using type = std::wstring;
-};
-
-template <>
-struct CharPtrTypeToStrType<wchar_t *>
-{
-    using type = std::wstring;
 };
 
 
