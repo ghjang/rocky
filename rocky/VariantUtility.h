@@ -14,10 +14,10 @@
 
 
 template <typename Tuple>
-struct TupleToVariant;
+struct TupleTypeToVariantType;
 
 template <typename... list>
-struct TupleToVariant<std::tuple<list...>>
+struct TupleTypeToVariantType<std::tuple<list...>>
 {
     using type = boost::variant<list...>;
 };
@@ -43,7 +43,7 @@ auto MakeVariantVector(const Args &...  args)
     using unique_tuple_t = typename MakeUniqueElementTypeTuple<
                                         typename CharTypeToStringType<std::decay_t<decltype(args)>>::type...
                                     >::type;
-    using element_t = typename TupleToVariant<unique_tuple_t>::type;
+    using element_t = typename TupleTypeToVariantType<unique_tuple_t>::type;
 
     std::vector<element_t> v;
     v.reserve(sizeof...(args));
