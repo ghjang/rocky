@@ -41,7 +41,7 @@ template <typename... Args>
 auto MakeVariantVector(const Args &...  args)
 {
     using unique_tuple_t = typename MakeUniqueElementTypeTuple<
-                                        typename CharPtrTypeToStrType<std::decay_t<decltype(args)>>::type...
+                                        typename CharTypeToStringType<std::decay_t<decltype(args)>>::type...
                                     >::type;
     using element_t = typename TupleToVariant<unique_tuple_t>::type;
 

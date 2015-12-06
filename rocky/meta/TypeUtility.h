@@ -30,31 +30,31 @@ struct IsCharType
 
 
 template <typename T, typename = void>
-struct CharPtrTypeToStrType
+struct CharTypeToStringType
 {
     using type = T;
 };
 
 template <typename T, std::size_t N>
-struct CharPtrTypeToStrType<T [N], std::enable_if_t<IsCharType<T>::value>>
+struct CharTypeToStringType<T [N], std::enable_if_t<IsCharType<T>::value>>
 {
     using type = std::basic_string<T>;
 };
 
 template <typename T, std::size_t N>
-struct CharPtrTypeToStrType<T const (&) [N], std::enable_if_t<IsCharType<T>::value>>
+struct CharTypeToStringType<T const (&) [N], std::enable_if_t<IsCharType<T>::value>>
 {
     using type = std::basic_string<T>;
 };
 
 template <typename T>
-struct CharPtrTypeToStrType<T *, std::enable_if_t<IsCharType<T>::value>>
+struct CharTypeToStringType<T *, std::enable_if_t<IsCharType<T>::value>>
 {
     using type = std::basic_string<T>;
 };
 
 template <typename T>
-struct CharPtrTypeToStrType<T const *, std::enable_if_t<IsCharType<T>::value>>
+struct CharTypeToStringType<T const *, std::enable_if_t<IsCharType<T>::value>>
 {
     using type = std::basic_string<T>;
 };
