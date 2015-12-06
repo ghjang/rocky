@@ -29,7 +29,7 @@ auto MakeVariant(const T & arg)
     return boost::variant<T>(arg);
 }
 
-template <typename T, typename = std::enable_if_t<std::is_same<T, char>::value || std::is_same<T, wchar_t>::value>>
+template <typename T, typename = std::enable_if_t<IsCharType<T>::value>>
 auto MakeVariant(const T * s)
 {
     using str_t = std::basic_string<T>;

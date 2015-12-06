@@ -2,6 +2,8 @@
 #define ROCKY_TYPEUTILITY_H
 
 
+#include <type_traits>
+
 #include "rocky/meta/Identity.h"
 
 
@@ -22,57 +24,39 @@ constexpr std::size_t TypeSizeOf(Identity<T>)
 
 
 template <typename T>
+struct IsCharType
+        : std::integral_constant<bool, std::is_same<T, char>::value || std::is_same<T, wchar_t>::value>
+{ };
+
+
+template <typename T, typename = void>
 struct CharPtrTypeToStrType
 {
     using type = T;
 };
 
-template <std::size_t N>
-struct CharPtrTypeToStrType<char [N]>
+template <typename T, std::size_t N>
+struct CharPtrTypeToStrType<T [N], std::enable_if_t<IsCharType<T>::value>>
 {
-    using type = std::string;
+    using type = std::basic_string<T>;
 };
 
-template <std::size_t N>
-struct CharPtrTypeToStrType<char const (&) [N]>
+template <typename T, std::size_t N>
+struct CharPtrTypeToStrType<T const (&) [N], std::enable_if_t<IsCharType<T>::value>>
 {
-    using type = std::string;
+    using type = std::basic_string<T>;
 };
 
-template <>
-struct CharPtrTypeToStrType<char const *>
+template <typename T>
+struct CharPtrTypeToStrType<T *, std::enable_if_t<IsCharType<T>::value>>
 {
-    using type = std::string;
+    using type = std::basic_string<T>;
 };
 
-template <>
-struct CharPtrTypeToStrType<char *>
+template <typename T>
+struct CharPtrTypeToStrType<T const *, std::enable_if_t<IsCharType<T>::value>>
 {
-    using type = std::string;
-};
-
-template <std::size_t N>
-struct CharPtrTypeToStrType<wchar_t [N]>
-{
-    using type = std::wstring;
-};
-
-template <std::size_t N>
-struct CharPtrTypeToStrType<wchar_t const (&) [N]>
-{
-    using type = std::wstring;
-};
-
-template <>
-struct CharPtrTypeToStrType<wchar_t const *>
-{
-    using type = std::wstring;
-};
-
-template <>
-struct CharPtrTypeToStrType<wchar_t *>
-{
-    using type = std::wstring;
+    using type = std::basic_string<T>;
 };
 
 
