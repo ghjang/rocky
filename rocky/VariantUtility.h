@@ -23,6 +23,16 @@ struct TupleTypeToVariantType<std::tuple<list...>>
 };
 
 
+template <typename Variant>
+struct VariantTypeToTupleType;
+
+template <typename... list>
+struct VariantTypeToTupleType<boost::variant<list...>>
+{
+    using type = std::tuple<list...>;
+};
+
+
 template <typename T>
 auto MakeVariant(const T & arg)
 {

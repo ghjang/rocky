@@ -37,6 +37,20 @@ TEST_CASE("TupleTypeToVariantType", "[VariantUtility]")
     );
 }
 
+TEST_CASE("VariantTypeToTupleType", "[VariantUtility]")
+{
+    using std::is_same;
+    using std::tuple;
+    using boost::variant;
+
+    using variant_t = variant<char, int, double>;
+    using tuple_t = tuple<char, int, double>;
+    static_assert(
+            is_same<tuple_t, typename VariantTypeToTupleType<variant_t>::type>(),
+            "converted variant_t shoulb be same as tuple_t."
+    );
+}
+
 TEST_CASE("MakeVariant", "[VariantUtility]")
 {
     using boost::apply_visitor;
