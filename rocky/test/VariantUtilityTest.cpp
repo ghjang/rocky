@@ -39,21 +39,23 @@ TEST_CASE("TupleToVariant", "[VariantUtility]")
 
 TEST_CASE("MakeVariant", "[VariantUtility]")
 {
+    using boost::apply_visitor;
+
     auto e0 = MakeVariant(1);
     auto e1 = MakeVariant(1);
-    REQUIRE(boost::apply_visitor(IsEqual(), e0, e1));
+    REQUIRE(apply_visitor(IsEqual(), e0, e1));
 
     auto e2 = MakeVariant('a');
-    REQUIRE(!boost::apply_visitor(IsEqual(), e0, e2));
+    REQUIRE(!apply_visitor(IsEqual(), e0, e2));
 
     auto e3 = MakeVariant("abc");
     auto e4 = MakeVariant(L"abc");
-    REQUIRE(!boost::apply_visitor(IsEqual(), e3, e4));
+    REQUIRE(!apply_visitor(IsEqual(), e3, e4));
 
     auto e5 = MakeVariant("abc");
     auto e6 = MakeVariant("ABC");
-    REQUIRE(boost::apply_visitor(IsEqual(), e3, e5));
-    REQUIRE(!boost::apply_visitor(IsEqual(), e3, e6));
+    REQUIRE(apply_visitor(IsEqual(), e3, e5));
+    REQUIRE(!apply_visitor(IsEqual(), e3, e6));
 }
 
 TEST_CASE("MakeVariantVector, basic", "[VariantUtility]")
@@ -62,6 +64,7 @@ TEST_CASE("MakeVariantVector, basic", "[VariantUtility]")
     using std::decay_t;
     using std::vector;
     using boost::variant;
+    using boost::apply_visitor;
 
     auto && vv = MakeVariantVector(1, 1.0, 'a');
     using result_t = vector<variant<int, double, char>>;
@@ -71,9 +74,9 @@ TEST_CASE("MakeVariantVector, basic", "[VariantUtility]")
     auto && e0 = MakeVariant(1);
     auto && e1 = MakeVariant(1.0);
     auto && e2 = MakeVariant('a');
-    REQUIRE(boost::apply_visitor(IsEqual(), vv[0], e0));
-    REQUIRE(boost::apply_visitor(IsEqual(), vv[1], e1));
-    REQUIRE(boost::apply_visitor(IsEqual(), vv[2], e2));
+    REQUIRE(apply_visitor(IsEqual(), vv[0], e0));
+    REQUIRE(apply_visitor(IsEqual(), vv[1], e1));
+    REQUIRE(apply_visitor(IsEqual(), vv[2], e2));
 }
 
 TEST_CASE("MakeVariantVector, duplicate parameter types", "[VariantUtility]")
@@ -82,6 +85,7 @@ TEST_CASE("MakeVariantVector, duplicate parameter types", "[VariantUtility]")
     using std::decay_t;
     using std::vector;
     using boost::variant;
+    using boost::apply_visitor;
 
     auto && vv = MakeVariantVector(1, 1.0, 'a', 2, 'b');
     using result_t = vector<variant<int, double, char>>;
@@ -93,11 +97,11 @@ TEST_CASE("MakeVariantVector, duplicate parameter types", "[VariantUtility]")
     auto && e2 = MakeVariant('a');
     auto && e3 = MakeVariant(2);
     auto && e4 = MakeVariant('b');
-    REQUIRE(boost::apply_visitor(IsEqual(), vv[0], e0));
-    REQUIRE(boost::apply_visitor(IsEqual(), vv[1], e1));
-    REQUIRE(boost::apply_visitor(IsEqual(), vv[2], e2));
-    REQUIRE(boost::apply_visitor(IsEqual(), vv[3], e3));
-    REQUIRE(boost::apply_visitor(IsEqual(), vv[4], e4));
+    REQUIRE(apply_visitor(IsEqual(), vv[0], e0));
+    REQUIRE(apply_visitor(IsEqual(), vv[1], e1));
+    REQUIRE(apply_visitor(IsEqual(), vv[2], e2));
+    REQUIRE(apply_visitor(IsEqual(), vv[3], e3));
+    REQUIRE(apply_visitor(IsEqual(), vv[4], e4));
 }
 
 TEST_CASE("MakeVariantVector, char * types", "[VariantUtility]")
@@ -106,6 +110,7 @@ TEST_CASE("MakeVariantVector, char * types", "[VariantUtility]")
     using std::decay_t;
     using std::vector;
     using boost::variant;
+    using boost::apply_visitor;
 
     {
         auto && vv = MakeVariantVector(1, 1.0, 'a', 2, 'b', "abc");
@@ -119,12 +124,12 @@ TEST_CASE("MakeVariantVector, char * types", "[VariantUtility]")
         auto && e3 = MakeVariant(2);
         auto && e4 = MakeVariant('b');
         auto && e5 = MakeVariant("abc");
-        REQUIRE(boost::apply_visitor(IsEqual(), vv[0], e0));
-        REQUIRE(boost::apply_visitor(IsEqual(), vv[1], e1));
-        REQUIRE(boost::apply_visitor(IsEqual(), vv[2], e2));
-        REQUIRE(boost::apply_visitor(IsEqual(), vv[3], e3));
-        REQUIRE(boost::apply_visitor(IsEqual(), vv[4], e4));
-        REQUIRE(boost::apply_visitor(IsEqual(), vv[5], e5));
+        REQUIRE(apply_visitor(IsEqual(), vv[0], e0));
+        REQUIRE(apply_visitor(IsEqual(), vv[1], e1));
+        REQUIRE(apply_visitor(IsEqual(), vv[2], e2));
+        REQUIRE(apply_visitor(IsEqual(), vv[3], e3));
+        REQUIRE(apply_visitor(IsEqual(), vv[4], e4));
+        REQUIRE(apply_visitor(IsEqual(), vv[5], e5));
     }
 
     {
@@ -141,17 +146,17 @@ TEST_CASE("MakeVariantVector, char * types", "[VariantUtility]")
         auto && e5 = MakeVariant("abc");
         auto && e6 = MakeVariant(float(3));
         auto && e7 = MakeVariant(L"zxy");
-        REQUIRE(boost::apply_visitor(IsEqual(), vv[0], e0));
-        REQUIRE(boost::apply_visitor(IsEqual(), vv[1], e1));
-        REQUIRE(boost::apply_visitor(IsEqual(), vv[2], e2));
-        REQUIRE(boost::apply_visitor(IsEqual(), vv[3], e3));
-        REQUIRE(boost::apply_visitor(IsEqual(), vv[4], e4));
-        REQUIRE(boost::apply_visitor(IsEqual(), vv[5], e5));
-        REQUIRE(boost::apply_visitor(IsEqual(), vv[6], e6));
-        REQUIRE(boost::apply_visitor(IsEqual(), vv[7], e7));
+        REQUIRE(apply_visitor(IsEqual(), vv[0], e0));
+        REQUIRE(apply_visitor(IsEqual(), vv[1], e1));
+        REQUIRE(apply_visitor(IsEqual(), vv[2], e2));
+        REQUIRE(apply_visitor(IsEqual(), vv[3], e3));
+        REQUIRE(apply_visitor(IsEqual(), vv[4], e4));
+        REQUIRE(apply_visitor(IsEqual(), vv[5], e5));
+        REQUIRE(apply_visitor(IsEqual(), vv[6], e6));
+        REQUIRE(apply_visitor(IsEqual(), vv[7], e7));
 
-        REQUIRE(!boost::apply_visitor(IsEqual(), vv[1], e0));
-        REQUIRE(!boost::apply_visitor(IsEqual(), vv[8], e7));
+        REQUIRE(!apply_visitor(IsEqual(), vv[1], e0));
+        REQUIRE(!apply_visitor(IsEqual(), vv[8], e7));
     }
 }
 
