@@ -78,24 +78,24 @@ struct CharPtrTypeToStrType<wchar_t *>
 
 
 template <typename T>
-decltype(auto) MakeVariant(const T & arg)
+auto MakeVariant(const T & arg)
 {
     return boost::variant<T>(arg);
 }
 
-decltype(auto) MakeVariant(const char * s)
+auto MakeVariant(const char * s)
 {
     return boost::variant<std::string>(std::string(s));
 }
 
-decltype(auto) MakeVariant(const wchar_t * s)
+auto MakeVariant(const wchar_t * s)
 {
     return boost::variant<std::wstring>(std::wstring(s));
 }
 
 
 template <typename... Args>
-decltype(auto) MakeVariantVector(const Args &...  args)
+auto MakeVariantVector(const Args &...  args)
 {
     using unique_tuple_t = typename MakeUniqueElementTypeTuple<
                                         typename CharPtrTypeToStrType<std::decay_t<decltype(args)>>::type...
