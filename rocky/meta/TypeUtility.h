@@ -5,6 +5,13 @@
 #include "rocky/meta/Identity.h"
 
 
+/**
+ * For type displaying.
+ */
+template <typename T>
+struct TD;
+
+
 template <typename T>
 constexpr Identity<T> type_c{};
 
