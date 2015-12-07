@@ -27,6 +27,15 @@ TEST_CASE("CharTypeToStringType", "[TypeUtility]")
     }
 
     {
+        // can have the address for the "abc" string literal.
+        char const (* pc)[4] = &"abc";
+        static_assert(is_same<char const (*) [4], decltype(pc)>(), "");
+
+        // array-to-pointer decay
+        char const * dpc = "abc";
+        static_assert(is_same<char const *, decltype(dpc)>(), "");
+
+        // NOTE: "abc" string literal is lvalue.
         using str_t = decltype("abc");
         static_assert(is_same<str_t, char const (&)[4]>(), "");
         static_assert(is_same<std::string, typename CharTypeToStringType<str_t>::type>(), "");
