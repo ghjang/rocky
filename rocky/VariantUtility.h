@@ -48,7 +48,7 @@ auto MakeVariant(const T * s)
 
 
 template <typename... Args>
-auto MakeVariantVector(const Args &...  args)
+auto MakeVariantVector(Args &&...  args)
 {
     using unique_tuple_t = typename MakeUniqueElementTypeTuple<
                                         typename CharTypeToStringType<std::decay_t<decltype(args)>>::type...
@@ -60,7 +60,7 @@ auto MakeVariantVector(const Args &...  args)
 
     ForEachArgument(
             [&v](const auto & e) { v.push_back(e); },
-            args...
+            std::forward<Args>(args)...
     );
 
     return v;
