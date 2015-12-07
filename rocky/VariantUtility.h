@@ -59,7 +59,7 @@ auto MakeVariantVector(Args &&...  args)
     v.reserve(sizeof...(args));
 
     ForEachArgument(
-            [&v](const auto & e) { v.push_back(e); },
+            [&v](auto && e) { v.push_back(e); },
             std::forward<Args>(args)...
     );
 
