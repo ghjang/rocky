@@ -17,6 +17,12 @@ TEST_CASE("CharTypeToStringType", "[TypeUtility]")
     using std::is_same;
 
     {
+        // NOTE: arr itself is rvalue.
+        char arr[4] = "abc";
+        REQUIRE(static_cast<void *>(&arr) == static_cast<void *>(&(arr[0])));
+    }
+
+    {
         char a[] = "abc";
         static_assert(is_same<decltype(a), char [4]>(), "");
         static_assert(is_same<std::string, typename CharTypeToStringType<decltype(a)>::type>(), "");
