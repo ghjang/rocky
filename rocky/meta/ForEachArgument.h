@@ -10,7 +10,7 @@ template <typename F, typename... Args>
 decltype(auto) ForEachArgument(F && f, Args &&... args)
 {
     (void) std::initializer_list<int> { (f(std::forward<Args>(args)), 0)... };
-    return std::move(f);
+    return std::forward<F>(f);
 }
 
 
