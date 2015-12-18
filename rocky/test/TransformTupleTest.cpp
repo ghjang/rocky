@@ -124,8 +124,8 @@ TEST_CASE("transforming tuple integral element types to integral value true_type
             is_same<
                 integral_tuple_t,
                 typename TransformElementTypeToBoolConstantType<
-                                tuple_t,
-                                is_integral // should have 'value' member.
+                                is_integral, // should have 'value' member.
+                                tuple_t
                             >::type
             >(),
             "transformed tuple_t should be integral_tuple_t."

@@ -70,10 +70,14 @@ struct TransformElementType<std::tuple<list...>, F>
 };
 
 
-template <typename Tuple, template <typename> class Predicate>
-struct TransformElementTypeToBoolConstantType
+template <template <typename> class Predicate, typename... list>
+struct TransformElementTypeToBoolConstantType : TransformElementTypeToBoolConstantType<Predicate, std::tuple<list...>>
+{ };
+
+template <template <typename> class Predicate, typename... list>
+struct TransformElementTypeToBoolConstantType<Predicate, std::tuple<list...>>
             : TransformElementType<
-                    Tuple,
+                    std::tuple<list...>,
                     TypeToBoolConstantType<Predicate>::template Convert
                 >
 {
