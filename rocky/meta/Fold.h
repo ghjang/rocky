@@ -46,9 +46,8 @@ struct FoldLeft<F, last> : type_is<last>
 
 template <template <typename, typename> class F, typename init, typename head, typename... tail>
 struct FoldLeft<F, init, head, tail...>
-{
-    using type = typename FoldLeft<F, typename F<init, head>::type, tail...>::type;
-};
+        : FoldLeft<F, typename F<init, head>::type, tail...>
+{ };
 
 template <template <typename, typename> class F, typename init, typename... list>
 struct FoldLeft<F, init, std::tuple<list...>>
