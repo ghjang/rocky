@@ -65,5 +65,25 @@ public:
 };
 
 
+template <typename T, typename... list>
+struct IsOneOf;
+
+template <typename T>
+struct IsOneOf<T> : std::false_type
+{ };
+
+template <typename T, typename... list>
+struct IsOneOf<T, T, list...> : std::true_type
+{ };
+
+template <typename T, typename U, typename... list>
+struct IsOneOf<T, U, list...> : IsOneOf<T, list...>
+{ };
+
+template <typename T, typename... list>
+struct IsOneOf<T, std::tuple<list...>> : IsOneOf<T, list...>
+{ };
+
+
 #endif //ROCKY_TUPLESIZE_H
 
