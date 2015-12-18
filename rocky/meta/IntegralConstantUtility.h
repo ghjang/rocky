@@ -99,7 +99,7 @@ struct TypeToBoolConstantType
 {
     template <typename T>
     struct Convert
-            : SelectTypeIf<
+            : std::conditional<
                     Predicate<T>::value,
                     std::true_type,
                     std::false_type
