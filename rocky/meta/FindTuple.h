@@ -1,5 +1,5 @@
-#ifndef ROCKY_TUPLESIZE_H
-#define ROCKY_TUPLESIZE_H
+#ifndef ROCKY_FINDELEMENT_H
+#define ROCKY_FINDELEMENT_H
 
 
 #include "rocky/meta/IntegralConstantUtility.h"
@@ -59,5 +59,5 @@ struct IsOneOf<T, std::tuple<list...>> : IsOneOf<T, list...>
 { };
 
 
-#endif //ROCKY_TUPLESIZE_H
+#endif //ROCKY_FINDELEMENT_H
 
