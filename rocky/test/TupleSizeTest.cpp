@@ -3,6 +3,25 @@
 #include "rocky/meta/TupleSize.h"
 
 
+TEST_CASE("Getting the sum of template parameter type sizes", "[TupleSize]")
+{
+    static_assert(
+            SumOfElementTypeSize<int, int, int>() == sizeof(int) * 3,
+            "element type size of <int, int, int> == sizeof(int) * 3"
+    );
+
+    struct S
+    {
+        int i_;
+        char c_;
+    };
+
+    static_assert(
+            SumOfElementTypeSize<int, S, double>() == sizeof(int) + sizeof(S) + sizeof(double),
+            "element type size of <int, S, double> == sizeof(int) + sizeof(S) + sizeof(double)"
+    );
+}
+
 TEST_CASE("Getting the size of tuple's template parameters", "[TupleSize]")
 {
     using std::tuple;
