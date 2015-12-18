@@ -8,19 +8,16 @@
 
 
 template <template <typename> class Predicate, typename... list>
-struct CountElementType : CountElementType<Predicate, std::tuple<list...>>
-{ };
-
-template <template <typename> class Predicate, typename... list>
-struct CountElementType<Predicate, std::tuple<list...>>
+struct CountElementType
             : FoldRight<
                     IntegralConstantSum,
                     int_c_t<0>, // init
-                    typename TransformElementTypeToBoolConstantType<
-                                    std::tuple<list...>,
-                                    Predicate
-                                >::type
+                    typename TransformElementTypeToBoolConstantType<Predicate, list...>::type
                 >::type
+{ };
+
+template <template <typename> class Predicate, typename... list>
+struct CountElementType<Predicate, std::tuple<list...>> : CountElementType<Predicate, list...>
 { };
 
 
