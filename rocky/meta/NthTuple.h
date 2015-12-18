@@ -11,43 +11,31 @@
 #include <type_traits>
 #include <tuple>
 
-#include "rocky/meta/TypeSelection.h"
 #include "rocky/meta/Identity.h"
 #include "rocky/meta/IntegralConstantUtility.h"
 
 
-template <typename targetIndex, typename index, typename... list>
-struct NthElementTypeImplLoop;
-
-template <int targetIndex, int i, typename t>
-struct NthElementTypeImplLoop<int_c_t<targetIndex>, int_c_t<i>, t>
-        : type_is<t>
+template <typename TargetIndex, typename CurrentIndex, typename... list>
+struct NthElementTypeImpl
 { };
 
-template <int targetIndex, int i, typename t, typename... list>
-struct NthElementTypeImplLoop<int_c_t<targetIndex>, int_c_t<i>, t, list...>
-        : SelectTypeIf<
-                targetIndex == i,
-                type_is<t>,
-                NthElementTypeImplLoop<int_c_t<targetIndex>, int_c_t<i + 1>, list...>
-            >
+template <int i, typename T, typename... list>
+struct NthElementTypeImpl<int_c_t<i>, int_c_t<i>, T, list...> : type_is<T>
+{ };
+
+template <int i, int j, typename T, typename... list>
+struct NthElementTypeImpl<int_c_t<i>, int_c_t<j>, T, list...> : NthElementTypeImpl<int_c_t<i>, int_c_t<j + 1>, list...>
 { };
 
 
-template <typename Tuple, typename TargetIndex>
-struct NthElementTypeImpl;
-
-template <typename... list, int i>
-struct NthElementTypeImpl<std::tuple<list...>, int_c_t<i>>
-        : NthElementTypeImplLoop<int_c_t<i>, int_c_t<0>, list...>
+template <int i, typename... list>
+struct NthElementType : NthElementTypeImpl<int_c_t<i>, int_c_t<0>, list...>
 {
-    static_assert(i >= 0 && i < sizeof...(list), "out of range tuple index");
+    static_assert(i >= 0 && i < sizeof...(list), "out of range index: i");
 };
 
-
-template <typename Tuple, int i>
-struct NthElementType
-        : NthElementTypeImpl<Tuple, int_c_t<i>>
+template <int i, typename... list>
+struct NthElementType<i, std::tuple<list...>> : NthElementType<i, list...>
 { };
 
 
