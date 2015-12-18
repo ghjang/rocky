@@ -5,18 +5,18 @@
 #include <type_traits>
 #include <memory>
 
+#include "rocky/meta/Identity.h"
+
 
 namespace
 {
     template <typename T>
-    struct AddSharedPtr
-    {
-        using type = std::shared_ptr<T>;
-    };
+    struct AddSharedPtr : type_is<std::shared_ptr<T>>
+    { };
 
     template <typename T>
     struct AddSharedPtrIfIntegral
-                : SelectTypeIf<
+                : std::conditional<
                         std::is_integral<T>::value,
                         std::shared_ptr<T>,
                         T
@@ -26,7 +26,7 @@ namespace
 
     template <typename T>
     struct IntegralTypeToOne
-            : SelectTypeIf<
+            : std::conditional<
                     std::is_integral<T>::value,
                     std::true_type,
                     std::false_type
