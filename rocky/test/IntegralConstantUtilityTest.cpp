@@ -126,3 +126,15 @@ TEST_CASE("type to bool integral constant", "[IntegralConstantUtility]")
     );
 }
 
+TEST_CASE("bool integral constant type alias", "[IntegralConstantUtility]")
+{
+    static_assert(
+            std::is_same<std::integral_constant<bool, true>, bool_c_t<true>>(),
+            "std::integral_constant<bool, true> == bool_c_t<true>"
+    );
+    static_assert(
+            std::is_same<std::integral_constant<bool, false>, bool_c_t<false>>(),
+            "std::integral_constant<bool, false> == bool_c_t<false>"
+    );
+}
+

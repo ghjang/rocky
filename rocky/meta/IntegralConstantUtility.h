@@ -55,6 +55,9 @@ constexpr auto operator ""_c ()
 template <int i>
 using int_c_t = std::integral_constant<int, i>;
 
+template <bool condition>
+using bool_c_t = std::integral_constant<bool, condition>;
+
 
 template <typename lhs, typename rhs>
 struct IntegralConstantSum;
