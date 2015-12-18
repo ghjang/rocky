@@ -184,16 +184,22 @@ struct ExtractElementType<std::integer_sequence<T, i...>, std::tuple<list...>>
 // runtime functions
 //==============================================================================
 
-template <typename F, typename... list, std::size_t... i>
-auto TransformElementImpl(F && f, std::tuple<list...> const& t, std::index_sequence<i...>)
+template <typename F, typename Tuple, std::size_t... i>
+auto TransformElementImpl(F && f, Tuple && t, std::index_sequence<i...>)
 {
-    return std::make_tuple(f(std::get<i>(t))...);
+    return std::make_tuple(f(std::get<i>(std::forward<Tuple>(t)))...);
 }
 
 template <typename F, typename... list>
 auto TransformElement(F && f, std::tuple<list...> const& t)
 {
     return TransformElementImpl(std::forward<F>(f), t, std::index_sequence_for<list...>{});
+}
+
+template <typename F, typename... list>
+auto TransformElement(F && f, std::tuple<list...> && t)
+{
+    return TransformElementImpl(std::forward<F>(f), std::move(t), std::index_sequence_for<list...>{});
 }
 
 
