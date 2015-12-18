@@ -11,29 +11,25 @@
 #include <type_traits>
 #include <tuple>
 
-#include "TypeSelection.h"
-#include "Identity.h"
+#include "rocky/meta/TypeSelection.h"
+#include "rocky/meta/Identity.h"
+#include "rocky/meta/IntegralConstantUtility.h"
 
 
 template <typename targetIndex, typename index, typename... list>
 struct NthElementTypeImplLoop;
 
 template <int targetIndex, int i, typename t>
-struct NthElementTypeImplLoop<std::integral_constant<int, targetIndex>, std::integral_constant<int, i>, t>
-{
-    using type = t;
-};
+struct NthElementTypeImplLoop<int_c_t<targetIndex>, int_c_t<i>, t>
+        : type_is<t>
+{ };
 
 template <int targetIndex, int i, typename t, typename... list>
-struct NthElementTypeImplLoop<std::integral_constant<int, targetIndex>, std::integral_constant<int, i>, t, list...>
+struct NthElementTypeImplLoop<int_c_t<targetIndex>, int_c_t<i>, t, list...>
         : SelectTypeIf<
                 targetIndex == i,
-                Identity<t>,
-                NthElementTypeImplLoop<
-                        std::integral_constant<int, targetIndex>,
-                        std::integral_constant<int, i + 1>,
-                        list...
-                >
+                type_is<t>,
+                NthElementTypeImplLoop<int_c_t<targetIndex>, int_c_t<i + 1>, list...>
             >
 { };
 
@@ -42,12 +38,8 @@ template <typename Tuple, typename TargetIndex>
 struct NthElementTypeImpl;
 
 template <typename... list, int i>
-struct NthElementTypeImpl<std::tuple<list...>, std::integral_constant<int, i>>
-        : NthElementTypeImplLoop<
-                std::integral_constant<int, i>,
-                std::integral_constant<int, 0>,
-                list...
-            >
+struct NthElementTypeImpl<std::tuple<list...>, int_c_t<i>>
+        : NthElementTypeImplLoop<int_c_t<i>, int_c_t<0>, list...>
 {
     static_assert(i >= 0 && i < sizeof...(list), "out of range tuple index");
 };
@@ -55,10 +47,7 @@ struct NthElementTypeImpl<std::tuple<list...>, std::integral_constant<int, i>>
 
 template <typename Tuple, int i>
 struct NthElementType
-        : NthElementTypeImpl<
-                Tuple,
-                std::integral_constant<int, i>
-            >
+        : NthElementTypeImpl<Tuple, int_c_t<i>>
 { };
 
 
