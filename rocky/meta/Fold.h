@@ -4,6 +4,8 @@
 
 #include <tuple>
 
+#include "rocky/meta/Identity.h"
+
 
 // accumulation
 
@@ -16,10 +18,8 @@ template <template <typename, typename> class F, typename init, typename... list
 struct FoldRight;
 
 template <template <typename, typename> class F, typename init>
-struct FoldRight<F, init>
-{
-    using type = init;
-};
+struct FoldRight<F, init> : type_is<init>
+{ };
 
 template <template <typename, typename> class F, typename init, typename head, typename... tail>
 struct FoldRight<F, init, head, tail...>
@@ -41,10 +41,8 @@ template <template <typename, typename> class F, typename init, typename... list
 struct FoldLeft;
 
 template <template <typename, typename> class F, typename last>
-struct FoldLeft<F, last>
-{
-    using type = last;
-};
+struct FoldLeft<F, last> : type_is<last>
+{ };
 
 template <template <typename, typename> class F, typename init, typename head, typename... tail>
 struct FoldLeft<F, init, head, tail...>
