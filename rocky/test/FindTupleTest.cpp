@@ -2,6 +2,41 @@
 
 #include "rocky/meta/FindTuple.h"
 
+TEST_CASE("find element type", "[FindTuple]")
+{
+    using std::is_same;
+
+    static_assert(-1 == FindElementType<int>::value, "doesn't have 'int' type.");
+    static_assert(-1 == FindElementType<int, char, char, char, char, char>::value, "doesn't have 'int' type.");
+    static_assert(0 == FindElementType<int, int, char, char, char, char>::value, "'int' type at '0'.");
+    static_assert(4 == FindElementType<int, char, char, char, char, int>::value, "'int' type at '4'.");
+    static_assert(2 == FindElementType<int, char, char, int, char, char>::value, "'int' type at '2'.");
+    static_assert(
+            1 == FindElementType<
+                        int,
+                        char, int, char, int, char, char, char
+                    >::value,
+            "the first 'int' type at '1'."
+    );
+}
+
+TEST_CASE("reverse find element type", "[FindTuple]")
+{
+    using std::is_same;
+
+    static_assert(-1 == ReverseFindElementType<int>::value, "doesn't have 'int' type.");
+    static_assert(-1 == ReverseFindElementType<int, char, char, char, char, char>::value, "doesn't have 'int' type.");
+    static_assert(0 == ReverseFindElementType<int, int, char, char, char, char>::value, "'int' type at '0'.");
+    static_assert(4 == ReverseFindElementType<int, char, char, char, char, int>::value, "'int' type at '4'.");
+    static_assert(2 == ReverseFindElementType<int, char, char, int, char, char>::value, "'int' type at '2'.");
+    static_assert(
+            3 == ReverseFindElementType<
+                        int,
+                        char, int, char, int, char, char, char
+                    >::value,
+            "the last 'int' type at '3'."
+    );
+}
 
 TEST_CASE("find tuple element type", "[FindTuple]")
 {
