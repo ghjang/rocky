@@ -33,9 +33,9 @@ public:
 };
 
 
-template <typename... T>
+template <typename... list>
 struct MakeUniqueElementTypeTuple
-            : UniqueElementType<std::tuple<T...>>
+            : UniqueElementType<std::tuple<list...>>
 { };
 
 
