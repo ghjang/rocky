@@ -30,21 +30,5 @@ struct SelectTypeIf<false, T1, T2>
 };
 
 
-template <bool condition, typename T1, typename T2>
-struct SelectParameterTypeIf;
-
-template <typename T1, typename T2>
-struct SelectParameterTypeIf<true, T1, T2>
-{
-    using type = T1;
-};
-
-template <typename T1, typename T2>
-struct SelectParameterTypeIf<false, T1, T2>
-{
-    using type = T2;
-};
-
-
 #endif //ROCKY_TYPESELECTION_H
 
