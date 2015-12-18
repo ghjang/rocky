@@ -22,7 +22,7 @@ private:
     { };
 
 public:
-    using type = typename TransformElementType<std::tuple<list...>, SourceTypeToTargetType>::type;
+    using type = typename TransformElementType<SourceTypeToTargetType, std::tuple<list...>>::type;
 };
 
 
