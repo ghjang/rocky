@@ -21,7 +21,7 @@ private:
 
     template <typename... lhsList, typename rhsType>
     struct AppendTypeIfNotExist<std::tuple<lhsList...>, rhsType>
-                : SelectTypeIf<
+                : std::conditional<
                         FindElementType<std::tuple<lhsList...>, rhsType>::value == -1,
                         std::tuple<lhsList..., rhsType>,
                         std::tuple<lhsList...>
