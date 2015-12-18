@@ -14,6 +14,32 @@ include_directories(${ROCKY_ROOT})
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
 
+set(HEADER_FILES
+        ../ConstExprArray.h
+        ../StringNumberConversion.h
+        ../VariantUtility.h
+        ../math/Power.h
+        ../meta/CountTuple.h
+        ../meta/FindTuple.h
+        ../meta/Fold.h
+        ../meta/ForEachArgument.h
+        ../meta/ForEachTuple.h
+        ../meta/HasMember.h
+        ../meta/Identity.h
+        ../meta/IntegerSequenceUtility.h
+        ../meta/IntegralConstantUtility.h
+        ../meta/MultipleInheritance.h
+        ../meta/NthTuple.h
+        ../meta/RemoveTuple.h
+        ../meta/ReplaceTuple.h
+        ../meta/ReverseTuple.h
+        ../meta/TransformTuple.h
+        ../meta/TupleSize.h
+        ../meta/TypeSelection.h
+        ../meta/TypeUtility.h
+        ../meta/UniqueTuple.h
+        ../wolca/StringUtility.h)
+
 set(SOURCE_FILES
         main.cpp
         TupleSizeTest.cpp
@@ -38,7 +64,8 @@ set(SOURCE_FILES
         ReplaceTupleTest.cpp
         FindTupleTest.cpp
         UniqueTupleTest.cpp
-        VariantUtilityTest.cpp)
+        VariantUtilityTest.cpp
+        wolca/StringUtilityTest.cpp)
 
 add_executable(RockyTest ${SOURCE_FILES})
 
