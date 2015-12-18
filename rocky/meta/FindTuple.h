@@ -2,67 +2,47 @@
 #define ROCKY_TUPLESIZE_H
 
 
-#include "rocky/meta/TransformTuple.h"
+#include "rocky/meta/IntegralConstantUtility.h"
 #include "rocky/meta/ReverseTuple.h"
 
 
-template <typename Tuple, typename TargetType>
-struct FindElementType;
+template <typename T, typename... list>
+struct FindElementType : FindElementType<T, int_c_t<0>, list...>
+{ };
 
-template <typename... list, typename TargetType>
-struct FindElementType<std::tuple<list...>, TargetType>
+template <typename T, int I>
+struct FindElementType<T, int_c_t<I>> : int_c_t<-1>
+{ };
+
+template <typename T, int I, typename... list>
+struct FindElementType<T, int_c_t<I>, T, list...> : int_c_t<I>
+{ };
+
+template <typename T, typename U, int I, typename... list>
+struct FindElementType<T, int_c_t<I>, U, list...> : FindElementType<T, int_c_t<I + 1>, list...>
+{ };
+
+template <typename T, typename... list>
+struct FindElementType<T, std::tuple<list...>> : FindElementType<T, list...>
+{ };
+
+
+template <typename T, typename... list>
+struct ReverseFindElementType
 {
 private:
-    template <typename T>
-    struct IsSameAsTargetType
-                : std::is_same<T, TargetType>
-    { };
-
-    using bool_result_t = typename TransformElementTypeToBoolConstantType<
-                                        std::tuple<list...>,
-                                        IsSameAsTargetType
-                                    >::type;
-
-    constexpr static auto boolResultArray_ = IntegralConstantElementTypeToArray<bool_result_t>;
-
-    constexpr static auto FindFirstTrueValue()
-    {
-        int pos = -1;
-        for (int i = 0; i < boolResultArray_.size(); ++i) {
-            if (boolResultArray_[i]) {
-                pos = i;
-                break;
-            }
-        }
-        return pos;
-    }
+    static constexpr int i = FindElementType<
+                                    T,
+                                    typename ReverseElementType<std::tuple<list...>>::type
+                                >::value;
 
 public:
-    constexpr static int value = FindFirstTrueValue();
+    static constexpr int value = (i == -1) ? (-1) : (sizeof...(list) - i - 1);
 };
 
-template <typename TargetType>
-struct FindElementType<std::tuple<>, TargetType>
-{
-    constexpr static int value = -1;
-};
-
-
-template <typename Tuple, typename TargetType>
-struct ReverseFindElementType;
-
-template <typename... list, typename TargetType>
-struct ReverseFindElementType<std::tuple<list...>, TargetType>
-{
-private:
-    using reversed_tuple_t = typename ReverseElementType<std::tuple<list...>>::type;
-
-    constexpr static auto targetTypeIndex_ = FindElementType<reversed_tuple_t, TargetType>::value;
-
-public:
-    constexpr static int value = (-1 == targetTypeIndex_) ? -1
-                                                          : (sizeof...(list) - targetTypeIndex_ - 1);
-};
+template <typename T, typename... list>
+struct ReverseFindElementType<T, std::tuple<list...>> : ReverseFindElementType<T, list...>
+{ };
 
 
 template <typename T, typename... list>
