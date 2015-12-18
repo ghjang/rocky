@@ -9,20 +9,22 @@
 #include "rocky/meta/TypeUtility.h"
 
 
-template <typename F, typename... Types, std::size_t... Indice>
-decltype(auto) ForEachElementImpl(F && f, std::tuple<Types...> && t, std::index_sequence<Indice...>)
+template <typename F, typename Tuple, std::size_t... Indice>
+decltype(auto) ForEachElementImpl(F && f, Tuple && t, std::index_sequence<Indice...>)
 {
-    return ForEachArgument(std::forward<F>(f), std::get<Indice>(t)...);
+    return ForEachArgument(std::forward<F>(f), std::get<Indice>(std::forward<Tuple>(t))...);
 };
+
+template <typename F, typename... Types>
+decltype(auto) ForEachElement(F && f, std::tuple<Types...> const& t)
+{
+    return ForEachElementImpl(std::forward<F>(f), t, std::index_sequence_for<Types...>());
+}
 
 template <typename F, typename... Types>
 decltype(auto) ForEachElement(F && f, std::tuple<Types...> && t)
 {
-    return ForEachElementImpl(
-                std::forward<F>(f),
-                std::forward<std::tuple<Types...>>(t),
-                std::index_sequence_for<Types...>()
-            );
+    return ForEachElementImpl(std::forward<F>(f), std::move(t), std::index_sequence_for<Types...>());
 }
 
 

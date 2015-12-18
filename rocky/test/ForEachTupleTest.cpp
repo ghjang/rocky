@@ -45,6 +45,13 @@ TEST_CASE("for each tuple element", "[ForEachTuple]")
         ForEachElement([&sum](int i) { sum += i; }, make_tuple(1, 2, 3, 4, 5));
         REQUIRE(15 == sum);
     }
+
+    {
+        int sum = 0;
+        auto t = make_tuple(1, 2, 3, 4, 5);
+        ForEachElement([&sum](int i) { sum += i; }, t);
+        REQUIRE(15 == sum);
+    }
 }
 
 TEST_CASE("tuple element type size sum", "[ForEachTuple]")
