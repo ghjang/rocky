@@ -43,3 +43,19 @@ TEST_CASE("Getting the size of tuple's template parameters", "[TupleSize]")
     );
 }
 
+TEST_CASE("n-th element type size", "[TupleSize]")
+{
+    using std::tuple;
+
+    static_assert(
+            sizeof(float) == NthElementTypeSize<2, int, char, float, double, uint64_t>(),
+            "3rd element's size == sizeof(float)"
+    );
+
+    using tuple_t = tuple<int, char, float, double, uint64_t>;
+    static_assert(
+            sizeof(double) == NthElementTypeSize<3, tuple_t>(),
+            "4-th element's size == sizeof(double)"
+    );
+}
+

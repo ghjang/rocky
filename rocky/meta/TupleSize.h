@@ -24,5 +24,14 @@ struct SumOfElementTypeSize<std::tuple<list...>> : SumOfElementTypeSize<list...>
 { };
 
 
+template <int i, typename... list>
+struct NthElementTypeSize : int_c_t<sizeof(typename NthElementType<i, list...>::type)>
+{ };
+
+template <int i, typename... list>
+struct NthElementTypeSize<i, std::tuple<list...>> : NthElementTypeSize<i, list...>
+{ };
+
+
 #endif //ROCKY_TUPLESIZE_H
 
