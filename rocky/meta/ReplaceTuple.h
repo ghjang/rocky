@@ -5,11 +5,11 @@
 #include "rocky/meta/TransformTuple.h"
 
 
-template <typename Tuple, typename SourceType, typename TargetType>
+template <typename SourceType, typename TargetType, typename Tuple>
 struct ReplaceElementType;
 
-template <typename... list, typename SourceType, typename TargetType>
-struct ReplaceElementType<std::tuple<list...>, SourceType, TargetType>
+template <typename SourceType, typename TargetType, typename... list>
+struct ReplaceElementType<SourceType, TargetType, std::tuple<list...>>
 {
 private:
     template <typename T>
