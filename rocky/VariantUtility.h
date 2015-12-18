@@ -18,9 +18,8 @@ struct TupleTypeToVariantType;
 
 template <typename... list>
 struct TupleTypeToVariantType<std::tuple<list...>>
-{
-    using type = boost::variant<list...>;
-};
+        : type_is<boost::variant<list...>>
+{ };
 
 
 template <typename Variant>
@@ -28,9 +27,8 @@ struct VariantTypeToTupleType;
 
 template <typename... list>
 struct VariantTypeToTupleType<boost::variant<list...>>
-{
-    using type = std::tuple<list...>;
-};
+        : type_is<std::tuple<list...>>
+{ };
 
 
 template <typename T>

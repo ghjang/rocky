@@ -30,34 +30,28 @@ struct IsCharType
 
 
 template <typename T, typename = void>
-struct CharTypeToStringType
-{
-    using type = T;
-};
+struct CharTypeToStringType : type_is<T>
+{ };
 
 template <typename T, std::size_t N>
 struct CharTypeToStringType<T [N], std::enable_if_t<IsCharType<T>::value>>
-{
-    using type = std::basic_string<T>;
-};
+        : type_is<std::basic_string<T>>
+{ };
 
 template <typename T, std::size_t N>
 struct CharTypeToStringType<T const (&) [N], std::enable_if_t<IsCharType<T>::value>>
-{
-    using type = std::basic_string<T>;
-};
+        : type_is<std::basic_string<T>>
+{ };
 
 template <typename T>
 struct CharTypeToStringType<T *, std::enable_if_t<IsCharType<T>::value>>
-{
-    using type = std::basic_string<T>;
-};
+        : type_is<std::basic_string<T>>
+{ };
 
 template <typename T>
 struct CharTypeToStringType<T const *, std::enable_if_t<IsCharType<T>::value>>
-{
-    using type = std::basic_string<T>;
-};
+        : type_is<std::basic_string<T>>
+{ };
 
 
 #endif //ROCKY_TYPEUTILITY_H
