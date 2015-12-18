@@ -14,7 +14,7 @@ struct ReplaceElementType<std::tuple<list...>, SourceType, TargetType>
 private:
     template <typename T>
     struct SourceTypeToTargetType
-                : SelectTypeIf<
+                : std::conditional<
                         std::is_same<T, SourceType>::value,
                         TargetType,
                         T
