@@ -10,16 +10,16 @@ template <typename T, typename... list>
 struct FindElementType : FindElementType<T, int_c_t<0>, list...>
 { };
 
-template <typename T, int I>
-struct FindElementType<T, int_c_t<I>> : int_c_t<-1>
+template <typename T, int i>
+struct FindElementType<T, int_c_t<i>> : int_c_t<-1>
 { };
 
-template <typename T, int I, typename... list>
-struct FindElementType<T, int_c_t<I>, T, list...> : int_c_t<I>
+template <typename T, int i, typename... list>
+struct FindElementType<T, int_c_t<i>, T, list...> : int_c_t<i>
 { };
 
-template <typename T, typename U, int I, typename... list>
-struct FindElementType<T, int_c_t<I>, U, list...> : FindElementType<T, int_c_t<I + 1>, list...>
+template <typename T, typename U, int i, typename... list>
+struct FindElementType<T, int_c_t<i>, U, list...> : FindElementType<T, int_c_t<i + 1>, list...>
 { };
 
 template <typename T, typename... list>
