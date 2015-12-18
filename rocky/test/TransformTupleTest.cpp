@@ -40,9 +40,16 @@ TEST_CASE("transforming tuple elements", "[TransformTuple]")
     using std::tuple;
     using std::make_tuple;
 
-    auto const originalTupleObj = make_tuple('a', 2, 3.0);
-    auto const transformedTupleObj = TransformElement(originalTupleObj, [](auto arg) { return arg * 2; });
-    REQUIRE(transformedTupleObj == make_tuple('a' * 2, 2 * 2, 3.0 * 2));
+    {
+        auto const originalTupleObj = make_tuple('a', 2, 3.0);
+        auto const transformedTupleObj = TransformElement([](auto && arg) { return arg * 2; }, originalTupleObj);
+        REQUIRE(transformedTupleObj == make_tuple('a' * 2, 2 * 2, 3.0 * 2));
+    }
+
+    {
+        auto const transformedTupleObj = TransformElement([](auto &&arg) { return arg * 2; }, make_tuple('a', 2, 3.0));
+        REQUIRE(transformedTupleObj == make_tuple('a' * 2, 2 * 2, 3.0 * 2));
+    }
 }
 
 TEST_CASE("transforming tuple element types to pointer types", "[TransformTuple]")
@@ -54,7 +61,7 @@ TEST_CASE("transforming tuple element types to pointer types", "[TransformTuple]
     using tuple_t = tuple<char, int, double>;
     using ptr_tuple_t = tuple<char *, int *, double *>;
     static_assert(
-            is_same<ptr_tuple_t, typename TransformElementType<tuple_t, add_pointer>::type>(),
+            is_same<ptr_tuple_t, typename TransformElementType<add_pointer, tuple_t>::type>(),
             "transformed tuple_t should be ptr_tuple_t."
     );
 }
@@ -68,7 +75,7 @@ TEST_CASE("transforming tuple element types to shard_ptr types", "[TransformTupl
     using tuple_t = tuple<char, int, double>;
     using shared_ptr_tuple_t = tuple<shared_ptr<char>, shared_ptr<int>, shared_ptr<double>>;
     static_assert(
-            is_same<shared_ptr_tuple_t, typename TransformElementType<tuple_t, AddSharedPtr>::type>(),
+            is_same<shared_ptr_tuple_t, typename TransformElementType<AddSharedPtr, tuple_t>::type>(),
             "transformed tuple_t shouble be shared_ptr_tuple_t."
     );
 }
@@ -82,7 +89,7 @@ TEST_CASE("transforming tuple integral element types to shard_ptr types", "[Tran
     using tuple_t = tuple<char, int, double, uint64_t, float>;
     using integral_ptr_tuple_t = tuple<shared_ptr<char>, shared_ptr<int>, double, shared_ptr<uint64_t>, float>;
     static_assert(
-            is_same<integral_ptr_tuple_t, typename TransformElementType<tuple_t, AddSharedPtrIfIntegral>::type>(),
+            is_same<integral_ptr_tuple_t, typename TransformElementType<AddSharedPtrIfIntegral, tuple_t>::type>(),
             "transformed tuple_t should be integral_ptr_tuple_t."
     );
 }
@@ -100,8 +107,8 @@ TEST_CASE("transforming tuple integral element types to integral value true_type
             is_same<
                 integral_tuple_t,
                 typename TransformElementType<
-                                tuple_t,
-                                IntegralTypeToOne   // should have 'type' member.
+                                IntegralTypeToOne,   // should have 'type' member.
+                                tuple_t
                             >::type
             >(),
             "transformed tuple_t should be integral_tuple_t."
@@ -162,6 +169,15 @@ TEST_CASE("integral constant element type to integer sequence", "[TransformTuple
     using sequence_t = integer_sequence<int, 1, 1, 0, 1, 0>;
 
     static_assert(
+            is_same<
+                    sequence_t,
+                    typename ConvertToIntegerSequenceType<
+                                    true_type, true_type, false_type, true_type, false_type
+                                >::type
+            >(),
+            "transformed type sequence should be same as sequence_t."
+    );
+    static_assert(
             is_same<sequence_t, typename ConvertToIntegerSequenceType<tuple_t>::type>(),
             "transformed tuple_t should be same as sequence_t."
     );
@@ -176,6 +192,15 @@ TEST_CASE("integral constant element type to integer sequence with type alias in
     using tuple_t = tuple<int_c_t<1>, int_c_t<2>, int_c_t<0>, int_c_t<100>, int_c_t<123>>;
     using sequence_t = integer_sequence<int, 1, 2, 0, 100, 123>;
 
+    static_assert(
+            is_same<
+                    sequence_t,
+                    typename ConvertToIntegerSequenceType<
+                                    int_c_t<1>, int_c_t<2>, int_c_t<0>, int_c_t<100>, int_c_t<123>
+                                >::type
+            >(),
+            "converted type sequence should be same as sequence_t."
+    );
     static_assert(
             is_same<sequence_t, typename ConvertToIntegerSequenceType<tuple_t>::type>(),
             "converted tuple_t should be same as sequence_t."
@@ -252,7 +277,7 @@ TEST_CASE("tuple element type extraction", "[TransformTuple]")
     using tuple_t = tuple<char, int, double, uint64_t, float>;
     using extracted_t = tuple<int, uint64_t>;
     static_assert(
-            is_same<extracted_t, typename ExtractElementType<tuple_t, index_sequence<1, 3>>::type>(),
+            is_same<extracted_t, typename ExtractElementType<index_sequence<1, 3>, tuple_t>::type>(),
             "extracted tuple_t should be same as extracted_t."
     );
 }

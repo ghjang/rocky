@@ -45,23 +45,23 @@ constexpr std::array<int, sizeof...(list)> IntegralConstantElementTypeToArray<
 // compiletime metafunctions
 //==============================================================================
 
-template <typename Tuple, template <typename> class F, typename IndexSequence>
+template <template <typename> class F, typename Tuple, typename IndexSequence>
 struct TransformElementTypeImpl;
 
-template <typename... list, template <typename> class F, std::size_t... i>
-struct TransformElementTypeImpl<std::tuple<list...>, F, std::index_sequence<i...>>
+template <template <typename> class F, typename... list, std::size_t... i>
+struct TransformElementTypeImpl<F, std::tuple<list...>, std::index_sequence<i...>>
 {
     using type = std::tuple<typename F<std::tuple_element_t<i, std::tuple<list...>>>::type...>;
 };
 
-template <typename Tuple, template <typename> class F>
+template <template <typename> class F, typename Tuple>
 struct TransformElementType;
 
-template <typename... list, template <typename> class F>
-struct TransformElementType<std::tuple<list...>, F>
+template <template <typename> class F, typename... list>
+struct TransformElementType<F, std::tuple<list...>>
             : TransformElementTypeImpl<
-                    std::tuple<list...>,
                     F,
+                    std::tuple<list...>,
                     std::index_sequence_for<list...>
                 >
 {
@@ -77,16 +77,17 @@ struct TransformElementTypeToBoolConstantType : TransformElementTypeToBoolConsta
 template <template <typename> class Predicate, typename... list>
 struct TransformElementTypeToBoolConstantType<Predicate, std::tuple<list...>>
             : TransformElementType<
-                    std::tuple<list...>,
-                    TypeToBoolConstantType<Predicate>::template Convert
+                    TypeToBoolConstantType<Predicate>::template Convert,
+                    std::tuple<list...>
                 >
 {
     static_assert(HasValueMember<Predicate<int>>(), "Predicate should have 'value' member.");
 };
 
 
-template <typename Tuple>
-struct ConvertToIntegerSequenceType;
+template <typename... list>
+struct ConvertToIntegerSequenceType : ConvertToIntegerSequenceType<std::tuple<list...>>
+{ };
 
 template <typename... list>
 struct ConvertToIntegerSequenceType<std::tuple<list...>>
@@ -169,11 +170,11 @@ struct InvertBoolSequence<std::integer_sequence<T, i...>>
 };
 
 
-template <typename Tuple, typename IndexSequence>
+template <typename IndexSequence, typename Tuple>
 struct ExtractElementType;
 
-template <typename... list, typename T, T... i>
-struct ExtractElementType<std::tuple<list...>, std::integer_sequence<T, i...>>
+template <typename T, T... i, typename... list>
+struct ExtractElementType<std::integer_sequence<T, i...>, std::tuple<list...>>
 {
     using type = std::tuple<std::tuple_element_t<i, std::tuple<list...>>...>;
 };
@@ -183,16 +184,16 @@ struct ExtractElementType<std::tuple<list...>, std::integer_sequence<T, i...>>
 // runtime functions
 //==============================================================================
 
-template <typename... list, typename F, std::size_t... i>
-auto TransformElementImpl(std::tuple<list...> const& t, F && f, std::index_sequence<i...>)
+template <typename F, typename... list, std::size_t... i>
+auto TransformElementImpl(F && f, std::tuple<list...> const& t, std::index_sequence<i...>)
 {
     return std::make_tuple(f(std::get<i>(t))...);
 }
 
-template <typename... list, typename F>
-auto TransformElement(std::tuple<list...> const& t, F && f)
+template <typename F, typename... list>
+auto TransformElement(F && f, std::tuple<list...> const& t)
 {
-    return TransformElementImpl(t, std::forward<F>(f), std::index_sequence_for<list...>{});
+    return TransformElementImpl(std::forward<F>(f), t, std::index_sequence_for<list...>{});
 }
 
 
