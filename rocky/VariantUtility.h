@@ -32,13 +32,13 @@ struct VariantTypeToTupleType<boost::variant<list...>>
 
 
 template <typename T>
-auto MakeVariant(const T & arg)
+auto MakeVariant(T const& arg)
 {
     return boost::variant<T>(arg);
 }
 
 template <typename T, typename = std::enable_if_t<IsCharType<T>::value>>
-auto MakeVariant(const T * s)
+auto MakeVariant(T const* s)
 {
     using str_t = std::basic_string<T>;
     return boost::variant<str_t>(str_t(s));
