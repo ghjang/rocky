@@ -7,14 +7,15 @@
 #include "rocky/meta/Fold.h"
 
 
-template <typename Tuple, template <typename> class Predicate>
-struct CountElementType;
+template <template <typename> class Predicate, typename... list>
+struct CountElementType : CountElementType<Predicate, std::tuple<list...>>
+{ };
 
-template <typename... list, template <typename> class Predicate>
-struct CountElementType<std::tuple<list...>, Predicate>
+template <template <typename> class Predicate, typename... list>
+struct CountElementType<Predicate, std::tuple<list...>>
             : FoldRight<
                     IntegralConstantSum,
-                    std::integral_constant<int, 0>, // init
+                    int_c_t<0>, // init
                     typename TransformElementTypeToBoolConstantType<
                                     std::tuple<list...>,
                                     Predicate
