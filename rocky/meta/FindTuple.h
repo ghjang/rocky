@@ -46,18 +46,12 @@ struct ReverseFindElementType<T, std::tuple<list...>> : ReverseFindElementType<T
 
 
 template <typename T, typename... list>
-struct IsOneOf;
-
-template <typename T>
-struct IsOneOf<T> : std::false_type
-{ };
-
-template <typename T, typename... list>
-struct IsOneOf<T, T, list...> : std::true_type
-{ };
-
-template <typename T, typename U, typename... list>
-struct IsOneOf<T, U, list...> : IsOneOf<T, list...>
+struct IsOneOf
+        : std::conditional_t<
+                FindElementType<T, list...>::value == -1,
+                std::false_type,
+                std::true_type
+            >
 { };
 
 template <typename T, typename... list>
