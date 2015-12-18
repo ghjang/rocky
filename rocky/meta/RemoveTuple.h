@@ -5,11 +5,11 @@
 #include "rocky/meta/TransformTuple.h"
 
 
-template <typename Tuple, template <typename> class Predicate>
+template <template <typename> class Predicate, typename Tuple>
 struct RemoveElementType;
 
-template <typename... list, template <typename> class Predicate>
-struct RemoveElementType<std::tuple<list...>, Predicate>
+template <template <typename> class Predicate, typename... list>
+struct RemoveElementType<Predicate, std::tuple<list...>>
 {
 private:
     using bool_result_t = typename TransformElementTypeToBoolConstantType<Predicate, std::tuple<list...>>::type;
