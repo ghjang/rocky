@@ -17,13 +17,13 @@ struct RangeTImpl<std::index_sequence<i...>>
     static constexpr std::array<int, sizeof...(i)> value = { i... };
 };
 
-template <std::size_t i>
+template <int i>
 struct RangeT
 {
     static constexpr std::array<int, i> value = RangeTImpl<std::make_index_sequence<i>>::value;
 };
 
-template <std::size_t i>
+template <int i>
 constexpr std::array<int, i> RangeT<i>::value;
 
 
