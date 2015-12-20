@@ -6,18 +6,24 @@
 TEST_CASE("Range function", "[wolca]")
 {
     {
-        constexpr auto cr = Range<10>(); // compile-time
         int i = 0;
-        for (auto e : cr) {
+        for (auto e : RangeT<10>::value) {  // compile-time
             REQUIRE(e == i);
             ++i;
         }
     }
 
     {
-        auto r = Range(10); // runtime
         int i = 0;
-        for (auto e : r) {
+        for (auto e : Range<10>()) {        // compile-time
+            REQUIRE(e == i);
+            ++i;
+        }
+    }
+
+    {
+        int i = 0;
+        for (auto e : Range(10)) {          // runtime
             REQUIRE(e == i);
             ++i;
         }
