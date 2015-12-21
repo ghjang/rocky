@@ -38,7 +38,7 @@ public:
 
 /**
  * NOTE: Following implementation also works. But, it's more complicated.
- *          The usage example of 'Transform' is still useful for reference.
+ *          By the way, the usage example of 'Transform' is still useful for reference.
  */
 /*
 template <template <typename> class Predicate, typename... list>
