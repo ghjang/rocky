@@ -4,7 +4,6 @@
 
 #include "rocky/meta/Fold.h"
 #include "rocky/meta/FindTuple.h"
-#include "rocky/meta/TypeSelection.h"
 
 
 template <typename Tuple>
