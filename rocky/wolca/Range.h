@@ -8,18 +8,20 @@
 #include <numeric>
 
 
-template <typename Indices>
-struct RangeTImpl;
-
-template <std::size_t... i>
-struct RangeTImpl<std::index_sequence<i...>>
-{
-    static constexpr std::array<int, sizeof...(i)> value = { i... };
-};
-
 template <int i>
 struct RangeT
 {
+private:
+    template <typename Indices>
+    struct RangeTImpl;
+
+    template <std::size_t... Indices>
+    struct RangeTImpl<std::index_sequence<Indices...>>
+    {
+        static constexpr std::array<int, sizeof...(Indices)> value = { Indices... };
+    };
+
+public:
     static constexpr std::array<int, i> value = RangeTImpl<std::make_index_sequence<i>>::value;
 };
 
