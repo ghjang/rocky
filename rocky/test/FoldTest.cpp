@@ -4,6 +4,19 @@
 
 #include "rocky/meta/IntegralConstantUtility.h"
 
+#include <numeric>
+
+
+TEST_CASE("runtime fold, std::accumulate", "[Fold]")
+{
+    std::vector<int> v = { 1, 2, 3, 4, 5 };
+    auto sum = std::accumulate(
+                       v.begin(), v.end(),
+                       0, // init
+                       [](int lhs, int rhs) { return lhs + rhs; }
+                );
+    REQUIRE(15 == sum);
+}
 
 TEST_CASE("fold right, integral constant sum", "[Fold]")
 {
