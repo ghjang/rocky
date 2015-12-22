@@ -40,7 +40,8 @@ set(HEADER_FILES
         ../meta/UniqueTuple.h
         ../wolca/StringUtility.h
         ../wolca/Range.h
-        ../wolca/IntegerLength.h)
+        ../wolca/IntegerLength.h
+        ../wolca/IntegerDigits.h)
 
 set(SOURCE_FILES
         main.cpp
@@ -69,7 +70,8 @@ set(SOURCE_FILES
         VariantUtilityTest.cpp
         wolca/StringUtilityTest.cpp
         wolca/RangeTest.cpp
-        wolca/IntegerLengthTest.cpp)
+        wolca/IntegerLengthTest.cpp
+        wolca/IntegerDigitsTest.cpp)
 
 add_executable(RockyTest ${HEADER_FILES} ${SOURCE_FILES})
 
