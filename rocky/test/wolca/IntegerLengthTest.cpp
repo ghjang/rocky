@@ -3,7 +3,7 @@
 #include "rocky/wolca/IntegerLength.h"
 
 
-TEST_CASE("IntegerLength", "[wolca]")
+TEST_CASE("constexpr IntegerLength", "[wolca]")
 {
     constexpr auto len = IntegerLength(1234567890);
     REQUIRE(len == 10);
