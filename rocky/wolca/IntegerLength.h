@@ -3,13 +3,15 @@
 
 
 #include <cstdint>
+#include <type_traits>
+
+#include "rocky/math/Abs.h"
 
 
-constexpr std::size_t IntegerLength(intmax_t i)
+template <typename T, typename = std::enable_if_t<std::is_integral<T>::value>>
+constexpr std::size_t IntegerLength(T i)
 {
-    if (i < 0) {
-        i = -i;
-    }
+    i = Abs(i);
     if (i < 10) {
         return 1;
     }
