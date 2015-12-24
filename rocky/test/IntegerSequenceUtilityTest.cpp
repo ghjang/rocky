@@ -53,3 +53,22 @@ TEST_CASE("factorial integer sequence", "[IntegerSequenceUtility]")
     static_assert(is_same<integer_sequence<std::size_t, 1, 1, 2, 6, 24>, factorial_int_seq>(), "");
 }
 
+TEST_CASE("join integer sequence", "[IntegerSequenceUtility]")
+{
+    using std::is_same;
+    using std::integer_sequence;
+
+    using seq1_t = integer_sequence<int, 1, 2, 3>;
+    using seq2_t = integer_sequence<int, 4, 5, 6>;
+    using joined_t = integer_sequence<int, 1, 2, 3, 4, 5, 6>;
+    using reverse_joined_t = integer_sequence<int, 4, 5, 6, 1, 2, 3>;
+    static_assert(is_same<joined_t, typename JoinIntegerSequence<seq1_t, seq2_t>::type>(), "");
+    static_assert(is_same<reverse_joined_t, typename JoinIntegerSequence<seq2_t, seq1_t>::type>(), "");
+
+    // NOTE: following is an expected static assertion failure.
+    /*
+    using seq3_t = integer_sequence<uint, 1, 2, 3>;
+    typename JoinIntegerSequence<seq1_t, seq3_t>::type seq;
+     */
+}
+
