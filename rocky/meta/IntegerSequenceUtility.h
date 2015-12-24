@@ -5,22 +5,22 @@
 #include <utility>
 
 
-template <typename IndexSequence, template<std::size_t> class GeneratorFunc>
-struct CustomIntegerSequenceImpl;
-
-template <std::size_t... i, template<std::size_t> class GeneratorFunc>
-struct CustomIntegerSequenceImpl<
-            std::index_sequence<i...>,
-            GeneratorFunc
-        >
-{
-    using type = std::integer_sequence<std::size_t, GeneratorFunc<i>::value...>;
-};
-
 template <std::size_t i, template<std::size_t> class GeneratorFunc>
 struct CustomIntegerSequence
-        : CustomIntegerSequenceImpl<std::make_index_sequence<i>, GeneratorFunc>
-{ };
+{
+private:
+    template <typename IndexSequence, template<std::size_t> class F>
+    struct CustomIntegerSequenceImpl;
+
+    template <std::size_t... index, template<std::size_t> class F>
+    struct CustomIntegerSequenceImpl<std::index_sequence<index...>, F>
+    {
+        using type = std::integer_sequence<std::size_t, F<index>::value...>;
+    };
+
+public:
+    using type = typename CustomIntegerSequenceImpl<std::make_index_sequence<i>, GeneratorFunc>::type;
+};
 
 template <std::size_t i, template<std::size_t> class GeneratorFunc>
 using MakeCustomIntegerSequence = typename CustomIntegerSequence<i, GeneratorFunc>::type;
