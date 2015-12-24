@@ -58,3 +58,12 @@ TEST_CASE("char_array_c", "[CharSequenceUtility]")
     REQUIRE(std::string("----") == char_array_c<seq3_t>);
 }
 
+TEST_CASE("MakeStringFromInteger", "[CharSequenceUtility]")
+{
+    constexpr auto s1 = MakeStringFromInteger<123>();
+    REQUIRE(strcmp(s1, "123") == 0);
+
+    constexpr auto s2 = MakeStringFromInteger<-123>();
+    REQUIRE(strcmp(s2, "-123") == 0);
+}
+

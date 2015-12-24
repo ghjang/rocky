@@ -50,5 +50,12 @@ public:
 };
 
 
+template <intmax_t n>
+constexpr auto MakeStringFromInteger()
+{
+    return char_array_c<typename MakeCharSequenceFromInteger<n>::type>;
+}
+
+
 #endif //ROCKY_CHARSEQUENCEUTILITY_H
 
