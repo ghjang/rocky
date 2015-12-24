@@ -72,3 +72,15 @@ TEST_CASE("join integer sequence", "[IntegerSequenceUtility]")
      */
 }
 
+TEST_CASE("integer sequence length", "[IntegerSequenceUtility]")
+{
+    using std::is_same;
+    using std::integer_sequence;
+
+    using empty_seq_t = integer_sequence<int>;
+    static_assert(0 == IntegerSequenceLength<empty_seq_t>(), "");
+
+    using seq1_t = integer_sequence<int, 1, 2, 3>;
+    static_assert(3 == IntegerSequenceLength<seq1_t>(), "");
+}
+

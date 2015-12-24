@@ -43,5 +43,14 @@ struct JoinIntegerSequence<std::integer_sequence<T, lhs...>, std::integer_sequen
 };
 
 
+template <typename IntegerSequence>
+struct IntegerSequenceLength;
+
+template <typename T, std::size_t... i>
+struct IntegerSequenceLength<std::integer_sequence<T, i...>>
+            : std::integral_constant<T, sizeof...(i)>
+{ };
+
+
 #endif //ROCKY_INTEGERSEQUENCEUTILITY_H
 
