@@ -38,6 +38,7 @@ set(HEADER_FILES
         ../meta/TypeSelection.h
         ../meta/TypeUtility.h
         ../meta/UniqueTuple.h
+        ../meta/CharSequenceUtility.h
         ../wolca/StringUtility.h
         ../wolca/Range.h
         ../wolca/IntegerLength.h
@@ -68,6 +69,7 @@ set(SOURCE_FILES
         FindTupleTest.cpp
         UniqueTupleTest.cpp
         VariantUtilityTest.cpp
+        CharSequenceUtilityTest.cpp
         wolca/StringUtilityTest.cpp
         wolca/RangeTest.cpp
         wolca/IntegerLengthTest.cpp
