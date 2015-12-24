@@ -8,8 +8,7 @@
 #include "rocky/wolca/IntegerLength.h"
 
 
-
-template <typename T>
+template <typename T, typename = std::enable_if_t<std::is_integral<T>::value>>
 auto IntegerDigits(T n)
 {
     if (n < 0) {
@@ -26,9 +25,10 @@ auto IntegerDigits(T n)
 }
 
 
-constexpr auto IntegerDigit(intmax_t n, uint8_t numOfDigit, uint8_t digitIndex)
+template <typename T, typename = std::enable_if_t<std::is_integral<T>::value>>
+constexpr auto IntegerDigit(T n, uint8_t numOfDigit, uint8_t digitIndex)
 {
-    intmax_t modNum = 1;
+    T modNum = 1;
     for (uint8_t i = 0; i < digitIndex; ++i) {
         modNum *= 10;
     }
