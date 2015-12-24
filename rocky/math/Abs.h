@@ -2,10 +2,33 @@
 #define ROCKY_ABS_H
 
 
-template <typename T>
+#include <type_traits>
+
+
+namespace Detail
+{
+    template<typename T>
+    inline constexpr auto AbsImpl(T t, std::true_type)
+    {
+        return (t < 0) ? -t : t;
+    }
+
+    template<typename T>
+    inline constexpr auto AbsImpl(T t, std::false_type)
+    {
+        return t;
+    }
+} // namespace Detail
+
+
+template
+<
+        typename T,
+        typename = std::enable_if_t<std::is_arithmetic<T>::value>
+>
 constexpr auto Abs(T t)
 {
-    return (t < 0) ? -t : t;
+    return Detail::AbsImpl(t, std::is_signed<T>());
 }
 
 
