@@ -12,3 +12,15 @@ TEST_CASE("char sequence", "[CharSequenceUtility]")
     static_assert(is_same<charseq_t, CharSequence<'a', 'b', 'c'>>(), "");
 }
 
+TEST_CASE("making char sequence from integer", "[CharSequenceUtility]")
+{
+    using std::is_same;
+    using std::integer_sequence;
+
+    using charseq_t = integer_sequence<char, '1', '2', '3'>;
+    static_assert(is_same<charseq_t, typename MakeCharSequenceFromInteger<123>::type>(), "");
+
+    using negative_charseq_t = integer_sequence<char, '-', '1', '2', '3'>;
+    static_assert(is_same<negative_charseq_t, typename MakeCharSequenceFromInteger<-123>::type>(), "");
+}
+
