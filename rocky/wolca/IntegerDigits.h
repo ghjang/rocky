@@ -2,6 +2,7 @@
 #define ROCKY_INTEGERDIGITS_H
 
 
+#include <cassert>
 #include <vector>
 
 #include "rocky/math/Abs.h"
@@ -11,9 +12,7 @@
 template <typename T, typename = std::enable_if_t<std::is_integral<T>::value>>
 auto IntegerDigits(T n)
 {
-    if (n < 0) {
-        n = -n;
-    }
+    n = Abs(n);
     auto len = IntegerLength(n);
     std::vector<uint8_t> digits(len);
     for (decltype(auto) i = len - 1; i > 0; --i) {
@@ -28,6 +27,18 @@ auto IntegerDigits(T n)
 template <typename T, typename = std::enable_if_t<std::is_integral<T>::value>>
 constexpr auto IntegerDigit(T n, uint8_t numOfDigit, uint8_t digitIndex)
 {
+    assert(digitIndex > 0);
+    if (digitIndex <= 0) {
+        throw std::logic_error(
+                        "invalid digit index value. digit index should be greater than zero."
+                );
+    }
+    assert(digitIndex <= numOfDigit);
+    if (digitIndex > numOfDigit) {
+        throw std::logic_error(
+                        "invalid digit index value. digit index should be less or equal to the number of digits"
+                );
+    }
     T modNum = 1;
     for (uint8_t i = 0; i < digitIndex; ++i) {
         modNum *= 10;

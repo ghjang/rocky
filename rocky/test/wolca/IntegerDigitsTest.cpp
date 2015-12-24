@@ -34,3 +34,16 @@ TEST_CASE("IntegerDigits runtime","[wolca]")
     }
 }
 
+TEST_CASE("IntegerDigit","[wolca]")
+{
+    // NOTE: this is an expected static assertion failures.
+    //static_assert(5 == IntegerDigit(12345, IntegerLength(12345), 0), "");
+    //static_assert(5 == IntegerDigit(12345, IntegerLength(12345), 6), "");
+
+    static_assert(5 == IntegerDigit(12345, IntegerLength(12345), 1), "");
+    static_assert(1 == IntegerDigit(12345, IntegerLength(12345), 5), "");
+
+    static_assert(5 == IntegerDigit(-12345, IntegerLength(-12345), 1), "");
+    static_assert(1 == IntegerDigit(-12345, IntegerLength(-12345), 5), "");
+}
+
