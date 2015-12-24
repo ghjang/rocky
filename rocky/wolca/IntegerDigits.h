@@ -24,6 +24,9 @@ auto IntegerDigits(T n)
 }
 
 
+/**
+ * @param[in] digitIndex 1-based digit index
+ */
 template <typename T, typename = std::enable_if_t<std::is_integral<T>::value>>
 constexpr auto IntegerDigit(T n, uint8_t numOfDigit, uint8_t digitIndex)
 {
@@ -53,6 +56,9 @@ constexpr auto IntegerDigit(T n, uint8_t numOfDigit, uint8_t digitIndex)
 }
 
 
+/**
+ * @param[in] DigitIndex 1-based digit index
+ */
 template <intmax_t N, std::size_t DigitIndex>
 struct IntegerDigitT
 {
@@ -61,6 +67,9 @@ struct IntegerDigitT
 };
 
 
+/**
+ * @param[in] DigitIndex 1-based digit index
+ */
 template <intmax_t N, std::size_t DigitIndex>
 struct IntegerDigitCharacterT
 {
