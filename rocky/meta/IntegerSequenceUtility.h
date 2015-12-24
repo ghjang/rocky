@@ -5,6 +5,8 @@
 #include <type_traits>
 #include <utility>
 
+#include "rocky/meta/Fold.h"
+
 
 template <std::size_t i, template<std::size_t> class GeneratorFunc>
 struct CustomIntegerSequence
@@ -30,28 +32,29 @@ using MakeCustomIntegerSequence = typename CustomIntegerSequence<i, GeneratorFun
 template <typename... Sequence>
 struct JoinIntegerSequence;
 
-template <typename T, T... lhs, T... rhs>
-struct JoinIntegerSequence<std::integer_sequence<T, lhs...>, std::integer_sequence<T, rhs...>>
+template <typename T, T... sequence, typename... list>
+struct JoinIntegerSequence<std::integer_sequence<T, sequence...>, list...>
 {
-    using type = std::integer_sequence<T, lhs..., rhs...>;
-};
+private:
+    using init_seq_t = std::integer_sequence<T, sequence...>;
 
-template <typename T, typename U, T... lhs, U... rhs>
-struct JoinIntegerSequence<std::integer_sequence<T, lhs...>, std::integer_sequence<U, rhs...>>
-{
-    static_assert(std::is_same<T, U>(), "T and U should be the same type.");
-};
+    template <typename LhsSeq, typename RhsSeq>
+    struct AppendIntegerSequence;
 
-template <typename T, typename U, T... first, U... second, typename... list>
-struct JoinIntegerSequence<std::integer_sequence<T, first...>, std::integer_sequence<U, second...>, list...>
-{
-    using type = typename JoinIntegerSequence<
-                                typename JoinIntegerSequence<
-                                                std::integer_sequence<T, first...>,
-                                                std::integer_sequence<U, second...>
-                                            >::type,
-                                list...
-                            >::type;
+    template <T... lhsSeq, T... rhsSeq>
+    struct AppendIntegerSequence<std::integer_sequence<T, lhsSeq...>, std::integer_sequence<T, rhsSeq...>>
+    {
+        using type = std::integer_sequence<T, lhsSeq..., rhsSeq...>;
+    };
+
+    template <typename U, typename V, U... lhsSeq, V... rhsSeq>
+    struct AppendIntegerSequence<std::integer_sequence<U, lhsSeq...>, std::integer_sequence<V, rhsSeq...>>
+    {
+        static_assert(std::is_same<U, V>(), "U and V should be the same type.");
+    };
+
+public:
+    using type = typename FoldLeft<AppendIntegerSequence, init_seq_t, list...>::type;
 };
 
 
