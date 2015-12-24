@@ -9,8 +9,17 @@
 template <char... c>
 using CharSequence = std::integer_sequence<char, c...>;
 
+
 template <typename LhsSequence, typename RhsSequence>
 using JoinCharSequence = JoinIntegerSequence<LhsSequence, RhsSequence>;
+
+
+template <typename CharSequence>
+using CharSequenceLength = IntegerSequenceLength<CharSequence>;
+
+
+//template <typename CharSequence>
+//static constexpr char char_array_c[];
 
 
 template <intmax_t n>

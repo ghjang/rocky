@@ -34,3 +34,11 @@ TEST_CASE("making char sequence from integer", "[CharSequenceUtility]")
     static_assert(is_same<negative_charseq_t, typename MakeCharSequenceFromInteger<-123>::type>(), "");
 }
 
+TEST_CASE("char sequence length", "[CharSequenceUtility]")
+{
+    using empty_seq_t = CharSequence<>;
+    static_assert(0 == CharSequenceLength<empty_seq_t>(), "");
+
+    using seq1_t = CharSequence<'1', '2', '3'>;
+    static_assert(3 == CharSequenceLength<seq1_t>(), "");
+}
