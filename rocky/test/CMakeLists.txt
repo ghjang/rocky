@@ -20,6 +20,7 @@ set(HEADER_FILES
         ../VariantUtility.h
         ../math/Power.h
         ../math/Abs.h
+        ../math/RatioString.h
         ../meta/CountTuple.h
         ../meta/FindTuple.h
         ../meta/Fold.h
@@ -72,6 +73,7 @@ set(SOURCE_FILES
         CharSequenceUtilityTest.cpp
         math/PowerTest.cpp
         math/AbsTest.cpp
+        math/RatioStringTest.cpp
         wolca/StringUtilityTest.cpp
         wolca/RangeTest.cpp
         wolca/IntegerLengthTest.cpp
