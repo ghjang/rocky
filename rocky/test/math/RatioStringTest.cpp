@@ -23,5 +23,9 @@ TEST_CASE("std::ratio compile-time string", "[RatioString]")
     using minus_two_third2_t = ratio<-2, -3>;
     constexpr auto minus_two_third_str2 = ToConstExprString(minus_two_third2_t());
     REQUIRE(strcmp("2/3", minus_two_third_str2) == 0);
+
+    using ratio_t = ratio<1234567890, -9876543210>;
+    constexpr auto ratio_str = ToConstExprString(ratio_t());
+    REQUIRE(strcmp("-1234567890/9876543210", ratio_str) == 0);
 }
 
