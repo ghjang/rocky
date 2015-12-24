@@ -4,7 +4,9 @@
 
 #include <vector>
 
+#include "rocky/math/Abs.h"
 #include "rocky/wolca/IntegerLength.h"
+
 
 
 template <typename T>
@@ -23,11 +25,6 @@ auto IntegerDigits(T n)
     return digits;
 }
 
-template <typename T>
-constexpr auto Abs(T t)
-{
-    return (t < 0) ? -t : t;
-}
 
 constexpr auto IntegerDigit(intmax_t n, uint8_t numOfDigit, uint8_t digitIndex)
 {
@@ -44,12 +41,14 @@ constexpr auto IntegerDigit(intmax_t n, uint8_t numOfDigit, uint8_t digitIndex)
     return Abs(n);
 }
 
+
 template <intmax_t N, std::size_t DigitIndex>
 struct IntegerDigitT
 {
     static_assert(DigitIndex <= IntegerLength(N), "");
     static constexpr int8_t value = IntegerDigit(N, IntegerLength(N), DigitIndex);
 };
+
 
 template <intmax_t N, std::size_t DigitIndex>
 struct IntegerDigitCharacterT

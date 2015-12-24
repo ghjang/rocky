@@ -19,6 +19,7 @@ set(HEADER_FILES
         ../StringNumberConversion.h
         ../VariantUtility.h
         ../math/Power.h
+        ../math/Abs.h
         ../meta/CountTuple.h
         ../meta/FindTuple.h
         ../meta/Fold.h
@@ -53,7 +54,6 @@ set(SOURCE_FILES
         TypeSelectionTest.cpp
         ReverseTupleTest.cpp
         IntegralConstantUtilityTest.cpp
-        PowerTest.cpp
         StringNumberConversionTest.cpp
         MultipleInheritance.cpp
         ForEachArgumentTest.cpp
@@ -70,6 +70,8 @@ set(SOURCE_FILES
         UniqueTupleTest.cpp
         VariantUtilityTest.cpp
         CharSequenceUtilityTest.cpp
+        math/PowerTest.cpp
+        math/AbsTest.cpp
         wolca/StringUtilityTest.cpp
         wolca/RangeTest.cpp
         wolca/IntegerLengthTest.cpp
