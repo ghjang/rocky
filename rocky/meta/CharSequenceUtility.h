@@ -10,8 +10,8 @@ template <char... c>
 using CharSequence = std::integer_sequence<char, c...>;
 
 
-template <typename LhsSequence, typename RhsSequence>
-using JoinCharSequence = JoinIntegerSequence<LhsSequence, RhsSequence>;
+template <typename... Sequence>
+using JoinCharSequence = JoinIntegerSequence<Sequence...>;
 
 
 template <typename CharSequence>

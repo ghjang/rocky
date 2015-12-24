@@ -60,9 +60,9 @@ TEST_CASE("join integer sequence", "[IntegerSequenceUtility]")
 
     using seq1_t = integer_sequence<int, 1, 2, 3>;
     using seq2_t = integer_sequence<int, 4, 5, 6>;
-    using joined_t = integer_sequence<int, 1, 2, 3, 4, 5, 6>;
+    using joined1_t = integer_sequence<int, 1, 2, 3, 4, 5, 6>;
     using reverse_joined_t = integer_sequence<int, 4, 5, 6, 1, 2, 3>;
-    static_assert(is_same<joined_t, typename JoinIntegerSequence<seq1_t, seq2_t>::type>(), "");
+    static_assert(is_same<joined1_t, typename JoinIntegerSequence<seq1_t, seq2_t>::type>(), "");
     static_assert(is_same<reverse_joined_t, typename JoinIntegerSequence<seq2_t, seq1_t>::type>(), "");
 
     // NOTE: following is an expected static assertion failure.
@@ -70,6 +70,10 @@ TEST_CASE("join integer sequence", "[IntegerSequenceUtility]")
     using seq3_t = integer_sequence<uint, 1, 2, 3>;
     typename JoinIntegerSequence<seq1_t, seq3_t>::type seq;
      */
+
+    using seq3_t = integer_sequence<int, 7, 8, 9>;
+    using joined2_t = integer_sequence<int, 1, 2, 3, 4, 5, 6, 7, 8, 9>;
+    static_assert(is_same<joined2_t, typename JoinIntegerSequence<seq1_t, seq2_t, seq3_t>::type>(), "");
 }
 
 TEST_CASE("integer sequence length", "[IntegerSequenceUtility]")

@@ -27,7 +27,7 @@ template <std::size_t i, template<std::size_t> class GeneratorFunc>
 using MakeCustomIntegerSequence = typename CustomIntegerSequence<i, GeneratorFunc>::type;
 
 
-template <typename LhsSequence, typename RhsSequence>
+template <typename... Sequence>
 struct JoinIntegerSequence;
 
 template <typename T, T... lhs, T... rhs>
@@ -40,6 +40,18 @@ template <typename T, typename U, T... lhs, U... rhs>
 struct JoinIntegerSequence<std::integer_sequence<T, lhs...>, std::integer_sequence<U, rhs...>>
 {
     static_assert(std::is_same<T, U>(), "T and U should be the same type.");
+};
+
+template <typename T, typename U, T... first, U... second, typename... list>
+struct JoinIntegerSequence<std::integer_sequence<T, first...>, std::integer_sequence<U, second...>, list...>
+{
+    using type = typename JoinIntegerSequence<
+                                typename JoinIntegerSequence<
+                                                std::integer_sequence<T, first...>,
+                                                std::integer_sequence<U, second...>
+                                            >::type,
+                                list...
+                            >::type;
 };
 
 

@@ -18,8 +18,14 @@ TEST_CASE("join char sequence", "[CharSequenceUtility]")
 
     using charseq1_t = CharSequence<'a', 'b', 'c'>;
     using charseq2_t = CharSequence<'d', 'e', 'f'>;
-    using joined_charseq_t = CharSequence<'a', 'b', 'c', 'd','e','f'>;
-    static_assert(is_same<joined_charseq_t, typename JoinCharSequence<charseq1_t, charseq2_t>::type>(), "");
+    using joined_charseq1_t = CharSequence<'a', 'b', 'c', 'd', 'e', 'f'>;
+    static_assert(is_same<joined_charseq1_t, typename JoinCharSequence<charseq1_t, charseq2_t>::type>(), "");
+
+    using charseq3_t = CharSequence<'g', 'h', 'i'>;
+    using joined_charseq2_t = CharSequence<'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i'>;
+    static_assert(
+            is_same<joined_charseq2_t, typename JoinCharSequence<charseq1_t, charseq2_t, charseq3_t>::type>(), ""
+    );
 }
 
 TEST_CASE("making char sequence from integer", "[CharSequenceUtility]")
