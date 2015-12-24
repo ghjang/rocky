@@ -10,23 +10,24 @@ template <char... c>
 using CharSequence = std::integer_sequence<char, c...>;
 
 
-template <intmax_t n, typename IndexSequence>
-struct MakeCharSequenceFromIntegerImpl;
-
-template <intmax_t n, std::size_t... i>
-struct MakeCharSequenceFromIntegerImpl<n, std::index_sequence<i...>>
-{
-    using type = std::conditional_t<
-                        n < 0,
-                        CharSequence<'-', IntegerDigitCharacterT<n, sizeof...(i) - i>::value...>,
-                        CharSequence<IntegerDigitCharacterT<n, sizeof...(i) - i>::value...>
-                    >;
-};
-
-
 template <intmax_t n>
 struct MakeCharSequenceFromInteger
 {
+private:
+    template <intmax_t N, typename IndexSequence>
+    struct MakeCharSequenceFromIntegerImpl;
+
+    template <intmax_t N, std::size_t... i>
+    struct MakeCharSequenceFromIntegerImpl<N, std::index_sequence<i...>>
+    {
+        using type = std::conditional_t<
+                            N < 0,
+                            CharSequence<'-', IntegerDigitCharacterT<N, sizeof...(i) - i>::value...>,
+                            CharSequence<IntegerDigitCharacterT<N, sizeof...(i) - i>::value...>
+                        >;
+    };
+
+public:
     using type = typename MakeCharSequenceFromIntegerImpl<
                                 n,
                                 std::make_index_sequence<IntegerLength(n)>
