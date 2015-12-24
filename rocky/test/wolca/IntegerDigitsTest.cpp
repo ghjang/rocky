@@ -60,3 +60,16 @@ TEST_CASE("IntegerDigitT","[wolca]")
     static_assert(1 == IntegerDigitT<-12345, 5>::value, "");
 }
 
+TEST_CASE("IntegerDigitCharacterT","[wolca]")
+{
+    // NOTE: this is an expected static assertion failures.
+    //static_assert('5' == IntegerDigitCharacterT<12345, 0>::value, "");
+    //static_assert('5' == IntegerDigitCharacterT<12345, 6>::value, "");
+
+    static_assert('5' == IntegerDigitCharacterT<12345, 1>::value, "");
+    static_assert('1' == IntegerDigitCharacterT<12345, 5>::value, "");
+
+    static_assert('5' == IntegerDigitCharacterT<-12345, 1>::value, "");
+    static_assert('1' == IntegerDigitCharacterT<-12345, 5>::value, "");
+}
+
