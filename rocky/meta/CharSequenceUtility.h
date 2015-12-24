@@ -51,7 +51,7 @@ public:
 
 
 template <intmax_t n>
-constexpr auto MakeStringFromInteger()
+constexpr auto ToConstExprString()
 {
     return char_array_c<typename MakeCharSequenceFromInteger<n>::type>;
 }
