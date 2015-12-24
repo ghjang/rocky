@@ -1,6 +1,6 @@
 #include "catch.hpp"
 
-#include <rocky/meta/CharSequenceUtility.h>
+#include "rocky/meta/CharSequenceUtility.h"
 
 
 TEST_CASE("char sequence", "[CharSequenceUtility]")
