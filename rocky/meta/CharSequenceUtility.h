@@ -18,8 +18,11 @@ template <typename CharSequence>
 using CharSequenceLength = IntegerSequenceLength<CharSequence>;
 
 
-//template <typename CharSequence>
-//static constexpr char char_array_c[];
+template <typename CharSequence, std::size_t N = CharSequenceLength<CharSequence>::value>
+static constexpr char char_array_c[N + 1];
+
+template <char... c>
+static constexpr char char_array_c<CharSequence<c...>, sizeof...(c)>[sizeof...(c) + 1] = { c..., '\0'};
 
 
 template <intmax_t n>

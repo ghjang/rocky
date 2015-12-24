@@ -42,3 +42,19 @@ TEST_CASE("char sequence length", "[CharSequenceUtility]")
     using seq1_t = CharSequence<'1', '2', '3'>;
     static_assert(3 == CharSequenceLength<seq1_t>(), "");
 }
+
+TEST_CASE("char_array_c", "[CharSequenceUtility]")
+{
+    using empty_seq_t = CharSequence<>;
+    REQUIRE(std::string("") == char_array_c<empty_seq_t>);
+
+    using seq1_t = CharSequence<'1', '2', '3'>;
+    REQUIRE(std::string("123") == char_array_c<seq1_t>);
+
+    using seq2_t = CharSequence<'-', '1', '2', '3'>;
+    REQUIRE(std::string("-123") == char_array_c<seq2_t>);
+
+    using seq3_t = CharSequence<'-', '-', '-', '-'>;
+    REQUIRE(std::string("----") == char_array_c<seq3_t>);
+}
+
