@@ -45,21 +45,24 @@ constexpr std::array<int, sizeof...(list)> IntegralConstantElementTypeToArray<
 // compiletime metafunctions
 //==============================================================================
 
-template <template <typename> class F, typename Tuple, typename IndexSequence>
-struct TransformElementTypeImpl;
-
-template <template <typename> class F, typename... list, std::size_t... i>
-struct TransformElementTypeImpl<F, std::tuple<list...>, std::index_sequence<i...>>
+namespace Detail
 {
-    using type = std::tuple<typename F<std::tuple_element_t<i, std::tuple<list...>>>::type...>;
-};
+    template<template<typename> class F, typename Tuple, typename IndexSequence>
+    struct TransformElementTypeImpl;
+
+    template<template<typename> class F, typename... list, std::size_t... i>
+    struct TransformElementTypeImpl<F, std::tuple<list...>, std::index_sequence<i...>>
+    {
+        using type = std::tuple<typename F<std::tuple_element_t<i, std::tuple<list...>>>::type...>;
+    };
+} // namespace Detail
 
 template <template <typename> class F, typename Tuple>
 struct TransformElementType;
 
 template <template <typename> class F, typename... list>
 struct TransformElementType<F, std::tuple<list...>>
-            : TransformElementTypeImpl<
+            : Detail::TransformElementTypeImpl<
                     F,
                     std::tuple<list...>,
                     std::index_sequence_for<list...>
