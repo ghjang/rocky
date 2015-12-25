@@ -24,12 +24,10 @@ namespace Detail
 
     template <typename... list, std::size_t... i>
     constexpr std::array<int, sizeof...(list)> IntegralConstantElementTypeToArrayImpl<
-            std::tuple<list...>,
-            std::index_sequence<i...>,
-            sizeof...(list)
-    >{
-            std::tuple_element_t<i, std::tuple<list...>>()...
-    };
+                                                        std::tuple<list...>,
+                                                        std::index_sequence<i...>,
+                                                        sizeof...(list)
+                                                >{ std::tuple_element_t<i, std::tuple<list...>>()... };
 }
 
 template <typename Tuple, std::size_t N = std::tuple_size<Tuple>::value>
