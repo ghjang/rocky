@@ -28,7 +28,7 @@ namespace Detail
                                                         std::index_sequence<i...>,
                                                         sizeof...(list)
                                                 >{ std::tuple_element_t<i, std::tuple<list...>>()... };
-}
+} // namespace Detail
 
 template <typename Tuple, std::size_t N = std::tuple_size<Tuple>::value>
 constexpr std::array<int, N> IntegralConstantElementTypeToArray;
