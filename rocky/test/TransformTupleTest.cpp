@@ -2,7 +2,6 @@
 
 #include "rocky/meta/TransformTuple.h"
 
-#include <type_traits>
 #include <memory>
 
 #include "rocky/meta/Identity.h"
@@ -253,32 +252,5 @@ TEST_CASE("bool value sequence to true value index sequence", "[TransformTuple]"
                 "converted bool_t should be same as sequence_t."
         );
     }
-}
-
-TEST_CASE("bool value sequence inversion", "[TransformTuple]")
-{
-    using std::is_same;
-    using std::integer_sequence;
-
-    using bool_t = integer_sequence<int, 1, 1, 0, 1, 0>;
-    using inverted_bool_t = integer_sequence<int, 0, 0, 1, 0, 1>;
-    static_assert(
-            is_same<inverted_bool_t, typename InvertBoolSequence<bool_t>::type>(),
-            "inverted bool_t should be same as inverted_bool_t."
-    );
-}
-
-TEST_CASE("tuple element type extraction", "[TransformTuple]")
-{
-    using std::is_same;
-    using std::tuple;
-    using std::index_sequence;
-
-    using tuple_t = tuple<char, int, double, uint64_t, float>;
-    using extracted_t = tuple<int, uint64_t>;
-    static_assert(
-            is_same<extracted_t, typename ExtractElementType<index_sequence<1, 3>, tuple_t>::type>(),
-            "extracted tuple_t should be same as extracted_t."
-    );
 }
 

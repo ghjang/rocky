@@ -17,17 +17,20 @@
 // compiletime variable templates
 //==============================================================================
 
-template <typename Tuple, typename IndexSequence, std::size_t N = std::tuple_size<Tuple>::value>
-constexpr std::array<int, N> IntegralConstantElementTypeToArrayImpl;
+namespace Detail
+{
+    template <typename Tuple, typename IndexSequence, std::size_t N = std::tuple_size<Tuple>::value>
+    constexpr std::array<int, N> IntegralConstantElementTypeToArrayImpl;
 
-template <typename... list, std::size_t... i>
-constexpr std::array<int, sizeof...(list)> IntegralConstantElementTypeToArrayImpl<
-                                                std::tuple<list...>,
-                                                std::index_sequence<i...>,
-                                                sizeof...(list)
-                                            >{
-        std::tuple_element_t<i, std::tuple<list...>>()...
-};
+    template <typename... list, std::size_t... i>
+    constexpr std::array<int, sizeof...(list)> IntegralConstantElementTypeToArrayImpl<
+            std::tuple<list...>,
+            std::index_sequence<i...>,
+            sizeof...(list)
+    >{
+            std::tuple_element_t<i, std::tuple<list...>>()...
+    };
+}
 
 template <typename Tuple, std::size_t N = std::tuple_size<Tuple>::value>
 constexpr std::array<int, N> IntegralConstantElementTypeToArray;
@@ -37,7 +40,7 @@ constexpr std::array<int, sizeof...(list)> IntegralConstantElementTypeToArray<
                                                 std::tuple<list...>,
                                                 sizeof...(list)
                                             >{
-        IntegralConstantElementTypeToArrayImpl<std::tuple<list...>, std::index_sequence_for<list...>>
+        Detail::IntegralConstantElementTypeToArrayImpl<std::tuple<list...>, std::index_sequence_for<list...>>
 };
 
 
@@ -160,26 +163,6 @@ private:
 
 public:
     using type = typename ConvertToSequenceImpl<std::make_index_sequence<trueValueIndexArray_.size()>>::type;
-};
-
-
-template <typename BoolSequence>
-struct InvertBoolSequence;
-
-template <typename T, T... i>
-struct InvertBoolSequence<std::integer_sequence<T, i...>>
-{
-    using type = std::integer_sequence<T, (!i)...>;
-};
-
-
-template <typename IndexSequence, typename Tuple>
-struct ExtractElementType;
-
-template <typename T, T... i, typename... list>
-struct ExtractElementType<std::integer_sequence<T, i...>, std::tuple<list...>>
-{
-    using type = std::tuple<std::tuple_element_t<i, std::tuple<list...>>...>;
 };
 
 

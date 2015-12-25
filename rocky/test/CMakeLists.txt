@@ -42,6 +42,7 @@ set(HEADER_FILES
         ../meta/UniqueTuple.h
         ../meta/CharSequenceUtility.h
         ../meta/TransformIntegerSequence.h
+        ../meta/ExtractTuple.h
         ../wolca/StringUtility.h
         ../wolca/Range.h
         ../wolca/IntegerLength.h
@@ -73,6 +74,7 @@ set(SOURCE_FILES
         VariantUtilityTest.cpp
         CharSequenceUtilityTest.cpp
         TransformIntegerSequenceTest.cpp
+        ExtractTupleTest.cpp
         math/PowerTest.cpp
         math/AbsTest.cpp
         math/RatioStringTest.cpp

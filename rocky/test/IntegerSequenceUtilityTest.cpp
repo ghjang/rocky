@@ -55,3 +55,16 @@ TEST_CASE("IntegerSequenceValue", "[IntegerSequenceUtility]")
     //static_assert(IntegerSequenceValue<0, empty_seq_t>::value == 0, "");
 }
 
+TEST_CASE("bool value sequence inversion", "[IntegerSequenceUtility]")
+{
+    using std::is_same;
+    using std::integer_sequence;
+
+    using bool_t = integer_sequence<int, 1, 1, 0, 1, 0>;
+    using inverted_bool_t = integer_sequence<int, 0, 0, 1, 0, 1>;
+    static_assert(
+            is_same<inverted_bool_t, typename InvertBoolSequence<bool_t>::type>(),
+            "inverted bool_t should be same as inverted_bool_t."
+    );
+}
+

@@ -73,5 +73,15 @@ struct IntegerSequenceValue<i, std::integer_sequence<T, n, list...>>
 { };
 
 
+template <typename BoolSequence>
+struct InvertBoolSequence;
+
+template <typename T, T... i>
+struct InvertBoolSequence<std::integer_sequence<T, i...>>
+{
+    using type = std::integer_sequence<T, (!i)...>;
+};
+
+
 #endif //ROCKY_INTEGERSEQUENCEUTILITY_H
 
