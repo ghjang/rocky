@@ -49,7 +49,8 @@ set(HEADER_FILES
         ../wolca/IntegerLength.h
         ../wolca/IntegerDigits.h
         ../skull/Head.h
-        ../skull/Tail.h)
+        ../skull/Tail.h
+        ../skull/Take.h)
 
 set(SOURCE_FILES
         main.cpp
@@ -87,7 +88,8 @@ set(SOURCE_FILES
         wolca/IntegerLengthTest.cpp
         wolca/IntegerDigitsTest.cpp
         skull/HeadTest.cpp
-        skull/TailTest.cpp)
+        skull/TailTest.cpp
+        skull/TakeTest.cpp)
 
 add_executable(RockyTest ${HEADER_FILES} ${SOURCE_FILES})
 
