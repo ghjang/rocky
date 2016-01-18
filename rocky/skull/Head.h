@@ -13,8 +13,8 @@ struct Head
     static_assert(sizeof...(T) > 0, "empty type list is not allowed.");
 };
 
-template <typename head, typename... tail>
-struct Head<head, tail...> : type_is<head>
+template <typename x, typename... xs>
+struct Head<x, xs...> : type_is<x>
 { };
 
 template <typename... T>

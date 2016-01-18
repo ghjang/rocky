@@ -14,8 +14,8 @@ struct Tail
     static_assert(sizeof...(T) > 0, "empty type list is not allowed.");
 };
 
-template <typename head, typename... tail>
-struct Tail<head, tail...> : type_is<TypeList<tail...>>
+template <typename x, typename... xs>
+struct Tail<x, xs...> : type_is<TypeList<xs...>>
 { };
 
 template <typename... T>
