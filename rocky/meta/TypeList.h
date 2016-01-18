@@ -21,6 +21,10 @@ template <typename... T1, typename... T2>
 struct JoinTypeList<TypeList<T1...>, T2...> : type_is<TypeList<T1..., T2...>>
 { };
 
+template <typename T1, typename... T2>
+struct JoinTypeList<T1, TypeList<T2...>> : type_is<TypeList<T1, T2...>>
+{ };
+
 /**
  * following is not a valid pattern matching.
  */

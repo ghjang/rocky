@@ -11,6 +11,23 @@ TEST_CASE("TypeList join", "[TypeList]")
 
     static_assert(
             is_same<
+                    TypeList<>,
+                    typename JoinTypeList<TypeList<>, TypeList<>>::type
+            >(),
+            ""
+    );
+
+    static_assert(
+            is_same<
+                    TypeList<char>,
+                    typename JoinTypeList<char, TypeList<>>::type
+            >(),
+            ""
+    );
+
+
+    static_assert(
+            is_same<
                 TypeList<char, int, float, double>,
                 typename JoinTypeList<TypeList<char, int>, TypeList<float, double>>::type
             >(),
@@ -21,6 +38,14 @@ TEST_CASE("TypeList join", "[TypeList]")
             is_same<
                 TypeList<char, int, float, double>,
                 typename JoinTypeList<TypeList<char, int>, float, double>::type
+            >(),
+            ""
+    );
+
+    static_assert(
+            is_same<
+                    TypeList<char, float, double>,
+                    typename JoinTypeList<char, TypeList<float, double>>::type
             >(),
             ""
     );
