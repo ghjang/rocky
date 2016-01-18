@@ -11,6 +11,9 @@
 template <std::size_t n, typename... T>
 struct Take;
 
+template <std::size_t n, typename... T>
+using TakeT = typename Take<n, T...>::type;
+
 template <std::size_t n>
 struct Take<n> : type_is<TypeList<>>
 { };
@@ -18,14 +21,14 @@ struct Take<n> : type_is<TypeList<>>
 template <std::size_t n, typename x, typename... xs>
 struct Take<n, x, xs...>
             : type_is<
-                    typename JoinTypeList<
-                                typename SelectTypeIf<
-                                                n == 0,
-                                                TypeList<>,
-                                                JoinTypeList<x, typename Take<n - 1, xs...>::type>
-                                >::type,
-                                TypeList<>
-                    >::type
+                    JoinTypeListT<
+                            SelectTypeIfT<
+                                    n == 0,
+                                    TypeList<>,
+                                    JoinTypeList<x, TakeT<n - 1, xs...>>
+                            >,
+                            TypeList<>
+                    >
               >
 { };
 

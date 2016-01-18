@@ -44,6 +44,10 @@ struct JoinTypeList<T1..., TypeList<T2...>, T3...> : type_is<TypeList<T1..., T2.
  */
 
 
+template <typename... T>
+using JoinTypeListT = typename JoinTypeList<T...>::type;
+
+
 template <typename... T1, typename... T2>
 constexpr auto operator + (TypeList<T1...>, TypeList<T2...>)
 {

@@ -30,5 +30,9 @@ struct SelectTypeIf<false, T1, T2>
 };
 
 
+template <bool condition, typename T1, typename T2>
+using SelectTypeIfT = typename SelectTypeIf<condition, T1, T2>::type;
+
+
 #endif //ROCKY_TYPESELECTION_H
 
