@@ -1,4 +1,26 @@
-//
-// Created by Gil Ho Jang on 1/18/16.
-//
+#include "../catch.hpp"
+
+#include "rocky/skull/Drop.h"
+
+
+TEST_CASE("Drop", "[skull]")
+{
+    using std::is_same;
+
+    //
+    static_assert(is_same<TypeList<>, DropT<0>>(), "");
+    static_assert(is_same<TypeList<>, DropT<0, TypeList<>>>(), "");
+
+    //
+    static_assert(is_same<TypeList<char, int, float, double>, DropT<0, char, int, float, double>>(), "");
+    static_assert(is_same<TypeList<int, float, double>, DropT<1, char, int, float, double>>(), "");
+    static_assert(is_same<TypeList<float, double>, DropT<2, char, int, float, double>>(), "");
+    static_assert(is_same<TypeList<>, DropT<5, char, int, float, double>>(), "");
+
+    //
+    static_assert(is_same<TypeList<char, int, float, double>, DropT<0, TypeList<char, int, float, double>>>(), "");
+    static_assert(is_same<TypeList<int, float, double>, DropT<1, TypeList<char, int, float, double>>>(), "");
+    static_assert(is_same<TypeList<float, double>, DropT<2, TypeList<char, int, float, double>>>(), "");
+    static_assert(is_same<TypeList<>, DropT<5, TypeList<char, int, float, double>>>(), "");
+}
 
