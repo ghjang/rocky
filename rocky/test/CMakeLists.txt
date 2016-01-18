@@ -53,40 +53,41 @@ set(HEADER_FILES
 
 set(SOURCE_FILES
         main.cpp
-        TupleSizeTest.cpp
-        NthTupleTest.cpp
-        HasMemberTest.cpp
-        IdentityTest.cpp
-        TypeSelectionTest.cpp
-        ReverseTupleTest.cpp
-        IntegralConstantUtilityTest.cpp
-        StringNumberConversionTest.cpp
-        MultipleInheritance.cpp
-        ForEachArgumentTest.cpp
-        IntegerSequenceUtilityTest.cpp
-        ForEachTupleTest.cpp
-        TypeUtilityTest.cpp
-        FoldTest.cpp
-        TransformTupleTest.cpp
-        CountTupleTest.cpp
         ConstExprArrayTest.cpp
-        RemoveTupleTest.cpp
-        ReplaceTupleTest.cpp
-        FindTupleTest.cpp
-        UniqueTupleTest.cpp
+        StringNumberConversionTest.cpp
         VariantUtilityTest.cpp
-        CharSequenceUtilityTest.cpp
-        TransformIntegerSequenceTest.cpp
-        ExtractTupleTest.cpp
+        meta/TupleSizeTest.cpp
+        meta/NthTupleTest.cpp
+        meta/HasMemberTest.cpp
+        meta/IdentityTest.cpp
+        meta/TypeSelectionTest.cpp
+        meta/ReverseTupleTest.cpp
+        meta/IntegralConstantUtilityTest.cpp
+        meta/MultipleInheritance.cpp
+        meta/ForEachArgumentTest.cpp
+        meta/IntegerSequenceUtilityTest.cpp
+        meta/ForEachTupleTest.cpp
+        meta/TypeUtilityTest.cpp
+        meta/FoldTest.cpp
+        meta/TransformTupleTest.cpp
+        meta/CountTupleTest.cpp
+        meta/RemoveTupleTest.cpp
+        meta/ReplaceTupleTest.cpp
+        meta/FindTupleTest.cpp
+        meta/UniqueTupleTest.cpp
+        meta/CharSequenceUtilityTest.cpp
+        meta/TransformIntegerSequenceTest.cpp
+        meta/ExtractTupleTest.cpp
         math/PowerTest.cpp
         math/AbsTest.cpp
         math/RatioStringTest.cpp
+        meta/TypeListTest.cpp
         wolca/StringUtilityTest.cpp
         wolca/RangeTest.cpp
         wolca/IntegerLengthTest.cpp
         wolca/IntegerDigitsTest.cpp
         skull/HeadTest.cpp
-        skull/TailTest.cpp TypeListTest.cpp)
+        skull/TailTest.cpp)
 
 add_executable(RockyTest ${HEADER_FILES} ${SOURCE_FILES})
 
