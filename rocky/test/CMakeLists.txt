@@ -43,11 +43,13 @@ set(HEADER_FILES
         ../meta/CharSequenceUtility.h
         ../meta/TransformIntegerSequence.h
         ../meta/ExtractTuple.h
+        ../meta/TypeList.h
         ../wolca/StringUtility.h
         ../wolca/Range.h
         ../wolca/IntegerLength.h
         ../wolca/IntegerDigits.h
-        ../skull/Head.h)
+        ../skull/Head.h
+        ../skull/Tail.h)
 
 set(SOURCE_FILES
         main.cpp
@@ -83,7 +85,8 @@ set(SOURCE_FILES
         wolca/RangeTest.cpp
         wolca/IntegerLengthTest.cpp
         wolca/IntegerDigitsTest.cpp
-        skull/HeadTest.cpp)
+        skull/HeadTest.cpp
+        skull/TailTest.cpp TypeListTest.cpp)
 
 add_executable(RockyTest ${HEADER_FILES} ${SOURCE_FILES})
 
