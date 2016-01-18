@@ -8,6 +8,7 @@
 TEST_CASE("Head", "[skull]")
 {
     using std::is_same;
+    using std::tuple;
 
     // empty type list. compile-time error.
     //static_assert(!is_same<int, typename Head<>::type>(), "");
@@ -15,5 +16,7 @@ TEST_CASE("Head", "[skull]")
     static_assert(is_same<int, typename Head<int>::type>(), "");
 
     static_assert(is_same<int, typename Head<int, float, double>::type>(), "");
+
+    static_assert(is_same<int, typename Head<tuple<int, float, double>>::type>(), "");
 }
 

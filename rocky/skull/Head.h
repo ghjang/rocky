@@ -2,6 +2,8 @@
 #define ROCKY_SKULL_HEAD_H
 
 
+#include <tuple>
+
 #include "rocky/meta/Identity.h"
 
 
@@ -13,6 +15,10 @@ struct Head
 
 template <typename head, typename... tail>
 struct Head<head, tail...> : type_is<head>
+{ };
+
+template <typename... T>
+struct Head<std::tuple<T...>> : Head<T...>
 { };
 
 
