@@ -2,17 +2,15 @@
 #define ROCKY_SKULL_TAKE_H
 
 
-#include <type_traits>
-
 #include "rocky/meta/TypeList.h"
 #include "rocky/meta/TypeSelection.h"
 
 
-template <std::size_t n, typename... T>
+template <std::size_t n, typename... xs>
 struct Take;
 
-template <std::size_t n, typename... T>
-using TakeT = typename Take<n, T...>::type;
+template <std::size_t n, typename... xs>
+using TakeT = typename Take<n, xs...>::type;
 
 template <std::size_t n>
 struct Take<n> : type_is<TypeList<>>
