@@ -46,7 +46,8 @@ set(HEADER_FILES
         ../wolca/StringUtility.h
         ../wolca/Range.h
         ../wolca/IntegerLength.h
-        ../wolca/IntegerDigits.h)
+        ../wolca/IntegerDigits.h
+        ../skull/Head.h)
 
 set(SOURCE_FILES
         main.cpp
@@ -81,7 +82,8 @@ set(SOURCE_FILES
         wolca/StringUtilityTest.cpp
         wolca/RangeTest.cpp
         wolca/IntegerLengthTest.cpp
-        wolca/IntegerDigitsTest.cpp)
+        wolca/IntegerDigitsTest.cpp
+        skull/HeadTest.cpp)
 
 add_executable(RockyTest ${HEADER_FILES} ${SOURCE_FILES})
 
