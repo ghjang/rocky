@@ -6,6 +6,7 @@
 TEST_CASE("Drop", "[skull]")
 {
     using std::is_same;
+    using std::tuple;
 
     //
     static_assert(is_same<TypeList<>, DropT<0>>(), "");
@@ -22,5 +23,11 @@ TEST_CASE("Drop", "[skull]")
     static_assert(is_same<TypeList<int, float, double>, DropT<1, TypeList<char, int, float, double>>>(), "");
     static_assert(is_same<TypeList<float, double>, DropT<2, TypeList<char, int, float, double>>>(), "");
     static_assert(is_same<TypeList<>, DropT<5, TypeList<char, int, float, double>>>(), "");
+
+    //
+    static_assert(is_same<TypeList<char, int, float, double>, DropT<0, tuple<char, int, float, double>>>(), "");
+    static_assert(is_same<TypeList<int, float, double>, DropT<1, tuple<char, int, float, double>>>(), "");
+    static_assert(is_same<TypeList<float, double>, DropT<2, tuple<char, int, float, double>>>(), "");
+    static_assert(is_same<TypeList<>, DropT<5, tuple<char, int, float, double>>>(), "");
 }
 

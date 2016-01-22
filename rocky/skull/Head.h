@@ -5,21 +5,30 @@
 #include <tuple>
 
 #include "rocky/meta/Identity.h"
+#include "rocky/meta/TypeList.h"
 
 
-template <typename... T>
+template <typename... xs>
 struct Head
 {
-    static_assert(sizeof...(T) > 0, "empty type list is not allowed.");
+    static_assert(sizeof...(xs) > 0, "empty type list is not allowed.");
 };
 
 template <typename x, typename... xs>
 struct Head<x, xs...> : type_is<x>
 { };
 
-template <typename... T>
-struct Head<std::tuple<T...>> : Head<T...>
+template <typename... xs>
+struct Head<TypeList<xs...>> : Head<xs...>
 { };
+
+template <typename... xs>
+struct Head<std::tuple<xs...>> : Head<xs...>
+{ };
+
+
+template <typename... xs>
+using HeadT = typename Head<xs...>::type;
 
 
 #endif //ROCKY_SKULL_HEAD_H

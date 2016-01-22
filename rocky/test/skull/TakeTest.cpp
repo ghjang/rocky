@@ -2,12 +2,11 @@
 
 #include "rocky/skull/Take.h"
 
-#include <type_traits>
-
 
 TEST_CASE("Take", "[skull]")
 {
     using std::is_same;
+    using std::tuple;
 
     //
     static_assert(is_same<TypeList<>, TakeT<0>>(), "");
@@ -24,5 +23,11 @@ TEST_CASE("Take", "[skull]")
     static_assert(is_same<TypeList<char>, TakeT<1, TypeList<char, int, float, double>>>(), "");
     static_assert(is_same<TypeList<char, int>, TakeT<2, TypeList<char, int, float, double>>>(), "");
     static_assert(is_same<TypeList<char, int, float, double>, TakeT<5, TypeList<char, int, float, double>>>(), "");
+
+    //
+    static_assert(is_same<TypeList<>, TakeT<0, tuple<char, int, float, double>>>(), "");
+    static_assert(is_same<TypeList<char>, TakeT<1, tuple<char, int, float, double>>>(), "");
+    static_assert(is_same<TypeList<char, int>, TakeT<2, tuple<char, int, float, double>>>(), "");
+    static_assert(is_same<TypeList<char, int, float, double>, TakeT<5, tuple<char, int, float, double>>>(), "");
 }
 

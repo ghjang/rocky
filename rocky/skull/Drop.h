@@ -34,6 +34,10 @@ template <std::size_t n, typename... xs>
 struct Drop<n, TypeList<xs...>> : Drop<n, xs...>
 { };
 
+template <std::size_t n, typename... xs>
+struct Drop<n, std::tuple<xs...>> : Drop<n, xs...>
+{ };
+
 
 #endif //ROCKY_SKULL_DROP_H
 

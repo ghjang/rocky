@@ -2,6 +2,8 @@
 #define ROCKY_SKULL_TAKE_H
 
 
+#include <tuple>
+
 #include "rocky/meta/TypeList.h"
 #include "rocky/meta/TypeSelection.h"
 
@@ -32,6 +34,10 @@ struct Take<n, x, xs...>
 
 template <std::size_t n, typename... xs>
 struct Take<n, TypeList<xs...>> : Take<n, xs...>
+{ };
+
+template <std::size_t n, typename... xs>
+struct Take<n, std::tuple<xs...>> : Take<n, xs...>
 { };
 
 

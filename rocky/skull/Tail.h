@@ -8,19 +8,27 @@
 #include "rocky/meta/TypeList.h"
 
 
-template <typename... T>
+template <typename... xs>
 struct Tail
 {
-    static_assert(sizeof...(T) > 0, "empty type list is not allowed.");
+    static_assert(sizeof...(xs) > 0, "empty type list is not allowed.");
 };
 
 template <typename x, typename... xs>
 struct Tail<x, xs...> : type_is<TypeList<xs...>>
 { };
 
-template <typename... T>
-struct Tail<std::tuple<T...>> : Tail<T...>
+template <typename... xs>
+struct Tail<TypeList<xs...>> : Tail<xs...>
 { };
+
+template <typename... xs>
+struct Tail<std::tuple<xs...>> : Tail<xs...>
+{ };
+
+
+template <typename... xs>
+using TailT = typename Tail<xs...>::type;
 
 
 #endif //ROCKY_SKULL_TAIL_H
