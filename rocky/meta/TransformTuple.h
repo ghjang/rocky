@@ -48,13 +48,13 @@ constexpr std::array<int, sizeof...(list)> IntegralConstantElementTypeToArray<
 
 namespace Detail
 {
-    template<template<typename> class F, typename Tuple, typename IndexSequence>
+    template<template<typename> class F, typename Tuple>
     struct TransformElementTypeImpl;
 
-    template<template<typename> class F, typename... list, std::size_t... i>
-    struct TransformElementTypeImpl<F, std::tuple<list...>, std::index_sequence<i...>>
+    template<template<typename> class F, typename... list>
+    struct TransformElementTypeImpl<F, std::tuple<list...>>
     {
-        using type = std::tuple<typename F<std::tuple_element_t<i, std::tuple<list...>>>::type...>;
+        using type = std::tuple<typename F<list>::type...>;
     };
 } // namespace Detail
 
@@ -63,11 +63,7 @@ struct TransformElementType;
 
 template <template <typename> class F, typename... list>
 struct TransformElementType<F, std::tuple<list...>>
-            : Detail::TransformElementTypeImpl<
-                    F,
-                    std::tuple<list...>,
-                    std::index_sequence_for<list...>
-                >
+            : Detail::TransformElementTypeImpl<F, std::tuple<list...>>
 {
     static_assert(sizeof...(list) > 0, "tuple should have at least one template parameter.");
     static_assert(HasTypeMember<F<std::tuple_element_t<0, std::tuple<list...>>>>(), "F should have 'type' member.");
