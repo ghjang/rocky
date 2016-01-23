@@ -1,5 +1,5 @@
-#ifndef ROCKY_COUNTTUPLE_H
-#define ROCKY_COUNTTUPLE_H
+#ifndef ROCKY_COUNT_H
+#define ROCKY_COUNT_H
 
 
 #include "rocky/meta/Transform.h"
@@ -7,19 +7,19 @@
 #include "rocky/skull/FoldR.h"
 
 
-template <template <typename> class Predicate, typename... list>
+template <template <typename> class p, typename... xs>
 struct CountElementType
             : FoldRT<
-                    IntegralConstantSum,
+                    Plus,
                     int_c_t<0>, // init
-                    MapToBoolConstantTypeT<Predicate, std::tuple<list...>>
+                    MapToBoolConstantTypeT<p, std::tuple<xs...>>
               >
 { };
 
-template <template <typename> class Predicate, typename... list>
-struct CountElementType<Predicate, std::tuple<list...>> : CountElementType<Predicate, list...>
+template <template <typename> class p, typename... xs>
+struct CountElementType<p, std::tuple<xs...>> : CountElementType<p, xs...>
 { };
 
 
-#endif //ROCKY_COUNTTUPLE_H
+#endif //ROCKY_COUNT_H
 

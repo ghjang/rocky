@@ -8,7 +8,7 @@
 TEST_CASE("fold right, integral constant sum", "[Fold]")
 {
     using sum_t = FoldRT<
-                        IntegralConstantSum,
+                        Plus,
                         int_c_t<0>,  // init
                         int_c_t<1>,
                         int_c_t<2>,
@@ -46,7 +46,7 @@ TEST_CASE("fold right, integral constant in tuple sum", "[Fold]")
                              >;
 
     using sum_t = FoldRT<
-                        IntegralConstantSum,
+                        Plus,
                         int_c_t<0>,  // init
                         integral_tuple_t
                   >;

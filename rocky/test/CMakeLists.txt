@@ -21,7 +21,7 @@ set(HEADER_FILES
         ../math/Power.h
         ../math/Abs.h
         ../math/RatioString.h
-        ../meta/CountTuple.h
+        ../meta/Count.h
         ../meta/FindTuple.h
         ../meta/ForEachArgument.h
         ../meta/ForEachTuple.h
@@ -77,7 +77,7 @@ set(SOURCE_FILES
         meta/ForEachTupleTest.cpp
         meta/TypeUtilityTest.cpp
         meta/TransformTest.cpp
-        meta/CountTupleTest.cpp
+        meta/CountTest.cpp
         meta/RemoveTest.cpp
         meta/ReplaceTupleTest.cpp
         meta/FindTupleTest.cpp

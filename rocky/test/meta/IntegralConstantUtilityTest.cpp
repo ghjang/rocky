@@ -57,12 +57,12 @@ TEST_CASE("user defined literal", "[IntegralConstantUtility]")
     static_assert(50_c - 150_c == std::integral_constant<int, -100>{}, "50 - 150 = -100");
 }
 
-TEST_CASE("integral constant sum through class template IntegralConstantSum", "IntegralConstantUtility")
+TEST_CASE("integral constant sum through class template Plus", "IntegralConstantUtility")
 {
     using std::integral_constant;
 
     static_assert(
-            IntegralConstantSum<integral_constant<int, 1>, integral_constant<int, 2>>() == 3,
+            Plus<integral_constant<int, 1>, integral_constant<int, 2>>() == 3,
             "integral constant sum: 1 + 2 = 3"
     );
 }

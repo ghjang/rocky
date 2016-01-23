@@ -1,9 +1,9 @@
 #include "../catch.hpp"
 
-#include "rocky/meta/CountTuple.h"
+#include "rocky/meta/Count.h"
 
 
-TEST_CASE("counting integral type", "[CountTuple]")
+TEST_CASE("counting integral type", "[Count]")
 {
     using std::is_integral;
     static_assert(
@@ -12,7 +12,7 @@ TEST_CASE("counting integral type", "[CountTuple]")
     );
 }
 
-TEST_CASE("counting pointer type", "[CountTuple]")
+TEST_CASE("counting pointer type", "[Count]")
 {
     using std::is_pointer;
     static_assert(
@@ -21,7 +21,7 @@ TEST_CASE("counting pointer type", "[CountTuple]")
     );
 }
 
-TEST_CASE("counting integral type of tuple", "[CountTuple]")
+TEST_CASE("counting integral type of tuple", "[Count]")
 {
     using std::tuple;
     using std::is_integral;
@@ -33,7 +33,7 @@ TEST_CASE("counting integral type of tuple", "[CountTuple]")
     );
 }
 
-TEST_CASE("counting pointer type of tuple", "[CountTuple]")
+TEST_CASE("counting pointer type of tuple", "[Count]")
 {
     using std::tuple;
     using std::is_pointer;

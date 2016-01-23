@@ -21,7 +21,7 @@ TEST_CASE("runtime fold, std::accumulate", "[FoldL]")
 TEST_CASE("fold left, integral constant sum", "[FoldL]")
 {
     using sum_t = FoldLT<
-                        IntegralConstantSum,
+                        Plus,
                         int_c_t<0>,  // init
                         int_c_t<1>,
                         int_c_t<2>,
@@ -59,7 +59,7 @@ TEST_CASE("fold left, integral constant in tuple sum", "[FoldL]")
                             >;
 
     using sum_t = FoldLT<
-                        IntegralConstantSum,
+                        Plus,
                         int_c_t<0>,  // init
                         integral_tuple_t
                   >;
