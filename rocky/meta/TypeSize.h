@@ -2,18 +2,12 @@
 #define ROCKY_TYPESIZE_H
 
 
-#include "rocky/meta/IntegralConstantUtility.h"
 #include "rocky/meta/TypeAt.h"
-#include "rocky/skull/FoldR.h"
+#include "rocky/skull/Sum.h"
 
 
 template <typename... xs>
-struct SumOfTypeSize
-            : FoldRT<
-                    Plus,
-                    std::integral_constant<std::size_t, 0>,
-                    std::integral_constant<std::size_t, sizeof(xs)>...
-              >
+struct SumOfTypeSize : Sum<std::integral_constant<std::size_t, sizeof(xs)>...>
 { };
 
 template <typename... xs>
