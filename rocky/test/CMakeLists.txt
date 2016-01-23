@@ -42,7 +42,7 @@ set(HEADER_FILES
         ../meta/TransformIntegerSequence.h
         ../meta/Extract.h
         ../meta/TypeList.h
-        ../meta/TypeListJoin.h
+        ../meta/TypeListFlatten.h
         ../meta/TypeAt.h
         ../wolca/StringUtility.h
         ../wolca/Range.h
@@ -59,7 +59,8 @@ set(HEADER_FILES
         ../skull/FoldR.h
         ../skull/Length.h
         ../skull/Reverse.h
-        ../skull/Sum.h)
+        ../skull/Sum.h
+        ../skull/Zip.h)
 
 set(SOURCE_FILES
         main.cpp
@@ -87,7 +88,7 @@ set(SOURCE_FILES
         meta/TransformIntegerSequenceTest.cpp
         meta/ExtractTest.cpp
         meta/TypeListTest.cpp
-        meta/TypeListJoinTest.cpp
+        meta/TypeListFlattenTest.cpp
         meta/TypeAtTest.cpp
         math/PowerTest.cpp
         math/AbsTest.cpp
@@ -107,7 +108,8 @@ set(SOURCE_FILES
         skull/FoldRTest.cpp
         skull/LengthTest.cpp
         skull/ReverseTest.cpp
-        skull/SumTest.cpp)
+        skull/SumTest.cpp
+        skull/ZipTest.cpp)
 
 add_executable(RockyTest ${HEADER_FILES} ${SOURCE_FILES})
 
