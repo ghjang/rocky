@@ -8,16 +8,12 @@
 
 
 template <template <typename> class p, typename... xs>
-struct CountElementType
-            : FoldRT<
-                    Plus,
-                    int_c_t<0>, // init
-                    MapToBoolConstantTypeT<p, std::tuple<xs...>>
-              >
-{ };
-
-template <template <typename> class p, typename... xs>
-struct CountElementType<p, std::tuple<xs...>> : CountElementType<p, xs...>
+struct Count
+        : FoldRT<
+                Plus,
+                int_c_t<0>, // init
+                MapToBoolConstantTypeT<p, xs...>
+          >
 { };
 
 
