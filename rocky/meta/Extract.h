@@ -3,6 +3,7 @@
 
 
 #include "rocky/meta/TypeList.h"
+#include "rocky/meta/TypeAt.h"
 
 
 template <typename IndexSequence, typename... xs>
@@ -10,7 +11,7 @@ struct Extract;
 
 template <typename T, T... i, typename... xs>
 struct Extract<std::integer_sequence<T, i...>, xs...>
-        : type_is<TypeList<std::tuple_element_t<i, std::tuple<xs...>>...>>
+        : type_is<TypeList<TypeAtT<i, xs...>...>>
 { };
 
 
