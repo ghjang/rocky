@@ -12,7 +12,7 @@ struct CountElementType
             : FoldRight<
                     IntegralConstantSum,
                     int_c_t<0>, // init
-                    MapTypeToBoolConstantTypeT<Predicate, std::tuple<list...>>
+                    MapToBoolConstantTypeT<Predicate, std::tuple<list...>>
                 >::type
 { };
 
