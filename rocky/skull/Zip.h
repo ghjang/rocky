@@ -3,32 +3,51 @@
 
 
 #include "rocky/meta/TypeList.h"
-#include "rocky/meta/TypeListFlatten.h"
 
 
 namespace Detail
 {
-    template <typename xs, typename ys>
+    template <typename xs, typename ys, typename zs>
     struct ZipImpl;
 
-    template <>
-    struct ZipImpl<TypeList<>, TypeList<>> : type_is<TypeList<>>
+
+    template <typename... zs>
+    struct ZipImpl<TypeList<>, TypeList<>, TypeList<zs...>> : type_is<TypeList<zs...>>
     { };
 
-    template <typename... xs>
-    struct ZipImpl<TypeList<xs...>, TypeList<>> : type_is<TypeList<>>
+    template <typename... xs, typename... zs>
+    struct ZipImpl<TypeList<xs...>, TypeList<>, TypeList<zs...>> : type_is<TypeList<zs...>>
     { };
 
-    template <typename... ys>
-    struct ZipImpl<TypeList<>, TypeList<ys...>> : type_is<TypeList<>>
+    template <typename... ys, typename... zs>
+    struct ZipImpl<TypeList<>, TypeList<ys...>, TypeList<zs...>> : type_is<TypeList<zs...>>
     { };
 
-    template <typename xs, typename ys>
-    using ZipImplT = typename ZipImpl<xs, ys>::type;
+    template <typename x, typename... xs, typename y, typename... ys, typename... zs>
+    struct ZipImpl<TypeList<x, xs...>, TypeList<y, ys...>, TypeList<zs...>>
+            : ZipImpl<TypeList<xs...>, TypeList<ys...>, TypeList<zs..., TypeList<x, y>>>
+    { };
 
-    template <typename x, typename... xs, typename y, typename... ys>
-    struct ZipImpl<TypeList<x, xs...>, TypeList<y, ys...>>
-            : FlattenTypeList<std::pair<x, y>, ZipImplT<TypeList<xs...>, TypeList<ys...>>>
+
+    template <typename xs, typename ys, typename zs>
+    using ZipImplT = typename ZipImpl<xs, ys, zs>::type;
+
+
+    template <typename... zs>
+    struct ZipImpl<std::tuple<>, std::tuple<>, std::tuple<zs...>> : type_is<std::tuple<zs...>>
+    { };
+
+    template <typename... xs, typename... zs>
+    struct ZipImpl<std::tuple<xs...>, std::tuple<>, std::tuple<zs...>> : type_is<std::tuple<zs...>>
+    { };
+
+    template <typename... ys, typename... zs>
+    struct ZipImpl<std::tuple<>, std::tuple<ys...>, std::tuple<zs...>> : type_is<std::tuple<zs...>>
+    { };
+
+    template <typename x, typename... xs, typename y, typename... ys, typename... zs>
+    struct ZipImpl<std::tuple<x, xs...>, std::tuple<y, ys...>, std::tuple<zs...>>
+            : ZipImpl<std::tuple<xs...>, std::tuple<ys...>, std::tuple<zs..., std::tuple<x, y>>>
     { };
 } // namespace Detail
 
@@ -38,7 +57,7 @@ struct Zip;
 
 template <typename... xs, typename... ys>
 struct Zip<TypeList<xs...>, TypeList<ys...>>
-        : Detail::ZipImpl<TypeList<xs...>, TypeList<ys...>>
+        : Detail::ZipImpl<TypeList<xs...>, TypeList<ys...>, TypeList<>>
 { };
 
 
@@ -48,7 +67,7 @@ using ZipT = typename Zip<xs, ys>::type;
 
 template <typename... xs, typename... ys>
 struct Zip<std::tuple<xs...>, std::tuple<ys...>>
-        : TypeListToTuple<ZipT<TypeList<xs...>, TypeList<ys...>>>
+        : Detail::ZipImpl<std::tuple<xs...>, std::tuple<ys...>, std::tuple<>>
 { };
 
 
