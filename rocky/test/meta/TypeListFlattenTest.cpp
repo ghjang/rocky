@@ -48,17 +48,42 @@ TEST_CASE("TypeList flatten", "[TypeListFlatten]")
             ""
     );
      */
-}
 
-TEST_CASE("TypeList operator +", "[TypeListJoin]")
-{
-    using std::is_same;
-    using std::decay_t;
+    static_assert(is_same<TypeList<char, int>, FlattenTypeListT<TypeList<TypeList<char, int>>>>(), "");
 
-    constexpr auto crt = TypeList<char, int>{} + TypeList<float, double>{};
-    static_assert(is_same<decay_t<decltype(crt)>, TypeList<char, int, float, double>>(), "");
+    static_assert(
+            is_same<
+                    TypeList<char, int>,
+                    FlattenTypeListT<TypeList<TypeList<TypeList<char, int>>>>
+            >(),
+            ""
+    );
 
-    auto rt = TypeList<char, int>{} + TypeList<float, double>{};
-    static_assert(is_same<decltype(rt), TypeList<char, int, float, double>>(), "");
+    // NOTE: following tests are not supported.
+    /*
+    static_assert(
+            is_same<
+                    TypeList<char, int, float, double>,
+                    FlattenTypeListT<TypeList<TypeList<char, int>>, TypeList<TypeList<float, double>>>
+            >(),
+            ""
+    );
+
+    static_assert(
+            is_same<
+                    TypeList<char, int, float, double>,
+                    FlattenTypeListT<TypeList<TypeList<char, int>>, float, double>
+            >(),
+            ""
+    );
+
+    static_assert(
+            is_same<
+                    TypeList<char, float, double>,
+                    FlattenTypeListT<char, TypeList<TypeList<float, double>>>
+            >(),
+            ""
+    );
+     */
 }
 

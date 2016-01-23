@@ -43,6 +43,7 @@ set(HEADER_FILES
         ../meta/Extract.h
         ../meta/TypeList.h
         ../meta/TypeListFlatten.h
+        ../meta/TypeListJoin.h
         ../meta/TypeAt.h
         ../wolca/StringUtility.h
         ../wolca/Range.h
@@ -89,6 +90,7 @@ set(SOURCE_FILES
         meta/ExtractTest.cpp
         meta/TypeListTest.cpp
         meta/TypeListFlattenTest.cpp
+        meta/TypeListJoinTest.cpp
         meta/TypeAtTest.cpp
         math/PowerTest.cpp
         math/AbsTest.cpp
