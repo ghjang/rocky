@@ -5,8 +5,17 @@
 #include "rocky/meta/Identity.h"
 
 
-template <typename... T>
+template <typename... xs>
 struct TypeList
+{ };
+
+
+template <typename... xs>
+struct TypeListSize : std::integral_constant<std::size_t, sizeof...(xs)>
+{ };
+
+template <typename... xs>
+struct TypeListSize<TypeList<xs...>> : TypeListSize<xs...>
 { };
 
 
