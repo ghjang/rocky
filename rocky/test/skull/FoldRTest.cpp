@@ -56,7 +56,7 @@ TEST_CASE("fold right, integral constant in tuple sum", "[Fold]")
 TEST_CASE("fold right, integral constant multiply", "[Fold]")
 {
     using mul_t = FoldRT<
-                        IntegralConstantMultiply,
+                        Multiply,
                         int_c_t<1>,  // init
                         int_c_t<1>,
                         int_c_t<2>,

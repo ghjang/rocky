@@ -77,12 +77,12 @@ TEST_CASE("integral constant subtract through class template Minus", "IntegralCo
     );
 }
 
-TEST_CASE("integral constant multiplication through class template IntegralConstantMultiply", "IntegralConstantUtility")
+TEST_CASE("integral constant multiplication through class template Multiply", "IntegralConstantUtility")
 {
     using std::integral_constant;
 
     static_assert(
-            IntegralConstantMultiply<integral_constant<int, 2>, integral_constant<int, 3>>() == 6,
+            Multiply<integral_constant<int, 2>, integral_constant<int, 3>>() == 6,
             "integral constant multiply: 2 * 3 = 6"
     );
 }
