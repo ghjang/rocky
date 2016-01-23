@@ -60,7 +60,7 @@ TEST_CASE("transforming tuple element types to pointer types", "[TransformTuple]
     using tuple_t = tuple<char, int, double>;
     using ptr_tuple_t = tuple<char *, int *, double *>;
     static_assert(
-            is_same<ptr_tuple_t, typename TransformElementType<add_pointer, tuple_t>::type>(),
+            is_same<ptr_tuple_t, MapT<add_pointer, tuple_t>>(),
             "transformed tuple_t should be ptr_tuple_t."
     );
 }
@@ -74,7 +74,7 @@ TEST_CASE("transforming tuple element types to shard_ptr types", "[TransformTupl
     using tuple_t = tuple<char, int, double>;
     using shared_ptr_tuple_t = tuple<shared_ptr<char>, shared_ptr<int>, shared_ptr<double>>;
     static_assert(
-            is_same<shared_ptr_tuple_t, typename TransformElementType<AddSharedPtr, tuple_t>::type>(),
+            is_same<shared_ptr_tuple_t, MapT<AddSharedPtr, tuple_t>>(),
             "transformed tuple_t shouble be shared_ptr_tuple_t."
     );
 }
@@ -88,7 +88,7 @@ TEST_CASE("transforming tuple integral element types to shard_ptr types", "[Tran
     using tuple_t = tuple<char, int, double, uint64_t, float>;
     using integral_ptr_tuple_t = tuple<shared_ptr<char>, shared_ptr<int>, double, shared_ptr<uint64_t>, float>;
     static_assert(
-            is_same<integral_ptr_tuple_t, typename TransformElementType<AddSharedPtrIfIntegral, tuple_t>::type>(),
+            is_same<integral_ptr_tuple_t, MapT<AddSharedPtrIfIntegral, tuple_t>>(),
             "transformed tuple_t should be integral_ptr_tuple_t."
     );
 }
@@ -105,10 +105,10 @@ TEST_CASE("transforming tuple integral element types to integral value true_type
     static_assert(
             is_same<
                 integral_tuple_t,
-                typename TransformElementType<
-                                IntegralTypeToOne,   // should have 'type' member.
-                                tuple_t
-                            >::type
+                MapT<
+                        IntegralTypeToOne,   // should have 'type' member.
+                        tuple_t
+                >
             >(),
             "transformed tuple_t should be integral_tuple_t."
     );

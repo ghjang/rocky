@@ -46,24 +46,13 @@ constexpr std::array<int, sizeof...(list)> IntegralConstantElementTypeToArray<
 //==============================================================================
 // compiletime metafunctions
 //==============================================================================
-template <template <typename> class F, typename Tuple>
-struct TransformElementType;
-
-template <template <typename> class F, typename... list>
-struct TransformElementType<F, std::tuple<list...>> : Map<F, std::tuple<list...>>
-{ };
-
-
 template <template <typename> class Predicate, typename... list>
 struct TransformElementTypeToBoolConstantType : TransformElementTypeToBoolConstantType<Predicate, std::tuple<list...>>
 { };
 
 template <template <typename> class Predicate, typename... list>
 struct TransformElementTypeToBoolConstantType<Predicate, std::tuple<list...>>
-            : TransformElementType<
-                    TypeToBoolConstantType<Predicate>::template Convert,
-                    std::tuple<list...>
-                >
+            : Map<TypeToBoolConstantType<Predicate>::template Convert, std::tuple<list...>>
 {
     static_assert(HasValueMember<Predicate<int>>(), "Predicate should have 'value' member.");
 };
