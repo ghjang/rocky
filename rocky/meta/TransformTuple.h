@@ -11,6 +11,7 @@
 
 #include "rocky/ConstExprArray.h"
 #include "rocky/meta/IntegralConstantUtility.h"
+#include "rocky/skull/Map.h"
 
 
 //==============================================================================
@@ -45,29 +46,12 @@ constexpr std::array<int, sizeof...(list)> IntegralConstantElementTypeToArray<
 //==============================================================================
 // compiletime metafunctions
 //==============================================================================
-
-namespace Detail
-{
-    template<template<typename> class F, typename Tuple>
-    struct TransformElementTypeImpl;
-
-    template<template<typename> class F, typename... list>
-    struct TransformElementTypeImpl<F, std::tuple<list...>>
-    {
-        using type = std::tuple<typename F<list>::type...>;
-    };
-} // namespace Detail
-
 template <template <typename> class F, typename Tuple>
 struct TransformElementType;
 
 template <template <typename> class F, typename... list>
-struct TransformElementType<F, std::tuple<list...>>
-            : Detail::TransformElementTypeImpl<F, std::tuple<list...>>
-{
-    static_assert(sizeof...(list) > 0, "tuple should have at least one template parameter.");
-    static_assert(HasTypeMember<F<std::tuple_element_t<0, std::tuple<list...>>>>(), "F should have 'type' member.");
-};
+struct TransformElementType<F, std::tuple<list...>> : Map<F, std::tuple<list...>>
+{ };
 
 
 template <template <typename> class Predicate, typename... list>
