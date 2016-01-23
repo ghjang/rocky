@@ -6,6 +6,8 @@
 #include "rocky/skull/FoldR.h"
 
 
+// THINK: Is it possible to introduce the underscore type place holder, '_', to simplify the codes below?
+
 template <typename... xs>
 struct Reverse
 {
