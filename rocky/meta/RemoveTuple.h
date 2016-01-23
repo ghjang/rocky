@@ -32,7 +32,7 @@ private:
     { };
 
 public:
-    using type = typename FoldLeft<AppendTypeIf, init_t, list...>::type;
+    using type = FoldLT<AppendTypeIf, init_t, list...>;
 };
 
 

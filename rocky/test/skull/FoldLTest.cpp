@@ -20,29 +20,29 @@ TEST_CASE("runtime fold, std::accumulate", "[FoldL]")
 
 TEST_CASE("fold left, integral constant sum", "[FoldL]")
 {
-    using sum_t = typename FoldLeft<
-                                IntegralConstantSum,
-                                int_c_t<0>,  // init
-                                int_c_t<1>,
-                                int_c_t<2>,
-                                int_c_t<3>,
-                                int_c_t<4>,
-                                int_c_t<5>
-                            >::type;
+    using sum_t = FoldLT<
+                        IntegralConstantSum,
+                        int_c_t<0>,  // init
+                        int_c_t<1>,
+                        int_c_t<2>,
+                        int_c_t<3>,
+                        int_c_t<4>,
+                        int_c_t<5>
+                  >;
     static_assert(sum_t() == 15, "(((((0 + 1) + 2) + 3) + 4) + 5) = 15");
 }
 
 TEST_CASE("fold left, integral constant subtract", "[FoldL]")
 {
-    using subtract_t = typename FoldLeft<
-                                    IntegralConstantSubtract,
-                                    int_c_t<0>,  // init
-                                    int_c_t<1>,
-                                    int_c_t<2>,
-                                    int_c_t<3>,
-                                    int_c_t<4>,
-                                    int_c_t<5>
-                                >::type;
+    using subtract_t = FoldLT<
+                            IntegralConstantSubtract,
+                            int_c_t<0>,  // init
+                            int_c_t<1>,
+                            int_c_t<2>,
+                            int_c_t<3>,
+                            int_c_t<4>,
+                            int_c_t<5>
+                       >;
     static_assert(subtract_t() == -15, "(((((0 - 1) - 2) - 3) - 4) - 5) = -15");
 }
 
@@ -58,25 +58,25 @@ TEST_CASE("fold left, integral constant in tuple sum", "[FoldL]")
                                 int_c_t<5>
                             >;
 
-    using sum_t = typename FoldLeft<
-                                IntegralConstantSum,
-                                int_c_t<0>,  // init
-                                integral_tuple_t
-                            >::type;
+    using sum_t = FoldLT<
+                        IntegralConstantSum,
+                        int_c_t<0>,  // init
+                        integral_tuple_t
+                  >;
     static_assert(sum_t() == 15, "(((((0 + 1) + 2) + 3) + 4) + 5) = 15");
 }
 
 TEST_CASE("fold left, integral constant multiply", "[FoldL]")
 {
-    using mul_t = typename FoldLeft<
-                                IntegralConstantMultiply,
-                                int_c_t<1>,  // init
-                                int_c_t<1>,
-                                int_c_t<2>,
-                                int_c_t<3>,
-                                int_c_t<4>,
-                                int_c_t<5>
-                            >::type;
+    using mul_t = FoldLT<
+                        IntegralConstantMultiply,
+                        int_c_t<1>,  // init
+                        int_c_t<1>,
+                        int_c_t<2>,
+                        int_c_t<3>,
+                        int_c_t<4>,
+                        int_c_t<5>
+                  >;
     static_assert(mul_t() == 120, "(((((1 * 1) * 2) * 3) * 4) * 5) = 120");
 }
 

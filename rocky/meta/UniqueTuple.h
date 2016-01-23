@@ -28,7 +28,7 @@ private:
     { };
 
 public:
-    using type = typename FoldLeft<AppendTypeIfNotExist, init_t, list...>::type;
+    using type = FoldLT<AppendTypeIfNotExist, init_t, list...>;
 };
 
 

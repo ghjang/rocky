@@ -33,7 +33,7 @@ private:
     };
 
 public:
-    using type = typename FoldLeft<AppendIntegerSequence, init_seq_t, list...>::type;
+    using type = FoldLT<AppendIntegerSequence, init_seq_t, list...>;
 };
 
 
