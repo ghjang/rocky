@@ -55,5 +55,17 @@ constexpr auto operator + (TypeList<T1...>, TypeList<T2...>)
 }
 
 
+template <typename T>
+struct TypeListToTuple;
+
+template <typename... xs>
+struct TypeListToTuple<TypeList<xs...>> : type_is<std::tuple<xs...>>
+{ };
+
+
+template <typename... xs>
+using TypeListToTupleT = typename TypeListToTuple<xs...>::type;
+
+
 #endif //ROCKY_TYPELIST_H
 

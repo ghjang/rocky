@@ -76,3 +76,13 @@ TEST_CASE("TypeList operator +", "[TypeList]")
     static_assert(is_same<decltype(rt), TypeList<char, int, float, double>>(), "");
 }
 
+TEST_CASE("TypeListToTuple", "[TypeList]")
+{
+    using std::is_same;
+    using std::tuple;
+
+    static_assert(is_same<tuple<>, TypeListToTupleT<TypeList<>>>(), "");
+    static_assert(is_same<tuple<char, int>, TypeListToTupleT<TypeList<char, int>>>(), "");
+    static_assert(!is_same<TypeList<char, int>, TypeListToTupleT<TypeList<char, int>>>(), "");
+}
+

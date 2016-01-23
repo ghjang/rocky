@@ -147,22 +147,26 @@ public:
 // runtime functions
 //==============================================================================
 
-template <typename F, typename Tuple, std::size_t... i>
-auto TransformElementImpl(F && f, Tuple && t, std::index_sequence<i...>)
+namespace Detail
 {
-    return std::make_tuple(f(std::get<i>(std::forward<Tuple>(t)))...);
-}
+    template<typename F, typename Tuple, std::size_t... i>
+    auto TransformElementImpl(F &&f, Tuple &&t, std::index_sequence<i...>)
+    {
+        return std::make_tuple(f(std::get<i>(std::forward<Tuple>(t)))...);
+    }
+} // namespace Detail
+
 
 template <typename F, typename... list>
 auto TransformElement(F && f, std::tuple<list...> const& t)
 {
-    return TransformElementImpl(std::forward<F>(f), t, std::index_sequence_for<list...>{});
+    return Detail::TransformElementImpl(std::forward<F>(f), t, std::index_sequence_for<list...>{});
 }
 
 template <typename F, typename... list>
 auto TransformElement(F && f, std::tuple<list...> && t)
 {
-    return TransformElementImpl(std::forward<F>(f), std::move(t), std::index_sequence_for<list...>{});
+    return Detail::TransformElementImpl(std::forward<F>(f), std::move(t), std::index_sequence_for<list...>{});
 }
 
 
