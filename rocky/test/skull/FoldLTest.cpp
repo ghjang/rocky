@@ -35,7 +35,7 @@ TEST_CASE("fold left, integral constant sum", "[FoldL]")
 TEST_CASE("fold left, integral constant subtract", "[FoldL]")
 {
     using subtract_t = FoldLT<
-                            IntegralConstantSubtract,
+                            Minus,
                             int_c_t<0>,  // init
                             int_c_t<1>,
                             int_c_t<2>,

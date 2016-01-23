@@ -67,12 +67,12 @@ TEST_CASE("integral constant sum through class template Plus", "IntegralConstant
     );
 }
 
-TEST_CASE("integral constant subtract through class template IntegralConstantSubtract", "IntegralConstantUtility")
+TEST_CASE("integral constant subtract through class template Minus", "IntegralConstantUtility")
 {
     using std::integral_constant;
 
     static_assert(
-            IntegralConstantSubtract<integral_constant<int, 1>, integral_constant<int, 2>>() == -1,
+            Minus<integral_constant<int, 1>, integral_constant<int, 2>>() == -1,
             "integral constant subtract: 1 - 2 = -1"
     );
 }
