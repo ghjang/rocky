@@ -4,7 +4,9 @@
 
 #include <tuple>
 
+#include "rocky/meta/Identity.h"
 #include "rocky/meta/TypeList.h"
+#include "rocky/meta/TypeListUtility.h"
 #include "rocky/meta/TypeSelection.h"
 
 

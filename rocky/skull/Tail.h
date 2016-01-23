@@ -6,6 +6,7 @@
 
 #include "rocky/meta/Identity.h"
 #include "rocky/meta/TypeList.h"
+#include "rocky/meta/TypeListUtility.h"
 
 
 template <typename... xs>
