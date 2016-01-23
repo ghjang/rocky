@@ -87,12 +87,12 @@ TEST_CASE("integral constant multiplication through class template Multiply", "I
     );
 }
 
-TEST_CASE("integral constant divide through class template IntegralConstantDivide", "IntegralConstantUtility")
+TEST_CASE("integral constant divide through class template Divide", "IntegralConstantUtility")
 {
     using std::integral_constant;
 
     static_assert(
-            IntegralConstantDivide<integral_constant<int, 10>, integral_constant<int, 2>>() == 5,
+            Divide<integral_constant<int, 10>, integral_constant<int, 2>>() == 5,
             "integral constant divide: 10 / 2 = 5"
     );
 }
