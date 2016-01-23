@@ -54,5 +54,14 @@ struct CharTypeToStringType<T const *, std::enable_if_t<IsCharType<T>::value>>
 { };
 
 
+template <template <typename> class Predicate>
+struct NegatePredicate
+{
+    template <typename T>
+    struct Convert : std::integral_constant<bool, !Predicate<T>::value>
+    { };
+};
+
+
 #endif //ROCKY_TYPEUTILITY_H
 

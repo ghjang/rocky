@@ -2,14 +2,20 @@
 
 #include "rocky/meta/TypeUtility.h"
 
-#include <type_traits>
-
 
 TEST_CASE("basic type wrapping as a value", "[TypeUtility]")
 {
     using std::is_same;
 
     static_assert(is_same<Identity<int> const, decltype(type_c<int>)>(), "Identity<int> const == decltype(type_c<int>)");
+}
+
+TEST_CASE("NegatePrdicate", "[TypeUtility]")
+{
+    using std::is_integral;
+
+    static_assert(is_integral<int>(), "");
+    static_assert(!NegatePredicate<is_integral>::template Convert<int>(), "");
 }
 
 TEST_CASE("CharTypeToStringType", "[TypeUtility]")
