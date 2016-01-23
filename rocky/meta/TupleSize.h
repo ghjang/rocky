@@ -5,9 +5,9 @@
 #include <type_traits>
 #include <tuple>
 
-#include "rocky/meta/Fold.h"
 #include "rocky/meta/IntegralConstantUtility.h"
 #include "rocky/meta/NthTuple.h"
+#include "rocky/skull/FoldR.h"
 
 
 template <typename... list>

@@ -4,7 +4,7 @@
 
 #include "rocky/meta/Transform.h"
 #include "rocky/meta/IntegralConstantUtility.h"
-#include "rocky/meta/Fold.h"
+#include "rocky/skull/FoldR.h"
 
 
 template <template <typename> class Predicate, typename... list>

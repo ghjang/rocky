@@ -23,7 +23,6 @@ set(HEADER_FILES
         ../math/RatioString.h
         ../meta/CountTuple.h
         ../meta/FindTuple.h
-        ../meta/Fold.h
         ../meta/ForEachArgument.h
         ../meta/ForEachTuple.h
         ../meta/HasMember.h
@@ -55,7 +54,10 @@ set(HEADER_FILES
         ../skull/Take.h
         ../skull/Drop.h
         ../skull/Init.h
-        ../skull/Map.h)
+        ../skull/Map.h
+        ../skull/Filter.h
+        ../skull/FoldL.h
+        ../skull/FoldR.h)
 
 set(SOURCE_FILES
         main.cpp
@@ -74,7 +76,6 @@ set(SOURCE_FILES
         meta/IntegerSequenceUtilityTest.cpp
         meta/ForEachTupleTest.cpp
         meta/TypeUtilityTest.cpp
-        meta/FoldTest.cpp
         meta/TransformTest.cpp
         meta/CountTupleTest.cpp
         meta/RemoveTupleTest.cpp
@@ -99,7 +100,10 @@ set(SOURCE_FILES
         skull/TakeTest.cpp
         skull/DropTest.cpp
         skull/InitTest.cpp
-        skull/MapTest.cpp)
+        skull/MapTest.cpp
+        skull/FilterTest.cpp
+        skull/FoldLTest.cpp
+        skull/FoldRTest.cpp)
 
 add_executable(RockyTest ${HEADER_FILES} ${SOURCE_FILES})
 
