@@ -6,15 +6,6 @@
 #include "rocky/meta/TypeList.h"
 
 
-template <typename... xs>
-struct TypeListSize : std::integral_constant<std::size_t, sizeof...(xs)>
-{ };
-
-template <typename... xs>
-struct TypeListSize<TypeList<xs...>> : TypeListSize<xs...>
-{ };
-
-
 template <typename... T>
 struct JoinTypeList;
 
@@ -58,18 +49,6 @@ constexpr auto operator + (TypeList<T1...>, TypeList<T2...>)
 {
     return TypeList<T1..., T2...>{};
 }
-
-
-template <typename T>
-struct TypeListToTuple;
-
-template <typename... xs>
-struct TypeListToTuple<TypeList<xs...>> : type_is<std::tuple<xs...>>
-{ };
-
-
-template <typename... xs>
-using TypeListToTupleT = typename TypeListToTuple<xs...>::type;
 
 
 #endif //ROCKY_TYPELISTUTILITY_H

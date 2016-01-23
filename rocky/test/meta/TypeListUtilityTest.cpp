@@ -5,17 +5,6 @@
 #include <type_traits>
 
 
-TEST_CASE("TypeListSize", "[TypeListUtility]")
-{
-    static_assert(0 == TypeListSize<>(), "");
-    static_assert(1 == TypeListSize<int>(), "");
-    static_assert(3 == TypeListSize<char, int, float>(), "");
-
-    static_assert(0 == TypeListSize<TypeList<>>(), "");
-    static_assert(1 == TypeListSize<TypeList<int>>(), "");
-    static_assert(3 == TypeListSize<TypeList<char, int, float>>(), "");
-}
-
 TEST_CASE("TypeList join", "[TypeListUtility]")
 {
     using std::is_same;
@@ -75,13 +64,4 @@ TEST_CASE("TypeList operator +", "[TypeListUtility]")
     static_assert(is_same<decltype(rt), TypeList<char, int, float, double>>(), "");
 }
 
-TEST_CASE("TypeListToTuple", "[TypeListUtility]")
-{
-    using std::is_same;
-    using std::tuple;
-
-    static_assert(is_same<tuple<>, TypeListToTupleT<TypeList<>>>(), "");
-    static_assert(is_same<tuple<char, int>, TypeListToTupleT<TypeList<char, int>>>(), "");
-    static_assert(!is_same<TypeList<char, int>, TypeListToTupleT<TypeList<char, int>>>(), "");
-}
 
