@@ -35,7 +35,7 @@ set(HEADER_FILES
         ../meta/RemoveTuple.h
         ../meta/ReplaceTuple.h
         ../meta/ReverseTuple.h
-        ../meta/TransformTuple.h
+        ../meta/Transform.h
         ../meta/TupleSize.h
         ../meta/TypeSelection.h
         ../meta/TypeUtility.h
@@ -74,7 +74,7 @@ set(SOURCE_FILES
         meta/ForEachTupleTest.cpp
         meta/TypeUtilityTest.cpp
         meta/FoldTest.cpp
-        meta/TransformTupleTest.cpp
+        meta/TransformTest.cpp
         meta/CountTupleTest.cpp
         meta/RemoveTupleTest.cpp
         meta/ReplaceTupleTest.cpp
