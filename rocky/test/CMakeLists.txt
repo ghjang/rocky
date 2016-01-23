@@ -32,7 +32,7 @@ set(HEADER_FILES
         ../meta/MultipleInheritance.h
         ../meta/NthTuple.h
         ../meta/Remove.h
-        ../meta/ReplaceTuple.h
+        ../meta/Replace.h
         ../meta/Transform.h
         ../meta/TupleSize.h
         ../meta/TypeSelection.h
@@ -82,7 +82,7 @@ set(SOURCE_FILES
         meta/TransformTest.cpp
         meta/CountTest.cpp
         meta/RemoveTest.cpp
-        meta/ReplaceTupleTest.cpp
+        meta/ReplaceTest.cpp
         meta/FindTest.cpp
         meta/UniqueTupleTest.cpp
         meta/CharSequenceUtilityTest.cpp

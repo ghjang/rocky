@@ -5,11 +5,8 @@
 #include "rocky/meta/Transform.h"
 
 
-template <typename SourceType, typename TargetType, typename Tuple>
-struct ReplaceElementType;
-
-template <typename SourceType, typename TargetType, typename... list>
-struct ReplaceElementType<SourceType, TargetType, std::tuple<list...>>
+template <typename SourceType, typename TargetType, typename... xs>
+struct Replace
 {
 private:
     template <typename T>
@@ -22,8 +19,21 @@ private:
     { };
 
 public:
-    using type = MapT<SourceTypeToTargetType, std::tuple<list...>>;
+    using type = MapT<SourceTypeToTargetType, xs...>;
 };
+
+
+template <typename SourceType, typename TargetType, typename... xs>
+using ReplaceT = typename Replace<SourceType, TargetType, xs...>::type;
+
+
+template <typename SourceType, typename TargetType, typename... xs>
+struct Replace<SourceType, TargetType, TypeList<xs...>> : Replace<SourceType, TargetType, xs...>
+{ };
+
+template <typename SourceType, typename TargetType, typename... xs>
+struct Replace<SourceType, TargetType, std::tuple<xs...>> : TypeListToTuple<ReplaceT<SourceType, TargetType, xs...>>
+{ };
 
 
 #endif //ROCKY_REPLACETUPLE_H

@@ -1,9 +1,6 @@
 #include "../catch.hpp"
 
 #include "rocky/meta/Identity.h"
-
-#include <type_traits>
-
 #include "rocky/meta/HasMember.h"
 
 
