@@ -22,7 +22,7 @@ set(HEADER_FILES
         ../math/Abs.h
         ../math/RatioString.h
         ../meta/Count.h
-        ../meta/FindTuple.h
+        ../meta/Find.h
         ../meta/ForEachArgument.h
         ../meta/ForEachTuple.h
         ../meta/HasMember.h
@@ -83,7 +83,7 @@ set(SOURCE_FILES
         meta/CountTest.cpp
         meta/RemoveTest.cpp
         meta/ReplaceTupleTest.cpp
-        meta/FindTupleTest.cpp
+        meta/FindTest.cpp
         meta/UniqueTupleTest.cpp
         meta/CharSequenceUtilityTest.cpp
         meta/TransformIntegerSequenceTest.cpp
