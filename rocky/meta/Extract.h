@@ -1,20 +1,33 @@
-#ifndef ROCKY_EXTRACTTUPLE_H
-#define ROCKY_EXTRACTTUPLE_H
+#ifndef ROCKY_EXTRACT_H
+#define ROCKY_EXTRACT_H
 
 
-#include <tuple>
-#include <utility>
+#include "rocky/meta/TypeList.h"
 
 
-template <typename IndexSequence, typename Tuple>
-struct ExtractElementType;
+template <typename IndexSequence, typename... xs>
+struct Extract;
 
-template <typename T, T... i, typename... list>
-struct ExtractElementType<std::integer_sequence<T, i...>, std::tuple<list...>>
-{
-    using type = std::tuple<std::tuple_element_t<i, std::tuple<list...>>...>;
-};
+template <typename T, T... i, typename... xs>
+struct Extract<std::integer_sequence<T, i...>, xs...>
+        : type_is<TypeList<std::tuple_element_t<i, std::tuple<xs...>>...>>
+{ };
 
 
-#endif //ROCKY_EXTRACTTUPLE_H
+template <typename T, typename... xs>
+using ExtractT = typename Extract<T, xs...>::type;
+
+
+template <typename T, T... i, typename... xs>
+struct Extract<std::integer_sequence<T, i...>, TypeList<xs...>>
+        : Extract<std::integer_sequence<T, i...>, xs...>
+{ };
+
+template <typename T, T... i, typename... xs>
+struct Extract<std::integer_sequence<T, i...>, std::tuple<xs...>>
+        : TypeListToTuple<ExtractT<std::integer_sequence<T, i...>, xs...>>
+{ };
+
+
+#endif //ROCKY_EXTRACT_H
 
