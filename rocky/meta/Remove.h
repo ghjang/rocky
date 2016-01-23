@@ -1,43 +1,20 @@
-#ifndef ROCKY_REMOVETUPLE_H
-#define ROCKY_REMOVETUPLE_H
+#ifndef ROCKY_REMOVE_H
+#define ROCKY_REMOVE_H
 
 
 #include "rocky/meta/TypeUtility.h"
-#include "rocky/skull/FoldL.h"
-
-//#include "rocky/meta/TransformTuple.h"
+#include "rocky/skull/Filter.h"
 
 
-template <template <typename> class Predicate, typename Tuple>
-struct RemoveElementType;
+template <template <typename> class p, typename... xs>
+using Remove = Filter<NegatePredicate<p>::template Convert, xs...>;
 
-template <template <typename> class Predicate, typename... list>
-struct RemoveElementType<Predicate, std::tuple<list...>>
-{
-private:
-    static_assert(HasValueMember<Predicate<int>>(), "Predicate should have 'value' member.");
-
-    using init_t = std::tuple<>;
-
-    template <typename lhsTuple, typename rhsType>
-    struct AppendTypeIf;
-
-    template <typename... lhsList, typename rhsType>
-    struct AppendTypeIf<std::tuple<lhsList...>, rhsType>
-            : std::conditional<
-                    Predicate<rhsType>::value,
-                    std::tuple<lhsList...>,
-                    std::tuple<lhsList..., rhsType>
-            >
-    { };
-
-public:
-    using type = FoldLT<AppendTypeIf, init_t, list...>;
-};
+template <template <typename> class p, typename... xs>
+using RemoveT = typename Remove<p, xs...>::type;
 
 
 /**
- * NOTE: Following implementation also works. But, it's more complicated.
+ * NOTE: Following implementation doesn't compile anymore.
  *          By the way, the usage example of 'Transform' is still useful for reference.
  */
 /*
@@ -56,5 +33,5 @@ public:
 */
 
 
-#endif //ROCKY_REMOVETUPLE_H
+#endif //ROCKY_REMOVE_H
 

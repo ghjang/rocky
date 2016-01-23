@@ -2,8 +2,6 @@
 
 #include "rocky/meta/Remove.h"
 
-#include <type_traits>
-
 
 TEST_CASE("remove tuple element type", "[Remove]")
 {
@@ -20,7 +18,7 @@ TEST_CASE("remove tuple element type", "[Remove]")
     using tuple_t = tuple<char, float, int, double, uint64_t>;
     using removed_t = tuple<char, int, uint64_t>;
     static_assert(
-            is_same<removed_t, typename RemoveElementType<is_floating_point, tuple_t>::type>(),
+            is_same<removed_t, typename Remove<is_floating_point, tuple_t>::type>(),
             "removed tuple_t should be same as removed_t."
     );
 }
