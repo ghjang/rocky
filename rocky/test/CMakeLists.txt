@@ -44,6 +44,7 @@ set(HEADER_FILES
         ../meta/TransformIntegerSequence.h
         ../meta/ExtractTuple.h
         ../meta/TypeList.h
+        ../meta/TypeListToTuple.h
         ../wolca/StringUtility.h
         ../wolca/Range.h
         ../wolca/IntegerLength.h
@@ -82,6 +83,7 @@ set(SOURCE_FILES
         meta/CharSequenceUtilityTest.cpp
         meta/TransformIntegerSequenceTest.cpp
         meta/ExtractTupleTest.cpp
+        meta/TypeListToTupleTest.cpp
         math/PowerTest.cpp
         math/AbsTest.cpp
         math/RatioStringTest.cpp
