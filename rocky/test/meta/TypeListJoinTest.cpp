@@ -2,22 +2,20 @@
 
 #include "rocky/meta/TypeListJoin.h"
 
-#include <type_traits>
 
-
-TEST_CASE("TypeList join", "[TypeListUtility]")
+TEST_CASE("TypeList flatten", "[TypeListFlatten]")
 {
     using std::is_same;
 
-    static_assert(is_same<TypeList<>, JoinTypeListT<TypeList<>, TypeList<>> >(), "");
+    static_assert(is_same<TypeList<>, FlattenTypeListT<TypeList<>, TypeList<>> >(), "");
 
-    static_assert(is_same<TypeList<char>, JoinTypeListT<char, TypeList<>>>(), "");
+    static_assert(is_same<TypeList<char>, FlattenTypeListT<char, TypeList<>>>(), "");
 
 
     static_assert(
             is_same<
                     TypeList<char, int, float, double>,
-                    JoinTypeListT<TypeList<char, int>, TypeList<float, double>>
+                    FlattenTypeListT<TypeList<char, int>, TypeList<float, double>>
             >(),
             ""
     );
@@ -25,7 +23,7 @@ TEST_CASE("TypeList join", "[TypeListUtility]")
     static_assert(
             is_same<
                     TypeList<char, int, float, double>,
-                    JoinTypeListT<TypeList<char, int>, float, double>
+                    FlattenTypeListT<TypeList<char, int>, float, double>
             >(),
             ""
     );
@@ -33,7 +31,7 @@ TEST_CASE("TypeList join", "[TypeListUtility]")
     static_assert(
             is_same<
                     TypeList<char, float, double>,
-                    JoinTypeListT<char, TypeList<float, double>>
+                    FlattenTypeListT<char, TypeList<float, double>>
             >(),
             ""
     );
@@ -45,14 +43,14 @@ TEST_CASE("TypeList join", "[TypeListUtility]")
     static_assert(
             is_same<
                     TypeList<char, int, float, double>,
-                    JoinTypeListT<char, int, TypeList<float, double>>
+                    FlattenTypeListT<char, int, TypeList<float, double>>
             >(),
             ""
     );
      */
 }
 
-TEST_CASE("TypeList operator +", "[TypeListUtility]")
+TEST_CASE("TypeList operator +", "[TypeListJoin]")
 {
     using std::is_same;
     using std::decay_t;
@@ -63,5 +61,4 @@ TEST_CASE("TypeList operator +", "[TypeListUtility]")
     auto rt = TypeList<char, int>{} + TypeList<float, double>{};
     static_assert(is_same<decltype(rt), TypeList<char, int, float, double>>(), "");
 }
-
 

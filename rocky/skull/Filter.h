@@ -16,7 +16,7 @@ private:
     template <typename lhs, typename rhs>
     struct AppendIfTrue : SelectTypeIf<
                                 p<rhs>::value,
-                                JoinTypeList<lhs, rhs>,
+                                FlattenTypeList<lhs, rhs>,
                                 lhs
                           >
     {
