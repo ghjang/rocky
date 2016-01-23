@@ -11,6 +11,8 @@
 
 #include "rocky/ConstExprArray.h"
 #include "rocky/meta/IntegralConstantUtility.h"
+#include "rocky/meta/TypeListToTuple.h"
+#include "rocky/skull/Head.h"
 #include "rocky/skull/Map.h"
 
 
@@ -46,16 +48,19 @@ constexpr std::array<int, sizeof...(list)> IntegralConstantElementTypeToArray<
 //==============================================================================
 // compiletime metafunctions
 //==============================================================================
-template <template <typename> class Predicate, typename... list>
-struct TransformElementTypeToBoolConstantType : TransformElementTypeToBoolConstantType<Predicate, std::tuple<list...>>
-{ };
-
-template <template <typename> class Predicate, typename... list>
-struct TransformElementTypeToBoolConstantType<Predicate, std::tuple<list...>>
-            : Map<TypeToBoolConstantType<Predicate>::template Convert, std::tuple<list...>>
+template <template <typename> class p, typename... xs>
+struct MapTypeToBoolConstantType : Map<TypeToBoolConstantType<p>::template Convert, xs...>
 {
-    static_assert(HasValueMember<Predicate<int>>(), "Predicate should have 'value' member.");
+    static_assert(HasValueMember<p<HeadT<xs...>>>(), "Predicate p should have 'value' member.");
 };
+
+template <template <typename> class p, typename... xs>
+using MapTypeToBoolConstantTypeT = typename MapTypeToBoolConstantType<p, xs...>::type;
+
+
+template <template <typename> class p, typename... xs>
+struct MapTypeToBoolConstantType<p, std::tuple<xs...>> : TypeListToTuple<MapTypeToBoolConstantTypeT<p, xs...>>
+{ };
 
 
 template <typename... list>
