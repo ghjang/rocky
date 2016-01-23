@@ -1,6 +1,6 @@
 #include "../catch.hpp"
 
-#include "rocky/meta/TypeListUtility.h"
+#include "rocky/meta/TypeListJoin.h"
 
 #include <type_traits>
 

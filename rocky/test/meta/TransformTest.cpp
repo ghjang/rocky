@@ -4,8 +4,6 @@
 
 #include <memory>
 
-#include "rocky/meta/Identity.h"
-
 
 namespace
 {

@@ -2,8 +2,7 @@
 #define ROCKY_SKULL_INIT_H
 
 
-#include "rocky/meta/Identity.h"
-#include "rocky/meta/TypeListUtility.h"
+#include "rocky/meta/TypeList.h"
 #include "rocky/skull/Take.h"
 
 

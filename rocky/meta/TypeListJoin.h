@@ -1,8 +1,7 @@
-#ifndef ROCKY_TYPELISTUTILITY_H
-#define ROCKY_TYPELISTUTILITY_H
+#ifndef ROCKY_TYPELISTJOIN_H
+#define ROCKY_TYPELISTJOIN_H
 
 
-#include "rocky/meta/Identity.h"
 #include "rocky/meta/TypeList.h"
 
 
@@ -51,5 +50,5 @@ constexpr auto operator + (TypeList<T1...>, TypeList<T2...>)
 }
 
 
-#endif //ROCKY_TYPELISTUTILITY_H
+#endif //ROCKY_TYPELISTJOIN_H
 

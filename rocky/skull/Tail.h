@@ -2,10 +2,7 @@
 #define ROCKY_SKULL_TAIL_H
 
 
-#include <tuple>
-
-#include "rocky/meta/Identity.h"
-#include "rocky/meta/TypeListUtility.h"
+#include "rocky/meta/TypeList.h"
 
 
 template <typename... xs>

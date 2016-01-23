@@ -2,10 +2,7 @@
 #define ROCKY_SKULL_TAKE_H
 
 
-#include <tuple>
-
-#include "rocky/meta/Identity.h"
-#include "rocky/meta/TypeListUtility.h"
+#include "rocky/meta/TypeListJoin.h"
 #include "rocky/meta/TypeSelection.h"
 
 

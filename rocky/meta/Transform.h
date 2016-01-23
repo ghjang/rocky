@@ -11,7 +11,6 @@
 
 #include "rocky/ConstExprArray.h"
 #include "rocky/meta/IntegralConstantUtility.h"
-#include "rocky/meta/TypeList.h"
 #include "rocky/skull/Head.h"
 #include "rocky/skull/Map.h"
 
