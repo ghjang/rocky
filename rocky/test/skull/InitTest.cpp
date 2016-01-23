@@ -19,6 +19,6 @@ TEST_CASE("Init", "[skull]")
 
     static_assert(is_same<TypeList<int, float>, InitT<TypeList<int, float, double>>>(), "");
 
-    static_assert(is_same<TypeList<int, float>, InitT<tuple<int, float, double>>>(), "");
+    static_assert(is_same<tuple<int, float>, InitT<tuple<int, float, double>>>(), "");
 }
 

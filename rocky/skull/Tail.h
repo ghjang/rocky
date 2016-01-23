@@ -6,6 +6,7 @@
 
 #include "rocky/meta/Identity.h"
 #include "rocky/meta/TypeList.h"
+#include "rocky/meta/TypeListToTuple.h"
 
 
 template <typename... xs>
@@ -18,17 +19,18 @@ template <typename x, typename... xs>
 struct Tail<x, xs...> : type_is<TypeList<xs...>>
 { };
 
+
+template <typename... xs>
+using TailT = typename Tail<xs...>::type;
+
+
 template <typename... xs>
 struct Tail<TypeList<xs...>> : Tail<xs...>
 { };
 
 template <typename... xs>
-struct Tail<std::tuple<xs...>> : Tail<xs...>
+struct Tail<std::tuple<xs...>> : TypeListToTuple<TailT<xs...>>
 { };
-
-
-template <typename... xs>
-using TailT = typename Tail<xs...>::type;
 
 
 #endif //ROCKY_SKULL_TAIL_H

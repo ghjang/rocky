@@ -25,9 +25,9 @@ TEST_CASE("Take", "[skull]")
     static_assert(is_same<TypeList<char, int, float, double>, TakeT<5, TypeList<char, int, float, double>>>(), "");
 
     //
-    static_assert(is_same<TypeList<>, TakeT<0, tuple<char, int, float, double>>>(), "");
-    static_assert(is_same<TypeList<char>, TakeT<1, tuple<char, int, float, double>>>(), "");
-    static_assert(is_same<TypeList<char, int>, TakeT<2, tuple<char, int, float, double>>>(), "");
-    static_assert(is_same<TypeList<char, int, float, double>, TakeT<5, tuple<char, int, float, double>>>(), "");
+    static_assert(is_same<tuple<>, TakeT<0, tuple<char, int, float, double>>>(), "");
+    static_assert(is_same<tuple<char>, TakeT<1, tuple<char, int, float, double>>>(), "");
+    static_assert(is_same<tuple<char, int>, TakeT<2, tuple<char, int, float, double>>>(), "");
+    static_assert(is_same<tuple<char, int, float, double>, TakeT<5, tuple<char, int, float, double>>>(), "");
 }
 

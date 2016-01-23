@@ -17,8 +17,8 @@ TEST_CASE("Tail", "[skull]")
 
     static_assert(is_same<TypeList<float, double>, TailT<int, float, double>>(), "");
 
-    static_assert(is_same<TypeList<float, double>, TailT<tuple<int, float, double>>>(), "");
+    static_assert(is_same<tuple<float, double>, TailT<tuple<int, float, double>>>(), "");
 
-    static_assert(is_same<TypeList<float, double>, TailT<tuple<int, float, double>>>(), "");
+    static_assert(is_same<tuple<float, double>, TailT<tuple<int, float, double>>>(), "");
 }
 

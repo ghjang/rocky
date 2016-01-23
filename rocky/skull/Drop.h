@@ -3,6 +3,7 @@
 
 
 #include "rocky/meta/TypeList.h"
+#include "rocky/meta/TypeListToTuple.h"
 #include "rocky/meta/TypeSelection.h"
 
 
@@ -35,7 +36,7 @@ struct Drop<n, TypeList<xs...>> : Drop<n, xs...>
 { };
 
 template <std::size_t n, typename... xs>
-struct Drop<n, std::tuple<xs...>> : Drop<n, xs...>
+struct Drop<n, std::tuple<xs...>> : TypeListToTuple<DropT<n, xs...>>
 { };
 
 

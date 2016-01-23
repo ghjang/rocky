@@ -5,6 +5,7 @@
 #include <tuple>
 
 #include "rocky/meta/TypeList.h"
+#include "rocky/meta/TypeListToTuple.h"
 #include "rocky/meta/TypeSelection.h"
 
 
@@ -37,7 +38,7 @@ struct Take<n, TypeList<xs...>> : Take<n, xs...>
 { };
 
 template <std::size_t n, typename... xs>
-struct Take<n, std::tuple<xs...>> : Take<n, xs...>
+struct Take<n, std::tuple<xs...>> : TypeListToTuple<TakeT<n, xs...>>
 { };
 
 
