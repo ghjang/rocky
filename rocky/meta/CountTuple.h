@@ -9,11 +9,11 @@
 
 template <template <typename> class Predicate, typename... list>
 struct CountElementType
-            : FoldRight<
+            : FoldRT<
                     IntegralConstantSum,
                     int_c_t<0>, // init
                     MapToBoolConstantTypeT<Predicate, std::tuple<list...>>
-                >::type
+              >
 { };
 
 template <template <typename> class Predicate, typename... list>

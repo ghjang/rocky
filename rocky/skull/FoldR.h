@@ -12,22 +12,29 @@
  * assumed that F is op:
  *  (t0 op (t1 op (t2 op ...(tn op init)...)
  */
-template <template <typename, typename> class F, typename init, typename... list>
-struct FoldRight;
+template <template <typename, typename> class f, typename init, typename... xs>
+struct FoldR;
 
-template <template <typename, typename> class F, typename init>
-struct FoldRight<F, init> : type_is<init>
+
+template <template <typename, typename> class f, typename init, typename... xs>
+using FoldRT = typename FoldR<f, init, xs...>::type;
+
+
+template <template <typename, typename> class f, typename init>
+struct FoldR<f, init> : type_is<init>
 { };
 
-template <template <typename, typename> class F, typename init, typename head, typename... tail>
-struct FoldRight<F, init, head, tail...>
-{
-    using type = typename F<head, typename FoldRight<F, init, tail...>::type>::type;
-};
+template <template <typename, typename> class f, typename init, typename x, typename... xs>
+struct FoldR<f, init, x, xs...> : f<x, FoldRT<f, init, xs...>>
+{ };
 
-template <template <typename, typename> class F, typename init, typename... list>
-struct FoldRight<F, init, std::tuple<list...>>
-        : FoldRight<F, init, list...>
+
+template <template <typename, typename> class f, typename init, typename... xs>
+struct FoldR<f, init, TypeList<xs...>> : FoldR<f, init, xs...>
+{ };
+
+template <template <typename, typename> class f, typename init, typename... xs>
+struct FoldR<f, init, std::tuple<xs...>> : FoldR<f, init, xs...>
 { };
 
 

@@ -12,11 +12,11 @@
 
 template <typename... list>
 struct SumOfElementTypeSize
-            : FoldRight<
+            : FoldRT<
                     IntegralConstantSum,
                     std::integral_constant<std::size_t, 0>,
                     std::integral_constant<std::size_t, sizeof(list)>...
-                >::type
+              >
 { };
 
 template <typename... list>
