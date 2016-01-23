@@ -2,7 +2,7 @@
 #define ROCKY_SKULL_TAKE_H
 
 
-#include "rocky/meta/TypeListJoin.h"
+#include "rocky/meta/TypeListFlatten.h"
 #include "rocky/meta/TypeSelection.h"
 
 

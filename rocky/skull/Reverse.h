@@ -2,7 +2,7 @@
 #define ROCKY_SKULL_REVERSE_H
 
 
-#include "rocky/meta/TypeListJoin.h"
+#include "rocky/meta/TypeListFlatten.h"
 #include "rocky/skull/FoldR.h"
 
 

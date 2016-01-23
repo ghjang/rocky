@@ -2,7 +2,7 @@
 #define ROCKY_SKULL_FILTER_H
 
 
-#include "rocky/meta/TypeListJoin.h"
+#include "rocky/meta/TypeListFlatten.h"
 #include "rocky/meta/TypeSelection.h"
 #include "rocky/skull/FoldL.h"
 
