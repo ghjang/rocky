@@ -40,7 +40,7 @@ set(HEADER_FILES
         ../meta/UniqueTuple.h
         ../meta/CharSequenceUtility.h
         ../meta/TransformIntegerSequence.h
-        ../meta/ExtractTuple.h
+        ../meta/Extract.h
         ../meta/TypeList.h
         ../meta/TypeListJoin.h
         ../meta/TypeAt.h
@@ -85,7 +85,7 @@ set(SOURCE_FILES
         meta/UniqueTupleTest.cpp
         meta/CharSequenceUtilityTest.cpp
         meta/TransformIntegerSequenceTest.cpp
-        meta/ExtractTupleTest.cpp
+        meta/ExtractTest.cpp
         meta/TypeListTest.cpp
         meta/TypeListJoinTest.cpp
         meta/TypeAtTest.cpp

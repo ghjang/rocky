@@ -1,9 +1,9 @@
 #include "../catch.hpp"
 
-#include "rocky/meta/ExtractTuple.h"
+#include "rocky/meta/Extract.h"
 
 
-TEST_CASE("tuple element type extraction", "[ExtractTuple]")
+TEST_CASE("tuple element type extraction", "[Extract]")
 {
     using std::is_same;
     using std::tuple;
