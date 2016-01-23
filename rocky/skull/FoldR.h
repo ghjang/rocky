@@ -3,6 +3,7 @@
 
 
 #include "rocky/meta/TypeList.h"
+#include "rocky/meta/HasMember.h"
 
 
 // accumulation
@@ -26,7 +27,9 @@ struct FoldR<f, init> : type_is<init>
 
 template <template <typename, typename> class f, typename init, typename x, typename... xs>
 struct FoldR<f, init, x, xs...> : f<x, FoldRT<f, init, xs...>>
-{ };
+{
+    static_assert(HasTypeMember<f<x, init>>(), "f should have 'type' member.");
+};
 
 
 template <template <typename, typename> class f, typename init, typename... xs>
