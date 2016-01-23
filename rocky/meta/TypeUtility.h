@@ -2,8 +2,6 @@
 #define ROCKY_TYPEUTILITY_H
 
 
-#include <type_traits>
-
 #include "rocky/meta/Identity.h"
 #include "rocky/meta/IntegralConstantUtility.h"
 
