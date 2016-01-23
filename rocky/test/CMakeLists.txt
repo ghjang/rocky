@@ -58,7 +58,8 @@ set(HEADER_FILES
         ../skull/FoldL.h
         ../skull/FoldR.h
         ../skull/Length.h
-        ../skull/Reverse.h)
+        ../skull/Reverse.h
+        ../skull/Sum.h)
 
 set(SOURCE_FILES
         main.cpp
@@ -105,7 +106,8 @@ set(SOURCE_FILES
         skull/FoldLTest.cpp
         skull/FoldRTest.cpp
         skull/LengthTest.cpp
-        skull/ReverseTest.cpp)
+        skull/ReverseTest.cpp
+        skull/SumTest.cpp)
 
 add_executable(RockyTest ${HEADER_FILES} ${SOURCE_FILES})
 
