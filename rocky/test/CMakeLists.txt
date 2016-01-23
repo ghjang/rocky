@@ -52,7 +52,8 @@ set(HEADER_FILES
         ../skull/Tail.h
         ../skull/Take.h
         ../skull/Drop.h
-        ../skull/Init.h)
+        ../skull/Init.h
+        ../skull/Map.h)
 
 set(SOURCE_FILES
         main.cpp
@@ -93,7 +94,8 @@ set(SOURCE_FILES
         skull/TailTest.cpp
         skull/TakeTest.cpp
         skull/DropTest.cpp
-        skull/InitTest.cpp)
+        skull/InitTest.cpp
+        skull/MapTest.cpp)
 
 add_executable(RockyTest ${HEADER_FILES} ${SOURCE_FILES})
 
