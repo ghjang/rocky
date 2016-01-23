@@ -36,7 +36,7 @@ set(HEADER_FILES
         ../meta/TypeSize.h
         ../meta/TypeSelection.h
         ../meta/TypeUtility.h
-        ../meta/UniqueTuple.h
+        ../meta/Unique.h
         ../meta/CharSequenceUtility.h
         ../meta/TransformIntegerSequence.h
         ../meta/Extract.h
@@ -82,7 +82,7 @@ set(SOURCE_FILES
         meta/RemoveTest.cpp
         meta/ReplaceTest.cpp
         meta/FindTest.cpp
-        meta/UniqueTupleTest.cpp
+        meta/UniqueTest.cpp
         meta/CharSequenceUtilityTest.cpp
         meta/TransformIntegerSequenceTest.cpp
         meta/ExtractTest.cpp
