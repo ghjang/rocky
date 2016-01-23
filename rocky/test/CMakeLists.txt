@@ -57,7 +57,8 @@ set(HEADER_FILES
         ../skull/Map.h
         ../skull/Filter.h
         ../skull/FoldL.h
-        ../skull/FoldR.h)
+        ../skull/FoldR.h
+        ../skull/Length.h)
 
 set(SOURCE_FILES
         main.cpp
@@ -103,7 +104,8 @@ set(SOURCE_FILES
         skull/MapTest.cpp
         skull/FilterTest.cpp
         skull/FoldLTest.cpp
-        skull/FoldRTest.cpp)
+        skull/FoldRTest.cpp
+        skull/LengthTest.cpp)
 
 add_executable(RockyTest ${HEADER_FILES} ${SOURCE_FILES})
 
