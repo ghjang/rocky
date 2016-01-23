@@ -170,14 +170,14 @@ TEST_CASE("integral constant element type to integer sequence", "[TransformTuple
     static_assert(
             is_same<
                     sequence_t,
-                    typename ConvertToIntegerSequenceType<
+                    typename MapToIntegerSequenceType<
                                     true_type, true_type, false_type, true_type, false_type
                                 >::type
             >(),
             "transformed type sequence should be same as sequence_t."
     );
     static_assert(
-            is_same<sequence_t, typename ConvertToIntegerSequenceType<tuple_t>::type>(),
+            is_same<sequence_t, typename MapToIntegerSequenceType<tuple_t>::type>(),
             "transformed tuple_t should be same as sequence_t."
     );
 }
@@ -194,14 +194,14 @@ TEST_CASE("integral constant element type to integer sequence with type alias in
     static_assert(
             is_same<
                     sequence_t,
-                    typename ConvertToIntegerSequenceType<
+                    typename MapToIntegerSequenceType<
                                     int_c_t<1>, int_c_t<2>, int_c_t<0>, int_c_t<100>, int_c_t<123>
                                 >::type
             >(),
             "converted type sequence should be same as sequence_t."
     );
     static_assert(
-            is_same<sequence_t, typename ConvertToIntegerSequenceType<tuple_t>::type>(),
+            is_same<sequence_t, typename MapToIntegerSequenceType<tuple_t>::type>(),
             "converted tuple_t should be same as sequence_t."
     );
 }

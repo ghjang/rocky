@@ -11,6 +11,7 @@
 
 #include "rocky/ConstExprArray.h"
 #include "rocky/meta/IntegralConstantUtility.h"
+#include "rocky/meta/TypeList.h"
 #include "rocky/meta/TypeListToTuple.h"
 #include "rocky/skull/Head.h"
 #include "rocky/skull/Map.h"
@@ -59,32 +60,36 @@ using MapToBoolConstantTypeT = typename MapToBoolConstantType<p, xs...>::type;
 
 
 template <template <typename> class p, typename... xs>
+struct MapToBoolConstantType<p, TypeList<xs...>> : MapToBoolConstantTypeT<p, xs...>
+{ };
+
+template <template <typename> class p, typename... xs>
 struct MapToBoolConstantType<p, std::tuple<xs...>> : TypeListToTuple<MapToBoolConstantTypeT<p, xs...>>
 { };
 
 
 template <typename... list>
-struct ConvertToIntegerSequenceType : ConvertToIntegerSequenceType<std::tuple<list...>>
+struct MapToIntegerSequenceType : MapToIntegerSequenceType<std::tuple<list...>>
 { };
 
 template <typename... list>
-struct ConvertToIntegerSequenceType<std::tuple<list...>>
+struct MapToIntegerSequenceType<std::tuple<list...>>
 {
 private:
     constexpr static auto array_ = IntegralConstantElementTypeToArray<std::tuple<list...>>;
 
     template <typename IndexSequence>
-    struct ConvertToSequenceImpl;
+    struct MapToSequenceImpl;
 
     template <std::size_t... i>
-    struct ConvertToSequenceImpl<std::index_sequence<i...>>
+    struct MapToSequenceImpl<std::index_sequence<i...>>
     {
         using array_element_type_t = std::decay_t<decltype(array_[0])>;
         using type = std::integer_sequence<array_element_type_t, array_[i]...>;
     };
 
 public:
-    using type = typename ConvertToSequenceImpl<std::make_index_sequence<sizeof...(list)>>::type;
+    using type = typename MapToSequenceImpl<std::make_index_sequence<sizeof...(list)>>::type;
 };
 
 
