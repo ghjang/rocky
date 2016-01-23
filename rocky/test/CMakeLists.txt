@@ -31,7 +31,7 @@ set(HEADER_FILES
         ../meta/IntegralConstantUtility.h
         ../meta/MultipleInheritance.h
         ../meta/NthTuple.h
-        ../meta/RemoveTuple.h
+        ../meta/Remove.h
         ../meta/ReplaceTuple.h
         ../meta/ReverseTuple.h
         ../meta/Transform.h
@@ -78,7 +78,7 @@ set(SOURCE_FILES
         meta/TypeUtilityTest.cpp
         meta/TransformTest.cpp
         meta/CountTupleTest.cpp
-        meta/RemoveTupleTest.cpp
+        meta/RemoveTest.cpp
         meta/ReplaceTupleTest.cpp
         meta/FindTupleTest.cpp
         meta/UniqueTupleTest.cpp

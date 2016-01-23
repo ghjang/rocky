@@ -1,11 +1,11 @@
 #include "../catch.hpp"
 
-#include "rocky/meta/RemoveTuple.h"
+#include "rocky/meta/Remove.h"
 
 #include <type_traits>
 
 
-TEST_CASE("remove tuple element type", "[RemoveTuple]")
+TEST_CASE("remove tuple element type", "[Remove]")
 {
     using std::is_same;
     using std::is_floating_point;
