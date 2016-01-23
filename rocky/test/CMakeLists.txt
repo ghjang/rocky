@@ -30,7 +30,6 @@ set(HEADER_FILES
         ../meta/IntegerSequenceUtility.h
         ../meta/IntegralConstantUtility.h
         ../meta/MultipleInheritance.h
-        ../meta/NthTuple.h
         ../meta/Remove.h
         ../meta/Replace.h
         ../meta/Transform.h
@@ -69,7 +68,6 @@ set(SOURCE_FILES
         StringNumberConversionTest.cpp
         VariantUtilityTest.cpp
         meta/TupleSizeTest.cpp
-        meta/NthTupleTest.cpp
         meta/HasMemberTest.cpp
         meta/IdentityTest.cpp
         meta/TypeSelectionTest.cpp

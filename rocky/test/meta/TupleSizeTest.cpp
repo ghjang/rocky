@@ -3,10 +3,10 @@
 #include "rocky/meta/TupleSize.h"
 
 
-TEST_CASE("Getting the sum of template parameter type sizes", "[TupleSize]")
+TEST_CASE("Getting the sum of template parameter type sizes", "[TypeSize]")
 {
     static_assert(
-            SumOfElementTypeSize<int, int, int>() == sizeof(int) * 3,
+            SumOfTypeSize<int, int, int>() == sizeof(int) * 3,
             "element type size of <int, int, int> == sizeof(int) * 3"
     );
 
@@ -17,17 +17,17 @@ TEST_CASE("Getting the sum of template parameter type sizes", "[TupleSize]")
     };
 
     static_assert(
-            SumOfElementTypeSize<int, S, double>() == sizeof(int) + sizeof(S) + sizeof(double),
+            SumOfTypeSize<int, S, double>() == sizeof(int) + sizeof(S) + sizeof(double),
             "element type size of <int, S, double> == sizeof(int) + sizeof(S) + sizeof(double)"
     );
 }
 
-TEST_CASE("Getting the size of tuple's template parameters", "[TupleSize]")
+TEST_CASE("Getting the size of tuple's template parameters", "[TypeSize]")
 {
     using std::tuple;
 
     static_assert(
-            SumOfElementTypeSize<tuple<int, int, int>>() == sizeof(int) * 3,
+            SumOfTypeSize<tuple<int, int, int>>() == sizeof(int) * 3,
             "element type size of tuple<int, int, int> == sizeof(int) * 3"
     );
 
@@ -38,23 +38,23 @@ TEST_CASE("Getting the size of tuple's template parameters", "[TupleSize]")
     };
 
     static_assert(
-            SumOfElementTypeSize<tuple<int, S, double>>() == sizeof(int) + sizeof(S) + sizeof(double),
+            SumOfTypeSize<tuple<int, S, double>>() == sizeof(int) + sizeof(S) + sizeof(double),
             "element type size of tuple<int, S, double> == sizeof(int) + sizeof(S) + sizeof(double)"
     );
 }
 
-TEST_CASE("n-th element type size", "[TupleSize]")
+TEST_CASE("n-th element type size", "[TypeSize]")
 {
     using std::tuple;
 
     static_assert(
-            sizeof(float) == NthElementTypeSize<2, int, char, float, double, uint64_t>(),
+            sizeof(float) == NthTypeSize<2, int, char, float, double, uint64_t>(),
             "3rd element's size == sizeof(float)"
     );
 
     using tuple_t = tuple<int, char, float, double, uint64_t>;
     static_assert(
-            sizeof(double) == NthElementTypeSize<3, tuple_t>(),
+            sizeof(double) == NthTypeSize<3, tuple_t>(),
             "4-th element's size == sizeof(double)"
     );
 }

@@ -1,37 +1,42 @@
-#ifndef ROCKY_TUPLESIZE_H
-#define ROCKY_TUPLESIZE_H
+#ifndef ROCKY_TYPESIZE_H
+#define ROCKY_TYPESIZE_H
 
-
-#include <type_traits>
-#include <tuple>
 
 #include "rocky/meta/IntegralConstantUtility.h"
-#include "rocky/meta/NthTuple.h"
+#include "rocky/meta/TypeAt.h"
 #include "rocky/skull/FoldR.h"
 
 
-template <typename... list>
-struct SumOfElementTypeSize
+template <typename... xs>
+struct SumOfTypeSize
             : FoldRT<
                     Plus,
                     std::integral_constant<std::size_t, 0>,
-                    std::integral_constant<std::size_t, sizeof(list)>...
+                    std::integral_constant<std::size_t, sizeof(xs)>...
               >
 { };
 
-template <typename... list>
-struct SumOfElementTypeSize<std::tuple<list...>> : SumOfElementTypeSize<list...>
+template <typename... xs>
+struct SumOfTypeSize<TypeList<xs...>> : SumOfTypeSize<xs...>
+{ };
+
+template <typename... xs>
+struct SumOfTypeSize<std::tuple<xs...>> : SumOfTypeSize<xs...>
 { };
 
 
-template <int i, typename... list>
-struct NthElementTypeSize : int_c_t<sizeof(typename NthElementType<i, list...>::type)>
+template <int i, typename... xs>
+struct NthTypeSize : int_c_t<sizeof(TypeAtT<i, xs...>)>
 { };
 
-template <int i, typename... list>
-struct NthElementTypeSize<i, std::tuple<list...>> : NthElementTypeSize<i, list...>
+template <int i, typename... xs>
+struct NthTypeSize<i, TypeList<xs...>> : NthTypeSize<i, xs...>
+{ };
+
+template <int i, typename... xs>
+struct NthTypeSize<i, std::tuple<xs...>> : NthTypeSize<i, xs...>
 { };
 
 
-#endif //ROCKY_TUPLESIZE_H
+#endif //ROCKY_TYPESIZE_H
 
