@@ -58,7 +58,7 @@ using MapToBoolConstantTypeT = typename MapToBoolConstantType<p, xs...>::type;
 
 
 template <template <typename> class p, typename... xs>
-struct MapToBoolConstantType<p, TypeList<xs...>> : MapToBoolConstantTypeT<p, xs...>
+struct MapToBoolConstantType<p, TypeList<xs...>> : MapToBoolConstantType<p, xs...>
 { };
 
 template <template <typename> class p, typename... xs>
