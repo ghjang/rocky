@@ -32,7 +32,7 @@ TEST_CASE("TupleTypeToVariantType", "[VariantUtility]")
     using tuple_t = tuple<char, int, double>;
     using variant_t = variant<char, int, double>;
     static_assert(
-            is_same<variant_t, typename TupleTypeToVariantType<tuple_t>::type>(),
+            is_same<variant_t, TypeListToVariantTypeT<tuple_t>>(),
             "converted tuple_t shoulb be same as variant_t."
     );
 }

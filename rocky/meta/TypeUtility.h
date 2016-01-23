@@ -51,6 +51,9 @@ struct CharTypeToStringType<T const *, std::enable_if_t<IsCharType<T>::value>>
         : type_is<std::basic_string<T>>
 { };
 
+template <typename T>
+using CharTypeToStringTypeT = typename CharTypeToStringType<T>::type;
+
 
 template <template <typename> class Predicate>
 struct NegatePredicate

@@ -1,42 +1,49 @@
-#ifndef ROCKY_UNIQUETUPLE_H
-#define ROCKY_UNIQUETUPLE_H
+#ifndef ROCKY_UNIQUE_H
+#define ROCKY_UNIQUE_H
 
 
 #include "rocky/meta/Find.h"
 #include "rocky/skull/FoldL.h"
 
 
-template <typename Tuple>
-struct UniqueElementType;
+template <typename... xs>
+struct Unique;
 
-template <typename... list>
-struct UniqueElementType<std::tuple<list...>>
+template <typename... xs>
+struct Unique
 {
 private:
-    using init_t = std::tuple<>;
+    using init_t = TypeList<>;
 
-    template <typename lhsTuple, typename rhsType>
+    template <typename lhs, typename rhs>
     struct AppendTypeIfNotExist;
 
-    template <typename... lhsList, typename rhsType>
-    struct AppendTypeIfNotExist<std::tuple<lhsList...>, rhsType>
+    template <typename... lhs, typename rhs>
+    struct AppendTypeIfNotExist<TypeList<lhs...>, rhs>
                 : std::conditional<
-                        !IsOneOf<rhsType, lhsList...>::value,
-                        std::tuple<lhsList..., rhsType>,
-                        std::tuple<lhsList...>
+                        !IsOneOf<rhs, lhs...>(),
+                        TypeList<lhs..., rhs>,
+                        TypeList<lhs...>
                     >
     { };
 
 public:
-    using type = FoldLT<AppendTypeIfNotExist, init_t, list...>;
+    using type = FoldLT<AppendTypeIfNotExist, init_t, xs...>;
 };
 
 
-template <typename... list>
-struct MakeUniqueElementTypeTuple
-            : UniqueElementType<std::tuple<list...>>
+template <typename... xs>
+using UniqueT = typename Unique<xs...>::type;
+
+
+template <typename... xs>
+struct Unique<TypeList<xs...>> : Unique<xs...>
+{ };
+
+template <typename... xs>
+struct Unique<std::tuple<xs...>> : TypeListToTuple<UniqueT<xs...>>
 { };
 
 
-#endif //ROCKY_UNIQUETUPLE_H
+#endif //ROCKY_UNIQUE_H
 

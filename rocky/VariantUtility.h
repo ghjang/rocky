@@ -2,7 +2,6 @@
 #define ROCKY_VARIANTUTILITY_H
 
 
-#include <type_traits>
 #include <string>
 #include <vector>
 
@@ -13,12 +12,19 @@
 #include "rocky/meta/UniqueTuple.h"
 
 
-template <typename Tuple>
-struct TupleTypeToVariantType;
+template <typename... xs>
+struct TypeListToVariantType : type_is<boost::variant<xs...>>
+{ };
 
-template <typename... list>
-struct TupleTypeToVariantType<std::tuple<list...>>
-        : type_is<boost::variant<list...>>
+template <typename... xs>
+using TypeListToVariantTypeT = typename TypeListToVariantType<xs...>::type;
+
+template <typename... xs>
+struct TypeListToVariantType<TypeList<xs...>> : TypeListToVariantType<xs...>
+{ };
+
+template <typename... xs>
+struct TypeListToVariantType<std::tuple<xs...>> : TypeListToVariantType<xs...>
 { };
 
 
@@ -48,10 +54,8 @@ auto MakeVariant(T const* s)
 template <typename... Args>
 auto MakeVariantVector(Args &&...  args)
 {
-    using unique_tuple_t = typename MakeUniqueElementTypeTuple<
-                                        typename CharTypeToStringType<std::decay_t<decltype(args)>>::type...
-                                    >::type;
-    using element_t = typename TupleTypeToVariantType<unique_tuple_t>::type;
+    using unique_t = UniqueT<CharTypeToStringTypeT<std::decay_t<decltype(args)>>...>;
+    using element_t = TypeListToVariantTypeT<unique_t>;
 
     std::vector<element_t> v;
     v.reserve(sizeof...(args));
