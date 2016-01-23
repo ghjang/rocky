@@ -7,6 +7,7 @@
 #include "rocky/meta/Identity.h"
 #include "rocky/meta/TypeList.h"
 #include "rocky/meta/HasMember.h"
+#include "rocky/meta/TypeListToTuple.h"
 #include "rocky/skull/Head.h"
 
 
@@ -20,17 +21,18 @@ template <template <typename> class f>
 struct Map<f> : type_is<TypeList<>>
 { };
 
+
+template <template <typename> class f, typename... xs>
+using MapT = typename Map<f, xs...>::type;
+
+
 template <template <typename> class f, typename... xs>
 struct Map<f, TypeList<xs...>> : Map<f, xs...>
 { };
 
 template <template <typename> class f, typename... xs>
-struct Map<f, std::tuple<xs...>> : Map<f, xs...>
+struct Map<f, std::tuple<xs...>> : TypeListToTuple<MapT<f, xs...>>
 { };
-
-
-template <template <typename> class f, typename... xs>
-using MapT = typename Map<f, xs...>::type;
 
 
 #endif //ROCKY_SKULL_MAP_H

@@ -11,7 +11,7 @@ TEST_CASE("Map", "[skull]")
 
     static_assert(is_same<TypeList<>, MapT<add_pointer>>(), "");
     static_assert(is_same<TypeList<>, MapT<add_pointer, TypeList<>>>(), "");
-    static_assert(is_same<TypeList<>, MapT<add_pointer, tuple<>>>(), "");
+    static_assert(is_same<tuple<>, MapT<add_pointer, tuple<>>>(), "");
 
     static_assert(
             is_same<TypeList<char *, int *, float *, double *>, MapT<add_pointer, char, int, float, double>>(),
@@ -26,7 +26,7 @@ TEST_CASE("Map", "[skull]")
     );
     static_assert(
             is_same<
-                    TypeList<char *, int *, float *, double *>,
+                    tuple<char *, int *, float *, double *>,
                     MapT<add_pointer, tuple<char, int, float, double>>
             >(),
             ""
