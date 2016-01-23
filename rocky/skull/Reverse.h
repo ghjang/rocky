@@ -1,34 +1,34 @@
-#ifndef ROCKY_REVERSETUPLE_H
-#define ROCKY_REVERSETUPLE_H
+#ifndef ROCKY_SKULL_REVERSE_H
+#define ROCKY_SKULL_REVERSE_H
 
 
-#include <tuple>
+#include "rocky/meta/TypeListJoin.h"
+#include "rocky/skull/FoldR.h"
 
 
-template <typename Tuple, size_t sizeOfTuple, typename IndexSequence>
-struct ReverseElementTypeImpl;
-
-template <typename... list, size_t sizeOfTuple, size_t... i>
-struct ReverseElementTypeImpl<std::tuple<list...>, sizeOfTuple, std::index_sequence<i...>>
+template <typename... xs>
+struct Reverse
 {
-    using type = std::tuple<
-                        std::tuple_element_t<sizeOfTuple - i - 1, std::tuple<list...>>...
-                    >;
+private:
+    using init_t = TypeList<>;
+
+    template <typename lhs, typename rhs>
+    struct Swap : JoinTypeList<rhs, lhs>
+    { };
+
+public:
+    using type = FoldRT<Swap, init_t, xs...>;
 };
 
 
-template <typename Tuple>
-struct ReverseElementType;
+template <typename... xs>
+using ReverseT = typename Reverse<xs...>::type;
 
-template <typename... list>
-struct ReverseElementType<std::tuple<list...>>
-        : ReverseElementTypeImpl<
-                std::tuple<list...>,
-                sizeof...(list),
-                std::index_sequence_for<list...>
-            >
+
+template <typename... xs>
+struct Reverse<std::tuple<xs...>> : TypeListToTuple<ReverseT<xs...>>
 { };
 
 
-#endif //ROCKY_REVERSETUPLE_H
+#endif //ROCKY_SKULL_REVERSE_H
 

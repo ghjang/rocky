@@ -33,7 +33,6 @@ set(HEADER_FILES
         ../meta/NthTuple.h
         ../meta/Remove.h
         ../meta/ReplaceTuple.h
-        ../meta/ReverseTuple.h
         ../meta/Transform.h
         ../meta/TupleSize.h
         ../meta/TypeSelection.h
@@ -58,7 +57,8 @@ set(HEADER_FILES
         ../skull/Filter.h
         ../skull/FoldL.h
         ../skull/FoldR.h
-        ../skull/Length.h)
+        ../skull/Length.h
+        ../skull/Reverse.h)
 
 set(SOURCE_FILES
         main.cpp
@@ -70,7 +70,6 @@ set(SOURCE_FILES
         meta/HasMemberTest.cpp
         meta/IdentityTest.cpp
         meta/TypeSelectionTest.cpp
-        meta/ReverseTupleTest.cpp
         meta/IntegralConstantUtilityTest.cpp
         meta/MultipleInheritance.cpp
         meta/ForEachArgumentTest.cpp
@@ -105,7 +104,8 @@ set(SOURCE_FILES
         skull/FilterTest.cpp
         skull/FoldLTest.cpp
         skull/FoldRTest.cpp
-        skull/LengthTest.cpp)
+        skull/LengthTest.cpp
+        skull/ReverseTest.cpp)
 
 add_executable(RockyTest ${HEADER_FILES} ${SOURCE_FILES})
 
