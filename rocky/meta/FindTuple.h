@@ -3,7 +3,7 @@
 
 
 #include "rocky/meta/IntegralConstantUtility.h"
-#include "rocky/meta/ReverseTuple.h"
+#include "rocky/skull/Reverse.h"
 
 
 template <typename T, typename... list>
@@ -33,7 +33,7 @@ struct ReverseFindElementType
 private:
     static constexpr int i = FindElementType<
                                     T,
-                                    typename ReverseElementType<std::tuple<list...>>::type
+                                    ReverseT<std::tuple<list...>>
                                 >::value;
 
 public:
