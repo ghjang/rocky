@@ -33,7 +33,7 @@ set(HEADER_FILES
         ../meta/Remove.h
         ../meta/Replace.h
         ../meta/Transform.h
-        ../meta/TupleSize.h
+        ../meta/TypeSize.h
         ../meta/TypeSelection.h
         ../meta/TypeUtility.h
         ../meta/UniqueTuple.h
@@ -67,7 +67,7 @@ set(SOURCE_FILES
         ConstExprArrayTest.cpp
         StringNumberConversionTest.cpp
         VariantUtilityTest.cpp
-        meta/TupleSizeTest.cpp
+        meta/TypeSizeTest.cpp
         meta/HasMemberTest.cpp
         meta/IdentityTest.cpp
         meta/TypeSelectionTest.cpp

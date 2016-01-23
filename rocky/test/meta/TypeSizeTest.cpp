@@ -1,6 +1,6 @@
 #include "../catch.hpp"
 
-#include "rocky/meta/TupleSize.h"
+#include "rocky/meta/TypeSize.h"
 
 
 TEST_CASE("Getting the sum of template parameter type sizes", "[TypeSize]")
