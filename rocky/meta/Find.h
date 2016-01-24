@@ -36,7 +36,7 @@ template <typename T, typename... xs>
 struct ReverseFind
 {
 private:
-    static constexpr int i = Find<T, ReverseT<std::tuple<xs...>>>::value;
+    static constexpr int i = Find<T, ReverseT<xs...>>::value;
 
 public:
     static constexpr int value = (i == -1) ? (-1) : (sizeof...(xs) - i - 1);
