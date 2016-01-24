@@ -3,7 +3,7 @@
 #include "rocky/skull/Elem.h"
 
 
-TEST_CASE("Elem", "[skull]")
+TEST_CASE("Elem with null type list", "[skull]")
 {
     static_assert(!Elem<int>(), "");
     static_assert(!Elem<int, TypeList<>>(), "");
