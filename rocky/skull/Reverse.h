@@ -28,6 +28,10 @@ using ReverseT = typename Reverse<xs...>::type;
 
 
 template <typename... xs>
+struct Reverse<TypeList<xs...>> : Reverse<xs...>
+{ };
+
+template <typename... xs>
 struct Reverse<std::tuple<xs...>> : TypeListToTuple<ReverseT<xs...>>
 { };
 
