@@ -8,7 +8,7 @@
 
 
 template <typename... xs>
-using Last = HeadT<DropT<sizeof...(xs) - 1, xs...>>;
+using Last = HeadT<DropT<(sizeof...(xs) <= 0) ? 0 : (sizeof...(xs) - 1), xs...>>;
 
 
 #endif //ROCKY_SKULL_LAST_H
