@@ -11,8 +11,13 @@ struct Sum;
 
 template <typename T, T... i>
 struct Sum<std::integral_constant<T, i>...>
-        : FoldR<Plus, std::integral_constant<T, 0>, std::integral_constant<T, i>...>
+        : type_is<FoldRT<Plus, std::integral_constant<T, 0>, std::integral_constant<T, i>...>>
 { };
+
+
+template <typename... xs>
+using SumT = typename Sum<xs...>::type;
+
 
 template <typename... xs>
 struct Sum<TypeList<xs...>> : Sum<xs...>
