@@ -22,6 +22,11 @@ template <typename T, typename U, int i, typename... xs>
 struct Find<T, int_c_t<i>, U, xs...> : Find<T, int_c_t<i + 1>, xs...>
 { };
 
+
+template <typename T, typename... xs>
+struct Find<T, TypeList<xs...>> : Find<T, xs...>
+{ };
+
 template <typename T, typename... xs>
 struct Find<T, std::tuple<xs...>> : Find<T, xs...>
 { };
@@ -38,6 +43,10 @@ public:
 
     constexpr operator int () const noexcept { return value; }
 };
+
+template <typename T, typename... xs>
+struct ReverseFind<T, TypeList<xs...>> : ReverseFind<T, xs...>
+{ };
 
 template <typename T, typename... xs>
 struct ReverseFind<T, std::tuple<xs...>> : ReverseFind<T, xs...>
