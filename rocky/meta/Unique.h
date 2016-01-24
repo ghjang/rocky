@@ -4,6 +4,7 @@
 
 #include "rocky/meta/Find.h"
 #include "rocky/skull/FoldL.h"
+#include "rocky/skull/Elem.h"
 
 
 template <typename... xs>
@@ -21,7 +22,7 @@ private:
     template <typename... lhs, typename rhs>
     struct AppendTypeIfNotExist<TypeList<lhs...>, rhs>
                 : std::conditional<
-                        !IsOneOf<rhs, lhs...>(),
+                        !Elem<rhs, lhs...>(),
                         TypeList<lhs..., rhs>,
                         TypeList<lhs...>
                     >
