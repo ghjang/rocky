@@ -44,19 +44,5 @@ struct ReverseFind<T, std::tuple<xs...>> : ReverseFind<T, xs...>
 { };
 
 
-template <typename T, typename... list>
-struct IsOneOf
-        : std::conditional_t<
-                Find<T, list...>::value == -1,
-                std::false_type,
-                std::true_type
-            >
-{ };
-
-template <typename T, typename... list>
-struct IsOneOf<T, std::tuple<list...>> : IsOneOf<T, list...>
-{ };
-
-
 #endif //ROCKY_FIND_H
 
