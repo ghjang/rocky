@@ -62,3 +62,8 @@ TEST_CASE("Elem with tuple", "[skull]")
     }
 }
 
+TEST_CASE("Elem with TypeList", "[skull]")
+{
+    static_assert(Elem<int, TypeList<char, int, char, int, char, char, char>>(), "");
+}
+
