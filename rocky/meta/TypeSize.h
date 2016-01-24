@@ -7,7 +7,7 @@
 
 
 template <typename... xs>
-struct SumOfTypeSize : Sum<std::integral_constant<std::size_t, sizeof(xs)>...>
+struct SumOfTypeSize : SumT<std::integral_constant<std::size_t, sizeof(xs)>...>
 { };
 
 template <typename... xs>

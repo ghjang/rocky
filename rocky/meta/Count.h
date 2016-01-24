@@ -7,7 +7,7 @@
 
 
 template <template <typename> class p, typename... xs>
-using Count = Sum<MapToBoolConstantTypeT<p, xs...>>;
+using Count = SumT<MapToBoolConstantTypeT<p, xs...>>;
 
 
 #endif //ROCKY_COUNT_H
