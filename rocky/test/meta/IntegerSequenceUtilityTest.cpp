@@ -68,3 +68,24 @@ TEST_CASE("bool value sequence inversion", "[IntegerSequenceUtility]")
     );
 }
 
+TEST_CASE("IntegerSequenceToIntegralConstantList", "[IntegerSequenceUtility]")
+{
+    using std::is_same;
+
+    static_assert(
+            is_same<
+                    TypeList<int_c_t<0>, int_c_t<1>, int_c_t<2>>,
+                    IntSeqToIntConstListT<std::make_integer_sequence<int, 3>>
+            >(),
+            ""
+    );
+
+    static_assert(
+            is_same<
+                    TypeList<int_c_t<0>, int_c_t<1>, int_c_t<2>>,
+                    IntSeqToIntConstListT<std::integer_sequence<int, 0, 1, 2>>
+            >(),
+            ""
+    );
+}
+

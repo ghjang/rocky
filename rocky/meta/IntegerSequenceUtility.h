@@ -2,6 +2,7 @@
 #define ROCKY_INTEGERSEQUENCEUTILITY_H
 
 
+#include "rocky/meta/IntegralConstantUtility.h"
 #include "rocky/skull/FoldL.h"
 
 
@@ -84,6 +85,19 @@ struct InvertBoolSequence<std::integer_sequence<T, i...>>
 
 template <typename BoolSequence>
 using InvertBoolSequenceT = typename InvertBoolSequence<BoolSequence>::type;
+
+
+template <typename IntegerSequence>
+struct IntegerSequenceToIntegralConstantList;
+
+template <typename T, T... i>
+struct IntegerSequenceToIntegralConstantList<std::integer_sequence<T, i...>>
+        : type_is<TypeList<std::integral_constant<T, i>...>>
+{ };
+
+
+template <typename IntegerSequence>
+using IntSeqToIntConstListT = typename IntegerSequenceToIntegralConstantList<IntegerSequence>::type;
 
 
 #endif //ROCKY_INTEGERSEQUENCEUTILITY_H
