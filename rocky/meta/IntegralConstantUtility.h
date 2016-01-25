@@ -50,6 +50,9 @@ constexpr auto operator ""_c ()
 /**
  * type alias for ease use of std::integral_constant
  */
+template <char c>
+using char_c_t = std::integral_constant<char, c>;
+
 template <int i>
 using int_c_t = std::integral_constant<int, i>;
 
