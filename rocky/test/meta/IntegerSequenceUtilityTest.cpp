@@ -43,16 +43,16 @@ TEST_CASE("IntegerSequenceValue", "[IntegerSequenceUtility]")
     using std::integer_sequence;
 
     using seq_t = integer_sequence<int, 1, 2, 3, 4, 5, 6>;
-    static_assert(IntegerSequenceValue<0, seq_t>() == 1, "");
-    static_assert(IntegerSequenceValue<5, seq_t>() == 6, "");
+    static_assert(IntegerSequenceValueAt<0, seq_t>() == 1, "");
+    static_assert(IntegerSequenceValueAt<5, seq_t>() == 6, "");
 
     // NOTE: following are expected assertion failures.
-    //static_assert(IntegerSequenceValue<-1, seq_t>() == 6, "");
-    //static_assert(IntegerSequenceValue<6, seq_t>() == 6, "");
+    //static_assert(IntegerSequenceValueAt<-1, seq_t>() == 6, "");
+    //static_assert(IntegerSequenceValueAt<6, seq_t>() == 6, "");
 
     // NOTE: following is an expected assertion failure.
     //using empty_seq_t = integer_sequence<int>;
-    //static_assert(IntegerSequenceValue<0, empty_seq_t>() == 0, "");
+    //static_assert(IntegerSequenceValueAt<0, empty_seq_t>() == 0, "");
 }
 
 TEST_CASE("bool value sequence inversion", "[IntegerSequenceUtility]")

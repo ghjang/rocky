@@ -19,7 +19,7 @@ namespace Detail
     {
         using type = std::integer_sequence<
                             T,
-                            F<IntegerSequenceValue<i, std::integer_sequence<T, list...>>::value>::value...
+                            F<IntegerSequenceValueAt<i, std::integer_sequence<T, list...>>::value>::value...
                         >;
     };
 } // namespace Detail
