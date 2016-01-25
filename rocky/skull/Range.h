@@ -70,5 +70,67 @@ template <char x, char y>
 using MakeCharRangeSequenceT = IntConstListToIntSeqT<MakeCharRangeT<x, y>>;
 
 
+template <typename T, T x, T y, T z>
+struct Range<std::integral_constant<T, x>, std::integral_constant<T, y>, std::integral_constant<T, z>>
+{
+    static_assert(x < y, "x should be greater than y.");
+    static_assert(y <= z, "y should be equal or greater than z.");
+
+private:
+    static constexpr T incrementValue_ = y - x;
+    static constexpr T loopCount_ = (z - x) / incrementValue_;
+
+    template <typename... xs>
+    struct SteppedRangeImpl;
+
+    template <T x1, T... i>
+    struct SteppedRangeImpl<
+                std::integral_constant<T, 0>,
+                std::integral_constant<T, x1>,
+                TypeList<std::integral_constant<T, i>...>
+            >
+            : type_is<TypeList<std::integral_constant<T, i>..., std::integral_constant<T, x1>>>
+    { };
+
+    template <T cnt, T x1, T... i>
+    struct SteppedRangeImpl<
+                std::integral_constant<T, cnt>,
+                std::integral_constant<T, x1>,
+                TypeList<std::integral_constant<T, i>...>
+            >
+            : SteppedRangeImpl<
+                    std::integral_constant<T, cnt - 1>,
+                    std::integral_constant<T, x1 + incrementValue_>,
+                    TypeList<std::integral_constant<T, i>..., std::integral_constant<T, x1>>
+              >
+    { };
+
+public:
+    using type = typename SteppedRangeImpl<
+                                std::integral_constant<T, loopCount_>,
+                                std::integral_constant<T, x>,
+                                TypeList<>
+                            >::type;
+};
+
+
+template <int x, int y, int z>
+using MakeSteppedRangeT = RangeT<int_c_t<x>, int_c_t<y>, int_c_t<z>>;
+
+template <int x, int y, int z>
+using MakeSteppedRangeSequenceT = IntConstListToIntSeqT<MakeSteppedRangeT<x, y, z>>;
+
+
+template <char x, char y, char z>
+using MakeSteppedCharRangeT = RangeT<
+                                    std::integral_constant<char, x>,
+                                    std::integral_constant<char, y>,
+                                    std::integral_constant<char, z>
+                                >;
+
+template <char x, char y, char z>
+using MakeSteppedCharRangeSequenceT = IntConstListToIntSeqT<MakeSteppedCharRangeT<x, y, z>>;
+
+
 #endif //ROCKY_SKULL_RANGE_H
 

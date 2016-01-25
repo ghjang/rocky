@@ -57,6 +57,63 @@ TEST_CASE("Range for two integers", "[skull]")
     );
 }
 
+TEST_CASE("Stepped range for two integers", "[skull]")
+{
+    using std::is_same;
+    using std::integer_sequence;
+
+    static_assert(
+            is_same<
+                    TypeList<int_c_t<1>, int_c_t<3>, int_c_t<5>, int_c_t<7>, int_c_t<9>>,
+                    RangeT<int_c_t<1>, int_c_t<3>, int_c_t<10>>
+            >(),
+            ""
+    );
+
+    static_assert(
+            is_same<
+                    TypeList<int_c_t<1>, int_c_t<3>, int_c_t<5>, int_c_t<7>, int_c_t<9>>,
+                    MakeSteppedRangeT<1, 3, 10>
+            >(),
+            ""
+    );
+
+    static_assert(
+            is_same<
+                    integer_sequence<int, 1, 3, 5, 7, 9>,
+                    IntConstListToIntSeqT<RangeT<int_c_t<1>, int_c_t<3>, int_c_t<10>>>
+            >(),
+            ""
+    );
+
+    static_assert(
+            is_same<
+                    integer_sequence<int, 1, 3, 5, 7, 9>,
+                    MakeSteppedRangeSequenceT<1, 3, 10>
+            >(),
+            ""
+    );
+
+    static_assert(
+            is_same<
+                    integer_sequence<int, -5, -3, -1, 1, 3, 5>,
+                    MakeSteppedRangeSequenceT<-5, -3, 5>
+            >(),
+            ""
+    );
+
+    // NOTE: following is an expected compile time error.
+    /*
+    static_assert(
+            is_same<
+                    integer_sequence<int, 10, 11, 12, 13, 14, 15>,
+                    MakeSteppedRangeSequenceT<10, 10, 15>
+            >(),
+            ""
+    );
+     */
+}
+
 TEST_CASE("Range for two characters", "[skull]")
 {
     using std::is_same;
