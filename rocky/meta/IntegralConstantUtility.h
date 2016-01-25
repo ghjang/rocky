@@ -2,8 +2,6 @@
 #define ROCKY_INTEGRALCONSTANTUTILITY_H
 
 
-#include <type_traits>
-
 #include "rocky/StringNumberConversion.h"
 #include "rocky/meta/TypeSelection.h"
 
