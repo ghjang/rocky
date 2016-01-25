@@ -169,5 +169,16 @@ template <char x, char y, char z>
 using MakeSteppedCharRangeSequenceT = IntConstListToIntSeqT<MakeSteppedCharRangeT<x, y, z>>;
 
 
+template <int x, int y>
+using MakeEvenRangeT = MakeSteppedRangeT<
+                                (x % 2) ? (x + 1) : x,
+                                ((x % 2) ? (x + 1) : x) + 2,
+                                ((((x % 2) ? (x + 1) : x) + 2) > y) ? (((x % 2) ? (x + 1) : x) + 2) : y
+                        >;
+
+template <int x, int y>
+using MakeEvenRangeSequenceT = IntConstListToIntSeqT<MakeEvenRangeT<x, y>>;
+
+
 #endif //ROCKY_SKULL_RANGE_H
 

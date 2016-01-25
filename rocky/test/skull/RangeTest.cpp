@@ -182,3 +182,44 @@ TEST_CASE("Stepped range for two characters", "[skull]")
     );
 }
 
+TEST_CASE("Even/Odd Range for two integers", "[skull]")
+{
+    using std::is_same;
+    using std::integer_sequence;
+
+    static_assert(
+            is_same<
+                    integer_sequence<int, 0, 2, 4, 6, 8, 10>,
+                    MakeEvenRangeSequenceT<0, 10>
+            >(),
+            ""
+    );
+
+    static_assert(
+            is_same<
+                    integer_sequence<int, 2, 4, 6, 8, 10>,
+                    MakeEvenRangeSequenceT<1, 10>
+            >(),
+            ""
+    );
+
+    static_assert(
+            is_same<
+                    integer_sequence<int, 2, 4, 6, 8, 10>,
+                    MakeEvenRangeSequenceT<1, 11>
+            >(),
+            ""
+    );
+
+    /*
+    MakeEvenRangeSequenceT<1, 3>()++;
+    static_assert(
+            is_same<
+                    integer_sequence<int, 2>,
+                    MakeEvenRangeSequenceT<1, 3>
+            >(),
+            ""
+    );
+     */
+}
+
