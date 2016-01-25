@@ -59,9 +59,15 @@ public:
 template <int x, int y>
 using MakeRangeT = RangeT<int_c_t<x>, int_c_t<y>>;
 
-
 template <int x, int y>
 using MakeRangeSequenceT = IntConstListToIntSeqT<MakeRangeT<x, y>>;
+
+
+template <char x, char y>
+using MakeCharRangeT = RangeT<std::integral_constant<char, x>, std::integral_constant<char, y>>;
+
+template <char x, char y>
+using MakeCharRangeSequenceT = IntConstListToIntSeqT<MakeCharRangeT<x, y>>;
 
 
 #endif //ROCKY_SKULL_RANGE_H

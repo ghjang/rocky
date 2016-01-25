@@ -41,3 +41,33 @@ TEST_CASE("Range for two integers", "[skull]")
     );
 }
 
+TEST_CASE("Range for two characters", "[skull]")
+{
+    using std::is_same;
+    using std::integer_sequence;
+
+    static_assert(
+            is_same<
+                    TypeList<char_c_t<'a'>, char_c_t<'b'>, char_c_t<'c'>, char_c_t<'d'>, char_c_t<'e'>>,
+                    MakeCharRangeT<'a', 'e'>
+            >(),
+            ""
+    );
+
+    static_assert(
+            is_same<
+                    integer_sequence<char, 'a', 'b', 'c', 'd', 'e'>,
+                    MakeCharRangeSequenceT<'a', 'e'>
+            >(),
+            ""
+    );
+
+    static_assert(
+            is_same<
+                    integer_sequence<char, 'A', 'B', 'C', 'D', 'E'>,
+                    MakeCharRangeSequenceT<'A', 'E'>
+            >(),
+            ""
+    );
+}
+
