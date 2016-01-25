@@ -39,6 +39,22 @@ TEST_CASE("Range for two integers", "[skull]")
             >(),
             ""
     );
+
+    static_assert(
+            is_same<
+                    integer_sequence<int, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5>,
+                    MakeRangeSequenceT<-5, 5>
+            >(),
+            ""
+    );
+
+    static_assert(
+            is_same<
+                    integer_sequence<int, 10>,
+                    MakeRangeSequenceT<10, 10>
+            >(),
+            ""
+    );
 }
 
 TEST_CASE("Range for two characters", "[skull]")
