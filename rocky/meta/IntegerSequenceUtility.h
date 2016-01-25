@@ -100,5 +100,29 @@ template <typename IntegerSequence>
 using IntSeqToIntConstListT = typename IntegerSequenceToIntegralConstantList<IntegerSequence>::type;
 
 
+template <typename... IntegralConstantList>
+struct IntegralConstantListToIntegerSequence;
+
+template <typename T, T... i>
+struct IntegralConstantListToIntegerSequence<std::integral_constant<T, i>...>
+        : type_is<std::integer_sequence<T, i...>>
+{ };
+
+
+template <typename... IntegralConstantList>
+using IntConstListToIntSeqT = typename IntegralConstantListToIntegerSequence<IntegralConstantList...>::type;
+
+
+template <typename T, T... i>
+struct IntegralConstantListToIntegerSequence<TypeList<std::integral_constant<T, i>...>>
+        : IntegralConstantListToIntegerSequence<std::integral_constant<T, i>...>
+{ };
+
+template <typename T, T... i>
+struct IntegralConstantListToIntegerSequence<std::tuple<std::integral_constant<T, i>...>>
+        : IntegralConstantListToIntegerSequence<std::integral_constant<T, i>...>
+{ };
+
+
 #endif //ROCKY_INTEGERSEQUENCEUTILITY_H
 

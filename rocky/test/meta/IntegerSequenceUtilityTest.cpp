@@ -89,3 +89,34 @@ TEST_CASE("IntegerSequenceToIntegralConstantList", "[IntegerSequenceUtility]")
     );
 }
 
+TEST_CASE("IntegralConstantListToIntegerSequence", "[IntegerSequenceUtility]")
+{
+    using std::is_same;
+    using std::integer_sequence;
+    using std::tuple;
+
+    static_assert(
+            is_same<
+                    integer_sequence<int, 0, 1, 2>,
+                    IntConstListToIntSeqT<int_c_t<0>, int_c_t<1>, int_c_t<2>>
+            >(),
+            ""
+    );
+
+    static_assert(
+            is_same<
+                    integer_sequence<int, 0, 1, 2>,
+                    IntConstListToIntSeqT<TypeList<int_c_t<0>, int_c_t<1>, int_c_t<2>>>
+            >(),
+            ""
+    );
+
+    static_assert(
+            is_same<
+                    integer_sequence<int, 0, 1, 2>,
+                    IntConstListToIntSeqT<tuple<int_c_t<0>, int_c_t<1>, int_c_t<2>>>
+            >(),
+            ""
+    );
+}
+
