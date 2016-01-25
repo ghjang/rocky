@@ -66,7 +66,8 @@ set(HEADER_FILES
         ../skull/Maximum.h
         ../skull/Minimum.h
         ../skull/Product.h
-        ../skull/Elem.h)
+        ../skull/Elem.h
+        ../skull/Even.h)
 
 set(SOURCE_FILES
         main.cpp
@@ -121,7 +122,8 @@ set(SOURCE_FILES
         skull/MaximumTest.cpp
         skull/MinimumTest.cpp
         skull/ProductTest.cpp
-        skull/ElemTest.cpp)
+        skull/ElemTest.cpp
+        skull/EvenTest.cpp)
 
 add_executable(RockyTest ${HEADER_FILES} ${SOURCE_FILES})
 
