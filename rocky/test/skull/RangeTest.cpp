@@ -144,3 +144,41 @@ TEST_CASE("Range for two characters", "[skull]")
     );
 }
 
+TEST_CASE("Stepped range for two characters", "[skull]")
+{
+    using std::is_same;
+    using std::integer_sequence;
+
+    static_assert(
+            is_same<
+                    TypeList<
+                            char_c_t<'a'>,
+                            char_c_t<'e'>,
+                            char_c_t<'i'>,
+                            char_c_t<'m'>,
+                            char_c_t<'q'>,
+                            char_c_t<'u'>,
+                            char_c_t<'y'>
+                    >,
+                    MakeSteppedCharRangeT<'a', 'e', 'z'>
+            >(),
+            ""
+    );
+
+    static_assert(
+            is_same<
+                    integer_sequence<char, 'a', 'e', 'i', 'm', 'q', 'u', 'y'>,
+                    MakeSteppedCharRangeSequenceT<'a', 'e', 'z'>
+            >(),
+            ""
+    );
+
+    static_assert(
+            is_same<
+                    integer_sequence<char, 'A', 'E', 'I', 'M', 'Q', 'U', 'Y'>,
+                    MakeSteppedCharRangeSequenceT<'A', 'E', 'Z'>
+            >(),
+            ""
+    );
+}
+
