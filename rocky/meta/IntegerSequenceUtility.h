@@ -2,9 +2,6 @@
 #define ROCKY_INTEGERSEQUENCEUTILITY_H
 
 
-#include <type_traits>
-#include <utility>
-
 #include "rocky/skull/FoldL.h"
 
 
