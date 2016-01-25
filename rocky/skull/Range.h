@@ -56,6 +56,43 @@ public:
 };
 
 
+/**
+ * NOTE: Well, Range could be implemented by using the fold.
+ *         But, I don't see any point to use the fold over the recursion,... at least for C++ TMP...
+ *         It's more complicated. And even worse, I guess that it seems to have poorer compile-time performance.
+ */
+/*
+template <typename T, T x, T y>
+struct Range<std::integral_constant<T, x>, std::integral_constant<T, y>>
+{
+    static_assert(x <= y, "x should be equal or greater than y.");
+
+private:
+    template <typename lhs, typename rhs>
+    struct AppendSummedIntegralConstant;
+
+    template <T... lhs, T rhs>
+    struct AppendSummedIntegralConstant<
+                    TypeList<std::integral_constant<T, lhs>...>,
+                    std::integral_constant<T, rhs>
+            >
+    {
+        using next_int_t = HeadT<TypeList<std::integral_constant<T, lhs>...>>;
+        using joined_t = TypeList<std::integral_constant<T, lhs>..., next_int_t>;
+        using type = FlattenTypeListT<std::integral_constant<T, next_int_t() + 1>, TailT<joined_t>>;
+    };
+
+public:
+    using type = TailT<
+                    FoldLT<
+                            AppendSummedIntegralConstant,
+                            TypeList<std::integral_constant<T, x>>, // NOTE: init value for storing next int.
+                            ReplicateT<y - x + 1, std::integral_constant<T, 1>>
+                    >
+                 >;
+};
+*/
+
 template <int x, int y>
 using MakeRangeT = RangeT<int_c_t<x>, int_c_t<y>>;
 
