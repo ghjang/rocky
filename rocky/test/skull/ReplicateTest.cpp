@@ -2,7 +2,7 @@
 
 #include "rocky/skull/Replicate.h"
 
-#include "rocky/meta/IntegralConstantUtility.h"
+#include "rocky/meta/IntegerSequenceUtility.h"
 
 
 TEST_CASE("Replicate", "[skull]")
@@ -25,6 +25,20 @@ TEST_CASE("Replicate", "[skull]")
             is_same<
                     TypeList<TypeList<char>, TypeList<char>, TypeList<char>>,
                     ReplicateT<3, TypeList<char>>
+            >(),
+            ""
+    );
+}
+
+TEST_CASE("Replicating std::integral_constant", "[skull]")
+{
+    using std::is_same;
+    using std::integer_sequence;
+
+    static_assert(
+            is_same<
+                    integer_sequence<int, 5, 5, 5>,
+                    IntConstListToIntSeqT<ReplicateT<3, int_c_t<5>>>
             >(),
             ""
     );
