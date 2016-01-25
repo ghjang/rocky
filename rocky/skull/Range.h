@@ -59,7 +59,7 @@ public:
 /**
  * NOTE: Well, Range could be implemented by using the fold.
  *         But, I don't see any point to use the fold over the recursion,... at least for C++ TMP...
- *         It's more complicated. And even worse, I guess that it seems to have poorer compile-time performance.
+ *         It's more complicated. And even worse, I just guess that it has poorer compile-time performance.
  */
 /*
 template <typename T, T x, T y>
