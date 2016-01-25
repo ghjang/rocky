@@ -129,5 +129,14 @@ struct TypeToBoolConstantType
 };
 
 
+template <typename T>
+struct IsIntegralConstantType : std::false_type
+{ };
+
+template <typename T, T i>
+struct IsIntegralConstantType<std::integral_constant<T, i>> : std::true_type
+{ };
+
+
 #endif //ROCKY_INTEGRALCONSTANTUTILITY_H
 

@@ -149,3 +149,12 @@ TEST_CASE("Max, Min", "[IntegralConstantUtility]")
     static_assert(2 == Min<int_c_t<3>, int_c_t<2>>(), "");
 }
 
+TEST_CASE("IsIntegralConstantType", "[IntegralConstantUtility]")
+{
+    static_assert(IsIntegralConstantType<std::true_type>(), "");
+    static_assert(IsIntegralConstantType<std::false_type>(), "");
+    static_assert(IsIntegralConstantType<bool_c_t<true>>(), "");
+    static_assert(IsIntegralConstantType<bool_c_t<false>>(), "");
+    static_assert(IsIntegralConstantType<int_c_t<0>>(), "");
+}
+

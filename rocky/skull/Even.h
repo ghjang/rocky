@@ -6,15 +6,6 @@
 
 
 template <typename T>
-struct IsIntegralConstantType : std::false_type
-{ };
-
-template <typename T, T i>
-struct IsIntegralConstantType<std::integral_constant<T, i>> : std::true_type
-{ };
-
-
-template <typename T>
 struct Even
 {
     static_assert(IsIntegralConstantType<T>(), "T should be std::integral_constant type.");
