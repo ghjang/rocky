@@ -70,7 +70,8 @@ set(HEADER_FILES
         ../skull/Even.h
         ../skull/Odd.h
         ../skull/Replicate.h
-        ../skull/Fst.h)
+        ../skull/Fst.h
+        ../skull/Snd.h)
 
 set(SOURCE_FILES
         main.cpp
@@ -129,7 +130,8 @@ set(SOURCE_FILES
         skull/EvenTest.cpp
         skull/OddTest.cpp
         skull/ReplicateTest.cpp
-        skull/FstTest.cpp)
+        skull/FstTest.cpp
+        skull/SndTest.cpp)
 
 add_executable(RockyTest ${HEADER_FILES} ${SOURCE_FILES})
 
