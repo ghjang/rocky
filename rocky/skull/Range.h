@@ -13,34 +13,46 @@ template <typename x, typename y, typename z = void>
 using RangeT = typename Range<x, y, z>::type;
 
 
-template <int x, int y>
-struct Range<int_c_t<x>, int_c_t<y>>
+template <typename T, T x, T y>
+struct Range<std::integral_constant<T, x>, std::integral_constant<T, y>>
 {
     static_assert(x <= y, "x should be equal or greater than y.");
 
 private:
-    template <typename... T>
+    template <typename... xs>
     struct RangeImpl;
 
-    template <int y1, int... i>
-    struct RangeImpl<int_c_t<y1>, int_c_t<y1>, TypeList<int_c_t<i>...>>
+    template <T y1, T... i>
+    struct RangeImpl<
+                std::integral_constant<T, y1>,
+                std::integral_constant<T, y1>,
+                TypeList<std::integral_constant<T, i>...>
+            >
             : type_is<
-                    TypeList<int_c_t<i>..., int_c_t<y1>>
+                    TypeList<std::integral_constant<T, i>..., std::integral_constant<T, y1>>
               >
     { };
 
-    template <int x1, int y1, int... i>
-    struct RangeImpl<int_c_t<x1>, int_c_t<y1>, TypeList<int_c_t<i>...>>
+    template <T x1, T y1, T... i>
+    struct RangeImpl<
+                std::integral_constant<T, x1>,
+                std::integral_constant<T, y1>,
+                TypeList<std::integral_constant<T, i>...>
+            >
             : RangeImpl<
-                    int_c_t<x1 + 1>,
-                    int_c_t<y1>,
-                    TypeList<int_c_t<i>..., int_c_t<x1>>
+                    std::integral_constant<T, x1 + 1>,
+                    std::integral_constant<T, y1>,
+                    TypeList<std::integral_constant<T, i>..., std::integral_constant<T, x1>>
               >
     { };
 
 
 public:
-    using type = typename RangeImpl<int_c_t<x>, int_c_t<y>, TypeList<>>::type;
+    using type = typename RangeImpl<
+                                std::integral_constant<T, x>,
+                                std::integral_constant<T, y>,
+                                TypeList<>
+                            >::type;
 };
 
 
