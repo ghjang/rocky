@@ -8,6 +8,11 @@
 template <typename... Sequence>
 struct JoinIntegerSequence;
 
+
+template <typename... Sequence>
+using JoinIntegerSequenceT  = typename JoinIntegerSequence<Sequence...>::type;
+
+
 template <typename T, T... sequence, typename... list>
 struct JoinIntegerSequence<std::integer_sequence<T, sequence...>, list...>
 {
@@ -19,9 +24,8 @@ private:
 
     template <T... lhsSeq, T... rhsSeq>
     struct AppendIntegerSequence<std::integer_sequence<T, lhsSeq...>, std::integer_sequence<T, rhsSeq...>>
-    {
-        using type = std::integer_sequence<T, lhsSeq..., rhsSeq...>;
-    };
+            : type_is<std::integer_sequence<T, lhsSeq..., rhsSeq...>>
+    { };
 
     template <typename U, typename V, U... lhsSeq, V... rhsSeq>
     struct AppendIntegerSequence<std::integer_sequence<U, lhsSeq...>, std::integer_sequence<V, rhsSeq...>>
@@ -48,9 +52,8 @@ struct IntegerSequenceValue;
 
 template <typename T, T n, T... list>
 struct IntegerSequenceValue<0, std::integer_sequence<T, n, list...>>
-{
-    static constexpr T value = n;
-};
+        : std::integral_constant<T, n>
+{ };
 
 template <typename T>
 struct IntegerSequenceValue<0, std::integer_sequence<T>>
@@ -75,9 +78,12 @@ struct InvertBoolSequence;
 
 template <typename T, T... i>
 struct InvertBoolSequence<std::integer_sequence<T, i...>>
-{
-    using type = std::integer_sequence<T, (!i)...>;
-};
+        : type_is<std::integer_sequence<T, (!i)...>>
+{ };
+
+
+template <typename BoolSequence>
+using InvertBoolSequenceT = typename InvertBoolSequence<BoolSequence>::type;
 
 
 #endif //ROCKY_INTEGERSEQUENCEUTILITY_H
