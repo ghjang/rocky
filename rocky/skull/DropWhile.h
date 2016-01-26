@@ -22,7 +22,7 @@ template <template <typename> class p, typename x, typename... xs>
 struct DropWhile<p, x, xs...>
             : SelectTypeIf<
                     p<x>::value,
-                    DropWhileT<p, xs...>,
+                    DropWhile<p, xs...>,
                     TypeList<x, xs...>
               >
 {
