@@ -18,15 +18,13 @@ struct Take<n> : type_is<TypeList<>>
 
 template <std::size_t n, typename x, typename... xs>
 struct Take<n, x, xs...>
-            : type_is<
-                    FlattenTypeListT<
-                            SelectTypeIfT<
-                                    n == 0,
-                                    TypeList<>,
-                                    FlattenTypeList<x, TakeT<n - 1, xs...>>
-                            >,
-                            TypeList<>
-                    >
+            : FlattenTypeList<
+                    SelectTypeIfT<
+                            n == 0,
+                            TypeList<>,
+                            FlattenTypeList<x, TakeT<n - 1, xs...>>
+                    >,
+                    TypeList<>
               >
 { };
 
