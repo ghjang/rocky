@@ -1,6 +1,0 @@
-#ifndef ROCKY_TUPLESIZE_H
-#define ROCKY_TUPLESIZE_H
-
-
-
-#endif //ROCKY_TUPLESIZE_H
