@@ -203,5 +203,38 @@ template <int x, int y>
 using MakeEvenRangeSequenceT = IntConstListToIntSeqT<MakeEvenRangeT<x, y>>;
 
 
+template <int x, int y>
+struct MakeOddRange
+{
+private:
+    static constexpr int startNum_ = (x % 2) ? x : (x + 1);
+    static constexpr int nextNum_ = startNum_ + 2;
+    static constexpr int limitNum_ = ((nextNum_ + 2) > y) ? nextNum_ : y;
+
+    using range_t = MakeSteppedRangeT<startNum_, nextNum_, limitNum_>;
+
+public :
+    using type = SelectTypeIfT<
+                        (limitNum_ > y),
+                        Init<range_t>,
+                        range_t
+                 >;
+};
+
+template <int x>
+struct MakeOddRange<x, x>
+{
+    static_assert(x % 2, "couldn't make odd range. x should be odd number.");
+    using type = TypeList<std::integral_constant<int, x>>;
+};
+
+
+template <int x, int y>
+using MakeOddRangeT = typename MakeOddRange<x, y>::type;
+
+template <int x, int y>
+using MakeOddRangeSequenceT = IntConstListToIntSeqT<MakeOddRangeT<x, y>>;
+
+
 #endif //ROCKY_SKULL_RANGE_H
 

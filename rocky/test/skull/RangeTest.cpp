@@ -182,7 +182,7 @@ TEST_CASE("Stepped range for two characters", "[skull]")
     );
 }
 
-TEST_CASE("Even/Odd Range for two integers", "[skull]")
+TEST_CASE("Even range for two integers", "[skull]")
 {
     using std::is_same;
     using std::integer_sequence;
@@ -247,5 +247,72 @@ TEST_CASE("Even/Odd Range for two integers", "[skull]")
             ""
     );
      */
+}
+
+TEST_CASE("Odd range for two integers", "[skull]")
+{
+    using std::is_same;
+    using std::integer_sequence;
+
+    static_assert(
+            is_same<
+                    integer_sequence<int, 1, 3, 5, 7, 9>,
+                    MakeOddRangeSequenceT<0, 10>
+            >(),
+            ""
+    );
+
+    static_assert(
+            is_same<
+                    integer_sequence<int, 1, 3, 5, 7, 9>,
+                    MakeOddRangeSequenceT<1, 10>
+            >(),
+            ""
+    );
+
+    static_assert(
+            is_same<
+                    integer_sequence<int, 1, 3, 5, 7, 9, 11>,
+                    MakeOddRangeSequenceT<1, 11>
+            >(),
+            ""
+    );
+
+    static_assert(
+            is_same<
+                    integer_sequence<int, 1, 3>,
+                    MakeOddRangeSequenceT<1, 3>
+            >(),
+            ""
+    );
+
+    static_assert(
+            is_same<
+                    integer_sequence<int, 1>,
+                    MakeOddRangeSequenceT<1, 2>
+            >(),
+            ""
+    );
+
+    /**
+     * NOTE: following is an expected compile-time error. can't make even range for (1, 1).
+     */
+    /*
+    static_assert(
+            is_same<
+                    integer_sequence<int, 2>,
+                    MakeOddRangeSequenceT<2, 2>
+            >(),
+            ""
+    );
+     */
+
+    static_assert(
+            is_same<
+                    integer_sequence<int, 1>,
+                    MakeOddRangeSequenceT<1, 1>
+            >(),
+            ""
+    );
 }
 
