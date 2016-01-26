@@ -3,23 +3,24 @@
 
 
 #include "rocky/meta/IntegralConstantUtility.h"
+#include "rocky/meta/FindIf.h"
 #include "rocky/skull/Reverse.h"
 
 
+/**
+ * THINK: Is it possible to generalize this kind of currying?
+ */
+template <typename T>
+struct IsSame
+{
+    template <typename x>
+    struct Convert : std::is_same<x, T>
+    { };
+};
+
+
 template <typename T, typename... xs>
-struct Find : Find<T, int_c_t<0>, xs...>
-{ };
-
-template <typename T, int i>
-struct Find<T, int_c_t<i>> : int_c_t<-1>
-{ };
-
-template <typename T, int i, typename... xs>
-struct Find<T, int_c_t<i>, T, xs...> : int_c_t<i>
-{ };
-
-template <typename T, typename U, int i, typename... xs>
-struct Find<T, int_c_t<i>, U, xs...> : Find<T, int_c_t<i + 1>, xs...>
+struct Find : FindIf<IsSame<T>::template Convert, xs...>
 { };
 
 
@@ -33,16 +34,9 @@ struct Find<T, std::tuple<xs...>> : Find<T, xs...>
 
 
 template <typename T, typename... xs>
-struct ReverseFind
-{
-private:
-    static constexpr int i = Find<T, ReverseT<xs...>>();
+struct ReverseFind : ReverseFindIf<IsSame<T>::template Convert, xs...>
+{ };
 
-public:
-    static constexpr int value = (i == -1) ? (-1) : (sizeof...(xs) - i - 1);
-
-    constexpr operator int () const noexcept { return value; }
-};
 
 template <typename T, typename... xs>
 struct ReverseFind<T, TypeList<xs...>> : ReverseFind<T, xs...>
