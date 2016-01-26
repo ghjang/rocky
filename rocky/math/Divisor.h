@@ -2,8 +2,7 @@
 #define ROCKY_MATH_DIVISOR_H
 
 
-#include "rocky/base/TypeList.h"
-#include "rocky/base/IntegralConstantUtility.h"
+#include "rocky/base/IntegerSequenceUtility.h"
 #include "rocky/math/Abs.h"
 
 
@@ -51,6 +50,9 @@ using DivisorT = typename Divisor<T>::type;
 
 template <int i>
 using MakeDivisorTypeListT = DivisorT<int_c_t<i>>;
+
+template <int i>
+using MakeDivisorSequenceT = IntConstListToIntSeqT<MakeDivisorTypeListT<i>>;
 
 
 #endif //ROCKY_MATH_DIVISOR_H
