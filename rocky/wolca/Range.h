@@ -9,36 +9,39 @@
 
 
 template <int i>
-struct RangeT
+struct TRange
 {
 private:
     template <typename Indices>
-    struct RangeTImpl;
+    struct TRangeImpl;
 
     template <std::size_t... Indices>
-    struct RangeTImpl<std::index_sequence<Indices...>>
+    struct TRangeImpl<std::index_sequence<Indices...>>
     {
         static constexpr std::array<int, sizeof...(Indices)> value = { Indices... };
     };
 
 public:
-    static constexpr std::array<int, i> value = RangeTImpl<std::make_index_sequence<i>>::value;
+    static constexpr std::array<int, i> value = TRangeImpl<std::make_index_sequence<i>>::value;
 };
 
 template <int i>
-constexpr std::array<int, i> RangeT<i>::value;
+constexpr std::array<int, i> TRange<i>::value;
 
 
-template <std::size_t... Indices>
-constexpr auto RangeImpl(std::index_sequence<Indices...>)
+namespace Detail
 {
-    return std::array<int, sizeof...(Indices)>{ Indices... };
-}
+    template<std::size_t... Indices>
+    constexpr auto RangeImpl(std::index_sequence<Indices...>) {
+        return std::array<int, sizeof...(Indices)>{Indices...};
+    }
+} // namespace Detail
+
 
 template <int i>
 constexpr auto Range()
 {
-    return RangeImpl(std::make_index_sequence<i>());
+    return Detail::RangeImpl(std::make_index_sequence<i>());
 }
 
 

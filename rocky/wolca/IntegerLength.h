@@ -1,5 +1,5 @@
-#ifndef ROCKY_INTEGERLENGTH_H
-#define ROCKY_INTEGERLENGTH_H
+#ifndef ROCKY_WOLCA_INTEGERLENGTH_H
+#define ROCKY_WOLCA_INTEGERLENGTH_H
 
 
 #include <cstdint>
@@ -27,5 +27,5 @@ constexpr std::size_t IntegerLength(T i)
 }
 
 
-#endif //ROCKY_INTEGERLENGTH_H
+#endif //ROCKY_WOLCA_INTEGERLENGTH_H
 

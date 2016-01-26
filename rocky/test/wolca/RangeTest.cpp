@@ -7,7 +7,7 @@ TEST_CASE("Range function", "[wolca]")
 {
     {
         int i = 0;
-        for (auto e : RangeT<10>::value) {  // compile-time
+        for (auto e : TRange<10>::value) {  // compile-time
             REQUIRE(e == i);
             ++i;
         }

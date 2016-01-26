@@ -37,8 +37,8 @@ private:
     {
         using type = std::conditional_t<
                             N < 0,
-                            CharSequence<'-', IntegerDigitCharacterT<N, sizeof...(i) - i>::value...>,
-                            CharSequence<IntegerDigitCharacterT<N, sizeof...(i) - i>::value...>
+                            CharSequence<'-', TIntegerDigitCharacter<N, sizeof...(i) - i>::value...>,
+                            CharSequence<TIntegerDigitCharacter<N, sizeof...(i) - i>::value...>
                         >;
     };
 

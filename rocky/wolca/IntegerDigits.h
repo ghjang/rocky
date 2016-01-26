@@ -1,5 +1,5 @@
-#ifndef ROCKY_INTEGERDIGITS_H
-#define ROCKY_INTEGERDIGITS_H
+#ifndef ROCKY_WOLCA_INTEGERDIGITS_H
+#define ROCKY_WOLCA_INTEGERDIGITS_H
 
 
 #include <cassert>
@@ -60,7 +60,7 @@ constexpr auto IntegerDigit(T n, uint8_t numOfDigit, uint8_t digitIndex)
  * @param[in] DigitIndex 1-based digit index
  */
 template <intmax_t N, std::size_t DigitIndex>
-struct IntegerDigitT
+struct TIntegerDigit
 {
     static_assert(DigitIndex <= IntegerLength(N) && DigitIndex > 0, "");
     static constexpr int8_t value = IntegerDigit(N, IntegerLength(N), DigitIndex);
@@ -71,12 +71,12 @@ struct IntegerDigitT
  * @param[in] DigitIndex 1-based digit index
  */
 template <intmax_t N, std::size_t DigitIndex>
-struct IntegerDigitCharacterT
+struct TIntegerDigitCharacter
 {
     static_assert(DigitIndex <= IntegerLength(N) && DigitIndex > 0, "");
-    static constexpr char value = '0' + IntegerDigitT<N, DigitIndex>::value;
+    static constexpr char value = '0' + TIntegerDigit<N, DigitIndex>::value;
 };
 
 
-#endif //ROCKY_INTEGERDIGITS_H
+#endif //ROCKY_WOLCA_INTEGERDIGITS_H
 
