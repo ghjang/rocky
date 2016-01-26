@@ -45,6 +45,7 @@ set(HEADER_FILES
         ../meta/TypeListFlatten.h
         ../meta/TypeListJoin.h
         ../meta/TypeAt.h
+        ../meta/Swap.h
         ../wolca/StringUtility.h
         ../wolca/Range.h
         ../wolca/IntegerLength.h
@@ -109,6 +110,7 @@ set(SOURCE_FILES
         meta/TypeListFlattenTest.cpp
         meta/TypeListJoinTest.cpp
         meta/TypeAtTest.cpp
+        meta/SwapTest.cpp
         math/PowerTest.cpp
         math/AbsTest.cpp
         math/RatioStringTest.cpp
