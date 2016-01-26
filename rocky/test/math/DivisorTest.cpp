@@ -30,5 +30,13 @@ TEST_CASE("Divisor", "[math]")
             >(),
             ""
     );
+
+    static_assert(
+            is_same<
+            TypeList<int_c_t<1>, int_c_t<2>, int_c_t<4>, int_c_t<5>, int_c_t<10>, int_c_t<20>>,
+            MakeDivisorListT<-20>
+            >(),
+            ""
+    );
 }
 

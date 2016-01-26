@@ -49,6 +49,9 @@ struct Divisor<std::integral_constant<T, i>>
 template <typename T>
 using DivisorT = typename Divisor<T>::type;
 
+template <int i>
+using MakeDivisorListT = DivisorT<int_c_t<i>>;
+
 
 #endif //ROCKY_MATH_DIVISOR_H
 
