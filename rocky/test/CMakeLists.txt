@@ -46,6 +46,7 @@ set(HEADER_FILES
         ../math/Power.h
         ../math/Abs.h
         ../math/RatioString.h
+        ../math/Divisor.h
         ../wolca/StringUtility.h
         ../wolca/Range.h
         ../wolca/IntegerLength.h
@@ -114,6 +115,7 @@ set(SOURCE_FILES
         math/PowerTest.cpp
         math/AbsTest.cpp
         math/RatioStringTest.cpp
+        math/DivisorTest.cpp
         wolca/StringUtilityTest.cpp
         wolca/RangeTest.cpp
         wolca/IntegerLengthTest.cpp
