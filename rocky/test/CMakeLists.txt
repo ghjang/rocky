@@ -72,7 +72,8 @@ set(HEADER_FILES
         ../skull/Replicate.h
         ../skull/Fst.h
         ../skull/Snd.h
-        ../skull/Range.h)
+        ../skull/Range.h
+        ../skull/All.h)
 
 set(SOURCE_FILES
         main.cpp
@@ -133,7 +134,8 @@ set(SOURCE_FILES
         skull/ReplicateTest.cpp
         skull/FstTest.cpp
         skull/SndTest.cpp
-        skull/RangeTest.cpp)
+        skull/RangeTest.cpp
+        skull/AllTest.cpp)
 
 add_executable(RockyTest ${HEADER_FILES} ${SOURCE_FILES})
 
