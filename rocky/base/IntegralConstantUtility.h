@@ -2,7 +2,7 @@
 #define ROCKY_INTEGRALCONSTANTUTILITY_H
 
 
-#include "rocky/StringNumberConversion.h"
+#include "rocky/base/StringNumberConversion.h"
 #include "rocky/base/TypeSelection.h"
 
 

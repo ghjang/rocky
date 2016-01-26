@@ -1,6 +1,6 @@
-#include "catch.hpp"
+#include "../catch.hpp"
 
-#include "rocky/ConstExprArray.h"
+#include "rocky/base/ConstExprArray.h"
 
 
 namespace

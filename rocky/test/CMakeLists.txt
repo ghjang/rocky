@@ -15,12 +15,9 @@ include_directories(${ROCKY_ROOT})
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
 
 set(HEADER_FILES
-        ../ConstExprArray.h
-        ../StringNumberConversion.h
-        ../VariantUtility.h
-        ../math/Power.h
-        ../math/Abs.h
-        ../math/RatioString.h
+        ../base/ConstExprArray.h
+        ../base/StringNumberConversion.h
+        ../base/VariantUtility.h
         ../base/Count.h
         ../base/Find.h
         ../base/FindIf.h
@@ -46,6 +43,9 @@ set(HEADER_FILES
         ../base/TypeListJoin.h
         ../base/TypeAt.h
         ../base/Swap.h
+        ../math/Power.h
+        ../math/Abs.h
+        ../math/RatioString.h
         ../wolca/StringUtility.h
         ../wolca/Range.h
         ../wolca/IntegerLength.h
@@ -83,9 +83,9 @@ set(HEADER_FILES
 
 set(SOURCE_FILES
         main.cpp
-        ConstExprArrayTest.cpp
-        StringNumberConversionTest.cpp
-        VariantUtilityTest.cpp
+        base/ConstExprArrayTest.cpp
+        base/StringNumberConversionTest.cpp
+        base/VariantUtilityTest.cpp
         base/TypeSizeTest.cpp
         base/HasMemberTest.cpp
         base/IdentityTest.cpp

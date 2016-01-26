@@ -6,7 +6,7 @@
 #include <tuple>
 #include <utility>
 
-#include "rocky/ConstExprArray.h"
+#include "rocky/base/ConstExprArray.h"
 #include "rocky/base/IntegralConstantUtility.h"
 #include "rocky/skull/Head.h"
 #include "rocky/skull/Map.h"

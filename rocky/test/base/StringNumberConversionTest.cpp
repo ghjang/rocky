@@ -1,6 +1,6 @@
-#include "catch.hpp"
+#include "../catch.hpp"
 
-#include "rocky/StringNumberConversion.h"
+#include "rocky/base/StringNumberConversion.h"
 
 
 TEST_CASE("char to int", "[StringNumberConversion]")
