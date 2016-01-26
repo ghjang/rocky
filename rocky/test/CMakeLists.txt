@@ -76,7 +76,8 @@ set(HEADER_FILES
         ../skull/Range.h
         ../skull/All.h
         ../skull/TakeWhile.h
-        ../skull/Any.h)
+        ../skull/Any.h
+        ../skull/DropWhile.h)
 
 set(SOURCE_FILES
         main.cpp
@@ -141,7 +142,8 @@ set(SOURCE_FILES
         skull/RangeTest.cpp
         skull/AllTest.cpp
         skull/TakeWhileTest.cpp
-        skull/AnyTest.cpp)
+        skull/AnyTest.cpp
+        skull/DropWhileTest.cpp)
 
 add_executable(RockyTest ${HEADER_FILES} ${SOURCE_FILES})
 
