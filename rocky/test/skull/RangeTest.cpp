@@ -211,12 +211,38 @@ TEST_CASE("Even/Odd Range for two integers", "[skull]")
             ""
     );
 
-    /*
-    MakeEvenRangeSequenceT<1, 3>()++;
     static_assert(
             is_same<
                     integer_sequence<int, 2>,
                     MakeEvenRangeSequenceT<1, 3>
+            >(),
+            ""
+    );
+
+    static_assert(
+            is_same<
+                    integer_sequence<int, 2>,
+                    MakeEvenRangeSequenceT<1, 2>
+            >(),
+            ""
+    );
+
+    static_assert(
+            is_same<
+                    integer_sequence<int, 2>,
+                    MakeEvenRangeSequenceT<2, 2>
+            >(),
+            ""
+    );
+
+    /**
+     * NOTE: following is an expected compile-time error. can't make even range for (1, 1).
+     */
+    /*
+    static_assert(
+            is_same<
+                    integer_sequence<int>,
+                    MakeEvenRangeSequenceT<1, 1>
             >(),
             ""
     );

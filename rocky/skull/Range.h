@@ -3,6 +3,7 @@
 
 
 #include "rocky/meta/IntegerSequenceUtility.h"
+#include "rocky/skull/Init.h"
 
 
 template <typename x, typename y, typename z = void>
@@ -170,11 +171,33 @@ using MakeSteppedCharRangeSequenceT = IntConstListToIntSeqT<MakeSteppedCharRange
 
 
 template <int x, int y>
-using MakeEvenRangeT = MakeSteppedRangeT<
-                                (x % 2) ? (x + 1) : x,
-                                ((x % 2) ? (x + 1) : x) + 2,
-                                ((((x % 2) ? (x + 1) : x) + 2) > y) ? (((x % 2) ? (x + 1) : x) + 2) : y
-                        >;
+struct MakeEvenRange
+{
+private:
+    static constexpr int startNum_ = (x % 2) ? (x + 1) : x;
+    static constexpr int nextNum_ = startNum_ + 2;
+    static constexpr int limitNum_ = ((nextNum_ + 2) > y) ? nextNum_ : y;
+
+    using range_t = MakeSteppedRangeT<startNum_, nextNum_, limitNum_>;
+
+public :
+    using type = SelectTypeIfT<
+                        (limitNum_ > y),
+                        Init<range_t>,
+                        range_t
+                 >;
+};
+
+template <int x>
+struct MakeEvenRange<x, x>
+{
+    static_assert((x % 2) == 0, "couldn't make even range. x should be even number.");
+    using type = TypeList<std::integral_constant<int, x>>;
+};
+
+
+template <int x, int y>
+using MakeEvenRangeT = typename MakeEvenRange<x, y>::type;
 
 template <int x, int y>
 using MakeEvenRangeSequenceT = IntConstListToIntSeqT<MakeEvenRangeT<x, y>>;
