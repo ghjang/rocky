@@ -48,6 +48,7 @@ set(HEADER_FILES
         ../math/RatioString.h
         ../math/Divisor.h
         ../math/Gcd.h
+        ../math/Lcm.h
         ../wolca/StringUtility.h
         ../wolca/Range.h
         ../wolca/IntegerLength.h
@@ -118,6 +119,7 @@ set(SOURCE_FILES
         math/RatioStringTest.cpp
         math/DivisorTest.cpp
         math/GcdTest.cpp
+        math/LcmTest.cpp
         wolca/StringUtilityTest.cpp
         wolca/RangeTest.cpp
         wolca/IntegerLengthTest.cpp
