@@ -9,7 +9,7 @@
 template <typename... xs>
 struct Snd : Head<DropT<1, xs...>>
 {
-    static_assert(sizeof...(xs) == 2, "xs should a type list of which length is 2.");
+    static_assert(sizeof...(xs) == 2, "xs should be a type list of which length is 2.");
 };
 
 

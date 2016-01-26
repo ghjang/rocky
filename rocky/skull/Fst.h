@@ -8,7 +8,7 @@
 template <typename... xs>
 struct Fst : Head<xs...>
 {
-    static_assert(sizeof...(xs) == 2, "xs should a type list of which length is 2.");
+    static_assert(sizeof...(xs) == 2, "xs should be a type list of which length is 2.");
 };
 
 
