@@ -9,6 +9,8 @@ TEST_CASE("All", "[skull]")
     using std::is_pointer;
     using std::tuple;
 
+    static_assert(All<is_pointer>(), "");
+
     static_assert(All<is_pointer, char *, int *, float *, double *>(), "");
     static_assert(!All<is_pointer, char *, int *, float, double *>(), "");
 
