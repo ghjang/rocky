@@ -23,6 +23,7 @@ set(HEADER_FILES
         ../math/RatioString.h
         ../meta/Count.h
         ../meta/Find.h
+        ../meta/FindIf.h
         ../meta/ForEachArgument.h
         ../meta/ForEachTuple.h
         ../meta/HasMember.h
@@ -74,7 +75,8 @@ set(HEADER_FILES
         ../skull/Snd.h
         ../skull/Range.h
         ../skull/All.h
-        ../skull/TakeWhile.h)
+        ../skull/TakeWhile.h
+        ../skull/Any.h)
 
 set(SOURCE_FILES
         main.cpp
@@ -96,6 +98,7 @@ set(SOURCE_FILES
         meta/RemoveTest.cpp
         meta/ReplaceTest.cpp
         meta/FindTest.cpp
+        meta/FindIfTest.cpp
         meta/UniqueTest.cpp
         meta/CharSequenceUtilityTest.cpp
         meta/TransformIntegerSequenceTest.cpp
@@ -137,7 +140,8 @@ set(SOURCE_FILES
         skull/SndTest.cpp
         skull/RangeTest.cpp
         skull/AllTest.cpp
-        skull/TakeWhileTest.cpp)
+        skull/TakeWhileTest.cpp
+        skull/AnyTest.cpp)
 
 add_executable(RockyTest ${HEADER_FILES} ${SOURCE_FILES})
 
