@@ -19,7 +19,7 @@ constexpr auto ToConstExprString(std::ratio<Num, Denom>)
                                 typename JoinCharSequence<
                                                 CharSequence<'-'>, num_seq_t ,CharSequence<'/'>, denum_seq_t
                                             >::type,
-                                typename JoinCharSequence <
+                                typename JoinCharSequence<
                                                 num_seq_t ,CharSequence<'/'>, denum_seq_t
                                             >::type
                             >;
