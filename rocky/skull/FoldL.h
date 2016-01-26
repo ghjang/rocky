@@ -2,8 +2,8 @@
 #define ROCKY_SKULL_FOLDL_H
 
 
-#include "rocky/meta/TypeList.h"
-#include "rocky/meta/HasMember.h"
+#include "rocky/base/TypeList.h"
+#include "rocky/base/HasMember.h"
 
 
 // accumulation

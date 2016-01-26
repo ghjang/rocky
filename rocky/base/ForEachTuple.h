@@ -5,8 +5,8 @@
 #include <tuple>
 #include <utility>
 
-#include "rocky/meta/ForEachArgument.h"
-#include "rocky/meta/TypeUtility.h"
+#include "rocky/base/ForEachArgument.h"
+#include "rocky/base/TypeUtility.h"
 
 
 template <typename F, typename Tuple, std::size_t... Indice>

@@ -1,6 +1,6 @@
 #include "../catch.hpp"
 
-#include "rocky/meta/TypeAt.h"
+#include "rocky/base/TypeAt.h"
 
 
 TEST_CASE("TypeAt", "[TypeAt]")

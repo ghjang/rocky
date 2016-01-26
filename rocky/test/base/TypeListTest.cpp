@@ -1,6 +1,6 @@
 #include "../catch.hpp"
 
-#include "rocky/meta/TypeList.h"
+#include "rocky/base/TypeList.h"
 
 
 TEST_CASE("TypeListSize", "[TypeList]")

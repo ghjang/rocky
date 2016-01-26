@@ -1,7 +1,7 @@
 #include "../catch.hpp"
 
-#include "rocky/meta/Identity.h"
-#include "rocky/meta/HasMember.h"
+#include "rocky/base/Identity.h"
+#include "rocky/base/HasMember.h"
 
 
 TEST_CASE("Wrapping as type member", "[Identity]")

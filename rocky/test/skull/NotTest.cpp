@@ -2,7 +2,7 @@
 
 #include "rocky/skull/Not.h"
 
-#include "rocky/meta/IntegralConstantUtility.h"
+#include "rocky/base/IntegralConstantUtility.h"
 
 
 TEST_CASE("Not", "[skull]")

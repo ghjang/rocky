@@ -7,9 +7,9 @@
 
 #include "boost/variant.hpp"
 
-#include "rocky/meta/TypeUtility.h"
-#include "rocky/meta/ForEachArgument.h"
-#include "rocky/meta/Unique.h"
+#include "rocky/base/TypeUtility.h"
+#include "rocky/base/ForEachArgument.h"
+#include "rocky/base/Unique.h"
 
 
 template <typename... xs>

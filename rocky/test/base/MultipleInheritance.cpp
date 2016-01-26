@@ -1,6 +1,6 @@
 #include "../catch.hpp"
 
-#include "rocky/meta/MultipleInheritance.h"
+#include "rocky/base/MultipleInheritance.h"
 
 #include <type_traits>
 

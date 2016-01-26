@@ -1,6 +1,6 @@
 #include "../catch.hpp"
 
-#include "rocky/meta/HasMember.h"
+#include "rocky/base/HasMember.h"
 
 
 TEST_CASE("class without 'type' member", "[HasMember]")

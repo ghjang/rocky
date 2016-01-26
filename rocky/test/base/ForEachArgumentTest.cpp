@@ -1,6 +1,6 @@
 #include "../catch.hpp"
 
-#include "rocky/meta/ForEachArgument.h"
+#include "rocky/base/ForEachArgument.h"
 
 #include <type_traits>
 

@@ -2,8 +2,8 @@
 #define ROCKY_TYPESELECTION_H
 
 
-#include "rocky/meta/Identity.h"
-#include "rocky/meta/HasMember.h"
+#include "rocky/base/Identity.h"
+#include "rocky/base/HasMember.h"
 
 
 namespace Detail

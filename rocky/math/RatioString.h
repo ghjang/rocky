@@ -5,7 +5,7 @@
 #include <ratio>
 
 #include "rocky/math/Abs.h"
-#include "rocky/meta/CharSequenceUtility.h"
+#include "rocky/base/CharSequenceUtility.h"
 
 
 template <std::intmax_t Num, std::intmax_t Denom>

@@ -1,6 +1,6 @@
 #include "../catch.hpp"
 
-#include "rocky/meta/TypeListJoin.h"
+#include "rocky/base/TypeListJoin.h"
 
 
 TEST_CASE("TypeListJoin", "[TypeListJoin]")

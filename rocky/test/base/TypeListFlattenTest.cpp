@@ -1,6 +1,6 @@
 #include "../catch.hpp"
 
-#include "rocky/meta/TypeListFlatten.h"
+#include "rocky/base/TypeListFlatten.h"
 
 
 TEST_CASE("TypeList flatten", "[TypeListFlatten]")

@@ -2,7 +2,7 @@
 #define ROCKY_CHARSEQUENCEUTILITY_H
 
 
-#include "rocky/meta/IntegerSequenceUtility.h"
+#include "rocky/base/IntegerSequenceUtility.h"
 #include "rocky/wolca/IntegerDigits.h"
 
 

@@ -5,8 +5,8 @@
 #include <type_traits>
 #include <utility>
 
-#include "rocky/meta/HasMember.h"
-#include "rocky/meta/IntegerSequenceUtility.h"
+#include "rocky/base/HasMember.h"
+#include "rocky/base/IntegerSequenceUtility.h"
 
 
 namespace Detail

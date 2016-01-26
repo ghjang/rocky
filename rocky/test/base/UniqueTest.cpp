@@ -1,6 +1,6 @@
 #include "../catch.hpp"
 
-#include "rocky/meta/Unique.h"
+#include "rocky/base/Unique.h"
 
 
 TEST_CASE("Unique", "[Unique]")

@@ -2,7 +2,7 @@
 #define ROCKY_SKULL_RANGE_H
 
 
-#include "rocky/meta/IntegerSequenceUtility.h"
+#include "rocky/base/IntegerSequenceUtility.h"
 #include "rocky/skull/Init.h"
 
 

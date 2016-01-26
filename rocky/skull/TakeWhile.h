@@ -2,8 +2,8 @@
 #define ROCKY_SKULL_TAKEWHILE_H
 
 
-#include "rocky/meta/TypeListFlatten.h"
-#include "rocky/meta/TypeSelection.h"
+#include "rocky/base/TypeListFlatten.h"
+#include "rocky/base/TypeSelection.h"
 
 
 template <template <typename> class p, typename... xs>

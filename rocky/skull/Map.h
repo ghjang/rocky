@@ -2,8 +2,8 @@
 #define ROCKY_SKULL_MAP_H
 
 
-#include "rocky/meta/TypeList.h"
-#include "rocky/meta/HasMember.h"
+#include "rocky/base/TypeList.h"
+#include "rocky/base/HasMember.h"
 #include "rocky/skull/Head.h"
 
 

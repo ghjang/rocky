@@ -1,6 +1,6 @@
 #include "../catch.hpp"
 
-#include "rocky/meta/TransformIntegerSequence.h"
+#include "rocky/base/TransformIntegerSequence.h"
 
 
 namespace

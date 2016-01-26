@@ -2,7 +2,7 @@
 #define ROCKY_UNIQUE_H
 
 
-#include "rocky/meta/Find.h"
+#include "rocky/base/Find.h"
 #include "rocky/skull/FoldL.h"
 #include "rocky/skull/Elem.h"
 

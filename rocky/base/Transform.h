@@ -2,15 +2,12 @@
 #define ROCKY_TRANSFORMTUPLE_H
 
 
-// list comprehension
-
-
 #include <array>
 #include <tuple>
 #include <utility>
 
 #include "rocky/ConstExprArray.h"
-#include "rocky/meta/IntegralConstantUtility.h"
+#include "rocky/base/IntegralConstantUtility.h"
 #include "rocky/skull/Head.h"
 #include "rocky/skull/Map.h"
 
@@ -45,7 +42,7 @@ constexpr std::array<int, sizeof...(list)> IntegralConstantElementTypeToArray<
 
 
 //==============================================================================
-// compiletime metafunctions
+// compiletime basefunctions
 //==============================================================================
 template <template <typename> class p, typename... xs>
 struct MapToBoolConstantType : Map<TypeToBoolConstantType<p>::template Convert, xs...>

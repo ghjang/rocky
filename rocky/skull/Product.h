@@ -2,7 +2,7 @@
 #define ROCKY_SKULL_PRODUCT_H
 
 
-#include "rocky/meta/IntegralConstantUtility.h"
+#include "rocky/base/IntegralConstantUtility.h"
 #include "rocky/skull/FoldR.h"
 
 

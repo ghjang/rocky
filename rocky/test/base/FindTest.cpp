@@ -1,6 +1,6 @@
 #include "../catch.hpp"
 
-#include "rocky/meta/Find.h"
+#include "rocky/base/Find.h"
 
 
 TEST_CASE("find element type", "[Find]")

@@ -1,6 +1,6 @@
 #include "../catch.hpp"
 
-#include "rocky/meta/TypeSelection.h"
+#include "rocky/base/TypeSelection.h"
 
 
 TEST_CASE("Selecting type on compile time bool condition", "[TypeSelection]")

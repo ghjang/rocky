@@ -2,7 +2,7 @@
 
 #include "rocky/skull/FoldR.h"
 
-#include "rocky/meta/IntegralConstantUtility.h"
+#include "rocky/base/IntegralConstantUtility.h"
 
 
 TEST_CASE("fold right, integral constant sum", "[Fold]")

@@ -2,7 +2,7 @@
 #define ROCKY_SKULL_INIT_H
 
 
-#include "rocky/meta/TypeList.h"
+#include "rocky/base/TypeList.h"
 #include "rocky/skull/Take.h"
 
 

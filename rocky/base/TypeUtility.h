@@ -2,8 +2,8 @@
 #define ROCKY_TYPEUTILITY_H
 
 
-#include "rocky/meta/Identity.h"
-#include "rocky/meta/IntegralConstantUtility.h"
+#include "rocky/base/Identity.h"
+#include "rocky/base/IntegralConstantUtility.h"
 
 
 /**

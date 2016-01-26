@@ -1,6 +1,6 @@
 #include "../catch.hpp"
 
-#include "rocky/meta/IntegralConstantUtility.h"
+#include "rocky/base/IntegralConstantUtility.h"
 
 
 TEST_CASE("+ operator overloading", "[IntegralConstantUtility]")

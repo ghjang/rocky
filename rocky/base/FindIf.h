@@ -2,7 +2,7 @@
 #define ROCKY_FIND_IF_H
 
 
-#include "rocky/meta/IntegralConstantUtility.h"
+#include "rocky/base/IntegralConstantUtility.h"
 #include "rocky/skull/Reverse.h"
 
 

@@ -2,7 +2,7 @@
 
 #include "rocky/skull/Zip.h"
 
-#include "rocky/meta/IntegralConstantUtility.h"
+#include "rocky/base/IntegralConstantUtility.h"
 
 
 TEST_CASE("Zip", "[skull]")

@@ -1,9 +1,9 @@
 #include "../catch.hpp"
 
-#include "rocky/meta/Swap.h"
+#include "rocky/base/Swap.h"
 
 
-TEST_CASE("Swap", "[meta]")
+TEST_CASE("Swap", "[base]")
 {
     using std::is_same;
     using std::pair;

@@ -2,7 +2,7 @@
 
 #include "rocky/skull/Replicate.h"
 
-#include "rocky/meta/IntegerSequenceUtility.h"
+#include "rocky/base/IntegerSequenceUtility.h"
 
 
 TEST_CASE("Replicate", "[skull]")

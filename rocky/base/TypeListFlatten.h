@@ -2,7 +2,7 @@
 #define ROCKY_TYPELISTFLATTEN_H
 
 
-#include "rocky/meta/TypeList.h"
+#include "rocky/base/TypeList.h"
 
 
 template <typename... xs>

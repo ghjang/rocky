@@ -2,8 +2,8 @@
 #define ROCKY_FIND_H
 
 
-#include "rocky/meta/IntegralConstantUtility.h"
-#include "rocky/meta/FindIf.h"
+#include "rocky/base/IntegralConstantUtility.h"
+#include "rocky/base/FindIf.h"
 #include "rocky/skull/Reverse.h"
 
 

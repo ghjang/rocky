@@ -1,6 +1,6 @@
 #include "../catch.hpp"
 
-#include "rocky/meta/Extract.h"
+#include "rocky/base/Extract.h"
 
 
 TEST_CASE("tuple element type extraction", "[Extract]")

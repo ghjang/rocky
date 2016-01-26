@@ -2,7 +2,7 @@
 #define ROCKY_TYPESIZE_H
 
 
-#include "rocky/meta/TypeAt.h"
+#include "rocky/base/TypeAt.h"
 #include "rocky/skull/Sum.h"
 
 

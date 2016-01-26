@@ -1,6 +1,6 @@
 #include "../catch.hpp"
 
-#include "rocky/meta/IntegerSequenceUtility.h"
+#include "rocky/base/IntegerSequenceUtility.h"
 
 
 TEST_CASE("join integer sequence", "[IntegerSequenceUtility]")

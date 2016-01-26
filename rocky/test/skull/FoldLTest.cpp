@@ -2,7 +2,7 @@
 
 #include "rocky/skull/FoldL.h"
 
-#include "rocky/meta/IntegralConstantUtility.h"
+#include "rocky/base/IntegralConstantUtility.h"
 
 #include <numeric>
 

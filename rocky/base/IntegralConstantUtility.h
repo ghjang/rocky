@@ -3,7 +3,7 @@
 
 
 #include "rocky/StringNumberConversion.h"
-#include "rocky/meta/TypeSelection.h"
+#include "rocky/base/TypeSelection.h"
 
 
 template <typename T1, T1 v1, typename T2, T2 v2>

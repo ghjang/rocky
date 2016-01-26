@@ -2,7 +2,7 @@
 #define ROCKY_SKULL_EVEN_H
 
 
-#include "rocky/meta/IntegralConstantUtility.h"
+#include "rocky/base/IntegralConstantUtility.h"
 
 
 template <typename T>

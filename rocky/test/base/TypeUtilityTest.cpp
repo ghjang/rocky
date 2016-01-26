@@ -1,6 +1,6 @@
 #include "../catch.hpp"
 
-#include "rocky/meta/TypeUtility.h"
+#include "rocky/base/TypeUtility.h"
 
 
 TEST_CASE("basic type wrapping as a value", "[TypeUtility]")
