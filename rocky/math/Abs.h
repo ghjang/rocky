@@ -1,5 +1,5 @@
-#ifndef ROCKY_ABS_H
-#define ROCKY_ABS_H
+#ifndef ROCKY_BASE_ABS_H
+#define ROCKY_BASE_ABS_H
 
 
 #include <type_traits>
@@ -32,5 +32,5 @@ constexpr auto Abs(T t)
 }
 
 
-#endif //ROCKY_ABS_H
+#endif //ROCKY_BASE_ABS_H
 
