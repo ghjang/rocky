@@ -21,31 +21,31 @@ set(HEADER_FILES
         ../math/Power.h
         ../math/Abs.h
         ../math/RatioString.h
-        ../meta/Count.h
-        ../meta/Find.h
-        ../meta/FindIf.h
-        ../meta/ForEachArgument.h
-        ../meta/ForEachTuple.h
-        ../meta/HasMember.h
-        ../meta/Identity.h
-        ../meta/IntegerSequenceUtility.h
-        ../meta/IntegralConstantUtility.h
-        ../meta/MultipleInheritance.h
-        ../meta/Remove.h
-        ../meta/Replace.h
-        ../meta/Transform.h
-        ../meta/TypeSize.h
-        ../meta/TypeSelection.h
-        ../meta/TypeUtility.h
-        ../meta/Unique.h
-        ../meta/CharSequenceUtility.h
-        ../meta/TransformIntegerSequence.h
-        ../meta/Extract.h
-        ../meta/TypeList.h
-        ../meta/TypeListFlatten.h
-        ../meta/TypeListJoin.h
-        ../meta/TypeAt.h
-        ../meta/Swap.h
+        ../base/Count.h
+        ../base/Find.h
+        ../base/FindIf.h
+        ../base/ForEachArgument.h
+        ../base/ForEachTuple.h
+        ../base/HasMember.h
+        ../base/Identity.h
+        ../base/IntegerSequenceUtility.h
+        ../base/IntegralConstantUtility.h
+        ../base/MultipleInheritance.h
+        ../base/Remove.h
+        ../base/Replace.h
+        ../base/Transform.h
+        ../base/TypeSize.h
+        ../base/TypeSelection.h
+        ../base/TypeUtility.h
+        ../base/Unique.h
+        ../base/CharSequenceUtility.h
+        ../base/TransformIntegerSequence.h
+        ../base/Extract.h
+        ../base/TypeList.h
+        ../base/TypeListFlatten.h
+        ../base/TypeListJoin.h
+        ../base/TypeAt.h
+        ../base/Swap.h
         ../wolca/StringUtility.h
         ../wolca/Range.h
         ../wolca/IntegerLength.h
@@ -86,31 +86,31 @@ set(SOURCE_FILES
         ConstExprArrayTest.cpp
         StringNumberConversionTest.cpp
         VariantUtilityTest.cpp
-        meta/TypeSizeTest.cpp
-        meta/HasMemberTest.cpp
-        meta/IdentityTest.cpp
-        meta/TypeSelectionTest.cpp
-        meta/IntegralConstantUtilityTest.cpp
-        meta/MultipleInheritance.cpp
-        meta/ForEachArgumentTest.cpp
-        meta/IntegerSequenceUtilityTest.cpp
-        meta/ForEachTupleTest.cpp
-        meta/TypeUtilityTest.cpp
-        meta/TransformTest.cpp
-        meta/CountTest.cpp
-        meta/RemoveTest.cpp
-        meta/ReplaceTest.cpp
-        meta/FindTest.cpp
-        meta/FindIfTest.cpp
-        meta/UniqueTest.cpp
-        meta/CharSequenceUtilityTest.cpp
-        meta/TransformIntegerSequenceTest.cpp
-        meta/ExtractTest.cpp
-        meta/TypeListTest.cpp
-        meta/TypeListFlattenTest.cpp
-        meta/TypeListJoinTest.cpp
-        meta/TypeAtTest.cpp
-        meta/SwapTest.cpp
+        base/TypeSizeTest.cpp
+        base/HasMemberTest.cpp
+        base/IdentityTest.cpp
+        base/TypeSelectionTest.cpp
+        base/IntegralConstantUtilityTest.cpp
+        base/MultipleInheritance.cpp
+        base/ForEachArgumentTest.cpp
+        base/IntegerSequenceUtilityTest.cpp
+        base/ForEachTupleTest.cpp
+        base/TypeUtilityTest.cpp
+        base/TransformTest.cpp
+        base/CountTest.cpp
+        base/RemoveTest.cpp
+        base/ReplaceTest.cpp
+        base/FindTest.cpp
+        base/FindIfTest.cpp
+        base/UniqueTest.cpp
+        base/CharSequenceUtilityTest.cpp
+        base/TransformIntegerSequenceTest.cpp
+        base/ExtractTest.cpp
+        base/TypeListTest.cpp
+        base/TypeListFlattenTest.cpp
+        base/TypeListJoinTest.cpp
+        base/TypeAtTest.cpp
+        base/SwapTest.cpp
         math/PowerTest.cpp
         math/AbsTest.cpp
         math/RatioStringTest.cpp
