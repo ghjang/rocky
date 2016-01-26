@@ -1,5 +1,5 @@
-#ifndef ROCKY_MULTIPLEINHERITANCE_H
-#define ROCKY_MULTIPLEINHERITANCE_H
+#ifndef ROCKY_BASE_MULTIPLEINHERITANCE_H
+#define ROCKY_BASE_MULTIPLEINHERITANCE_H
 
 
 template <typename... BaseTypeList>
@@ -9,5 +9,5 @@ struct MultipleInheritance : BaseTypeList...
 };
 
 
-#endif //ROCKY_MULTIPLEINHERITANCE_H
+#endif //ROCKY_BASE_MULTIPLEINHERITANCE_H
 

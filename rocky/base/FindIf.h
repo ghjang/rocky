@@ -1,5 +1,5 @@
-#ifndef ROCKY_FIND_IF_H
-#define ROCKY_FIND_IF_H
+#ifndef ROCKY_BASE_FIND_IF_H
+#define ROCKY_BASE_FIND_IF_H
 
 
 #include "rocky/base/IntegralConstantUtility.h"
@@ -54,5 +54,5 @@ struct ReverseFindIf<p, std::tuple<xs...>> : ReverseFindIf<p, xs...>
 { };
 
 
-#endif //ROCKY_FIND_IF_H
+#endif //ROCKY_BASE_FIND_IF_H
 

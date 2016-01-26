@@ -1,5 +1,5 @@
-#ifndef ROCKY_INTEGERSEQUENCEUTILITY_H
-#define ROCKY_INTEGERSEQUENCEUTILITY_H
+#ifndef ROCKY_BASE_INTEGERSEQUENCEUTILITY_H
+#define ROCKY_BASE_INTEGERSEQUENCEUTILITY_H
 
 
 #include "rocky/base/IntegralConstantUtility.h"
@@ -124,5 +124,5 @@ struct IntegralConstantListToIntegerSequence<std::tuple<std::integral_constant<T
 { };
 
 
-#endif //ROCKY_INTEGERSEQUENCEUTILITY_H
+#endif //ROCKY_BASE_INTEGERSEQUENCEUTILITY_H
 

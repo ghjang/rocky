@@ -1,5 +1,5 @@
-#ifndef ROCKY_VARIANTUTILITY_H
-#define ROCKY_VARIANTUTILITY_H
+#ifndef ROCKY_BASE_VARIANTUTILITY_H
+#define ROCKY_BASE_VARIANTUTILITY_H
 
 
 #include <string>
@@ -69,5 +69,5 @@ auto MakeVariantVector(Args &&...  args)
 }
 
 
-#endif //ROCKY_VARIANTUTILITY_H
+#endif //ROCKY_BASE_VARIANTUTILITY_H
 

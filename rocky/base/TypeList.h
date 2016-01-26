@@ -1,5 +1,5 @@
-#ifndef ROCKY_TYPELIST_H
-#define ROCKY_TYPELIST_H
+#ifndef ROCKY_BASE_TYPELIST_H
+#define ROCKY_BASE_TYPELIST_H
 
 
 #include <tuple>
@@ -33,5 +33,5 @@ template <typename... xs>
 using TypeListToTupleT = typename TypeListToTuple<xs...>::type;
 
 
-#endif //ROCKY_TYPELIST_H
+#endif //ROCKY_BASE_TYPELIST_H
 

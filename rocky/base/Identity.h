@@ -1,5 +1,5 @@
-#ifndef ROCKY_IDENTITY_H
-#define ROCKY_IDENTITY_H
+#ifndef ROCKY_BASE_IDENTITY_H
+#define ROCKY_BASE_IDENTITY_H
 
 
 template <typename T>
@@ -14,5 +14,5 @@ template <typename T>
 using type_is = Identity<T>;
 
 
-#endif //ROCKY_IDENTITY_H
+#endif //ROCKY_BASE_IDENTITY_H
 

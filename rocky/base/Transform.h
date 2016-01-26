@@ -1,5 +1,5 @@
-#ifndef ROCKY_TRANSFORMTUPLE_H
-#define ROCKY_TRANSFORMTUPLE_H
+#ifndef ROCKY_BASE_TRANSFORMTUPLE_H
+#define ROCKY_BASE_TRANSFORMTUPLE_H
 
 
 #include <array>
@@ -165,5 +165,5 @@ auto TransformElement(F && f, std::tuple<list...> && t)
 }
 
 
-#endif //ROCKY_TRANSFORMTUPLE_H
+#endif //ROCKY_BASE_TRANSFORMTUPLE_H
 

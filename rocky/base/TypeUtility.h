@@ -1,5 +1,5 @@
-#ifndef ROCKY_TYPEUTILITY_H
-#define ROCKY_TYPEUTILITY_H
+#ifndef ROCKY_BASE_TYPEUTILITY_H
+#define ROCKY_BASE_TYPEUTILITY_H
 
 
 #include "rocky/base/Identity.h"
@@ -64,5 +64,5 @@ struct NegatePredicate
 };
 
 
-#endif //ROCKY_TYPEUTILITY_H
+#endif //ROCKY_BASE_TYPEUTILITY_H
 

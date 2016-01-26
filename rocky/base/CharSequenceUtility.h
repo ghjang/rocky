@@ -1,5 +1,5 @@
-#ifndef ROCKY_CHARSEQUENCEUTILITY_H
-#define ROCKY_CHARSEQUENCEUTILITY_H
+#ifndef ROCKY_BASE_CHARSEQUENCEUTILITY_H
+#define ROCKY_BASE_CHARSEQUENCEUTILITY_H
 
 
 #include "rocky/base/IntegerSequenceUtility.h"
@@ -57,5 +57,5 @@ constexpr auto ToConstExprString()
 }
 
 
-#endif //ROCKY_CHARSEQUENCEUTILITY_H
+#endif //ROCKY_BASE_CHARSEQUENCEUTILITY_H
 

@@ -1,5 +1,5 @@
-#ifndef ROCKY_TYPEAT_H
-#define ROCKY_TYPEAT_H
+#ifndef ROCKY_BASE_TYPEAT_H
+#define ROCKY_BASE_TYPEAT_H
 
 
 #include "rocky/skull/Head.h"
@@ -27,5 +27,5 @@ struct TypeAt<i, std::tuple<xs...>> : TypeAt<i, xs...>
 { };
 
 
-#endif //ROCKY_TYPEAT_H
+#endif //ROCKY_BASE_TYPEAT_H
 

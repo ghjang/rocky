@@ -1,5 +1,5 @@
-#ifndef ROCKY_TYPESIZE_H
-#define ROCKY_TYPESIZE_H
+#ifndef ROCKY_BASE_TYPESIZE_H
+#define ROCKY_BASE_TYPESIZE_H
 
 
 #include "rocky/base/TypeAt.h"
@@ -32,5 +32,5 @@ struct NthTypeSize<i, std::tuple<xs...>> : NthTypeSize<i, xs...>
 { };
 
 
-#endif //ROCKY_TYPESIZE_H
+#endif //ROCKY_BASE_TYPESIZE_H
 

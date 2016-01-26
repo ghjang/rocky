@@ -1,5 +1,5 @@
-#ifndef ROCKY_TYPELISTFLATTEN_H
-#define ROCKY_TYPELISTFLATTEN_H
+#ifndef ROCKY_BASE_TYPELISTFLATTEN_H
+#define ROCKY_BASE_TYPELISTFLATTEN_H
 
 
 #include "rocky/base/TypeList.h"
@@ -51,5 +51,5 @@ template <typename... xs>
 using FlattenTypeListT = typename FlattenTypeList<xs...>::type;
 
 
-#endif //ROCKY_TYPELISTFLATTEN_H
+#endif //ROCKY_BASE_TYPELISTFLATTEN_H
 

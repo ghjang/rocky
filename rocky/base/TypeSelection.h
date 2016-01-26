@@ -1,5 +1,5 @@
-#ifndef ROCKY_TYPESELECTION_H
-#define ROCKY_TYPESELECTION_H
+#ifndef ROCKY_BASE_TYPESELECTION_H
+#define ROCKY_BASE_TYPESELECTION_H
 
 
 #include "rocky/base/Identity.h"
@@ -34,5 +34,5 @@ template <bool condition, typename T1, typename T2>
 using SelectTypeIfT = typename SelectTypeIf<condition, T1, T2>::type;
 
 
-#endif //ROCKY_TYPESELECTION_H
+#endif //ROCKY_BASE_TYPESELECTION_H
 

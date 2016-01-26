@@ -1,5 +1,5 @@
-#ifndef ROCKY_FOREACHARGUMENT_H
-#define ROCKY_FOREACHARGUMENT_H
+#ifndef ROCKY_BASE_FOREACHARGUMENT_H
+#define ROCKY_BASE_FOREACHARGUMENT_H
 
 
 #include <initializer_list>
@@ -14,5 +14,5 @@ decltype(auto) ForEachArgument(F && f, Args &&... args)
 }
 
 
-#endif //ROCKY_FOREACHARGUMENT_H
+#endif //ROCKY_BASE_FOREACHARGUMENT_H
 

@@ -1,5 +1,5 @@
-#ifndef ROCKY_REMOVE_H
-#define ROCKY_REMOVE_H
+#ifndef ROCKY_BASE_REMOVE_H
+#define ROCKY_BASE_REMOVE_H
 
 
 #include "rocky/base/TypeUtility.h"
@@ -33,5 +33,5 @@ public:
 */
 
 
-#endif //ROCKY_REMOVE_H
+#endif //ROCKY_BASE_REMOVE_H
 

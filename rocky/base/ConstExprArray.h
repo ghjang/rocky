@@ -1,5 +1,5 @@
-#ifndef ROCKY_CONSTEXPRARRAY_H
-#define ROCKY_CONSTEXPRARRAY_H
+#ifndef ROCKY_BASE_CONSTEXPRARRAY_H
+#define ROCKY_BASE_CONSTEXPRARRAY_H
 
 
 #include <cstddef>
@@ -21,5 +21,5 @@ struct ConstExprArray
 };
 
 
-#endif //ROCKY_CONSTEXPRARRAY_H
+#endif //ROCKY_BASE_CONSTEXPRARRAY_H
 

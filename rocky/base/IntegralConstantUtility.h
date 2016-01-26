@@ -1,5 +1,5 @@
-#ifndef ROCKY_INTEGRALCONSTANTUTILITY_H
-#define ROCKY_INTEGRALCONSTANTUTILITY_H
+#ifndef ROCKY_BASE_INTEGRALCONSTANTUTILITY_H
+#define ROCKY_BASE_INTEGRALCONSTANTUTILITY_H
 
 
 #include "rocky/base/StringNumberConversion.h"
@@ -139,5 +139,5 @@ struct IsIntegralConstantType<std::integral_constant<T, i>> : std::true_type
 { };
 
 
-#endif //ROCKY_INTEGRALCONSTANTUTILITY_H
+#endif //ROCKY_BASE_INTEGRALCONSTANTUTILITY_H
 

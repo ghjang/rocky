@@ -1,5 +1,5 @@
-#ifndef ROCKY_COUNT_H
-#define ROCKY_COUNT_H
+#ifndef ROCKY_BASE_COUNT_H
+#define ROCKY_BASE_COUNT_H
 
 
 #include "rocky/base/Transform.h"
@@ -10,5 +10,5 @@ template <template <typename> class p, typename... xs>
 using Count = SumT<MapToBoolConstantTypeT<p, xs...>>;
 
 
-#endif //ROCKY_COUNT_H
+#endif //ROCKY_BASE_COUNT_H
 

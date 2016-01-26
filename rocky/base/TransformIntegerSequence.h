@@ -1,5 +1,5 @@
-#ifndef ROCKY_TRANSFORMINTEGERSEQUENCE_H
-#define ROCKY_TRANSFORMINTEGERSEQUENCE_H
+#ifndef ROCKY_BASE_TRANSFORMINTEGERSEQUENCE_H
+#define ROCKY_BASE_TRANSFORMINTEGERSEQUENCE_H
 
 
 #include <type_traits>
@@ -64,5 +64,5 @@ using MakeCustomIntegerSequence = typename TransformIntegerSequence<
                                             >::type;
 
 
-#endif //ROCKY_TRANSFORMINTEGERSEQUENCE_H
+#endif //ROCKY_BASE_TRANSFORMINTEGERSEQUENCE_H
 

@@ -1,5 +1,5 @@
-#ifndef ROCKY_UNIQUE_H
-#define ROCKY_UNIQUE_H
+#ifndef ROCKY_BASE_UNIQUE_H
+#define ROCKY_BASE_UNIQUE_H
 
 
 #include "rocky/base/Find.h"
@@ -46,5 +46,5 @@ struct Unique<std::tuple<xs...>> : TypeListToTuple<UniqueT<xs...>>
 { };
 
 
-#endif //ROCKY_UNIQUE_H
+#endif //ROCKY_BASE_UNIQUE_H
 

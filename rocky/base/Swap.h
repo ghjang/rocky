@@ -1,5 +1,5 @@
-#ifndef ROCKY_SWAP_H
-#define ROCKY_SWAP_H
+#ifndef ROCKY_BASE_SWAP_H
+#define ROCKY_BASE_SWAP_H
 
 
 #include "rocky/base/TypeList.h"
@@ -32,5 +32,5 @@ struct Swap<std::tuple<x, y>> : TypeListToTuple<SwapT<x, y>>
 { };
 
 
-#endif //ROCKY_SWAP_H
+#endif //ROCKY_BASE_SWAP_H
 

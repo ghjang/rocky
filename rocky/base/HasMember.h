@@ -1,5 +1,5 @@
-#ifndef ROCKY_HASMEMBER_H
-#define ROCKY_HASMEMBER_H
+#ifndef ROCKY_BASE_HASMEMBER_H
+#define ROCKY_BASE_HASMEMBER_H
 
 
 #include <type_traits>
@@ -27,5 +27,5 @@ struct HasValueMember : decltype(HasValueMemberImpl<T>(int{}))
 { };
 
 
-#endif //ROCKY_HASMEMBER_H
+#endif //ROCKY_BASE_HASMEMBER_H
 
