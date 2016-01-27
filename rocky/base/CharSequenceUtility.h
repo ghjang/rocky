@@ -13,6 +13,9 @@ using CharSequence = std::integer_sequence<char, c...>;
 template <typename... Sequence>
 using JoinCharSequence = JoinIntegerSequence<Sequence...>;
 
+template <typename... Sequence>
+using JoinCharSequenceT = typename JoinIntegerSequence<Sequence...>::type;
+
 
 template <typename CharSequence>
 using CharSequenceLength = IntegerSequenceLength<CharSequence>;
@@ -48,6 +51,10 @@ public:
                                 std::make_index_sequence<IntegerLength(n)>
                             >::type;
 };
+
+
+template <intmax_t n>
+using MakeCharSequenceFromIntegerT = typename MakeCharSequenceFromInteger<n>::type;
 
 
 template <intmax_t n>
