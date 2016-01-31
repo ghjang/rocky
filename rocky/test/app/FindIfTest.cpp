@@ -3,7 +3,7 @@
 #include "rocky/base/FindIf.h"
 
 
-TEST_CASE("FindIf", "[skull]")
+TEST_CASE("FindIf", "[app]")
 {
     using std::is_floating_point;
     using std::tuple;
