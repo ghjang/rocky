@@ -29,8 +29,8 @@ struct Rotate<std::integral_constant<T, i>, xs...>
                         TakeT<Abs(i) % sizeof...(xs), xs...>
                 >, // left-rotation
                 FlattenTypeList<
-                        DropT<sizeof...(xs) - (Abs(i) % sizeof...(xs)), xs...>,
-                        TakeT<sizeof...(xs) - (Abs(i) % sizeof...(xs)), xs...>
+                        DropT<sizeof...(xs) - (i % sizeof...(xs)), xs...>,
+                        TakeT<sizeof...(xs) - (i % sizeof...(xs)), xs...>
                 > // right-rotation
           >
 { };
