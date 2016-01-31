@@ -83,7 +83,9 @@ set(HEADER_FILES
         ../skull/TakeWhile.h
         ../skull/Any.h
         ../skull/DropWhile.h
-        ../skull/Not.h)
+        ../skull/Not.h
+        ../skull/Pred.h
+        ../skull/Succ.h)
 
 set(SOURCE_FILES
         main.cpp
@@ -155,7 +157,9 @@ set(SOURCE_FILES
         skull/TakeWhileTest.cpp
         skull/AnyTest.cpp
         skull/DropWhileTest.cpp
-        skull/NotTest.cpp)
+        skull/NotTest.cpp
+        skull/PredTest.cpp
+        skull/SuccTest.cpp)
 
 add_executable(RockyTest ${HEADER_FILES} ${SOURCE_FILES})
 
