@@ -20,6 +20,14 @@ TEST_CASE("Unique", "[Unique]")
     }
 }
 
+TEST_CASE("unique pair element type", "[Unique]")
+{
+    using std::is_same;
+    using std::pair;
+
+    static_assert(is_same<UniqueT<pair<char, char>>, TypeList<char>>(), "");
+}
+
 TEST_CASE("unique tuple element type", "[Unique]")
 {
     using std::is_same;
