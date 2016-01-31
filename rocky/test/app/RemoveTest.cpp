@@ -1,6 +1,6 @@
 #include "../catch.hpp"
 
-#include "rocky/base/Remove.h"
+#include "rocky/app/Remove.h"
 
 
 TEST_CASE("remove tuple element type", "[Remove]")

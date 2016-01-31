@@ -9,7 +9,7 @@
 
 #include "rocky/base/TypeUtility.h"
 #include "rocky/base/ForEachArgument.h"
-#include "rocky/base/Unique.h"
+#include "rocky/app/Unique.h"
 
 
 template <typename... xs>

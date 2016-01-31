@@ -1,6 +1,6 @@
 #include "../catch.hpp"
 
-#include "rocky/base/FindIf.h"
+#include "rocky/app/FindIf.h"
 
 
 TEST_CASE("FindIf", "[app]")

@@ -1,6 +1,6 @@
 #include "../catch.hpp"
 
-#include "rocky/base/VariantUtility.h"
+#include "rocky/app/VariantUtility.h"
 
 
 namespace

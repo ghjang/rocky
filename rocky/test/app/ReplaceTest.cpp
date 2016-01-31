@@ -1,6 +1,6 @@
 #include "../catch.hpp"
 
-#include "rocky/base/Replace.h"
+#include "rocky/app/Replace.h"
 
 
 TEST_CASE("replace tuple element type", "[Replace]")

@@ -2,9 +2,9 @@
 #define ROCKY_BASE_UNIQUE_H
 
 
-#include "rocky/base/Find.h"
 #include "rocky/skull/FoldL.h"
 #include "rocky/skull/Elem.h"
+#include "rocky/app/Find.h"
 
 
 template <typename... xs>

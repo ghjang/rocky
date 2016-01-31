@@ -2,8 +2,8 @@
 #define ROCKY_BASE_TYPELISTUTILITY_H
 
 
-#include "rocky/base/Unique.h"
 #include "rocky/skull/Length.h"
+#include "rocky/app/Unique.h"
 
 
 template <typename... xs>

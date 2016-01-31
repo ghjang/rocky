@@ -17,10 +17,6 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
 set(HEADER_FILES
         ../base/ConstExprArray.h
         ../base/StringNumberConversion.h
-        ../base/VariantUtility.h
-        ../base/Count.h
-        ../base/Find.h
-        ../base/FindIf.h
         ../base/ForEachArgument.h
         ../base/ForEachTuple.h
         ../base/HasMember.h
@@ -28,16 +24,11 @@ set(HEADER_FILES
         ../base/IntegerSequenceUtility.h
         ../base/IntegralConstantUtility.h
         ../base/MultipleInheritance.h
-        ../base/Remove.h
-        ../base/Replace.h
-        ../base/Transform.h
         ../base/TypeSize.h
         ../base/TypeSelection.h
         ../base/TypeUtility.h
-        ../base/Unique.h
         ../base/CharSequenceUtility.h
         ../base/TransformIntegerSequence.h
-        ../base/Extract.h
         ../base/TypeList.h
         ../base/TypeListFlatten.h
         ../base/TypeListJoin.h
@@ -86,13 +77,21 @@ set(HEADER_FILES
         ../skull/Not.h
         ../skull/Pred.h
         ../skull/Succ.h
-        ../skull/SplitAt.h)
+        ../skull/SplitAt.h
+        ../app/VariantUtility.h
+        ../app/Count.h
+        ../app/Find.h
+        ../app/FindIf.h
+        ../app/Remove.h
+        ../app/Replace.h
+        ../app/Transform.h
+        ../app/Unique.h
+        ../app/Extract.h)
 
 set(SOURCE_FILES
         main.cpp
         base/ConstExprArrayTest.cpp
         base/StringNumberConversionTest.cpp
-        base/VariantUtilityTest.cpp
         base/TypeSizeTest.cpp
         base/HasMemberTest.cpp
         base/IdentityTest.cpp
@@ -103,16 +102,8 @@ set(SOURCE_FILES
         base/IntegerSequenceUtilityTest.cpp
         base/ForEachTupleTest.cpp
         base/TypeUtilityTest.cpp
-        base/TransformTest.cpp
-        base/CountTest.cpp
-        base/RemoveTest.cpp
-        base/ReplaceTest.cpp
-        base/FindTest.cpp
-        base/FindIfTest.cpp
-        base/UniqueTest.cpp
         base/CharSequenceUtilityTest.cpp
         base/TransformIntegerSequenceTest.cpp
-        base/ExtractTest.cpp
         base/TypeListTest.cpp
         base/TypeListFlattenTest.cpp
         base/TypeListJoinTest.cpp
@@ -161,7 +152,16 @@ set(SOURCE_FILES
         skull/NotTest.cpp
         skull/PredTest.cpp
         skull/SuccTest.cpp
-        skull/SplitAtTest.cpp)
+        skull/SplitAtTest.cpp
+        app/VariantUtilityTest.cpp
+        app/CountTest.cpp
+        app/FindTest.cpp
+        app/FindIfTest.cpp
+        app/RemoveTest.cpp
+        app/ReplaceTest.cpp
+        app/TransformTest.cpp
+        app/UniqueTest.cpp
+        app/ExtractTest.cpp)
 
 add_executable(RockyTest ${HEADER_FILES} ${SOURCE_FILES})
 

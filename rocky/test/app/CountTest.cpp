@@ -1,6 +1,6 @@
 #include "../catch.hpp"
 
-#include "rocky/base/Count.h"
+#include "rocky/app/Count.h"
 
 
 TEST_CASE("counting integral type", "[Count]")
