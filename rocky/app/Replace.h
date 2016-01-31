@@ -1,5 +1,5 @@
-#ifndef ROCKY_BASE_REPLACETUPLE_H
-#define ROCKY_BASE_REPLACETUPLE_H
+#ifndef ROCKY_APP_REPLACETUPLE_H
+#define ROCKY_APP_REPLACETUPLE_H
 
 
 #include "rocky/app/Transform.h"
@@ -36,5 +36,5 @@ struct Replace<SourceType, TargetType, std::tuple<xs...>> : TypeListToTuple<Repl
 { };
 
 
-#endif //ROCKY_BASE_REPLACETUPLE_H
+#endif //ROCKY_APP_REPLACETUPLE_H
 

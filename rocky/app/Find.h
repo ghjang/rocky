@@ -1,5 +1,5 @@
-#ifndef ROCKY_BASE_FIND_H
-#define ROCKY_BASE_FIND_H
+#ifndef ROCKY_APP_FIND_H
+#define ROCKY_APP_FIND_H
 
 
 #include "rocky/base/IntegralConstantUtility.h"
@@ -47,5 +47,5 @@ struct ReverseFind<T, std::tuple<xs...>> : ReverseFind<T, xs...>
 { };
 
 
-#endif //ROCKY_BASE_FIND_H
+#endif //ROCKY_APP_FIND_H
 

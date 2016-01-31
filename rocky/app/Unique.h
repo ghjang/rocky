@@ -1,5 +1,5 @@
-#ifndef ROCKY_BASE_UNIQUE_H
-#define ROCKY_BASE_UNIQUE_H
+#ifndef ROCKY_APP_UNIQUE_H
+#define ROCKY_APP_UNIQUE_H
 
 
 #include "rocky/skull/FoldL.h"
@@ -50,5 +50,5 @@ struct Unique<std::tuple<xs...>> : TypeListToTuple<UniqueT<xs...>>
 { };
 
 
-#endif //ROCKY_BASE_UNIQUE_H
+#endif //ROCKY_APP_UNIQUE_H
 

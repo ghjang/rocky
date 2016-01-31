@@ -1,5 +1,5 @@
-#ifndef ROCKY_BASE_EXTRACT_H
-#define ROCKY_BASE_EXTRACT_H
+#ifndef ROCKY_APP_EXTRACT_H
+#define ROCKY_APP_EXTRACT_H
 
 
 #include "rocky/base/TypeList.h"
@@ -30,5 +30,5 @@ struct Extract<std::integer_sequence<T, i...>, std::tuple<xs...>>
 { };
 
 
-#endif //ROCKY_BASE_EXTRACT_H
+#endif //ROCKY_APP_EXTRACT_H
 
