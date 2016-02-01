@@ -51,5 +51,9 @@ struct Partition<std::integral_constant<T, n>, xs...>
 };
 
 
+template <typename... xs>
+using ListToPairT = PartitionT<std::integral_constant<int, 2>, xs...>;
+
+
 #endif //ROCKY_WOLCA_PARTITION_H
 
