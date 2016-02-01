@@ -7,31 +7,31 @@ TEST_CASE("TypeList flatten", "[TypeListFlatten]")
 {
     using std::is_same;
 
-    static_assert(is_same<TypeList<>, FlattenTypeListT<TypeList<>, TypeList<>> >(), "");
+    static_assert(is_same<TL<>, FlattenTypeListT<TL<>, TL<>> >(), "");
 
-    static_assert(is_same<TypeList<char>, FlattenTypeListT<char, TypeList<>>>(), "");
+    static_assert(is_same<TL<char>, FlattenTypeListT<char, TL<>>>(), "");
 
 
     static_assert(
             is_same<
-                    TypeList<char, int, float, double>,
-                    FlattenTypeListT<TypeList<char, int>, TypeList<float, double>>
+                    TL<char, int, float, double>,
+                    FlattenTypeListT<TL<char, int>, TL<float, double>>
             >(),
             ""
     );
 
     static_assert(
             is_same<
-                    TypeList<char, int, float, double>,
-                    FlattenTypeListT<TypeList<char, int>, float, double>
+                    TL<char, int, float, double>,
+                    FlattenTypeListT<TL<char, int>, float, double>
             >(),
             ""
     );
 
     static_assert(
             is_same<
-                    TypeList<char, float, double>,
-                    FlattenTypeListT<char, TypeList<float, double>>
+                    TL<char, float, double>,
+                    FlattenTypeListT<char, TL<float, double>>
             >(),
             ""
     );
@@ -42,19 +42,19 @@ TEST_CASE("TypeList flatten", "[TypeListFlatten]")
     /*
     static_assert(
             is_same<
-                    TypeList<char, int, float, double>,
-                    FlattenTypeListT<char, int, TypeList<float, double>>
+                    TL<char, int, float, double>,
+                    FlattenTypeListT<char, int, TL<float, double>>
             >(),
             ""
     );
      */
 
-    static_assert(is_same<TypeList<char, int>, FlattenTypeListT<TypeList<TypeList<char, int>>>>(), "");
+    static_assert(is_same<TL<char, int>, FlattenTypeListT<TL<TL<char, int>>>>(), "");
 
     static_assert(
             is_same<
-                    TypeList<char, int>,
-                    FlattenTypeListT<TypeList<TypeList<TypeList<char, int>>>>
+                    TL<char, int>,
+                    FlattenTypeListT<TL<TL<TL<char, int>>>>
             >(),
             ""
     );
@@ -63,24 +63,24 @@ TEST_CASE("TypeList flatten", "[TypeListFlatten]")
     /*
     static_assert(
             is_same<
-                    TypeList<char, int, float, double>,
-                    FlattenTypeListT<TypeList<TypeList<char, int>>, TypeList<TypeList<float, double>>>
+                    TL<char, int, float, double>,
+                    FlattenTypeListT<TL<TL<char, int>>, TL<TL<float, double>>>
             >(),
             ""
     );
 
     static_assert(
             is_same<
-                    TypeList<char, int, float, double>,
-                    FlattenTypeListT<TypeList<TypeList<char, int>>, float, double>
+                    TL<char, int, float, double>,
+                    FlattenTypeListT<TL<TL<char, int>>, float, double>
             >(),
             ""
     );
 
     static_assert(
             is_same<
-                    TypeList<char, float, double>,
-                    FlattenTypeListT<char, TypeList<TypeList<float, double>>>
+                    TL<char, float, double>,
+                    FlattenTypeListT<char, TL<TL<float, double>>>
             >(),
             ""
     );
