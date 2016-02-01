@@ -51,6 +51,12 @@ struct Partition<std::integral_constant<T, n>, xs...>
 };
 
 
+template <typename T, T n, typename... xs>
+struct Partition<std::integral_constant<T, n>, TypeList<xs...>>
+        : Partition<std::integral_constant<T, n>, xs...>
+{ };
+
+
 template <typename... xs>
 using ListToPairT = PartitionT<std::integral_constant<int, 2>, xs...>;
 

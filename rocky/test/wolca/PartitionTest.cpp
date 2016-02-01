@@ -74,6 +74,14 @@ TEST_CASE("Partition", "[wolca]")
             >(),
             ""
     );
+
+    static_assert(
+            is_same<
+                    TL<TL<char>, TL<int>, TL<float>, TL<double>>,
+                    PartitionT<int_c_t<1>, TypeList<char, int, float, double>>
+            >(),
+            ""
+    );
 }
 
 TEST_CASE("ListToPair type alias", "[wolca]")
@@ -100,6 +108,14 @@ TEST_CASE("ListToPair type alias", "[wolca]")
             is_same<
                     TL<TL<char, int>, TL<float, double>>,
                     ListToPairT<char, int, float, double, int>
+            >(),
+            ""
+    );
+
+    static_assert(
+            is_same<
+                    TL<TL<char, int>, TL<float, double>>,
+                    ListToPairT<TypeList<char, int, float, double, int>>
             >(),
             ""
     );
