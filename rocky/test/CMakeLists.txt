@@ -47,6 +47,7 @@ set(HEADER_FILES
         ../wolca/IntegerDigits.h
         ../wolca/Partition.h
         ../wolca/Rotate.h
+        ../wolca/Riffle.h
         ../skull/Head.h
         ../skull/Tail.h
         ../skull/Take.h
@@ -125,6 +126,7 @@ set(SOURCE_FILES
         wolca/IntegerDigitsTest.cpp
         wolca/PartitionTest.cpp
         wolca/RotateTest.cpp
+        wolca/RiffleTest.cpp
         skull/HeadTest.cpp
         skull/TailTest.cpp
         skull/TakeTest.cpp
