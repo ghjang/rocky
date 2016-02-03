@@ -21,7 +21,9 @@ struct FindIf<p, int_c_t<i>, x, xs...>
                 std::integral_constant<int, i>,
                 FindIf<p, int_c_t<i + 1>, xs...>
           >
-{ };
+{
+    static_assert(HasValueMember<p<x>>(), "Predicate 'p' should have value member.");
+};
 
 
 template <template <typename> class p, typename... xs>
