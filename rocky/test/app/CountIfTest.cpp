@@ -3,7 +3,7 @@
 #include "rocky/app/CountIf.h"
 
 
-TEST_CASE("counting integral type", "[Count]")
+TEST_CASE("counting integral type", "[CountIf]")
 {
     using std::is_integral;
 
@@ -18,7 +18,7 @@ TEST_CASE("counting integral type", "[Count]")
     );
 }
 
-TEST_CASE("counting pointer type", "[Count]")
+TEST_CASE("counting pointer type", "[CountIf]")
 {
     using std::is_pointer;
     static_assert(
@@ -27,7 +27,7 @@ TEST_CASE("counting pointer type", "[Count]")
     );
 }
 
-TEST_CASE("counting integral type of tuple", "[Count]")
+TEST_CASE("counting integral type of tuple", "[CountIf]")
 {
     using std::tuple;
     using std::is_integral;
@@ -39,7 +39,7 @@ TEST_CASE("counting integral type of tuple", "[Count]")
     );
 }
 
-TEST_CASE("counting pointer type of tuple", "[Count]")
+TEST_CASE("counting pointer type of tuple", "[CountIf]")
 {
     using std::tuple;
     using std::is_pointer;
