@@ -45,7 +45,7 @@ TEST_CASE("fold right, integral constant in tuple sum", "[Fold]")
                                 int_c_t<5>
                              >;
 
-    using sum_t = FoldRT<
+    using sum_t = FoldRWithUnpackT<
                         Plus,
                         int_c_t<0>,  // init
                         integral_tuple_t
