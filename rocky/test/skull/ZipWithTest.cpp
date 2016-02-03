@@ -5,6 +5,7 @@
 #include "rocky/base/IntegralConstantUtility.h"
 #include "rocky/skull/Replicate.h"
 #include "rocky/skull/Range.h"
+#include "rocky/skull/Max.h"
 
 
 TEST_CASE("ZipWith Plus", "[skull]")

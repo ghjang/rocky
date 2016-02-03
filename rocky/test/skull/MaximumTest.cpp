@@ -2,6 +2,8 @@
 
 #include "rocky/skull/Maximum.h"
 
+#include "rocky/base/IntegralConstantUtility.h"
+
 
 TEST_CASE("Maximum for std::integral_constant", "[skull]")
 {

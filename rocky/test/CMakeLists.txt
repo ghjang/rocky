@@ -83,6 +83,8 @@ set(HEADER_FILES
         ../skull/Succ.h
         ../skull/SplitAt.h
         ../skull/Negate.h
+        ../skull/Max.h
+        ../skull/Min.h
         ../app/VariantUtility.h
         ../app/Count.h
         ../app/Find.h
@@ -166,6 +168,8 @@ set(SOURCE_FILES
         skull/SuccTest.cpp
         skull/SplitAtTest.cpp
         skull/NegateTest.cpp
+        skull/MaxTest.cpp
+        skull/MinTest.cpp
         app/VariantUtilityTest.cpp
         app/CountTest.cpp
         app/FindTest.cpp

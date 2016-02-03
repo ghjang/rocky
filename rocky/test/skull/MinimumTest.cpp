@@ -2,6 +2,8 @@
 
 #include "rocky/skull/Minimum.h"
 
+#include "rocky/base/IntegralConstantUtility.h"
+
 
 TEST_CASE("Minimum for std::integral_constant", "[skull]")
 {

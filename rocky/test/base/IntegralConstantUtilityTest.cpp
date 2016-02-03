@@ -138,17 +138,6 @@ TEST_CASE("bool integral constant type alias", "[IntegralConstantUtility]")
     );
 }
 
-TEST_CASE("Max, Min", "[IntegralConstantUtility]")
-{
-    static_assert(3 == Max<int_c_t<3>, int_c_t<3>>(), "");
-    static_assert(3 == Max<int_c_t<2>, int_c_t<3>>(), "");
-    static_assert(3 == Max<int_c_t<3>, int_c_t<2>>(), "");
-
-    static_assert(2 == Min<int_c_t<2>, int_c_t<2>>(), "");
-    static_assert(2 == Min<int_c_t<2>, int_c_t<3>>(), "");
-    static_assert(2 == Min<int_c_t<3>, int_c_t<2>>(), "");
-}
-
 TEST_CASE("IsIntegralConstantType", "[IntegralConstantUtility]")
 {
     static_assert(IsIntegralConstantType<std::true_type>(), "");

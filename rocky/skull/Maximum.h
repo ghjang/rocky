@@ -2,8 +2,8 @@
 #define ROCKY_SKULL_MAXIMUM_H
 
 
-#include "rocky/base/IntegralConstantUtility.h"
 #include "rocky/skull/FoldR.h"
+#include "rocky/skull/Max.h"
 
 
 template <typename... xs>

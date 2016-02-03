@@ -98,24 +98,6 @@ struct Divide<std::integral_constant<T1, v1>, std::integral_constant<T2, v2>>
 };
 
 
-template <typename T1, typename T2>
-struct Max;
-
-template <typename T, T v1, T v2>
-struct Max<std::integral_constant<T, v1>, std::integral_constant<T, v2>>
-        : std::integral_constant<T, (v1 > v2) ? v1 : v2>
-{ };
-
-
-template <typename T1, typename T2>
-struct Min;
-
-template <typename T, T v1, T v2>
-struct Min<std::integral_constant<T, v1>, std::integral_constant<T, v2>>
-        : std::integral_constant<T, (v1 > v2) ? v2 : v1>
-{ };
-
-
 template <template <typename> class Predicate>
 struct TypeToBoolConstantType
 {

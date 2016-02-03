@@ -2,8 +2,8 @@
 #define ROCKY_SKULL_MINIMUM_H
 
 
-#include "rocky/base/IntegralConstantUtility.h"
 #include "rocky/skull/FoldR.h"
+#include "rocky/skull/Min.h"
 
 
 template <typename... xs>
