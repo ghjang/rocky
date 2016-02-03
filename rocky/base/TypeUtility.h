@@ -63,6 +63,14 @@ struct NegatePredicate
     { };
 };
 
+template <template <typename, typename> class BinaryF, typename T>
+struct Bind1st
+{
+    template <typename V>
+    struct Convert : BinaryF<T, V>
+    { };
+};
+
 
 #endif //ROCKY_BASE_TYPEUTILITY_H
 
