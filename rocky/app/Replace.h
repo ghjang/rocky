@@ -1,40 +1,14 @@
-#ifndef ROCKY_APP_REPLACETUPLE_H
-#define ROCKY_APP_REPLACETUPLE_H
+#ifndef ROCKY_APP_REPLACE_H
+#define ROCKY_APP_REPLACE_H
 
 
-#include "rocky/app/Transform.h"
-
-
-template <typename SourceType, typename TargetType, typename... xs>
-struct Replace
-{
-private:
-    template <typename T>
-    struct SourceTypeToTargetType
-                : std::conditional<
-                        std::is_same<T, SourceType>::value,
-                        TargetType,
-                        T
-                    >
-    { };
-
-public:
-    using type = MapT<SourceTypeToTargetType, xs...>;
-};
+#include "rocky/base/TypeUtility.h"
+#include "rocky/app/ReplaceIf.h"
 
 
 template <typename SourceType, typename TargetType, typename... xs>
-using ReplaceT = typename Replace<SourceType, TargetType, xs...>::type;
+using ReplaceT = typename ReplaceIf<Bind1st<std::is_same, SourceType>::template Convert, TargetType, xs...>::type;
 
 
-template <typename SourceType, typename TargetType, typename... xs>
-struct Replace<SourceType, TargetType, TypeList<xs...>> : Replace<SourceType, TargetType, xs...>
-{ };
-
-template <typename SourceType, typename TargetType, typename... xs>
-struct Replace<SourceType, TargetType, std::tuple<xs...>> : TypeListToTuple<ReplaceT<SourceType, TargetType, xs...>>
-{ };
-
-
-#endif //ROCKY_APP_REPLACETUPLE_H
+#endif //ROCKY_APP_REPLACE_H
 
