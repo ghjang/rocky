@@ -91,7 +91,8 @@ set(HEADER_FILES
         ../app/Unique.h
         ../app/Extract.h
         ../app/Rotate.h
-        ../muse/MusicalNote.h)
+        ../muse/MusicalNote.h
+        ../muse/MusicalScale.h)
 
 set(SOURCE_FILES
         main.cpp
@@ -171,7 +172,8 @@ set(SOURCE_FILES
         app/UniqueTest.cpp
         app/ExtractTest.cpp
         app/RotateTest.cpp
-        muse/MusicalNoteTest.cpp)
+        muse/MusicalNoteTest.cpp
+        muse/MusicalScaleTest.cpp)
 
 add_executable(RockyTest ${HEADER_FILES} ${SOURCE_FILES})
 
