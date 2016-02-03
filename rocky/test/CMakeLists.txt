@@ -61,6 +61,7 @@ set(HEADER_FILES
         ../skull/Reverse.h
         ../skull/Sum.h
         ../skull/Zip.h
+        ../skull/ZipWith.h
         ../skull/Last.h
         ../skull/Null.h
         ../skull/Maximum.h
@@ -142,6 +143,7 @@ set(SOURCE_FILES
         skull/ReverseTest.cpp
         skull/SumTest.cpp
         skull/ZipTest.cpp
+        skull/ZipWithTest.cpp
         skull/LastTest.cpp
         skull/NullTest.cpp
         skull/MaximumTest.cpp
