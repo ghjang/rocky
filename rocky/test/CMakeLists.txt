@@ -176,6 +176,7 @@ set(SOURCE_FILES
         app/FindIfTest.cpp
         app/RemoveIfTest.cpp
         app/ReplaceTest.cpp
+        app/ReplaceIfTest.cpp
         app/TransformTest.cpp
         app/UniqueTest.cpp
         app/ExtractTest.cpp
