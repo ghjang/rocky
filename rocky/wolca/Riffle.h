@@ -15,20 +15,14 @@ private:
     template <typename lhs, typename rhs>
     struct FlattenImpl;
 
-    template <typename... lhs, typename... rhs>
-    struct FlattenImpl<TypeList<lhs...>, TypeList<rhs...>> : type_is<TypeList<lhs..., rhs...>>
+    template <typename... lhs, typename a, typename b>
+    struct FlattenImpl<TypeList<lhs...>, TypeList<a, b>> : type_is<TypeList<lhs..., a, b>>
     { };
 
-    // NOTE: the last TypeList element of the zipped_t is unpacked by the FoldL specialization un-expectedly.
-    // THINK: need to introduce some other type list container?
-    template <typename... lhs, typename rhs>
-    struct FlattenImpl<TypeList<lhs...>, rhs> : type_is<TypeList<lhs..., rhs>>
-    { };
-
-    // NOTE: zipped_t is TypeList of TypeLists.
+    // NOTE: zipped_t is TypeList of TypeLists of which length is two.
     using zipped_t = ZipT<TL<xs...>, ReplicateT<sizeof...(xs), T>>;
 
-    using flattened_t = FoldLT<FlattenImpl, TypeList<>, zipped_t>;
+    using flattened_t = FoldLWithUnpackT<FlattenImpl, TypeList<>, zipped_t>;
 
 public:
     using type = InitT<flattened_t>;

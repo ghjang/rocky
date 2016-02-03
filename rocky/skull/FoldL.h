@@ -31,6 +31,14 @@ template <template <typename, typename> class f, typename init, typename... xs>
 using FoldLT = typename FoldL<f, init, xs...>::type;
 
 
+/**
+ * NOTE: The element type of the type list can be another type list itself.
+ *       In that cases, the element type list will be un-packed un-expectedly.
+ *       And it will result in (compile-time) errors.
+ *
+ *       If you need to handle a type list of type lists, use FoldLWithTypeListUnpack instead.
+ */
+/*
 template <template <typename, typename> class f, typename init, typename... xs>
 struct FoldL<f, init, TypeList<xs...>> : FoldL<f, init, xs...>
 { };
@@ -38,6 +46,22 @@ struct FoldL<f, init, TypeList<xs...>> : FoldL<f, init, xs...>
 template <template <typename, typename> class f, typename init, typename... xs>
 struct FoldL<f, init, std::tuple<xs...>> : FoldL<f, init, xs...>
 { };
+ */
+
+
+template <template <typename, typename> class f, typename init, typename xs>
+struct FoldLWithTypeListUnpack;
+
+template <template <typename, typename> class f, typename init, typename... xs>
+struct FoldLWithTypeListUnpack<f, init, TypeList<xs...>> : FoldL<f, init, xs...>
+{ };
+
+template <template <typename, typename> class f, typename init, typename... xs>
+struct FoldLWithTypeListUnpack<f, init, std::tuple<xs...>> : FoldL<f, init, xs...>
+{ };
+
+template <template <typename, typename> class f, typename init, typename xs>
+using FoldLWithUnpackT = typename FoldLWithTypeListUnpack<f, init, xs>::type;
 
 
 #endif //ROCKY_SKULL_FOLDL_H
