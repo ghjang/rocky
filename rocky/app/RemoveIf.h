@@ -7,10 +7,10 @@
 
 
 template <template <typename> class p, typename... xs>
-using Remove = Filter<NegatePredicate<p>::template Convert, xs...>;
+using RemoveIf = Filter<NegatePredicate<p>::template Convert, xs...>;
 
 template <template <typename> class p, typename... xs>
-using RemoveT = typename Remove<p, xs...>::type;
+using RemoveIfT = typename RemoveIf<p, xs...>::type;
 
 
 /**

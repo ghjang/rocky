@@ -89,7 +89,7 @@ set(HEADER_FILES
         ../app/CountIf.h
         ../app/Find.h
         ../app/FindIf.h
-        ../app/Remove.h
+        ../app/RemoveIf.h
         ../app/Replace.h
         ../app/Transform.h
         ../app/Unique.h
@@ -174,7 +174,7 @@ set(SOURCE_FILES
         app/CountIfTest.cpp
         app/FindTest.cpp
         app/FindIfTest.cpp
-        app/RemoveTest.cpp
+        app/RemoveIfTest.cpp
         app/ReplaceTest.cpp
         app/TransformTest.cpp
         app/UniqueTest.cpp
