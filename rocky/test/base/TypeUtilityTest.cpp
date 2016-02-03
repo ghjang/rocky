@@ -80,3 +80,11 @@ TEST_CASE("CharTypeToStringType", "[TypeUtility]")
     }
 }
 
+TEST_CASE("Bind1st", "[TypeUtility]")
+{
+    using std::is_same;
+
+    static_assert(Bind1st<is_same, char>::template Convert<char>(), "");
+    static_assert(!Bind1st<is_same, char>::template Convert<int>(), "");
+}
+
