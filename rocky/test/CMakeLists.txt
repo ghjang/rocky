@@ -102,7 +102,8 @@ set(HEADER_FILES
         ../app/Extract.h
         ../app/Rotate.h
         ../muse/MusicalNote.h
-        ../muse/MusicalScale.h)
+        ../muse/MusicalScale.h
+        ../muse/MusicalScalePrint.h)
 
 set(SOURCE_FILES
         main.cpp

@@ -1,16 +1,18 @@
 #include "../catch.hpp"
 
 #include "rocky/muse/MusicalScale.h"
+#include "rocky/muse/MusicalScalePrint.h"
 
 #include "rocky/skull/Length.h"
 
 
-TEST_CASE("MusicalScale", "[muse]")
+TEST_CASE("MusicalScales length", "[muse]")
 {
-    using std::is_same;
-
     static_assert(12 == Length<TwelveMajorScaleListT>(), "");
+}
 
+TEST_CASE("Printing musical scales to console", "[muse]")
+{
     PrintScaleList(TwelveMajorScaleListT());
 }
 
