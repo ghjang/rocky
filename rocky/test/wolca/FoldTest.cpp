@@ -5,7 +5,7 @@
 #include "rocky/base/IntegralConstantUtility.h"
 
 
-TEST_CASE("wolca fold left, integral constant sum", "[wolca]")
+TEST_CASE("wolca fold-left, integral constant sum", "[wolca]")
 {
     using sum_t = FoldT<
                         Plus,
