@@ -2,29 +2,38 @@
 #define ROCKY_BASE_FOREACH_H
 
 
-#include <tuple>
-#include <utility>
-
 #include "rocky/base/ForEachArgument.h"
+#include "rocky/base/TypeList.h"
 #include "rocky/base/TypeUtility.h"
 
 
-template <typename F, typename Tuple, std::size_t... Indice>
-decltype(auto) ForEachElementImpl(F && f, Tuple && t, std::index_sequence<Indice...>)
+namespace Detail
 {
-    return ForEachArgument(std::forward<F>(f), std::get<Indice>(std::forward<Tuple>(t))...);
-};
+    template <typename F, typename Tuple, std::size_t... Indice>
+    decltype(auto) ForEachTupleElementImpl(F && f, Tuple && t, std::index_sequence<Indice...>)
+    {
+        return ForEachArgument(std::forward<F>(f), std::get<Indice>(std::forward<Tuple>(t))...);
+    };
+} // namespace Detail
+
 
 template <typename F, typename... Types>
 decltype(auto) ForEachElement(F && f, std::tuple<Types...> const& t)
 {
-    return ForEachElementImpl(std::forward<F>(f), t, std::index_sequence_for<Types...>());
+    return Detail::ForEachTupleElementImpl(std::forward<F>(f), t, std::index_sequence_for<Types...>());
 }
 
 template <typename F, typename... Types>
 decltype(auto) ForEachElement(F && f, std::tuple<Types...> && t)
 {
-    return ForEachElementImpl(std::forward<F>(f), std::move(t), std::index_sequence_for<Types...>());
+    return Detail::ForEachTupleElementImpl(std::forward<F>(f), std::move(t), std::index_sequence_for<Types...>());
+}
+
+
+template <typename F, typename... xs>
+decltype(auto) ForEachElementType(F && f, TypeList<xs...> &&)
+{
+    return ForEachArgument(std::forward<F>(f), type_c<xs>...);
 }
 
 
