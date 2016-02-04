@@ -71,6 +71,14 @@ struct Bind1st
     { };
 };
 
+template <template <typename, typename> class BinaryF, typename T>
+struct Bind2nd
+{
+    template <typename V>
+    struct Convert : BinaryF<V, T>
+    { };
+};
+
 
 #endif //ROCKY_BASE_TYPEUTILITY_H
 
