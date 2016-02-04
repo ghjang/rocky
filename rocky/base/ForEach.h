@@ -1,5 +1,5 @@
-#ifndef ROCKY_BASE_FOREACHTUPLE_H
-#define ROCKY_BASE_FOREACHTUPLE_H
+#ifndef ROCKY_BASE_FOREACH_H
+#define ROCKY_BASE_FOREACH_H
 
 
 #include <tuple>
@@ -35,5 +35,5 @@ decltype(auto) ForEachElementType(F && f, std::tuple<Type...> &&)
 }
 
 
-#endif //ROCKY_BASE_FOREACHTUPLE_H
+#endif //ROCKY_BASE_FOREACH_H
 
