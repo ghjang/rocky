@@ -50,6 +50,7 @@ set(HEADER_FILES
         ../wolca/Riffle.h
         ../wolca/Nest.h
         ../wolca/NestList.h
+        ../wolca/Fold.h
         ../skull/Head.h
         ../skull/Tail.h
         ../skull/Take.h
@@ -139,6 +140,7 @@ set(SOURCE_FILES
         wolca/RiffleTest.cpp
         wolca/NestTest.cpp
         wolca/NestListTest.cpp
+        wolca/FoldTest.cpp
         skull/HeadTest.cpp
         skull/TailTest.cpp
         skull/TakeTest.cpp
