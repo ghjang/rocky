@@ -18,7 +18,7 @@ set(HEADER_FILES
         ../base/ConstExprArray.h
         ../base/StringNumberConversion.h
         ../base/ForEachArgument.h
-        ../base/ForEachTuple.h
+        ../base/ForEach.h
         ../base/HasMember.h
         ../base/Identity.h
         ../base/IntegerSequenceUtility.h
@@ -116,7 +116,7 @@ set(SOURCE_FILES
         base/MultipleInheritance.cpp
         base/ForEachArgumentTest.cpp
         base/IntegerSequenceUtilityTest.cpp
-        base/ForEachTupleTest.cpp
+        base/ForEachTest.cpp
         base/TypeUtilityTest.cpp
         base/CharSequenceUtilityTest.cpp
         base/TransformIntegerSequenceTest.cpp
