@@ -13,6 +13,7 @@ TEST_CASE("MusicalScales length", "[muse]")
 
 TEST_CASE("Printing musical scales to console", "[muse]")
 {
-    PrintScaleList(TwelveMajorScaleListT());
+    // NOTE: just commented it out not to disrupt the console output.
+    //PrintScaleList(TwelveMajorScaleListT());
 }
 
