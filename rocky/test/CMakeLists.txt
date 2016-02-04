@@ -85,6 +85,7 @@ set(HEADER_FILES
         ../skull/Negate.h
         ../skull/Max.h
         ../skull/Min.h
+        ../skull/Id.h
         ../app/VariantUtility.h
         ../app/CountIf.h
         ../app/Find.h
@@ -170,6 +171,7 @@ set(SOURCE_FILES
         skull/NegateTest.cpp
         skull/MaxTest.cpp
         skull/MinTest.cpp
+        skull/IdTest.cpp
         app/VariantUtilityTest.cpp
         app/CountIfTest.cpp
         app/FindTest.cpp
