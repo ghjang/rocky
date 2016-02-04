@@ -48,6 +48,8 @@ set(HEADER_FILES
         ../wolca/Partition.h
         ../wolca/Rotate.h
         ../wolca/Riffle.h
+        ../wolca/Nest.h
+        ../wolca/NestList.h
         ../skull/Head.h
         ../skull/Tail.h
         ../skull/Take.h
@@ -86,6 +88,7 @@ set(HEADER_FILES
         ../skull/Max.h
         ../skull/Min.h
         ../skull/Id.h
+        ../skull/IterateN.h
         ../app/VariantUtility.h
         ../app/CountIf.h
         ../app/Find.h
@@ -134,6 +137,8 @@ set(SOURCE_FILES
         wolca/PartitionTest.cpp
         wolca/RotateTest.cpp
         wolca/RiffleTest.cpp
+        wolca/NestTest.cpp
+        wolca/NestListTest.cpp
         skull/HeadTest.cpp
         skull/TailTest.cpp
         skull/TakeTest.cpp
@@ -172,6 +177,7 @@ set(SOURCE_FILES
         skull/MaxTest.cpp
         skull/MinTest.cpp
         skull/IdTest.cpp
+        skull/IterateNTest.cpp
         app/VariantUtilityTest.cpp
         app/CountIfTest.cpp
         app/FindTest.cpp
