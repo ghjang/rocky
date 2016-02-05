@@ -41,6 +41,7 @@ set(HEADER_FILES
         ../math/Divisor.h
         ../math/Gcd.h
         ../math/Lcm.h
+        ../math/Distance.h
         ../wolca/StringUtility.h
         ../wolca/Range.h
         ../wolca/IntegerLength.h
@@ -52,6 +53,8 @@ set(HEADER_FILES
         ../wolca/NestList.h
         ../wolca/Fold.h
         ../wolca/FoldList.h
+        ../wolca/PadLeft.h
+        ../wolca/PadRight.h
         ../skull/Head.h
         ../skull/Tail.h
         ../skull/Take.h
@@ -134,6 +137,7 @@ set(SOURCE_FILES
         math/DivisorTest.cpp
         math/GcdTest.cpp
         math/LcmTest.cpp
+        math/DistanceTest.cpp
         wolca/StringUtilityTest.cpp
         wolca/RangeTest.cpp
         wolca/IntegerLengthTest.cpp
@@ -145,6 +149,8 @@ set(SOURCE_FILES
         wolca/NestListTest.cpp
         wolca/FoldTest.cpp
         wolca/FoldListTest.cpp
+        wolca/PadLeftTest.cpp
+        wolca/PadRightTest.cpp
         skull/HeadTest.cpp
         skull/TailTest.cpp
         skull/TakeTest.cpp
