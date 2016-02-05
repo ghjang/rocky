@@ -91,6 +91,7 @@ set(HEADER_FILES
         ../skull/Min.h
         ../skull/Id.h
         ../skull/IterateN.h
+        ../skull/Concat.h
         ../app/VariantUtility.h
         ../app/CountIf.h
         ../app/Find.h
@@ -183,6 +184,7 @@ set(SOURCE_FILES
         skull/MinTest.cpp
         skull/IdTest.cpp
         skull/IterateNTest.cpp
+        skull/ConcatTest.cpp
         app/VariantUtilityTest.cpp
         app/CountIfTest.cpp
         app/FindTest.cpp
