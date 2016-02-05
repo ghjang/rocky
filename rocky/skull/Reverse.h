@@ -15,11 +15,11 @@ private:
     using init_t = TypeList<>;
 
     template <typename lhs, typename rhs>
-    struct Swap : FlattenTypeList<rhs, lhs>
+    struct SwapImpl : FlattenAsTypeList<rhs, lhs>
     { };
 
 public:
-    using type = FoldRT<Swap, init_t, xs...>;
+    using type = FoldRT<SwapImpl, init_t, xs...>;
 };
 
 

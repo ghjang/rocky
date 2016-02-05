@@ -18,11 +18,11 @@ struct TakeWhile<p> : type_is<TypeList<>>
 
 template <template <typename> class p, typename x, typename... xs>
 struct TakeWhile<p, x, xs...>
-            : FlattenTypeList<
+            : FlattenAsTypeList<
                     SelectTypeIfT<
                             !p<x>(),
                             TypeList<>,
-                            FlattenTypeList<x, TakeWhileT<p, xs...>>
+                            FlattenAsTypeList<x, TakeWhileT<p, xs...>>
                     >,
                     TypeList<>
               >

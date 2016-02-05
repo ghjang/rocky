@@ -6,26 +6,26 @@
 
 
 template <typename... xs>
-struct FlattenTypeList;
+struct FlattenAsTypeList;
 
 template <typename... T1, typename... T2>
-struct FlattenTypeList<TypeList<T1...>, TypeList<T2...>> : type_is<TypeList<T1..., T2...>>
+struct FlattenAsTypeList<TypeList<T1...>, TypeList<T2...>> : type_is<TypeList<T1..., T2...>>
 { };
 
 template <typename... T1, typename... T2>
-struct FlattenTypeList<TypeList<T1...>, T2...> : type_is<TypeList<T1..., T2...>>
+struct FlattenAsTypeList<TypeList<T1...>, T2...> : type_is<TypeList<T1..., T2...>>
 { };
 
 template <typename T1, typename... T2>
-struct FlattenTypeList<T1, TypeList<T2...>> : type_is<TypeList<T1, T2...>>
+struct FlattenAsTypeList<T1, TypeList<T2...>> : type_is<TypeList<T1, T2...>>
 { };
 
 template <typename... xs>
-struct FlattenTypeList<TypeList<xs...>> : type_is<TypeList<xs...>>
+struct FlattenAsTypeList<TypeList<xs...>> : type_is<TypeList<xs...>>
 { };
 
 template <typename... xs>
-struct FlattenTypeList<TypeList<TypeList<xs...>>> : FlattenTypeList<TypeList<xs...>>
+struct FlattenAsTypeList<TypeList<TypeList<xs...>>> : FlattenAsTypeList<TypeList<xs...>>
 { };
 
 /**
@@ -33,7 +33,7 @@ struct FlattenTypeList<TypeList<TypeList<xs...>>> : FlattenTypeList<TypeList<xs.
  */
 /*
 template <typename... T1, typename... T2>
-struct FlattenTypeList<T1..., TypeList<T2...>> : type_is<TypeList<T1..., T2...>>
+struct FlattenAsTypeList<T1..., TypeList<T2...>> : type_is<TypeList<T1..., T2...>>
 { };
  */
 
@@ -42,13 +42,13 @@ struct FlattenTypeList<T1..., TypeList<T2...>> : type_is<TypeList<T1..., T2...>>
  */
 /*
 template <typename... T1, typename... T2, typename... T3>
-struct FlattenTypeList<T1..., TypeList<T2...>, T3...> : type_is<TypeList<T1..., T2..., T3...>>
+struct FlattenAsTypeList<T1..., TypeList<T2...>, T3...> : type_is<TypeList<T1..., T2..., T3...>>
 { };
  */
 
 
 template <typename... xs>
-using FlattenTypeListT = typename FlattenTypeList<xs...>::type;
+using FlattenAsTypeListT = typename FlattenAsTypeList<xs...>::type;
 
 
 #endif //ROCKY_BASE_TYPELISTFLATTEN_H

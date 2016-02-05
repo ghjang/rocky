@@ -24,11 +24,11 @@ template <typename T, T i, typename... xs>
 struct Rotate<std::integral_constant<T, i>, xs...>
         : SelectTypeIf<
                 i < 0,
-                FlattenTypeList<
+                FlattenAsTypeList<
                         DropT<Abs(i) % sizeof...(xs), xs...>,
                         TakeT<Abs(i) % sizeof...(xs), xs...>
                 >, // left-rotation
-                FlattenTypeList<
+                FlattenAsTypeList<
                         DropT<sizeof...(xs) - (i % sizeof...(xs)), xs...>,
                         TakeT<sizeof...(xs) - (i % sizeof...(xs)), xs...>
                 > // right-rotation
