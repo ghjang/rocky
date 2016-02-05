@@ -31,7 +31,7 @@ set(HEADER_FILES
         ../base/TransformIntegerSequence.h
         ../base/TypeList.h
         ../base/TypeListFlatten.h
-        ../base/TypeListJoin.h
+        ../base/TypeListWrap.h
         ../base/TypeAt.h
         ../base/Swap.h
         ../base/TypeListUtility.h
@@ -123,7 +123,7 @@ set(SOURCE_FILES
         base/TransformIntegerSequenceTest.cpp
         base/TypeListTest.cpp
         base/TypeListFlattenTest.cpp
-        base/TypeListJoinTest.cpp
+        base/TypeListWrapTest.cpp
         base/TypeAtTest.cpp
         base/SwapTest.cpp
         base/TypeListUtilityTest.cpp
