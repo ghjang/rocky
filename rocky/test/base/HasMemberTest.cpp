@@ -2,6 +2,10 @@
 
 #include "rocky/base/HasMember.h"
 
+#include "rocky/base/TypeList.h"
+#include "rocky/base/TypeUtility.h"
+#include "rocky/base/IntegralConstantUtility.h"
+
 
 TEST_CASE("class without 'type' member", "[HasMember]")
 {
@@ -48,5 +52,25 @@ TEST_CASE("class with 'value' member", "[HasMember]")
 
     //TODO: add support for template template parameter if possible.
     //static_assert(HasValueMember<is_same>(), "std::is_same has value member.");
+}
+
+TEST_CASE("HasApplyMember", "[HasApplyMember]")
+{
+    using std::is_same;
+    using std::is_integral;
+    using std::is_floating_point;
+
+    // binary predicate
+    static_assert(HasApplyMember<Quote<is_same>>(), "");
+
+    // uniary predicate
+    static_assert(HasApplyMember<Quote<is_integral>>(), "");
+    static_assert(HasApplyMember<Quote<is_floating_point>>(), "");
+
+    // n-template parameters
+    static_assert(HasApplyMember<Quote<TypeList>>(), "");
+
+    // TODO: enhance the following with metafunction composition.
+    static_assert(HasApplyMember<TypeToBoolConstantType<Quote<is_integral>>>(), "");
 }
 

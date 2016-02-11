@@ -35,5 +35,20 @@ struct HasValueMember : decltype(Detail::HasValueMemberImpl<T>(int{}))
 { };
 
 
+namespace Detail
+{
+    template<typename T, template <typename...> class = T::template Apply>
+    std::true_type HasApplyMemberImpl(int);
+
+    template<typename T>
+    std::false_type HasApplyMemberImpl(...);
+} // namespace Detail
+
+
+template <typename T>
+struct HasApplyMember : decltype(Detail::HasApplyMemberImpl<T>(int{}))
+{ };
+
+
 #endif //ROCKY_BASE_HASMEMBER_H
 
