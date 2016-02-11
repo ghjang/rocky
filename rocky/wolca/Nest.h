@@ -5,22 +5,26 @@
 #include <type_traits>
 
 #include "rocky/base/Identity.h"
+#include "rocky/base/TypeUtility.h"
 
 
-template <template <typename> class f, typename x, typename n>
+/**
+ * @tparam f metafunction class
+ */
+template <typename f, typename x, typename n>
 struct Nest;
 
-template <template <typename> class f, typename x, typename T>
+template <typename f, typename x, typename T>
 struct Nest<f, x, std::integral_constant<T, 0>> : type_is<x>
 { };
 
-template <template <typename> class f, typename x, typename T, T n>
+template <typename f, typename x, typename T, T n>
 struct Nest<f, x, std::integral_constant<T, n>>
-        : Nest<f, typename f<x>::type, std::integral_constant<T, n - 1>>
+        : Nest<f, typename ApplyT<f, x>::type, std::integral_constant<T, n - 1>>
 { };
 
 
-template <template <typename> class f, typename x, std::size_t n>
+template <typename f, typename x, std::size_t n>
 using NestT = typename Nest<f, x, std::integral_constant<std::size_t, n>>::type;
 
 

@@ -2,22 +2,26 @@
 #define ROCKY_APP_REPLACEIF_H
 
 
+#include "rocky/base/TypeUtility.h"
 #include "rocky/app/Transform.h"
 
 
-template <template <typename> class p, typename TargetType, typename... xs>
+/**
+ * @tparam p predicate metafunction class
+ */
+template <typename p, typename TargetType, typename... xs>
 struct ReplaceIf
 {
 private:
     template <typename T>
     struct SourceTypeToTargetType
                 : std::conditional<
-                        p<T>::value,
+                        ApplyT<p, T>::value,
                         TargetType,
                         T
                     >
     {
-        static_assert(HasValueMember<p<TargetType>>(), "Predicate 'p' should have value member.");
+        static_assert(HasValueMember<ApplyT<p, TargetType>>(), "applied predicate 'p' should have value member.");
     };
 
 public:
@@ -25,15 +29,15 @@ public:
 };
 
 
-template <template <typename> class p, typename TargetType, typename... xs>
+template <typename p, typename TargetType, typename... xs>
 using ReplaceIfT = typename ReplaceIf<p, TargetType, xs...>::type;
 
 
-template <template <typename> class p, typename TargetType, typename... xs>
+template <typename p, typename TargetType, typename... xs>
 struct ReplaceIf<p, TargetType, TypeList<xs...>> : ReplaceIf<p, TargetType, xs...>
 { };
 
-template <template <typename> class p, typename TargetType, typename... xs>
+template <typename p, typename TargetType, typename... xs>
 struct ReplaceIf<p, TargetType, std::tuple<xs...>> : TypeListToTuple<ReplaceIfT<p, TargetType, xs...>>
 { };
 

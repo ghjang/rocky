@@ -9,7 +9,7 @@
 namespace
 {
     template <typename x>
-    using TwiceT = IterateNT<Bind2nd<Multiply, int_c_t<2>>::template Convert, x, 2>;
+    using TwiceT = IterateNT<Bind2nd<Quote<Multiply>, int_c_t<2>>, x, 2>;
 } // un-named namespace
 
 

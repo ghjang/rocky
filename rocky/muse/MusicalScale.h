@@ -39,7 +39,7 @@ namespace Detail
 
 using TwelveMajorScaleListT = MapT<
                                     Detail::ExtractNote<Detail::MajorScaleNoteIndexSequenceT>::template DoExtract,
-                                    NestListT<Detail::RotateLeftNote, TwelveHalfMusicalNoteList, 11>
+                                    NestListT<Quote<Detail::RotateLeftNote>, TwelveHalfMusicalNoteList, 11>
                               >;
 
 

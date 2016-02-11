@@ -79,19 +79,29 @@ struct NegatePredicate
     { };
 };
 
-template <template <typename, typename> class BinaryF, typename T>
+/**
+ * Bind1st is a metafunction class itself.
+ *
+ * @tparam BinaryF metafunction class
+ */
+template <typename BinaryF, typename T>
 struct Bind1st
 {
     template <typename V>
-    struct Convert : BinaryF<T, V>
+    struct Apply : ApplyT<BinaryF, T, V>
     { };
 };
 
-template <template <typename, typename> class BinaryF, typename T>
+/**
+ * Bind2nd is a metafunction class itself.
+ *
+ * @tparam Bind2nd metafunction class
+ */
+template <typename BinaryF, typename T>
 struct Bind2nd
 {
     template <typename V>
-    struct Convert : BinaryF<V, T>
+    struct Apply : ApplyT<BinaryF, V, T>
     { };
 };
 

@@ -5,7 +5,10 @@
 #include "rocky/wolca/NestList.h"
 
 
-template <template <typename> class f, typename x, std::size_t n>
+/**
+ * @tparam f metafunction class
+ */
+template <typename f, typename x, std::size_t n>
 using IterateNT = NestListT<f, x, n>;
 
 

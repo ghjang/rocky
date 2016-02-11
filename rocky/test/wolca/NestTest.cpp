@@ -13,7 +13,7 @@ TEST_CASE("Nest", "[wolca]")
     static_assert(
             is_same<
                     int_c_t<8>,
-                    NestT<Bind2nd<Multiply, int_c_t<2>>::template Convert, int_c_t<1>, 3>
+                    NestT<Bind2nd<Quote<Multiply>, int_c_t<2>>, int_c_t<1>, 3>
             >(),
             ""
     );
