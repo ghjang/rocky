@@ -55,11 +55,27 @@ template <typename T>
 using CharTypeToStringTypeT = typename CharTypeToStringType<T>::type;
 
 
-template <template <typename> class Predicate>
+template <typename f, typename... xs>
+using ApplyT = typename f::template Apply<xs...>;
+
+template <template <typename...> class f>
+struct Quote
+{
+    template <typename... xs>
+    using Apply = f<xs...>;
+};
+
+
+/**
+ * NegatePredicate is a metafunction class itself.
+ *
+ * @tparam Predicate metafunction class
+ */
+template <typename Predicate>
 struct NegatePredicate
 {
     template <typename T>
-    struct Convert : std::integral_constant<bool, !Predicate<T>::value>
+    struct Apply : std::integral_constant<bool, !ApplyT<Predicate, T>::value>
     { };
 };
 
