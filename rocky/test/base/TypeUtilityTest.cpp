@@ -15,7 +15,7 @@ TEST_CASE("NegatePrdicate", "[TypeUtility]")
     using std::is_integral;
 
     static_assert(is_integral<int>(), "");
-    static_assert(!NegatePredicate<is_integral>::template Convert<int>(), "");
+    static_assert(!ApplyT<NegatePredicate<Quote<is_integral>>, int>(), "");
 }
 
 TEST_CASE("CharTypeToStringType", "[TypeUtility]")

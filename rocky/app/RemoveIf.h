@@ -6,10 +6,13 @@
 #include "rocky/skull/Filter.h"
 
 
-template <template <typename> class p, typename... xs>
-using RemoveIf = Filter<NegatePredicate<p>::template Convert, xs...>;
+/**
+ * @tparam p predicate metafunction class
+ */
+template <typename p, typename... xs>
+using RemoveIf = Filter<NegatePredicate<p>, xs...>;
 
-template <template <typename> class p, typename... xs>
+template <typename p, typename... xs>
 using RemoveIfT = typename RemoveIf<p, xs...>::type;
 
 
