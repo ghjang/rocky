@@ -76,9 +76,13 @@ struct Quote
  *
  */
 template <typename f, typename... xs>
-struct Apply : type_is<typename f::template Apply<xs...>>
+struct Apply
 {
+    // NOTE: This assertion is redundant. No 'Apply' member existence in f will results in a compile error.
+    //       But, I just wanted to show more understandable error message.
     static_assert(HasApplyMember<f>(), "metafunction class f should have 'Apply' member class template.");
+
+    using type = typename f::template Apply<xs...>;
 };
 
 /**
