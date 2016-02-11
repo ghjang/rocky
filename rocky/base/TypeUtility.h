@@ -2,9 +2,8 @@
 #define ROCKY_BASE_TYPEUTILITY_H
 
 
-#include <type_traits>
-
 #include "rocky/base/Identity.h"
+#include "rocky/base/HasMember.h"
 
 
 /**
@@ -68,14 +67,25 @@ template <template <typename...> class f>
 struct Quote
 {
     template <typename... xs>
-    using Apply = f<xs...>;
+    struct Apply : f<xs...>
+    { };
+};
+
+
+/**
+ *
+ */
+template <typename f, typename... xs>
+struct Apply : type_is<typename f::template Apply<xs...>>
+{
+    static_assert(HasApplyMember<f>(), "metafunction class f should have 'Apply' member class template.");
 };
 
 /**
  * type alias for ease use of applying metafunction classes
  */
 template <typename f, typename... xs>
-using ApplyT = typename f::template Apply<xs...>;
+using ApplyT = typename Apply<f, xs...>::type;
 
 
 /**
