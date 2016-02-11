@@ -5,25 +5,33 @@
 #include <type_traits>
 
 
-template <typename T, typename = typename T::type>
-std::true_type HasTypeMemberImpl(int);
+namespace Detail
+{
+    template<typename T, typename = typename T::type>
+    std::true_type HasTypeMemberImpl(int);
+
+    template<typename T>
+    std::false_type HasTypeMemberImpl(...);
+} // namespace Detail
+
 
 template <typename T>
-std::false_type HasTypeMemberImpl(...);
-
-template <typename T>
-struct HasTypeMember : decltype(HasTypeMemberImpl<T>(int{}))
+struct HasTypeMember : decltype(Detail::HasTypeMemberImpl<T>(int{}))
 { };
 
 
-template <typename T, typename = decltype(T::value)>
-std::true_type HasValueMemberImpl(int);
+namespace Detail
+{
+    template<typename T, typename = decltype(T::value)>
+    std::true_type HasValueMemberImpl(int);
+
+    template<typename T>
+    std::false_type HasValueMemberImpl(...);
+} // namespace Detail
+
 
 template <typename T>
-std::false_type HasValueMemberImpl(...);
-
-template <typename T>
-struct HasValueMember : decltype(HasValueMemberImpl<T>(int{}))
+struct HasValueMember : decltype(Detail::HasValueMemberImpl<T>(int{}))
 { };
 
 
