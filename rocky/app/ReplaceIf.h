@@ -25,7 +25,7 @@ private:
     };
 
 public:
-    using type = MapT<SourceTypeToTargetType, xs...>;
+    using type = MapT<Quote<SourceTypeToTargetType>, xs...>;
 };
 
 

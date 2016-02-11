@@ -44,21 +44,25 @@ constexpr std::array<int, sizeof...(list)> IntegralConstantElementTypeToArray<
 //==============================================================================
 // compiletime basefunctions
 //==============================================================================
-template <template <typename> class p, typename... xs>
-struct MapToBoolConstantType : Map<TypeToBoolConstantType<p>::template Convert, xs...>
+
+/**
+ * @tparam p predicate metafunction class
+ */
+template <typename p, typename... xs>
+struct MapToBoolConstantType : Map<TypeToBoolConstantType<p>, xs...>
 {
-    static_assert(HasValueMember<p<HeadT<xs...>>>(), "Predicate p should have 'value' member.");
+    static_assert(HasValueMember<ApplyT<p, HeadT<xs...>>>(), "applied predicate p should have 'value' member.");
 };
 
-template <template <typename> class p, typename... xs>
+template <typename p, typename... xs>
 using MapToBoolConstantTypeT = typename MapToBoolConstantType<p, xs...>::type;
 
 
-template <template <typename> class p, typename... xs>
+template <typename p, typename... xs>
 struct MapToBoolConstantType<p, TypeList<xs...>> : MapToBoolConstantType<p, xs...>
 { };
 
-template <template <typename> class p, typename... xs>
+template <typename p, typename... xs>
 struct MapToBoolConstantType<p, std::tuple<xs...>> : TypeListToTuple<MapToBoolConstantTypeT<p, xs...>>
 { };
 

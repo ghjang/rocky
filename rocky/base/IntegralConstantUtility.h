@@ -4,6 +4,7 @@
 
 #include "rocky/base/StringNumberConversion.h"
 #include "rocky/base/TypeSelection.h"
+#include "rocky/base/TypeUtility.h"
 
 
 template <typename T1, T1 v1, typename T2, T2 v2>
@@ -98,13 +99,17 @@ struct Divide<std::integral_constant<T1, v1>, std::integral_constant<T2, v2>>
 };
 
 
-template <template <typename> class Predicate>
+/**
+ * TypeToBoolConstantType itself is a metafunction class and also a kind of high-order metafunction.
+ * @tparam Predicate metafunction class
+ */
+template <typename Predicate>
 struct TypeToBoolConstantType
 {
     template <typename T>
-    struct Convert
+    struct Apply
             : std::conditional<
-                    Predicate<T>::value,
+                    ApplyT<Predicate, T>::value,
                     std::true_type,
                     std::false_type
                 >

@@ -6,7 +6,10 @@
 #include "rocky/app/Transform.h"
 
 
-template <template <typename> class p, typename... xs>
+/**
+ * @tparam p predicate metafunction class
+ */
+template <typename p, typename... xs>
 using CountIf = SumT<MapToBoolConstantTypeT<p, xs...>>;
 
 

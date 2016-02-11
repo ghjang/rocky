@@ -2,8 +2,9 @@
 #define ROCKY_BASE_TYPEUTILITY_H
 
 
+#include <type_traits>
+
 #include "rocky/base/Identity.h"
-#include "rocky/base/IntegralConstantUtility.h"
 
 
 /**
@@ -23,7 +24,11 @@ constexpr std::size_t TypeSizeOf(Identity<T>)
 
 
 template <typename T>
-struct IsCharType : bool_c_t<std::is_same<T, char>::value || std::is_same<T, wchar_t>::value>
+struct IsCharType
+        : std::integral_constant<
+                bool,
+                std::is_same<T, char>::value || std::is_same<T, wchar_t>::value
+          >
 { };
 
 

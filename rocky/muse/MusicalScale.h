@@ -27,10 +27,10 @@ namespace Detail
     struct ExtractNote
     {
         template <typename NoteList>
-        struct DoExtract;
+        struct Apply;
 
         template <MusicalNote... Note>
-        struct DoExtract<TypeList<musical_note_c_t<Note>...>>
+        struct Apply<TypeList<musical_note_c_t<Note>...>>
                 : Extract<NoteIndexSequence, TypeList<musical_note_c_t<Note>...>>
         { };
     };
@@ -38,7 +38,7 @@ namespace Detail
 
 
 using TwelveMajorScaleListT = MapT<
-                                    Detail::ExtractNote<Detail::MajorScaleNoteIndexSequenceT>::template DoExtract,
+                                    Detail::ExtractNote<Detail::MajorScaleNoteIndexSequenceT>,
                                     NestListT<Quote<Detail::RotateLeftNote>, TwelveHalfMusicalNoteList, 11>
                               >;
 
