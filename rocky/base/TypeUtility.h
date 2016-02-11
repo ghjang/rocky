@@ -66,6 +66,9 @@ using CharTypeToStringTypeT = typename CharTypeToStringType<T>::type;
 template <template <typename...> class f>
 struct Quote
 {
+    /**
+     * NOTE: didn't use the 'using' type alias to make HasApplyMember metafunction work.
+     */
     template <typename... xs>
     struct Apply : f<xs...>
     { };
