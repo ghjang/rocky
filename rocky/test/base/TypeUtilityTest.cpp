@@ -96,3 +96,28 @@ TEST_CASE("Bind2nd", "[TypeUtility]")
     static_assert(!ApplyT<Bind2nd<Quote<is_same>, char>, int>(), "");
 }
 
+TEST_CASE("Quote and ApplyT", "[TypeUtility]")
+{
+    using std::is_same;
+    using std::is_integral;
+    using std::true_type;
+    using std::false_type;
+
+    using metafunction_class_t = Quote<is_integral>;
+
+    static_assert(is_same<true_type, metafunction_class_t::template Apply<int>::type>(), "");
+    static_assert(is_same<false_type, metafunction_class_t::template Apply<double>::type>(), "");
+
+    static_assert(metafunction_class_t::template Apply<int>(), "");
+    static_assert(!metafunction_class_t::template Apply<double>(), "");
+
+    static_assert(is_same<true_type, ApplyT<metafunction_class_t, int>::type>(), "");
+    static_assert(is_same<false_type, ApplyT<metafunction_class_t, double>::type>(), "");
+
+    static_assert(ApplyT<metafunction_class_t, int>(), "");
+    static_assert(!ApplyT<metafunction_class_t, double>(), "");
+
+    static_assert(ApplyT<Quote<is_integral>, int>(), "");
+    static_assert(!ApplyT<Quote<is_integral>, double>(), "");
+}
+
