@@ -67,7 +67,7 @@ struct Quote
 
 
 /**
- * NegatePredicate is a metafunction class itself.
+ * NegatePredicate itself is a metafunction class and also a kind of high-order metafunction.
  *
  * @tparam Predicate metafunction class
  */
@@ -80,7 +80,7 @@ struct NegatePredicate
 };
 
 /**
- * Bind1st is a metafunction class itself.
+ * Bind1st is itself is a metafunction class and also a kind of high-order metafunction.
  *
  * @tparam BinaryF metafunction class
  */
@@ -93,9 +93,9 @@ struct Bind1st
 };
 
 /**
- * Bind2nd is a metafunction class itself.
+ * Bind2nd is itself is a metafunction class and also a kind of high-order metafunction.
  *
- * @tparam Bind2nd metafunction class
+ * @tparam BinaryF metafunction class
  */
 template <typename BinaryF, typename T>
 struct Bind2nd
