@@ -60,15 +60,22 @@ template <typename T>
 using CharTypeToStringTypeT = typename CharTypeToStringType<T>::type;
 
 
-template <typename f, typename... xs>
-using ApplyT = typename f::template Apply<xs...>;
-
+/**
+ * Quote itself is a helper metafunction class and also a high-order metafunction
+ * which turns metafunctions into metafunction classes.
+ */
 template <template <typename...> class f>
 struct Quote
 {
     template <typename... xs>
     using Apply = f<xs...>;
 };
+
+/**
+ * type alias for ease use of applying metafunction classes
+ */
+template <typename f, typename... xs>
+using ApplyT = typename f::template Apply<xs...>;
 
 
 /**
