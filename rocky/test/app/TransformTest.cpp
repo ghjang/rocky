@@ -113,7 +113,7 @@ TEST_CASE("transforming tuple integral element types to integral value true_type
 }
 
 TEST_CASE("transforming tuple integral element types to integral value true_type or false_type"
-          "by using TransformElementTypeToBoolConstantType",
+          "by using MapToBoolConstantType",
           "[TransformTuple]")
 {
     using std::is_same;
