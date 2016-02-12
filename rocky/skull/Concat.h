@@ -21,7 +21,7 @@ private:
     { };
 
 public:
-    using type = FoldLT<ConcatImpl, xs, xss...>;
+    using type = FoldLT<Quote<ConcatImpl>, xs, xss...>;
 };
 
 

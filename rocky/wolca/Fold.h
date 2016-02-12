@@ -5,7 +5,10 @@
 #include "rocky/skull/FoldL.h"
 
 
-template <template <typename, typename> class f, typename init, typename... xs>
+/**
+ * @tparam f binary metafunction class
+ */
+template <typename f, typename init, typename... xs>
 using FoldT = typename FoldL<f, init, xs...>::type;
 
 

@@ -8,7 +8,7 @@
 TEST_CASE("wolca fold-left, integral constant sum", "[wolca]")
 {
     using sum_t = FoldT<
-                        Plus,
+                        Quote<Plus>,
                         int_c_t<0>,  // init
                         int_c_t<1>,
                         int_c_t<2>,

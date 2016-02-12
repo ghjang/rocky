@@ -26,7 +26,7 @@ private:
     { };
 
 public :
-    using type = FoldLT<AppendDigitImpl, std::integral_constant<int, 0>, std::integral_constant<int, is>...>;
+    using type = FoldLT<Quote<AppendDigitImpl>, std::integral_constant<int, 0>, std::integral_constant<int, is>...>;
 };
 
 template <char... cs>

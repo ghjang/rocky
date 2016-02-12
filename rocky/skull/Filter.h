@@ -28,7 +28,7 @@ private:
     };
 
 public:
-    using type = FoldLT<AppendIfTrue, init_t, xs...>;
+    using type = FoldLT<Quote<AppendIfTrue>, init_t, xs...>;
 };
 
 

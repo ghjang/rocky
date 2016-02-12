@@ -29,7 +29,7 @@ private:
     { };
 
 public:
-    using type = FoldLT<AppendTypeIfNotExist, init_t, xs...>;
+    using type = FoldLT<Quote<AppendTypeIfNotExist>, init_t, xs...>;
 };
 
 

@@ -21,7 +21,7 @@ TEST_CASE("runtime fold, std::accumulate", "[FoldL]")
 TEST_CASE("fold left, integral constant sum", "[FoldL]")
 {
     using sum_t = FoldLT<
-                        Plus,
+                        Quote<Plus>,
                         int_c_t<0>,  // init
                         int_c_t<1>,
                         int_c_t<2>,
@@ -35,7 +35,7 @@ TEST_CASE("fold left, integral constant sum", "[FoldL]")
 TEST_CASE("fold left, integral constant subtract", "[FoldL]")
 {
     using subtract_t = FoldLT<
-                            Minus,
+                            Quote<Minus>,
                             int_c_t<0>,  // init
                             int_c_t<1>,
                             int_c_t<2>,
@@ -59,7 +59,7 @@ TEST_CASE("fold left, integral constant in tuple sum", "[FoldL]")
                             >;
 
     using sum_t = FoldLWithUnpackT<
-                        Plus,
+                        Quote<Plus>,
                         int_c_t<0>,  // init
                         integral_tuple_t
                   >;
@@ -69,7 +69,7 @@ TEST_CASE("fold left, integral constant in tuple sum", "[FoldL]")
 TEST_CASE("fold left, integral constant multiply", "[FoldL]")
 {
     using mul_t = FoldLT<
-                        Multiply,
+                        Quote<Multiply>,
                         int_c_t<1>,  // init
                         int_c_t<1>,
                         int_c_t<2>,

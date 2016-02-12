@@ -22,7 +22,7 @@ private:
     // NOTE: zipped_t is TypeList of TypeLists of which length is two.
     using zipped_t = ZipT<TL<xs...>, ReplicateT<sizeof...(xs), T>>;
 
-    using flattened_t = FoldLWithUnpackT<FlattenImpl, TypeList<>, zipped_t>;
+    using flattened_t = FoldLWithUnpackT<Quote<FlattenImpl>, TypeList<>, zipped_t>;
 
 public:
     using type = InitT<flattened_t>;

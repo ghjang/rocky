@@ -35,7 +35,7 @@ private:
     };
 
 public:
-    using type = FoldLT<AppendIntegerSequence, init_seq_t, list...>;
+    using type = FoldLT<Quote<AppendIntegerSequence>, init_seq_t, list...>;
 };
 
 
