@@ -24,3 +24,13 @@ TEST_CASE("ToTuple", "[TypeList]")
     static_assert(!is_same<TypeList<char, int>, ToTupleT<TypeList<char, int>>>(), "");
 }
 
+TEST_CASE("ToTypeList", "[TypeList]")
+{
+    using std::is_same;
+    using std::tuple;
+
+    static_assert(is_same<TypeList<>, ToTypeListT<tuple<>>>(), "");
+    static_assert(is_same<TypeList<char, int>, ToTypeListT<tuple<char, int>>>(), "");
+    static_assert(!is_same<tuple<char, int>, ToTypeListT<tuple<char, int>>>(), "");
+}
+

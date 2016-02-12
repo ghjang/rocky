@@ -38,7 +38,7 @@ template <typename xs>
 using ToTupleT = typename ToTuple<xs>::type;
 
 template <typename xs>
-using ToTypeList = typename ReplaceTypeListContainerType<xs, TypeList>::type;
+using ToTypeList = ReplaceTypeListContainerType<xs, TypeList>;
 
 template <typename xs>
 using ToTypeListT = typename ToTypeList<xs>::type;
