@@ -32,7 +32,7 @@ struct Reverse<TypeList<xs...>> : Reverse<xs...>
 { };
 
 template <typename... xs>
-struct Reverse<std::tuple<xs...>> : TypeListToTuple<ReverseT<xs...>>
+struct Reverse<std::tuple<xs...>> : ToTuple<ReverseT<xs...>>
 { };
 
 

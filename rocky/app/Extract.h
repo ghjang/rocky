@@ -26,7 +26,7 @@ struct Extract<std::integer_sequence<T, i...>, TypeList<xs...>>
 
 template <typename T, T... i, typename... xs>
 struct Extract<std::integer_sequence<T, i...>, std::tuple<xs...>>
-        : TypeListToTuple<ExtractT<std::integer_sequence<T, i...>, xs...>>
+        : ToTuple<ExtractT<std::integer_sequence<T, i...>, xs...>>
 { };
 
 

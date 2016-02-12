@@ -38,7 +38,7 @@ struct ReplaceIf<p, TargetType, TypeList<xs...>> : ReplaceIf<p, TargetType, xs..
 { };
 
 template <typename p, typename TargetType, typename... xs>
-struct ReplaceIf<p, TargetType, std::tuple<xs...>> : TypeListToTuple<ReplaceIfT<p, TargetType, xs...>>
+struct ReplaceIf<p, TargetType, std::tuple<xs...>> : ToTuple<ReplaceIfT<p, TargetType, xs...>>
 { };
 
 

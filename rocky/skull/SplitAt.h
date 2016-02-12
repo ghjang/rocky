@@ -61,7 +61,7 @@ struct SplitAt<std::integral_constant<T, i>, TypeList<xs...>>
 
 template <typename T, T i, typename... xs>
 struct SplitAt<std::integral_constant<T, i>, std::tuple<xs...>>
-        : TypeListToTuple<SplitAtT<std::integral_constant<T, i>, xs...>>
+        : ToTuple<SplitAtT<std::integral_constant<T, i>, xs...>>
 { };
 
 

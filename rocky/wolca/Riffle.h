@@ -42,7 +42,7 @@ struct Riffle<T, TypeList<xs...>> : Riffle<T, xs...>
 { };
 
 template <typename T, typename... xs>
-struct Riffle<T, std::tuple<xs...>> : TypeListToTuple<RiffleT<T, xs...>>
+struct Riffle<T, std::tuple<xs...>> : ToTuple<RiffleT<T, xs...>>
 { };
 
 

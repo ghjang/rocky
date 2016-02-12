@@ -35,7 +35,7 @@ struct Init<TypeList<xs...>> : Init<xs...>
 { };
 
 template <typename... xs>
-struct Init<std::tuple<xs...>> : TypeListToTuple<InitT<xs...>>
+struct Init<std::tuple<xs...>> : ToTuple<InitT<xs...>>
 { };
 
 

@@ -33,7 +33,7 @@ struct Take<n, TypeList<xs...>> : Take<n, xs...>
 { };
 
 template <std::size_t n, typename... xs>
-struct Take<n, std::tuple<xs...>> : TypeListToTuple<TakeT<n, xs...>>
+struct Take<n, std::tuple<xs...>> : ToTuple<TakeT<n, xs...>>
 { };
 
 

@@ -28,7 +28,7 @@ struct Swap<std::pair<x, y>> : type_is<std::pair<y, x>>
 { };
 
 template <typename x, typename y>
-struct Swap<std::tuple<x, y>> : TypeListToTuple<SwapT<x, y>>
+struct Swap<std::tuple<x, y>> : ToTuple<SwapT<x, y>>
 { };
 
 

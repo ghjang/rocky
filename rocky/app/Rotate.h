@@ -47,7 +47,7 @@ struct Rotate<std::integral_constant<T, n>, TypeList<xs...>>
 
 template <typename T, T n, typename... xs>
 struct Rotate<std::integral_constant<T, n>, std::tuple<xs...>>
-        : TypeListToTuple<RotateT<std::integral_constant<T, n>, xs...>>
+        : ToTuple<RotateT<std::integral_constant<T, n>, xs...>>
 { };
 
 

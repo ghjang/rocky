@@ -35,7 +35,7 @@ struct Drop<n, TypeList<xs...>> : Drop<n, xs...>
 { };
 
 template <std::size_t n, typename... xs>
-struct Drop<n, std::tuple<xs...>> : TypeListToTuple<DropT<n, xs...>>
+struct Drop<n, std::tuple<xs...>> : ToTuple<DropT<n, xs...>>
 { };
 
 

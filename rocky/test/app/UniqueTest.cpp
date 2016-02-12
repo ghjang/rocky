@@ -11,7 +11,7 @@ TEST_CASE("Unique", "[Unique]")
     using std::tuple_element_t;
 
     {
-        using result_unique_t = TypeListToTupleT<UniqueT<char, char, char>>;
+        using result_unique_t = ToTupleT<UniqueT<char, char, char>>;
         using unique_t = tuple<char>;
 
         static_assert(1 == tuple_size<result_unique_t>(), "result_unique_t's size should be 1.");

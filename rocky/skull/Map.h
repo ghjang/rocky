@@ -33,7 +33,7 @@ struct Map<f, TypeList<xs...>> : Map<f, xs...>
 { };
 
 template <typename f, typename... xs>
-struct Map<f, std::tuple<xs...>> : TypeListToTuple<MapT<f, xs...>>
+struct Map<f, std::tuple<xs...>> : ToTuple<MapT<f, xs...>>
 { };
 
 

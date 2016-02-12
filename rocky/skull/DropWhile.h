@@ -35,7 +35,7 @@ struct DropWhile<p, TypeList<xs...>> : DropWhile<p, xs...>
 { };
 
 template <template <typename> class p, typename... xs>
-struct DropWhile<p, std::tuple<xs...>> : TypeListToTuple<DropWhileT<p, xs...>>
+struct DropWhile<p, std::tuple<xs...>> : ToTuple<DropWhileT<p, xs...>>
 { };
 
 

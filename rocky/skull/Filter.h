@@ -41,7 +41,7 @@ struct Filter<p, TypeList<xs...>> : Filter<p, xs...>
 { };
 
 template <typename p, typename... xs>
-struct Filter<p, std::tuple<xs...>> : TypeListToTuple<FilterT<p, xs...>>
+struct Filter<p, std::tuple<xs...>> : ToTuple<FilterT<p, xs...>>
 { };
 
 

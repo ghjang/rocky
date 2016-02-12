@@ -46,7 +46,7 @@ struct Unique<std::pair<x, y>> : Unique<x, y>
 { };
 
 template <typename... xs>
-struct Unique<std::tuple<xs...>> : TypeListToTuple<UniqueT<xs...>>
+struct Unique<std::tuple<xs...>> : ToTuple<UniqueT<xs...>>
 { };
 
 

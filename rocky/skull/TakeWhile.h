@@ -39,7 +39,7 @@ struct TakeWhile<p, TypeList<xs...>> : TakeWhile<p, xs...>
 { };
 
 template <typename p, typename... xs>
-struct TakeWhile<p, std::tuple<xs...>> : TypeListToTuple<TakeWhileT<p, xs...>>
+struct TakeWhile<p, std::tuple<xs...>> : ToTuple<TakeWhileT<p, xs...>>
 { };
 
 

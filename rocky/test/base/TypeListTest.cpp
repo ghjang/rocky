@@ -14,13 +14,13 @@ TEST_CASE("TypeListSize", "[TypeList]")
     static_assert(3 == TypeListSize<TypeList<char, int, float>>(), "");
 }
 
-TEST_CASE("TypeListToTuple", "[TypeList]")
+TEST_CASE("ToTuple", "[TypeList]")
 {
     using std::is_same;
     using std::tuple;
 
-    static_assert(is_same<tuple<>, TypeListToTupleT<TypeList<>>>(), "");
-    static_assert(is_same<tuple<char, int>, TypeListToTupleT<TypeList<char, int>>>(), "");
-    static_assert(!is_same<TypeList<char, int>, TypeListToTupleT<TypeList<char, int>>>(), "");
+    static_assert(is_same<tuple<>, ToTupleT<TypeList<>>>(), "");
+    static_assert(is_same<tuple<char, int>, ToTupleT<TypeList<char, int>>>(), "");
+    static_assert(!is_same<TypeList<char, int>, ToTupleT<TypeList<char, int>>>(), "");
 }
 

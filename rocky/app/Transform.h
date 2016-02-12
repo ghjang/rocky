@@ -63,7 +63,7 @@ struct MapToBoolConstantType<p, TypeList<xs...>> : MapToBoolConstantType<p, xs..
 { };
 
 template <typename p, typename... xs>
-struct MapToBoolConstantType<p, std::tuple<xs...>> : TypeListToTuple<MapToBoolConstantTypeT<p, xs...>>
+struct MapToBoolConstantType<p, std::tuple<xs...>> : ToTuple<MapToBoolConstantTypeT<p, xs...>>
 { };
 
 

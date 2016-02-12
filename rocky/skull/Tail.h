@@ -25,7 +25,7 @@ struct Tail<TypeList<xs...>> : Tail<xs...>
 { };
 
 template <typename... xs>
-struct Tail<std::tuple<xs...>> : TypeListToTuple<TailT<xs...>>
+struct Tail<std::tuple<xs...>> : ToTuple<TailT<xs...>>
 { };
 
 
