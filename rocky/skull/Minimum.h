@@ -15,7 +15,7 @@ struct Minimum
 template <typename T, T... i>
 struct Minimum<std::integral_constant<T, i>...>
         : FoldR<
-                Min,
+                Quote<Min>,
                 std::integral_constant<T, std::numeric_limits<T>::max()>, // init
                 std::integral_constant<T, i>...
         >

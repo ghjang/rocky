@@ -19,7 +19,7 @@ private:
     { };
 
 public:
-    using type = FoldRT<SwapImpl, init_t, xs...>;
+    using type = FoldRT<Quote<SwapImpl>, init_t, xs...>;
 };
 
 

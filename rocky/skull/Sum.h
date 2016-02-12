@@ -11,7 +11,7 @@ struct Sum;
 
 template <typename T, T... i>
 struct Sum<std::integral_constant<T, i>...>
-        : type_is<FoldRT<Plus, std::integral_constant<T, 0>, std::integral_constant<T, i>...>>
+        : type_is<FoldRT<Quote<Plus>, std::integral_constant<T, 0>, std::integral_constant<T, i>...>>
 { };
 
 

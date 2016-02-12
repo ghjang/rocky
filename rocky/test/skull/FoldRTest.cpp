@@ -8,7 +8,7 @@
 TEST_CASE("fold right, integral constant sum", "[Fold]")
 {
     using sum_t = FoldRT<
-                        Plus,
+                        Quote<Plus>,
                         int_c_t<0>,  // init
                         int_c_t<1>,
                         int_c_t<2>,
@@ -22,7 +22,7 @@ TEST_CASE("fold right, integral constant sum", "[Fold]")
 TEST_CASE("fold right, integral constant subtract", "[Fold]")
 {
     using subtract_t = FoldRT<
-                            Minus,
+                            Quote<Minus>,
                             int_c_t<0>,  // init
                             int_c_t<1>,
                             int_c_t<2>,
@@ -46,7 +46,7 @@ TEST_CASE("fold right, integral constant in tuple sum", "[Fold]")
                              >;
 
     using sum_t = FoldRWithUnpackT<
-                        Plus,
+                        Quote<Plus>,
                         int_c_t<0>,  // init
                         integral_tuple_t
                   >;
@@ -56,7 +56,7 @@ TEST_CASE("fold right, integral constant in tuple sum", "[Fold]")
 TEST_CASE("fold right, integral constant multiply", "[Fold]")
 {
     using mul_t = FoldRT<
-                        Multiply,
+                        Quote<Multiply>,
                         int_c_t<1>,  // init
                         int_c_t<1>,
                         int_c_t<2>,

@@ -15,7 +15,7 @@ struct Maximum
 template <typename T, T... i>
 struct Maximum<std::integral_constant<T, i>...>
         : FoldR<
-                Max,
+                Quote<Max>,
                 std::integral_constant<T, std::numeric_limits<T>::min()>, // init
                 std::integral_constant<T, i>...
             >

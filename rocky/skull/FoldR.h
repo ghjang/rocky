@@ -3,6 +3,7 @@
 
 
 #include "rocky/base/TypeList.h"
+#include "rocky/base/TypeUtility.h"
 #include "rocky/base/HasMember.h"
 
 
@@ -12,23 +13,25 @@
 /**
  * assumed that F is op:
  *  (t0 op (t1 op (t2 op ...(tn op init)...)
+ *
+ *  @tparam f binary metafunction class
  */
-template <template <typename, typename> class f, typename init, typename... xs>
+template <typename f, typename init, typename... xs>
 struct FoldR;
 
 
-template <template <typename, typename> class f, typename init, typename... xs>
+template <typename f, typename init, typename... xs>
 using FoldRT = typename FoldR<f, init, xs...>::type;
 
 
-template <template <typename, typename> class f, typename init>
+template <typename f, typename init>
 struct FoldR<f, init> : type_is<init>
 { };
 
-template <template <typename, typename> class f, typename init, typename x, typename... xs>
-struct FoldR<f, init, x, xs...> : f<x, FoldRT<f, init, xs...>>
+template <typename f, typename init, typename x, typename... xs>
+struct FoldR<f, init, x, xs...> : ApplyT<f, x, FoldRT<f, init, xs...>>
 {
-    static_assert(HasTypeMember<f<x, init>>(), "f should have 'type' member.");
+    static_assert(HasTypeMember<ApplyT<f, x, init>>(), "applied metafunction class f should have 'type' member.");
 };
 
 
@@ -40,28 +43,28 @@ struct FoldR<f, init, x, xs...> : f<x, FoldRT<f, init, xs...>>
  *       If you need to handle a type list of type lists, use FoldRWithTypeListUnpack instead.
  */
 /*
-template <template <typename, typename> class f, typename init, typename... xs>
+template <typename f, typename init, typename... xs>
 struct FoldR<f, init, TypeList<xs...>> : FoldR<f, init, xs...>
 { };
 
-template <template <typename, typename> class f, typename init, typename... xs>
+template <typename f, typename init, typename... xs>
 struct FoldR<f, init, std::tuple<xs...>> : FoldR<f, init, xs...>
 { };
  */
 
 
-template <template <typename, typename> class f, typename init, typename xs>
+template <typename f, typename init, typename xs>
 struct FoldRWithTypeListUnpack;
 
-template <template <typename, typename> class f, typename init, typename... xs>
+template <typename f, typename init, typename... xs>
 struct FoldRWithTypeListUnpack<f, init, TypeList<xs...>> : FoldR<f, init, xs...>
 { };
 
-template <template <typename, typename> class f, typename init, typename... xs>
+template <typename f, typename init, typename... xs>
 struct FoldRWithTypeListUnpack<f, init, std::tuple<xs...>> : FoldR<f, init, xs...>
 { };
 
-template <template <typename, typename> class f, typename init, typename xs>
+template <typename f, typename init, typename xs>
 using FoldRWithUnpackT = typename FoldRWithTypeListUnpack<f, init, xs>::type;
 
 
