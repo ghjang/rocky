@@ -12,9 +12,11 @@
  * @tparam f metafunction class
  */
 template <typename f, typename... xs>
-struct Map : type_is<TypeList<typename ApplyT<f, xs>::type...>>
+struct Map
 {
     static_assert(HasTypeMember<ApplyT<f, HeadT<xs...>>>(), "applied f should have 'type' member.");
+
+    using type = TypeList<typename ApplyT<f, xs>::type...>;
 };
 
 template <typename f>
