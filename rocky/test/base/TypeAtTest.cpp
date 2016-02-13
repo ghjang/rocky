@@ -34,3 +34,24 @@ TEST_CASE("TypeAt", "[TypeAt]")
     static_assert(is_same<double, TypeAtT<3, tuple<char, int, float, double>>>(), "");
 }
 
+TEST_CASE("FunctionParameterTypeAt", "[TypeAt]")
+{
+    using std::is_same;
+    using std::tuple;
+
+    // this matches function type.
+    static_assert(is_same<FILE *, FunctionParameterTypeAtT<0, decltype(fclose)>>(), "");
+
+    // this matches function reference type.
+    static_assert(is_same<FILE *, FunctionParameterTypeAtT<0, decltype((fclose))>>(), "");
+
+    // this matches function pointer type.
+    static_assert(is_same<FILE *, FunctionParameterTypeAtT<0, decltype(&fclose)>>(), "");
+
+    //
+    static_assert(is_same<char const *, FunctionParameterTypeAtT<1, decltype(fopen)>>(), "");
+
+    // expected compile-time error
+    //static_assert(is_same<void, FunctionParameterTypeAtT<0, decltype(getchar)>>(), "");
+}
+
