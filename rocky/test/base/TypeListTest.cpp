@@ -14,6 +14,17 @@ TEST_CASE("TypeListSize", "[TypeList]")
     static_assert(3 == TypeListSize<TypeList<char, int, float>>(), "");
 }
 
+TEST_CASE("FunctionParameterListSize", "[TypeList]")
+{
+    static_assert(1 == FunctionParameterListSize<decltype(fclose)>(), "");
+    static_assert(1 == FunctionParameterListSize<decltype((fclose))>(), "");
+    static_assert(1 == FunctionParameterListSize<decltype(&fclose)>(), "");
+
+    static_assert(2 == FunctionParameterListSize<decltype(fopen)>(), "");
+
+    static_assert(0 == FunctionParameterListSize<decltype(getchar)>(), "");
+}
+
 TEST_CASE("ToTuple", "[TypeList]")
 {
     using std::is_same;
