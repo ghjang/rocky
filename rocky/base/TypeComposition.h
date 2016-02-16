@@ -16,7 +16,7 @@
 template <typename... f>
 struct Compose
 {
-    static_assert(sizeof...(f) > 0, "no metafunction class to compose.");
+    static_assert(sizeof...(f) > 0, "no metafunction classes to compose.");
 
 private:
     template <typename lhs, typename rhs>
