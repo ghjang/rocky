@@ -13,26 +13,26 @@
 
 
 template <typename... xs>
-struct TypeListToVariantType : type_is<boost::variant<xs...>>
+struct ToVariantType : type_is<boost::variant<xs...>>
 { };
 
 template <typename... xs>
-using TypeListToVariantTypeT = typename TypeListToVariantType<xs...>::type;
+using ToVariantTypeT = typename ToVariantType<xs...>::type;
 
 template <typename... xs>
-struct TypeListToVariantType<TypeList<xs...>> : TypeListToVariantType<xs...>
+struct ToVariantType<TypeList<xs...>> : ToVariantType<xs...>
 { };
 
 template <typename... xs>
-struct TypeListToVariantType<std::tuple<xs...>> : TypeListToVariantType<xs...>
+struct ToVariantType<std::tuple<xs...>> : ToVariantType<xs...>
 { };
 
 
 template <typename Variant>
-struct VariantTypeToTupleType;
+struct ToTupleType;
 
 template <typename... list>
-struct VariantTypeToTupleType<boost::variant<list...>>
+struct ToTupleType<boost::variant<list...>>
         : type_is<std::tuple<list...>>
 { };
 
@@ -55,7 +55,7 @@ template <typename... Args>
 auto MakeVariantVector(Args &&...  args)
 {
     using unique_t = UniqueT<CharTypeToStringTypeT<std::decay_t<decltype(args)>>...>;
-    using element_t = TypeListToVariantTypeT<unique_t>;
+    using element_t = ToVariantTypeT<unique_t>;
 
     std::vector<element_t> v;
     v.reserve(sizeof...(args));

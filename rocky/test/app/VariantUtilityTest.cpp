@@ -23,7 +23,7 @@ namespace
 }
 
 
-TEST_CASE("TupleTypeToVariantType", "[VariantUtility]")
+TEST_CASE("ToVariantType", "[VariantUtility]")
 {
     using std::is_same;
     using std::tuple;
@@ -32,12 +32,12 @@ TEST_CASE("TupleTypeToVariantType", "[VariantUtility]")
     using tuple_t = tuple<char, int, double>;
     using variant_t = variant<char, int, double>;
     static_assert(
-            is_same<variant_t, TypeListToVariantTypeT<tuple_t>>(),
+            is_same<variant_t, ToVariantTypeT<tuple_t>>(),
             "converted tuple_t shoulb be same as variant_t."
     );
 }
 
-TEST_CASE("VariantTypeToTupleType", "[VariantUtility]")
+TEST_CASE("ToTupleType", "[VariantUtility]")
 {
     using std::is_same;
     using std::tuple;
@@ -46,7 +46,7 @@ TEST_CASE("VariantTypeToTupleType", "[VariantUtility]")
     using variant_t = variant<char, int, double>;
     using tuple_t = tuple<char, int, double>;
     static_assert(
-            is_same<tuple_t, typename VariantTypeToTupleType<variant_t>::type>(),
+            is_same<tuple_t, typename ToTupleType<variant_t>::type>(),
             "converted variant_t shoulb be same as tuple_t."
     );
 }
