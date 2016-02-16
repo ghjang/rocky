@@ -16,6 +16,8 @@
 template <typename... f>
 struct Compose
 {
+    static_assert(sizeof...(f) > 0, "no metafunction class to compose.");
+
 private:
     template <typename lhs, typename rhs>
     struct ComposeImpl : ApplyT<lhs, rhs>
@@ -31,6 +33,10 @@ public:
               >
     { };
 };
+
+template <typename... f>
+struct Compose<TypeList<f...>> : Compose<f...>
+{ };
 
 
 /**

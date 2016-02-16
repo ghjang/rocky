@@ -4,6 +4,7 @@
 
 #include "rocky/skull/Head.h"
 #include "rocky/skull/Filter.h"
+#include "rocky/skull/Replicate.h"
 
 
 TEST_CASE("Compose", "[TypeComposition]")
@@ -69,6 +70,24 @@ TEST_CASE("Compose", "[TypeComposition]")
                     int * const,
                     ApplyT<
                             Compose<Quote<add_const>, Quote<add_pointer>, Quote<Head>, Quote<Filter>>,
+                            Quote<is_integral>, float, double, int, char, long
+                    >::type
+            >(),
+            ""
+    );
+
+    static_assert(HasApplyMember<Compose<ReplicateT<3, Quote<add_pointer>>>>(), "");
+    static_assert(is_same<int ***, ApplyT<Compose<ReplicateT<3, Quote<add_pointer>>>, int>::type>(), "");
+    static_assert(
+            is_same<
+                    int ***,
+                    ApplyT<
+                            Compose<
+                                    FlattenAsTypeListT<
+                                            ReplicateT<3, Quote<add_pointer>>,
+                                            Quote<Head>, Quote<Filter>
+                                    >
+                            >,
                             Quote<is_integral>, float, double, int, char, long
                     >::type
             >(),
