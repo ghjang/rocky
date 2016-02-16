@@ -88,6 +88,7 @@ struct Apply
     using type = typename f::template Apply<xs...>;
 };
 
+
 /**
  * type alias for ease use of applying metafunction classes
  */

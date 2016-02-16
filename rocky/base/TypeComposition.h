@@ -3,18 +3,32 @@
 
 
 #include "rocky/skull/FoldR.h"
+#include "rocky/skull/Last.h"
+#include "rocky/skull/Init.h"
 
 
 /**
  * The result is a composed metafunction class.
+ * You can think it as a some kind of metafunction pipe-lining.
  *
  * @tparam f metafunction classes
  */
-template <typename f1, typename f2>
+template <typename... f>
 struct Compose
 {
+private:
+    template <typename lhs, typename rhs>
+    struct ComposeImpl : ApplyT<lhs, rhs>
+    { };
+
+public:
     template <typename... xs>
-    struct Apply : ApplyT<f1, typename ApplyT<f2, xs...>::type>
+    struct Apply
+            : FoldRWithTypeListUnpack<
+                    Quote<ComposeImpl>,
+                    typename ApplyT<LastT<f...>, xs...>::type,
+                    InitT<f...>
+              >
     { };
 };
 

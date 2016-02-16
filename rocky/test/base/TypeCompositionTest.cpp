@@ -10,8 +10,22 @@ TEST_CASE("Compose", "[TypeComposition]")
 {
     using std::is_same;
     using std::is_integral;
+    using std::add_pointer;
+    using std::add_const;
 
     static_assert(is_same<int, HeadT<FilterT<Quote<is_integral>, float, double, int, char, long>>>(), "");
+
+    static_assert(HasApplyMember<Compose<Quote<Head>>>(), "");
+    static_assert(
+            is_same<
+                    float,
+                    ApplyT<
+                            Compose<Quote<Head>>,
+                            float, double, int, char, long
+                    >::type
+            >(),
+            ""
+    );
 
     static_assert(HasApplyMember<Compose<Quote<Head>, Quote<Filter>>>(), "");
     static_assert(
@@ -19,8 +33,43 @@ TEST_CASE("Compose", "[TypeComposition]")
                     int,
                     ApplyT<
                             Compose<Quote<Head>, Quote<Filter>>,
-                            Quote<is_integral>,
-                            float, double, int, char, long
+                            Quote<is_integral>, float, double, int, char, long
+                    >::type
+            >(),
+            ""
+    );
+
+    static_assert(HasApplyMember<Compose<Quote<add_pointer>, Quote<Head>, Quote<Filter>>>(), "");
+    static_assert(
+            is_same<
+                    int *,
+                    ApplyT<
+                            Compose<Quote<add_pointer>, Quote<Head>, Quote<Filter>>,
+                            Quote<is_integral>, float, double, int, char, long
+                    >::type
+            >(),
+            ""
+    );
+
+    static_assert(HasApplyMember<Compose<Quote<add_pointer>, Quote<add_pointer>, Quote<Head>, Quote<Filter>>>(), "");
+    static_assert(
+            is_same<
+                    int **,
+                    ApplyT<
+                            Compose<Quote<add_pointer>, Quote<add_pointer>, Quote<Head>, Quote<Filter>>,
+                            Quote<is_integral>, float, double, int, char, long
+                    >::type
+            >(),
+            ""
+    );
+
+    static_assert(HasApplyMember<Compose<Quote<add_const>, Quote<add_pointer>, Quote<Head>, Quote<Filter>>>(), "");
+    static_assert(
+            is_same<
+                    int * const,
+                    ApplyT<
+                            Compose<Quote<add_const>, Quote<add_pointer>, Quote<Head>, Quote<Filter>>,
+                            Quote<is_integral>, float, double, int, char, long
                     >::type
             >(),
             ""
