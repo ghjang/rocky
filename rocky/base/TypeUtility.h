@@ -96,6 +96,21 @@ using ApplyT = typename Apply<f, xs...>::type;
 
 
 /**
+ * The result is a composed metafunction class.
+ *
+ * @tparam f1 metafunction class
+ * @tparam f2 metafunction class
+ */
+template <typename f1, typename f2>
+struct Compose
+{
+    template <typename... xs>
+    struct Apply : ApplyT<f1, typename ApplyT<f2, xs...>::type>
+    { };
+};
+
+
+/**
  * NegatePredicate itself is a metafunction class and also a kind of high-order metafunction.
  *
  * @tparam Predicate metafunction class

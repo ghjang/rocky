@@ -2,12 +2,36 @@
 
 #include "rocky/base/TypeUtility.h"
 
+#include "rocky/skull/Head.h"
+#include "rocky/skull/Filter.h"
+
 
 TEST_CASE("basic type wrapping as a value", "[TypeUtility]")
 {
     using std::is_same;
 
     static_assert(is_same<Identity<int> const, decltype(type_c<int>)>(), "Identity<int> const == decltype(type_c<int>)");
+}
+
+TEST_CASE("Compose", "[TypeUtility]")
+{
+    using std::is_same;
+    using std::is_integral;
+
+    static_assert(is_same<int, HeadT<FilterT<Quote<is_integral>, float, double, int, char, long>>>(), "");
+
+    static_assert(HasApplyMember<Compose<Quote<Head>, Quote<Filter>>>(), "");
+    static_assert(
+            is_same<
+                    int,
+                    ApplyT<
+                            Compose<Quote<Head>, Quote<Filter>>,
+                            Quote<is_integral>,
+                            float, double, int, char, long
+                    >::type
+            >(),
+            ""
+    );
 }
 
 TEST_CASE("NegatePrdicate", "[TypeUtility]")

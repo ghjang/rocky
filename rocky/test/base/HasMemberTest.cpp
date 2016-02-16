@@ -70,7 +70,8 @@ TEST_CASE("HasApplyMember", "[HasApplyMember]")
     // n-template parameters
     static_assert(HasApplyMember<Quote<TypeList>>(), "");
 
-    // TODO: enhance the following with metafunction composition.
+    //
     static_assert(HasApplyMember<TypeToBoolConstantType<Quote<is_integral>>>(), "");
+    static_assert(ApplyT<TypeToBoolConstantType<Quote<is_integral>>, int>::type(), "");
 }
 
