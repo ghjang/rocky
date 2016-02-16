@@ -35,6 +35,7 @@ set(HEADER_FILES
         ../base/TypeAt.h
         ../base/Swap.h
         ../base/TypeListUtility.h
+        ../base/TypeComposition.h
         ../math/Power.h
         ../math/Abs.h
         ../math/RatioString.h
@@ -132,6 +133,7 @@ set(SOURCE_FILES
         base/TypeAtTest.cpp
         base/SwapTest.cpp
         base/TypeListUtilityTest.cpp
+        base/TypeCompositionTest.cpp
         math/PowerTest.cpp
         math/AbsTest.cpp
         math/RatioStringTest.cpp

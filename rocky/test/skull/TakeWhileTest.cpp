@@ -2,7 +2,7 @@
 
 #include "rocky/skull/TakeWhile.h"
 
-#include "rocky/base/TypeUtility.h"
+#include "rocky/base/TypeComposition.h"
 
 
 TEST_CASE("TakeWhile", "[skull]")

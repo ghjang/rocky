@@ -3,7 +3,7 @@
 #include "rocky/wolca/NestList.h"
 
 #include "rocky/base/IntegerSequenceUtility.h"
-#include "rocky/base/TypeUtility.h"
+#include "rocky/base/TypeComposition.h"
 #include "rocky/skull/Sum.h"
 
 

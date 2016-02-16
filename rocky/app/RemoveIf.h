@@ -2,7 +2,7 @@
 #define ROCKY_APP_REMOVE_H
 
 
-#include "rocky/base/TypeUtility.h"
+#include "rocky/base/TypeComposition.h"
 #include "rocky/skull/Filter.h"
 
 

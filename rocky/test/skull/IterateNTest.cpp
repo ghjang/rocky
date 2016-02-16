@@ -3,7 +3,7 @@
 #include "rocky/skull/IterateN.h"
 
 #include "rocky/base/IntegralConstantUtility.h"
-#include "rocky/base/TypeUtility.h"
+#include "rocky/base/TypeComposition.h"
 
 
 namespace

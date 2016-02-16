@@ -2,44 +2,12 @@
 
 #include "rocky/base/TypeUtility.h"
 
-#include "rocky/skull/Head.h"
-#include "rocky/skull/Filter.h"
-
 
 TEST_CASE("basic type wrapping as a value", "[TypeUtility]")
 {
     using std::is_same;
 
     static_assert(is_same<Identity<int> const, decltype(type_c<int>)>(), "Identity<int> const == decltype(type_c<int>)");
-}
-
-TEST_CASE("Compose", "[TypeUtility]")
-{
-    using std::is_same;
-    using std::is_integral;
-
-    static_assert(is_same<int, HeadT<FilterT<Quote<is_integral>, float, double, int, char, long>>>(), "");
-
-    static_assert(HasApplyMember<Compose<Quote<Head>, Quote<Filter>>>(), "");
-    static_assert(
-            is_same<
-                    int,
-                    ApplyT<
-                            Compose<Quote<Head>, Quote<Filter>>,
-                            Quote<is_integral>,
-                            float, double, int, char, long
-                    >::type
-            >(),
-            ""
-    );
-}
-
-TEST_CASE("NegatePrdicate", "[TypeUtility]")
-{
-    using std::is_integral;
-
-    static_assert(is_integral<int>(), "");
-    static_assert(!ApplyT<NegatePredicate<Quote<is_integral>>, int>(), "");
 }
 
 TEST_CASE("CharTypeToStringType", "[TypeUtility]")
@@ -102,22 +70,6 @@ TEST_CASE("CharTypeToStringType", "[TypeUtility]")
         static_assert(is_same<decltype(pwa), wchar_t *>(), "");
         static_assert(is_same<std::wstring, typename CharTypeToStringType<decltype(pwa)>::type>(), "");
     }
-}
-
-TEST_CASE("Bind1st", "[TypeUtility]")
-{
-    using std::is_same;
-
-    static_assert(ApplyT<Bind1st<Quote<is_same>, char>, char>(), "");
-    static_assert(!ApplyT<Bind1st<Quote<is_same>, char>, int>(), "");
-}
-
-TEST_CASE("Bind2nd", "[TypeUtility]")
-{
-    using std::is_same;
-
-    static_assert(ApplyT<Bind2nd<Quote<is_same>, char>, char>(), "");
-    static_assert(!ApplyT<Bind2nd<Quote<is_same>, char>, int>(), "");
 }
 
 TEST_CASE("Quote and ApplyT", "[TypeUtility]")
