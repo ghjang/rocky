@@ -4,15 +4,20 @@
 
 #include "rocky/skull/Head.h"
 #include "rocky/skull/Filter.h"
+#include "rocky/skull/Map.h"
+#include "rocky/skull/Reverse.h"
 #include "rocky/skull/Replicate.h"
+#include "rocky/skull/Range.h"
 
 
 TEST_CASE("Compose", "[TypeComposition]")
 {
     using std::is_same;
     using std::is_integral;
+    using std::is_base_of;
     using std::add_pointer;
     using std::add_const;
+    using std::integer_sequence;
 
     static_assert(is_same<int, HeadT<FilterT<Quote<is_integral>, float, double, int, char, long>>>(), "");
 
@@ -76,6 +81,7 @@ TEST_CASE("Compose", "[TypeComposition]")
             ""
     );
 
+    //
     static_assert(HasApplyMember<Compose<ReplicateT<3, Quote<add_pointer>>>>(), "");
     static_assert(is_same<int ***, ApplyT<Compose<ReplicateT<3, Quote<add_pointer>>>, int>>(), "");
     static_assert(
@@ -89,6 +95,49 @@ TEST_CASE("Compose", "[TypeComposition]")
                                     >
                             >,
                             Quote<is_integral>, float, double, int, char, long
+                    >
+            >(),
+            ""
+    );
+
+    //
+    struct B1 { };
+    struct B2 { };
+    struct B3 { };
+    struct C1 : B1 { };
+    struct C2 : B1 { };
+    struct C3 : B2 { };
+    struct C4 : B2 { };
+    struct C5 : B3 { };
+
+    static_assert(
+            is_same<
+                    TypeList<C3 *, C4 *>,
+                    ApplyT<
+                            Compose<
+                                    BindFirst<Quote<Map>, Quote<add_pointer>>,
+                                    Quote<Filter>
+                            >,
+                            BindFirst<Quote<is_base_of>, B2>, C1, C2, C3, C4, C5
+                    >
+            >(),
+            ""
+    );
+
+    //
+    static_assert(
+            is_same<
+                    integer_sequence<int, 20, 16, 12, 8, 4>,
+                    ApplyT<
+                            Compose<
+                                    Quote<IntegralConstantListToIntegerSequence>,
+                                    BindFirst<
+                                            Quote<Map>,
+                                            BindLast<Quote<Multiply>, int_c_t<2>>
+                                    >,
+                                    Quote<Reverse>
+                            >,
+                            MakeEvenRangeT<1, 10>
                     >
             >(),
             ""

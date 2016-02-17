@@ -57,7 +57,7 @@ template <typename f, typename... xs>
 struct BindFirst
 {
     template <typename... ys>
-    struct Apply : ApplyT<f, xs..., ys...>
+    struct Apply : ::Apply<f, xs..., ys...>
     { };
 };
 
@@ -71,7 +71,7 @@ template <typename f, typename... xs>
 struct BindLast
 {
     template <typename... ys>
-    struct Apply : ApplyT<f, ys..., xs...>
+    struct Apply : ::Apply<f, ys..., xs...>
     { };
 };
 
