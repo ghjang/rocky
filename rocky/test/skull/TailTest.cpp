@@ -2,8 +2,6 @@
 
 #include "rocky/skull/Tail.h"
 
-#include <type_traits>
-
 
 TEST_CASE("Tail", "[skull]")
 {
