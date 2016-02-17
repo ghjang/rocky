@@ -40,6 +40,15 @@ struct FunctionParameterListSize<r (*) (params...)> : FunctionParameterListSize<
 { };
 
 
+template <typename x, typename y>
+struct AsPairTypeList : type_is<TypeList<x, y>>
+{ };
+
+template <typename x, typename y>
+struct AsPairTuple : type_is<std::tuple<x, y>>
+{ };
+
+
 template <typename SourceTypeList, template <typename...> class TargetTypeListContainer>
 struct ReplaceTypeListContainerType;
 
@@ -49,13 +58,16 @@ struct ReplaceTypeListContainerType<S<xs...>, T> : type_is<T<xs...>>
 
 
 template <typename xs>
-using ToTuple = ReplaceTypeListContainerType<xs, std::tuple>;
+struct ToTuple : ReplaceTypeListContainerType<xs, std::tuple>
+{ };
 
 template <typename xs>
 using ToTupleT = typename ToTuple<xs>::type;
 
+
 template <typename xs>
-using ToTypeList = ReplaceTypeListContainerType<xs, TypeList>;
+struct ToTypeList : ReplaceTypeListContainerType<xs, TypeList>
+{ };
 
 template <typename xs>
 using ToTypeListT = typename ToTypeList<xs>::type;
