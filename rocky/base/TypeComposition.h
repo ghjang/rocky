@@ -75,6 +75,20 @@ struct BindLast
     { };
 };
 
+/**
+ * BindLastTemplate itself is a metafunction class and also a kind of high-order metafunction.
+ *
+ * @tparam f metafunction class
+ * @tparam xs template list to bind last
+ */
+template <typename f, template <typename...> class... xs>
+struct BindLastTemplate
+{
+    template <template <typename...> class... ys>
+    struct Apply : ApplyTemplate<f, ys..., xs...>
+    { };
+};
+
 
 #endif //ROCKY_BASE_TYPECOMPOSITION_H
 
