@@ -9,7 +9,8 @@
 
 /**
  * The result is a composed metafunction class.
- * You can think it as a some kind of metafunction pipe-lining.
+ *
+ * You can think it as a some kind of metafunction class pipe-lining.
  *
  * @tparam f metafunction classes
  */
@@ -18,16 +19,10 @@ struct Compose
 {
     static_assert(sizeof...(f) > 0, "no metafunction classes to compose.");
 
-private:
-    template <typename lhs, typename rhs>
-    struct ComposeImpl : Apply<lhs, rhs>
-    { };
-
-public:
     template <typename... xs>
     struct Apply
             : FoldRWithTypeListUnpack<
-                    Quote<ComposeImpl>,
+                    Quote<::Apply>,
                     ApplyT<LastT<f...>, xs...>,
                     InitT<f...>
               >

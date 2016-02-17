@@ -71,14 +71,6 @@ TEST_CASE("fold right, integral constant multiply", "[Fold]")
     static_assert(mul_t() == 120, "1 * (2 * (3 * (4 * (5 * 1)))) = 120");
 }
 
-
-namespace
-{
-    template <typename lhs, typename rhs>
-    struct ApplyImpl : Apply<lhs, rhs>
-    { };
-} // un-named namespace
-
 TEST_CASE("TypeComposition", "[FoldR]")
 {
     using std::is_same;
@@ -136,7 +128,7 @@ TEST_CASE("TypeComposition", "[FoldR]")
     >::type()++;
      */
 
-    static_assert(is_same<int, FoldR<Quote<ApplyImpl>, TypeList<int, char, long>, Quote<Head>>::type>(), "");
+    static_assert(is_same<int, FoldR<Quote<Apply>, TypeList<int, char, long>, Quote<Head>>::type>(), "");
 
     /*
     ApplyT<Quote<::Apply>, Quote<Head>, TypeList<int, char, long>>::type()++;
@@ -146,7 +138,7 @@ TEST_CASE("TypeComposition", "[FoldR]")
     Quote<::Apply>::template Apply<Quote<Head>, TypeList<int, char, long>>::type()++;
      */
 
-    static_assert(is_same<int, Quote<ApplyImpl>::template Apply<Quote<Head>, TypeList<int, char, long>>::type>(), "");
+    static_assert(is_same<int, Quote<Apply>::template Apply<Quote<Head>, TypeList<int, char, long>>::type>(), "");
 
     static_assert(is_same<int, ApplyT<Quote<Head>, int, char, long>>(), "");
 
