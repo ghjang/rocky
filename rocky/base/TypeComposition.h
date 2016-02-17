@@ -37,13 +37,13 @@ struct Compose<TypeList<f...>> : Compose<f...>
 /**
  * NegatePredicate itself is a metafunction class and also a kind of high-order metafunction.
  *
- * @tparam Predicate metafunction class
+ * @tparam p predicate metafunction class
  */
-template <typename Predicate>
+template <typename p>
 struct NegatePredicate
 {
     template <typename T>
-    struct Apply : std::integral_constant<bool, !ApplyT<Predicate, T>::value>
+    struct Apply : std::integral_constant<bool, !ApplyT<p, T>::value>
     { };
 };
 
