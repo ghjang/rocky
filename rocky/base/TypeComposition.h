@@ -48,7 +48,7 @@ struct NegatePredicate
 };
 
 /**
- * BindFirst is itself is a metafunction class and also a kind of high-order metafunction.
+ * BindFirst itself is a metafunction class and also a kind of high-order metafunction.
  *
  * @tparam f metafunction class
  * @tparam xs type list to bind first
@@ -62,7 +62,7 @@ struct BindFirst
 };
 
 /**
- * BindLast is itself is a metafunction class and also a kind of high-order metafunction.
+ * BindLast itself is a metafunction class and also a kind of high-order metafunction.
  *
  * @tparam f metafunction class
  * @tparam xs type list to bind last
