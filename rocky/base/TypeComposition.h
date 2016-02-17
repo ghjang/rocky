@@ -76,6 +76,20 @@ struct BindLast
 };
 
 /**
+ * BindFirstTemplate itself is a metafunction class and also a kind of high-order metafunction.
+ *
+ * @tparam f metafunction class
+ * @tparam xs template list to bind first
+ */
+template <typename f, template <typename...> class... xs>
+struct BindFirstTemplate
+{
+    template <template <typename...> class... ys>
+    struct Apply : ::ApplyTemplate<f, xs..., ys...>
+    { };
+};
+
+/**
  * BindLastTemplate itself is a metafunction class and also a kind of high-order metafunction.
  *
  * @tparam f metafunction class
