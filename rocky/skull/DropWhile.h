@@ -4,37 +4,42 @@
 
 #include "rocky/base/TypeListFlatten.h"
 #include "rocky/base/TypeSelection.h"
+#include "rocky/base/TypeComposition.h"
 
 
-template <template <typename> class p, typename... xs>
+/**
+ * @tparam p predicate metafunction class
+ * @tparam xs type list
+ */
+template <typename p, typename... xs>
 struct DropWhile;
 
-template <template <typename> class p, typename... xs>
+template <typename p, typename... xs>
 using DropWhileT = typename DropWhile<p, xs...>::type;
 
 
-template <template <typename> class p>
+template <typename p>
 struct DropWhile<p> : type_is<TypeList<>>
 { };
 
 
-template <template <typename> class p, typename x, typename... xs>
+template <typename p, typename x, typename... xs>
 struct DropWhile<p, x, xs...>
             : SelectTypeIf<
-                    p<x>::value,
+                    ApplyT<p, x>::value,
                     DropWhile<p, xs...>,
                     TypeList<x, xs...>
               >
 {
-    static_assert(HasValueMember<p<x>>(), "Predicate 'p' should have 'value' member.");
+    static_assert(HasValueMember<ApplyT<p, x>>(), "applied predicate 'p' should have 'value' member.");
 };
 
 
-template <template <typename> class p, typename... xs>
+template <typename p, typename... xs>
 struct DropWhile<p, TypeList<xs...>> : DropWhile<p, xs...>
 { };
 
-template <template <typename> class p, typename... xs>
+template <typename p, typename... xs>
 struct DropWhile<p, std::tuple<xs...>> : ToTuple<DropWhileT<p, xs...>>
 { };
 
