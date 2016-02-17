@@ -14,7 +14,7 @@
  * assumed that F is op:
  *  (t0 op (t1 op (t2 op ...(tn op init)...)
  *
- *  @tparam f binary metafunction class
+ *  @tparam f (binary) metafunction class
  */
 template <typename f, typename init, typename... xs>
 struct FoldR;
@@ -36,7 +36,7 @@ struct FoldR<f, init, x, xs...> : Apply<f, x, FoldRT<f, init, xs...>>
 
 
 /**
- * NOTE: The element type of the type list can be another type list itself.
+ * NOTE: An element type of the type list can be another type list itself.
  *       In that cases, the element type list will be un-packed un-expectedly.
  *       And it will result in (compile-time) errors.
  *
