@@ -23,7 +23,7 @@ TEST_CASE("Compose", "[TypeComposition]")
                     ApplyT<
                             Compose<Quote<Head>>,
                             float, double, int, char, long
-                    >::type
+                    >
             >(),
             ""
     );
@@ -35,7 +35,7 @@ TEST_CASE("Compose", "[TypeComposition]")
                     ApplyT<
                             Compose<Quote<Head>, Quote<Filter>>,
                             Quote<is_integral>, float, double, int, char, long
-                    >::type
+                    >
             >(),
             ""
     );
@@ -47,7 +47,7 @@ TEST_CASE("Compose", "[TypeComposition]")
                     ApplyT<
                             Compose<Quote<add_pointer>, Quote<Head>, Quote<Filter>>,
                             Quote<is_integral>, float, double, int, char, long
-                    >::type
+                    >
             >(),
             ""
     );
@@ -59,7 +59,7 @@ TEST_CASE("Compose", "[TypeComposition]")
                     ApplyT<
                             Compose<Quote<add_pointer>, Quote<add_pointer>, Quote<Head>, Quote<Filter>>,
                             Quote<is_integral>, float, double, int, char, long
-                    >::type
+                    >
             >(),
             ""
     );
@@ -71,13 +71,13 @@ TEST_CASE("Compose", "[TypeComposition]")
                     ApplyT<
                             Compose<Quote<add_const>, Quote<add_pointer>, Quote<Head>, Quote<Filter>>,
                             Quote<is_integral>, float, double, int, char, long
-                    >::type
+                    >
             >(),
             ""
     );
 
     static_assert(HasApplyMember<Compose<ReplicateT<3, Quote<add_pointer>>>>(), "");
-    static_assert(is_same<int ***, ApplyT<Compose<ReplicateT<3, Quote<add_pointer>>>, int>::type>(), "");
+    static_assert(is_same<int ***, ApplyT<Compose<ReplicateT<3, Quote<add_pointer>>>, int>>(), "");
     static_assert(
             is_same<
                     int ***,
@@ -89,7 +89,7 @@ TEST_CASE("Compose", "[TypeComposition]")
                                     >
                             >,
                             Quote<is_integral>, float, double, int, char, long
-                    >::type
+                    >
             >(),
             ""
     );

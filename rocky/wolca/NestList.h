@@ -20,9 +20,9 @@ namespace Detail
     struct NestListImpl<f, x, std::integral_constant<T, n>, TypeList<rs...>>
             : NestListImpl<
                     f,
-                    typename ApplyT<f, x>::type,
+                    ApplyT<f, x>,
                     std::integral_constant<T, n - 1>,
-                    TypeList<rs..., typename ApplyT<f, x>::type>
+                    TypeList<rs..., ApplyT<f, x>>
               >
     { };
 } // namespace Detail

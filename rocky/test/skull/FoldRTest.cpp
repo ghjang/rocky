@@ -75,7 +75,7 @@ TEST_CASE("fold right, integral constant multiply", "[Fold]")
 namespace
 {
     template <typename lhs, typename rhs>
-    struct ApplyImpl : ApplyT<lhs, rhs>
+    struct ApplyImpl : Apply<lhs, rhs>
     { };
 } // un-named namespace
 
@@ -91,7 +91,7 @@ TEST_CASE("TypeComposition", "[FoldR]")
                             Quote<::Apply>,
                             TypeList<int, char, long>,
                             TypeList<Quote<Head>>
-                    >::type
+                    >
             >(),
             ""
     );
@@ -100,10 +100,10 @@ TEST_CASE("TypeComposition", "[FoldR]")
     static_assert(
             is_same<
                     TypeList<int, char, long>,
-                    typename ApplyT<
+                    ApplyT<
                             LastT<Quote<Head>, Quote<Filter>>, Quote<is_integral>,
                             float, double, int, char, long
-                    >::type
+                    >
             >(),
             ""
     );
@@ -148,9 +148,9 @@ TEST_CASE("TypeComposition", "[FoldR]")
 
     static_assert(is_same<int, Quote<ApplyImpl>::template Apply<Quote<Head>, TypeList<int, char, long>>::type>(), "");
 
-    static_assert(is_same<int, ApplyT<Quote<Head>, int, char, long>::type>(), "");
+    static_assert(is_same<int, ApplyT<Quote<Head>, int, char, long>>(), "");
 
-    static_assert(is_same<int, ApplyT<Quote<Head>, TypeList<int, char, long>>::type>(), "");
+    static_assert(is_same<int, ApplyT<Quote<Head>, TypeList<int, char, long>>>(), "");
     /*
      * compiler bug??
     static_assert(is_same<int, typename Apply<Quote<Head>, TypeList<int, char, long>>::type>(), "");
@@ -158,6 +158,6 @@ TEST_CASE("TypeComposition", "[FoldR]")
 
     static_assert(is_same<int, typename Quote<Head>::template Apply<TypeList<int, char, long>>::type>(), "");
 
-    static_assert(is_same<int, ApplyT<Quote<Head>, TypeList<int, char, long>>::type>(), "");
+    static_assert(is_same<int, ApplyT<Quote<Head>, TypeList<int, char, long>>>(), "");
 }
 

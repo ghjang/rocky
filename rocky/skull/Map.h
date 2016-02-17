@@ -14,9 +14,9 @@
 template <typename f, typename... xs>
 struct Map
 {
-    static_assert(HasTypeMember<ApplyT<f, HeadT<xs...>>>(), "applied f should have 'type' member.");
+    static_assert(HasTypeMember<Apply<f, HeadT<xs...>>>(), "applied f should have 'type' member.");
 
-    using type = TypeList<typename ApplyT<f, xs>::type...>;
+    using type = TypeList<ApplyT<f, xs>...>;
 };
 
 template <typename f>

@@ -29,9 +29,9 @@ struct FoldR<f, init> : type_is<init>
 { };
 
 template <typename f, typename init, typename x, typename... xs>
-struct FoldR<f, init, x, xs...> : ApplyT<f, x, FoldRT<f, init, xs...>>
+struct FoldR<f, init, x, xs...> : Apply<f, x, FoldRT<f, init, xs...>>
 {
-    static_assert(HasTypeMember<ApplyT<f, x, init>>(), "applied metafunction class f should have 'type' member.");
+    static_assert(HasTypeMember<Apply<f, x, init>>(), "applied metafunction class f should have 'type' member.");
 };
 
 

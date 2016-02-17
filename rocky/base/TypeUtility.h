@@ -85,7 +85,7 @@ struct Apply
     //       But, I just wanted to show more understandable error message.
     static_assert(HasApplyMember<f>(), "metafunction class f should have 'Apply' member class template.");
 
-    using type = typename f::template Apply<xs...>;
+    using type = typename f::template Apply<xs...>::type;
 };
 
 

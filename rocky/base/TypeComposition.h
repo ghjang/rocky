@@ -20,7 +20,7 @@ struct Compose
 
 private:
     template <typename lhs, typename rhs>
-    struct ComposeImpl : ApplyT<lhs, rhs>
+    struct ComposeImpl : Apply<lhs, rhs>
     { };
 
 public:
@@ -28,7 +28,7 @@ public:
     struct Apply
             : FoldRWithTypeListUnpack<
                     Quote<ComposeImpl>,
-                    typename ApplyT<LastT<f...>, xs...>::type,
+                    ApplyT<LastT<f...>, xs...>,
                     InitT<f...>
               >
     { };

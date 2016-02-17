@@ -24,10 +24,10 @@ struct FoldL<f, last> : type_is<last>
 { };
 
 template <typename f, typename init, typename x, typename... xs>
-struct FoldL<f, init, x, xs...> : FoldL<f, typename ApplyT<f, init, x>::type, xs...>
+struct FoldL<f, init, x, xs...> : FoldL<f, ApplyT<f, init, x>, xs...>
 {
     static_assert(
-            HasTypeMember<ApplyT<f, init, x>>(),
+            HasTypeMember<Apply<f, init, x>>(),
             "applied binary metafunction class f should have 'type' member."
     );
 };
