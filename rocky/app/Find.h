@@ -3,24 +3,13 @@
 
 
 #include "rocky/base/IntegralConstantUtility.h"
+#include "rocky/base/TypeComposition.h"
 #include "rocky/app/FindIf.h"
 #include "rocky/skull/Reverse.h"
 
 
-/**
- * THINK: Is it possible to generalize this kind of currying?
- */
-template <typename T>
-struct IsSame
-{
-    template <typename x>
-    struct Convert : std::is_same<x, T>
-    { };
-};
-
-
 template <typename T, typename... xs>
-struct Find : FindIf<IsSame<T>::template Convert, xs...>
+struct Find : FindIf<BindFirst<Quote<std::is_same>, T>, xs...>
 { };
 
 
@@ -34,7 +23,7 @@ struct Find<T, std::tuple<xs...>> : Find<T, xs...>
 
 
 template <typename T, typename... xs>
-struct ReverseFind : ReverseFindIf<IsSame<T>::template Convert, xs...>
+struct ReverseFind : ReverseFindIf<BindFirst<Quote<std::is_same>, T>, xs...>
 { };
 
 
