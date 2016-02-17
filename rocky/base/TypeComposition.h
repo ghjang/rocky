@@ -48,28 +48,30 @@ struct NegatePredicate
 };
 
 /**
- * Bind1st is itself is a metafunction class and also a kind of high-order metafunction.
+ * BindFirst is itself is a metafunction class and also a kind of high-order metafunction.
  *
- * @tparam BinaryF metafunction class
+ * @tparam f metafunction class
+ * @tparam xs type list to bind first
  */
-template <typename BinaryF, typename T>
-struct Bind1st
+template <typename f, typename... xs>
+struct BindFirst
 {
-    template <typename V>
-    struct Apply : ApplyT<BinaryF, T, V>
+    template <typename... ys>
+    struct Apply : ApplyT<f, xs..., ys...>
     { };
 };
 
 /**
- * Bind2nd is itself is a metafunction class and also a kind of high-order metafunction.
+ * BindLast is itself is a metafunction class and also a kind of high-order metafunction.
  *
- * @tparam BinaryF metafunction class
+ * @tparam f metafunction class
+ * @tparam xs type list to bind last
  */
-template <typename BinaryF, typename T>
-struct Bind2nd
+template <typename f, typename... xs>
+struct BindLast
 {
-    template <typename V>
-    struct Apply : ApplyT<BinaryF, V, T>
+    template <typename... ys>
+    struct Apply : ApplyT<f, ys..., xs...>
     { };
 };
 

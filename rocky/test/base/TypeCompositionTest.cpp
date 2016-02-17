@@ -103,19 +103,27 @@ TEST_CASE("NegatePrdicate", "[TypeComposition]")
     static_assert(!ApplyT<NegatePredicate<Quote<is_integral>>, int>(), "");
 }
 
-TEST_CASE("Bind1st", "[TypeComposition]")
+TEST_CASE("BindFirst", "[TypeComposition]")
 {
     using std::is_same;
 
-    static_assert(ApplyT<Bind1st<Quote<is_same>, char>, char>(), "");
-    static_assert(!ApplyT<Bind1st<Quote<is_same>, char>, int>(), "");
+    static_assert(ApplyT<BindFirst<Quote<is_same>, char>, char>(), "");
+    static_assert(!ApplyT<BindFirst<Quote<is_same>, char>, int>(), "");
+
+    // NOTE: it's possible to bind n-type.
+    static_assert(ApplyT<BindFirst<Quote<is_same>, char, char>>(), "");
+    static_assert(!ApplyT<BindFirst<Quote<is_same>, char, int>>(), "");
 }
 
-TEST_CASE("Bind2nd", "[TypeComposition]")
+TEST_CASE("BindLast", "[TypeComposition]")
 {
     using std::is_same;
 
-    static_assert(ApplyT<Bind2nd<Quote<is_same>, char>, char>(), "");
-    static_assert(!ApplyT<Bind2nd<Quote<is_same>, char>, int>(), "");
+    static_assert(ApplyT<BindLast<Quote<is_same>, char>, char>(), "");
+    static_assert(!ApplyT<BindLast<Quote<is_same>, char>, int>(), "");
+
+    // NOTE: it's possible to bind n-type.
+    static_assert(ApplyT<BindLast<Quote<is_same>, char, char>>(), "");
+    static_assert(!ApplyT<BindLast<Quote<is_same>, char, int>>(), "");
 }
 
