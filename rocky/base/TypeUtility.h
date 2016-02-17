@@ -2,6 +2,8 @@
 #define ROCKY_BASE_TYPEUTILITY_H
 
 
+#include <string>
+
 #include "rocky/base/Identity.h"
 #include "rocky/base/HasMember.h"
 
@@ -74,6 +76,18 @@ struct Quote
     { };
 };
 
+/**
+ * NOTE: this doesn't work (at least at the moment).
+ * TODO: Think how to handle this situation.
+ */
+template <template <template <typename...> class...> class f>
+struct QuoteTemplate
+{
+    template <template <typename...> class... xs>
+    struct Apply : f<xs...>
+    { };
+};
+
 
 /**
  *
@@ -94,6 +108,21 @@ struct Apply
  */
 template <typename f, typename... xs>
 using ApplyT = typename Apply<f, xs...>::type;
+
+
+/**
+ * NOTE: this doesn't work (at least at the moment).
+ * TODO: Think how to handle this situation.
+ */
+template <typename f, template <typename...> class... xs>
+struct ApplyTemplate
+{
+    // NOTE: This assertion is redundant. No 'Apply' member existence in f will results in a compile error.
+    //       But, I just wanted to show more understandable error message.
+    static_assert(HasApplyMember<f>(), "metafunction class f should have 'Apply' member class template.");
+
+    using type = typename f::template Apply<xs...>::type;
+};
 
 
 #endif //ROCKY_BASE_TYPEUTILITY_H
