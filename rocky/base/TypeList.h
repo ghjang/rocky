@@ -19,8 +19,8 @@ template <typename... xs>
 struct TypeListSize : std::integral_constant<std::size_t, sizeof...(xs)>
 { };
 
-template <typename... xs>
-struct TypeListSize<TypeList<xs...>> : TypeListSize<xs...>
+template <template <typename...> class TypeListContainer, typename... xs>
+struct TypeListSize<TypeListContainer<xs...>> : TypeListSize<xs...>
 { };
 
 
