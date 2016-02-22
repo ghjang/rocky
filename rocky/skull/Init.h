@@ -30,12 +30,9 @@ template <typename... xs>
 using InitT = typename Init<xs...>::type;
 
 
-template <typename... xs>
-struct Init<TypeList<xs...>> : Init<xs...>
-{ };
-
-template <typename... xs>
-struct Init<std::tuple<xs...>> : ToTuple<InitT<xs...>>
+template <template <typename...> class TypeListContainer, typename... xs>
+struct Init<TypeListContainer<xs...>>
+        : ReplaceTypeListContainer<InitT<xs...>, TypeListContainer>
 { };
 
 
