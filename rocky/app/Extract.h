@@ -19,14 +19,12 @@ template <typename T, typename... xs>
 using ExtractT = typename Extract<T, xs...>::type;
 
 
-template <typename T, T... i, typename... xs>
-struct Extract<std::integer_sequence<T, i...>, TypeList<xs...>>
-        : Extract<std::integer_sequence<T, i...>, xs...>
-{ };
-
-template <typename T, T... i, typename... xs>
-struct Extract<std::integer_sequence<T, i...>, std::tuple<xs...>>
-        : ToTuple<ExtractT<std::integer_sequence<T, i...>, xs...>>
+template <typename T, T... i, template <typename...> class TypeListContainer, typename... xs>
+struct Extract<std::integer_sequence<T, i...>, TypeListContainer<xs...>>
+        : ReplaceTypeListContainer<
+                ExtractT<std::integer_sequence<T, i...>, xs...>,
+                TypeListContainer
+          >
 { };
 
 

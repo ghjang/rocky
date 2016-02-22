@@ -58,12 +58,9 @@ template <typename p, typename... xs>
 using MapToBoolConstantTypeT = typename MapToBoolConstantType<p, xs...>::type;
 
 
-template <typename p, typename... xs>
-struct MapToBoolConstantType<p, TypeList<xs...>> : MapToBoolConstantType<p, xs...>
-{ };
-
-template <typename p, typename... xs>
-struct MapToBoolConstantType<p, std::tuple<xs...>> : ToTuple<MapToBoolConstantTypeT<p, xs...>>
+template <typename p, template <typename...> class TypeListContainer, typename... xs>
+struct MapToBoolConstantType<p, TypeListContainer<xs...>>
+        : ReplaceTypeListContainer<MapToBoolConstantTypeT<p, xs...>, TypeListContainer>
 { };
 
 

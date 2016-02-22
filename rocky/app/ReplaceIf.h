@@ -33,12 +33,12 @@ template <typename p, typename TargetType, typename... xs>
 using ReplaceIfT = typename ReplaceIf<p, TargetType, xs...>::type;
 
 
-template <typename p, typename TargetType, typename... xs>
-struct ReplaceIf<p, TargetType, TypeList<xs...>> : ReplaceIf<p, TargetType, xs...>
-{ };
-
-template <typename p, typename TargetType, typename... xs>
-struct ReplaceIf<p, TargetType, std::tuple<xs...>> : ToTuple<ReplaceIfT<p, TargetType, xs...>>
+template <typename p, typename TargetType, template <typename...> class TypeListContainer, typename... xs>
+struct ReplaceIf<p, TargetType, TypeListContainer<xs...>>
+        : ReplaceTypeListContainer<
+                ReplaceIfT<p, TargetType, xs...>,
+                TypeListContainer
+          >
 { };
 
 
