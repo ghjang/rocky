@@ -11,13 +11,8 @@ template <typename T, typename... xs>
 struct Find : FindIf<BindFirst<Quote<std::is_same>, T>, xs...>
 { };
 
-
-template <typename T, typename... xs>
-struct Find<T, TypeList<xs...>> : Find<T, xs...>
-{ };
-
-template <typename T, typename... xs>
-struct Find<T, std::tuple<xs...>> : Find<T, xs...>
+template <typename T, template <typename...> class TypeListContainer, typename... xs>
+struct Find<T, TypeListContainer<xs...>> : Find<T, xs...>
 { };
 
 
@@ -25,13 +20,8 @@ template <typename T, typename... xs>
 struct ReverseFind : ReverseFindIf<BindFirst<Quote<std::is_same>, T>, xs...>
 { };
 
-
-template <typename T, typename... xs>
-struct ReverseFind<T, TypeList<xs...>> : ReverseFind<T, xs...>
-{ };
-
-template <typename T, typename... xs>
-struct ReverseFind<T, std::tuple<xs...>> : ReverseFind<T, xs...>
+template <typename T, template <typename...> class TypeListContainer, typename... xs>
+struct ReverseFind<T, TypeListContainer<xs...>> : ReverseFind<T, xs...>
 { };
 
 
