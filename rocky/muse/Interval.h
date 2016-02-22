@@ -63,16 +63,20 @@ enum struct MusicalNoteInterval : int
 };
 
 
+template <MusicalNoteInterval interval>
+using interval_c_t = std::integral_constant<MusicalNoteInterval, interval>;
+
+
 namespace Detail
 {
     /**
      * @tparam f metafunction class to generate next musical note
      */
-    template<typename f, typename note, MusicalNoteInterval interval>
+    template<typename f, typename note, typename interval>
     struct NextMusicalNote;
 
     template<typename f, MusicalNote note, MusicalNoteInterval interval>
-    struct NextMusicalNote<f, note_c_t<note>, interval>
+    struct NextMusicalNote<f, note_c_t<note>, interval_c_t<interval>>
             : Nest<
                     f,
                     note_c_t<note>,
@@ -80,7 +84,7 @@ namespace Detail
                             std::underlying_type_t<MusicalNoteInterval>,
                             static_cast<std::underlying_type_t<MusicalNoteInterval>>(interval)
                     >
-            >
+              >
     { };
 } // namespace Detail
 
@@ -89,14 +93,14 @@ template <MusicalNote note, MusicalNoteInterval interval>
 using NextMusicalNoteT = typename Detail::NextMusicalNote<
                                                 Quote<NextHalfMusicalNote>,
                                                 note_c_t<note>,
-                                                interval
+                                                interval_c_t<interval>
                                     >::type;
 
 template <MusicalNote note, MusicalNoteInterval interval>
 using PrevMusicalNoteT = typename Detail::NextMusicalNote<
                                                 Quote<PrevHalfMusicalNote>,
                                                 note_c_t<note>,
-                                                interval
+                                                interval_c_t<interval>
                                     >::type;
 
 
