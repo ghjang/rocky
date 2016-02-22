@@ -11,7 +11,7 @@ struct Product;
 
 template <typename T, T... i>
 struct Product<std::integral_constant<T, i>...>
-        : type_is<FoldRT<Quote<Multiply>, std::integral_constant<T, 1>, std::integral_constant<T, i>...>>
+        : FoldR<Quote<Multiply>, std::integral_constant<T, 1>, std::integral_constant<T, i>...>
 { };
 
 template <template <typename...> class TypeListContainer, typename... xs>
