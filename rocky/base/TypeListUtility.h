@@ -19,15 +19,9 @@ template <>
 struct HasSameType<> : std::true_type
 { };
 
-template <>
-struct HasSameType<TypeList<>> : std::true_type
+template <template <typename...> class TypeListContainer>
+struct HasSameType<TypeListContainer<>> : std::true_type
 { };
-
-template <>
-struct HasSameType<std::tuple<>> : std::true_type
-{ };
-
-
 
 
 #endif //ROCKY_BASE_TYPELISTUTILITY_H

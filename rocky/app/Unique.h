@@ -37,16 +37,13 @@ template <typename... xs>
 using UniqueT = typename Unique<xs...>::type;
 
 
-template <typename... xs>
-struct Unique<TypeList<xs...>> : Unique<xs...>
-{ };
-
 template <typename x, typename y>
 struct Unique<std::pair<x, y>> : Unique<x, y>
 { };
 
-template <typename... xs>
-struct Unique<std::tuple<xs...>> : ToTuple<UniqueT<xs...>>
+template <template <typename...> class TypeListContainer, typename... xs>
+struct Unique<TypeListContainer<xs...>>
+        : ReplaceTypeListContainer<UniqueT<xs...>, TypeListContainer>
 { };
 
 
