@@ -28,12 +28,9 @@ template <typename f, typename... xs>
 using MapT = typename Map<f, xs...>::type;
 
 
-template <typename f, typename... xs>
-struct Map<f, TypeList<xs...>> : Map<f, xs...>
-{ };
-
-template <typename f, typename... xs>
-struct Map<f, std::tuple<xs...>> : ToTuple<MapT<f, xs...>>
+template <typename f, template <typename...> class TypeListContainer, typename... xs>
+struct Map<f, TypeListContainer<xs...>>
+        : ReplaceTypeListContainer<MapT<f, xs...>, TypeListContainer>
 { };
 
 
