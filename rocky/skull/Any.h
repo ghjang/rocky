@@ -14,12 +14,8 @@ struct Any : std::integral_constant<bool, FindIf<p, xs...>() != -1>
 { };
 
 
-template <typename p, typename... xs>
-struct Any<p, TypeList<xs...>> : Any<p, xs...>
-{ };
-
-template <typename p, typename... xs>
-struct Any<p, std::tuple<xs...>> : Any<p, xs...>
+template <typename p, template <typename...> class TypeListContainer, typename... xs>
+struct Any<p, TypeListContainer<xs...>> : Any<p, xs...>
 { };
 
 

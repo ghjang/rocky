@@ -18,12 +18,8 @@ struct All<p> : std::true_type
 { };
 
 
-template <typename p, typename... xs>
-struct All<p, TypeList<xs...>> : All<p, xs...>
-{ };
-
-template <typename p, typename... xs>
-struct All<p, std::tuple<xs...>> : All<p, xs...>
+template <template <typename...> class TypeListContainer, typename p, typename... xs>
+struct All<p, TypeListContainer<xs...>> : All<p, xs...>
 { };
 
 
