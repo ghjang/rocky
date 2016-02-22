@@ -7,6 +7,7 @@
 #include "rocky/wolca/NestList.h"
 #include "rocky/app/Rotate.h"
 #include "rocky/app/Extract.h"
+#include "rocky/app/Find.h"
 #include "rocky/muse/MusicalNote.h"
 
 
@@ -21,6 +22,26 @@ using TwelveMajorScaleListT = MapT<
                                             11
                                     >
                               >;
+
+
+template <typename rootNote>
+struct MajorScale;
+
+template <MusicalNote rootNote>
+struct MajorScale<note_c_t<rootNote>>
+        : Apply<
+                Compose<
+                        BindFirst<Quote<Extract>, MajorScaleNoteIndexSequenceT>,
+                        Quote<RotateWithTypeListUnpack>
+                >,
+                std::integral_constant<int, -Find<note_c_t<rootNote>, TwelveHalfMusicalNoteList>::value>,
+                TwelveHalfMusicalNoteList
+          >
+{ };
+
+
+template <MusicalNote rootNote>
+using MajorScaleT = typename MajorScale<note_c_t<rootNote>>::type;
 
 
 #endif //ROCKY_MUSE_MUSICALSCALE_H
