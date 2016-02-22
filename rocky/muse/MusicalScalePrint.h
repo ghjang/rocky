@@ -9,14 +9,14 @@
 
 
 template <MusicalNote Note>
-void PrintNote(musical_note_c_t<Note>)
+void PrintNote(note_c_t<Note>)
 {
     static char const * noteNameStr[] = { "C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B" };
     std::cout << noteNameStr[static_cast<int>(Note)];
 }
 
 template <MusicalNote... Note>
-void PrintScale(TypeList<musical_note_c_t<Note>...>)
+void PrintScale(TypeList<note_c_t<Note>...>)
 {
     auto n = sizeof...(Note) - 1;
     ForEachElementType(
@@ -26,7 +26,7 @@ void PrintScale(TypeList<musical_note_c_t<Note>...>)
                     std::cout << '\t';
                 }
             },
-            TypeList<musical_note_c_t<Note>...>()
+            TypeList<note_c_t<Note>...>()
     );
     std::cout << std::endl;
 }

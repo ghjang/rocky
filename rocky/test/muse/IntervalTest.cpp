@@ -7,14 +7,14 @@ TEST_CASE("NextHalfMusicalNote", "[muse]")
 {
     using std::is_same;
 
-    static_assert(is_same<musical_note_c_t<MusicalNote::Db>, NextHalfMusicalNoteT<MusicalNote::C>>(), "");
-    static_assert(is_same<musical_note_c_t<MusicalNote::C>, NextHalfMusicalNoteT<MusicalNote::B>>(), "");
+    static_assert(is_same<note_c_t<MusicalNote::Db>, NextHalfMusicalNoteT<MusicalNote::C>>(), "");
+    static_assert(is_same<note_c_t<MusicalNote::C>, NextHalfMusicalNoteT<MusicalNote::B>>(), "");
 
     // perfect 4th
     static_assert(
             is_same<
-                    musical_note_c_t<MusicalNote::F>,
-                    NestT<Quote<NextHalfMusicalNote>, musical_note_c_t<MusicalNote::C>, 5>
+                    note_c_t<MusicalNote::F>,
+                    NestT<Quote<NextHalfMusicalNote>, note_c_t<MusicalNote::C>, 5>
                                                                                         >(),
             ""
     );
@@ -22,8 +22,8 @@ TEST_CASE("NextHalfMusicalNote", "[muse]")
     // perfect 5th
     static_assert(
             is_same<
-                    musical_note_c_t<MusicalNote::G>,
-                    NestT<Quote<NextHalfMusicalNote>, musical_note_c_t<MusicalNote::C>, 7>
+                    note_c_t<MusicalNote::G>,
+                    NestT<Quote<NextHalfMusicalNote>, note_c_t<MusicalNote::C>, 7>
                                                                                         >(),
             ""
     );
@@ -31,8 +31,8 @@ TEST_CASE("NextHalfMusicalNote", "[muse]")
     // 1-octave above
     static_assert(
             is_same<
-                    musical_note_c_t<MusicalNote::C>,
-                    NestT<Quote<NextHalfMusicalNote>, musical_note_c_t<MusicalNote::C>, 12>
+                    note_c_t<MusicalNote::C>,
+                    NestT<Quote<NextHalfMusicalNote>, note_c_t<MusicalNote::C>, 12>
                                                                                         >(),
             ""
     );
@@ -40,8 +40,8 @@ TEST_CASE("NextHalfMusicalNote", "[muse]")
     // 2-octave above
     static_assert(
             is_same<
-                    musical_note_c_t<MusicalNote::C>,
-                    NestT<Quote<NextHalfMusicalNote>, musical_note_c_t<MusicalNote::C>, 24>
+                    note_c_t<MusicalNote::C>,
+                    NestT<Quote<NextHalfMusicalNote>, note_c_t<MusicalNote::C>, 24>
                                                                                         >(),
             ""
     );
@@ -51,14 +51,14 @@ TEST_CASE("PrevHalfMusicalNote", "[muse]")
 {
     using std::is_same;
 
-    static_assert(is_same<musical_note_c_t<MusicalNote::B>, PrevHalfMusicalNoteT<MusicalNote::C>>(), "");
-    static_assert(is_same<musical_note_c_t<MusicalNote::Bb>, PrevHalfMusicalNoteT<MusicalNote::B>>(), "");
+    static_assert(is_same<note_c_t<MusicalNote::B>, PrevHalfMusicalNoteT<MusicalNote::C>>(), "");
+    static_assert(is_same<note_c_t<MusicalNote::Bb>, PrevHalfMusicalNoteT<MusicalNote::B>>(), "");
 
     // perfect 4th
     static_assert(
             is_same<
-                    musical_note_c_t<MusicalNote::G>,
-                    NestT<Quote<PrevHalfMusicalNote>, musical_note_c_t<MusicalNote::C>, 5>
+                    note_c_t<MusicalNote::G>,
+                    NestT<Quote<PrevHalfMusicalNote>, note_c_t<MusicalNote::C>, 5>
                                                                                         >(),
             ""
     );
@@ -66,8 +66,8 @@ TEST_CASE("PrevHalfMusicalNote", "[muse]")
     // perfect 5th
     static_assert(
             is_same<
-                    musical_note_c_t<MusicalNote::F>,
-                    NestT<Quote<PrevHalfMusicalNote>, musical_note_c_t<MusicalNote::C>, 7>
+                    note_c_t<MusicalNote::F>,
+                    NestT<Quote<PrevHalfMusicalNote>, note_c_t<MusicalNote::C>, 7>
                                                                                         >(),
             ""
     );
@@ -75,8 +75,8 @@ TEST_CASE("PrevHalfMusicalNote", "[muse]")
     // 1-octave below
     static_assert(
             is_same<
-                    musical_note_c_t<MusicalNote::C>,
-                    NestT<Quote<PrevHalfMusicalNote>, musical_note_c_t<MusicalNote::C>, 12>
+                    note_c_t<MusicalNote::C>,
+                    NestT<Quote<PrevHalfMusicalNote>, note_c_t<MusicalNote::C>, 12>
                                                                                         >(),
             ""
     );
@@ -84,8 +84,8 @@ TEST_CASE("PrevHalfMusicalNote", "[muse]")
     // 2-octave below
     static_assert(
             is_same<
-                    musical_note_c_t<MusicalNote::C>,
-                    NestT<Quote<PrevHalfMusicalNote>, musical_note_c_t<MusicalNote::C>, 24>
+                    note_c_t<MusicalNote::C>,
+                    NestT<Quote<PrevHalfMusicalNote>, note_c_t<MusicalNote::C>, 24>
                                                                                         >(),
             ""
     );
@@ -115,22 +115,22 @@ TEST_CASE("NextMusicalNoteT", "[muse]")
                             >;
 
     using note_list_t_1 = TypeList<
-                                musical_note_c_t<MusicalNote::C>,
-                                musical_note_c_t<MusicalNote::Db>,
-                                musical_note_c_t<MusicalNote::D>,
-                                musical_note_c_t<MusicalNote::Eb>,
-                                musical_note_c_t<MusicalNote::E>,
-                                musical_note_c_t<MusicalNote::E>,
-                                musical_note_c_t<MusicalNote::F>,
-                                musical_note_c_t<MusicalNote::Gb>,
-                                musical_note_c_t<MusicalNote::Gb>,
-                                musical_note_c_t<MusicalNote::G>,
-                                musical_note_c_t<MusicalNote::Ab>,
-                                musical_note_c_t<MusicalNote::Ab>,
-                                musical_note_c_t<MusicalNote::A>,
-                                musical_note_c_t<MusicalNote::Bb>,
-                                musical_note_c_t<MusicalNote::B>,
-                                musical_note_c_t<MusicalNote::C>
+                                note_c_t<MusicalNote::C>,
+                                note_c_t<MusicalNote::Db>,
+                                note_c_t<MusicalNote::D>,
+                                note_c_t<MusicalNote::Eb>,
+                                note_c_t<MusicalNote::E>,
+                                note_c_t<MusicalNote::E>,
+                                note_c_t<MusicalNote::F>,
+                                note_c_t<MusicalNote::Gb>,
+                                note_c_t<MusicalNote::Gb>,
+                                note_c_t<MusicalNote::G>,
+                                note_c_t<MusicalNote::Ab>,
+                                note_c_t<MusicalNote::Ab>,
+                                note_c_t<MusicalNote::A>,
+                                note_c_t<MusicalNote::Bb>,
+                                note_c_t<MusicalNote::B>,
+                                note_c_t<MusicalNote::C>
                             >;
 
     static_assert(is_same<note_list_t_0, note_list_t_1>(), "");
@@ -138,7 +138,7 @@ TEST_CASE("NextMusicalNoteT", "[muse]")
     static_assert(
             is_same<
                     NextMusicalNoteT<MusicalNote::B, MusicalNoteInterval::Perfect5th>,
-                    musical_note_c_t<MusicalNote::Gb>
+                    note_c_t<MusicalNote::Gb>
             >(),
             ""
     );
@@ -168,22 +168,22 @@ TEST_CASE("PrevMusicalNoteT", "[muse]")
                             >;
 
     using note_list_t_1 = TypeList<
-                                musical_note_c_t<MusicalNote::C>,
-                                musical_note_c_t<MusicalNote::B>,
-                                musical_note_c_t<MusicalNote::Bb>,
-                                musical_note_c_t<MusicalNote::A>,
-                                musical_note_c_t<MusicalNote::Ab>,
-                                musical_note_c_t<MusicalNote::Ab>,
-                                musical_note_c_t<MusicalNote::G>,
-                                musical_note_c_t<MusicalNote::Gb>,
-                                musical_note_c_t<MusicalNote::Gb>,
-                                musical_note_c_t<MusicalNote::F>,
-                                musical_note_c_t<MusicalNote::E>,
-                                musical_note_c_t<MusicalNote::E>,
-                                musical_note_c_t<MusicalNote::Eb>,
-                                musical_note_c_t<MusicalNote::D>,
-                                musical_note_c_t<MusicalNote::Db>,
-                                musical_note_c_t<MusicalNote::C>
+                                note_c_t<MusicalNote::C>,
+                                note_c_t<MusicalNote::B>,
+                                note_c_t<MusicalNote::Bb>,
+                                note_c_t<MusicalNote::A>,
+                                note_c_t<MusicalNote::Ab>,
+                                note_c_t<MusicalNote::Ab>,
+                                note_c_t<MusicalNote::G>,
+                                note_c_t<MusicalNote::Gb>,
+                                note_c_t<MusicalNote::Gb>,
+                                note_c_t<MusicalNote::F>,
+                                note_c_t<MusicalNote::E>,
+                                note_c_t<MusicalNote::E>,
+                                note_c_t<MusicalNote::Eb>,
+                                note_c_t<MusicalNote::D>,
+                                note_c_t<MusicalNote::Db>,
+                                note_c_t<MusicalNote::C>
                             >;
 
     static_assert(is_same<note_list_t_0, note_list_t_1>(), "");
@@ -191,7 +191,7 @@ TEST_CASE("PrevMusicalNoteT", "[muse]")
     static_assert(
             is_same<
                     PrevMusicalNoteT<MusicalNote::B, MusicalNoteInterval::Perfect5th>,
-                    musical_note_c_t<MusicalNote::E>
+                    note_c_t<MusicalNote::E>
             >(),
             ""
     );

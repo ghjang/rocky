@@ -23,11 +23,11 @@ enum struct MusicalNote : int
 
 
 template <MusicalNote note>
-using musical_note_c_t = std::integral_constant<MusicalNote, note>;
+using note_c_t = std::integral_constant<MusicalNote, note>;
 
 
 template <MusicalNote... note>
-using MusicalNoteList = TypeList<musical_note_c_t<note>...>;
+using MusicalNoteList = TypeList<note_c_t<note>...>;
 
 
 using TwelveHalfMusicalNoteList = MusicalNoteList<

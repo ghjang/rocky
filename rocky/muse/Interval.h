@@ -10,36 +10,36 @@ template <typename note>
 struct NextHalfMusicalNote;
 
 template <MusicalNote note>
-struct NextHalfMusicalNote<musical_note_c_t<note>>
-        : type_is<musical_note_c_t<static_cast<MusicalNote>(static_cast<int>(note) + 1)>>
+struct NextHalfMusicalNote<note_c_t<note>>
+        : type_is<note_c_t<static_cast<MusicalNote>(static_cast<int>(note) + 1)>>
 { };
 
 template <>
-struct NextHalfMusicalNote<musical_note_c_t<MusicalNote::B>>
-        : type_is<musical_note_c_t<MusicalNote::C>>
+struct NextHalfMusicalNote<note_c_t<MusicalNote::B>>
+        : type_is<note_c_t<MusicalNote::C>>
 { };
 
 
 template <MusicalNote note>
-using NextHalfMusicalNoteT = typename NextHalfMusicalNote<musical_note_c_t<note>>::type;
+using NextHalfMusicalNoteT = typename NextHalfMusicalNote<note_c_t<note>>::type;
 
 
 template <typename note>
 struct PrevHalfMusicalNote;
 
 template <MusicalNote note>
-struct PrevHalfMusicalNote<musical_note_c_t<note>>
-        : type_is<musical_note_c_t<static_cast<MusicalNote>(static_cast<int>(note) - 1)>>
+struct PrevHalfMusicalNote<note_c_t<note>>
+        : type_is<note_c_t<static_cast<MusicalNote>(static_cast<int>(note) - 1)>>
 { };
 
 template <>
-struct PrevHalfMusicalNote<musical_note_c_t<MusicalNote::C>>
-        : type_is<musical_note_c_t<MusicalNote::B>>
+struct PrevHalfMusicalNote<note_c_t<MusicalNote::C>>
+        : type_is<note_c_t<MusicalNote::B>>
 { };
 
 
 template <MusicalNote note>
-using PrevHalfMusicalNoteT = typename PrevHalfMusicalNote<musical_note_c_t<note>>::type;
+using PrevHalfMusicalNoteT = typename PrevHalfMusicalNote<note_c_t<note>>::type;
 
 
 enum struct MusicalNoteInterval : int
@@ -72,10 +72,10 @@ namespace Detail
     struct NextMusicalNote;
 
     template<typename f, MusicalNote note, MusicalNoteInterval interval>
-    struct NextMusicalNote<f, musical_note_c_t<note>, interval>
+    struct NextMusicalNote<f, note_c_t<note>, interval>
             : Nest<
                     f,
-                    musical_note_c_t<note>,
+                    note_c_t<note>,
                     std::integral_constant<
                             std::underlying_type_t<MusicalNoteInterval>,
                             static_cast<std::underlying_type_t<MusicalNoteInterval>>(interval)
@@ -88,14 +88,14 @@ namespace Detail
 template <MusicalNote note, MusicalNoteInterval interval>
 using NextMusicalNoteT = typename Detail::NextMusicalNote<
                                                 Quote<NextHalfMusicalNote>,
-                                                musical_note_c_t<note>,
+                                                note_c_t<note>,
                                                 interval
                                     >::type;
 
 template <MusicalNote note, MusicalNoteInterval interval>
 using PrevMusicalNoteT = typename Detail::NextMusicalNote<
                                                 Quote<PrevHalfMusicalNote>,
-                                                musical_note_c_t<note>,
+                                                note_c_t<note>,
                                                 interval
                                     >::type;
 
