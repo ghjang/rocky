@@ -28,14 +28,13 @@ public:
     using type = typename ReplicateImpl<std::make_index_sequence<n>, x>::type;
 };
 
-
-template <std::size_t n, typename x>
-using ReplicateT = typename Replicate<std::integral_constant<std::size_t, n>, x>::type;
-
-
 template <typename x>
 struct Replicate<std::integral_constant<std::size_t, 0>, x> : type_is<TypeList<>>
 { };
+
+
+template <std::size_t n, typename x>
+using ReplicateT = typename Replicate<std::integral_constant<std::size_t, n>, x>::type;
 
 
 #endif //ROCKY_SKULL_REPLICATE_H

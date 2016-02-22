@@ -54,14 +54,9 @@ template <typename i, typename... xs>
 using SplitAtT = typename SplitAt<i, xs...>::type;
 
 
-template <typename T, T i, typename... xs>
-struct SplitAt<std::integral_constant<T, i>, TypeList<xs...>>
-        : SplitAt<std::integral_constant<T, i>, xs...>
-{ };
-
-template <typename T, T i, typename... xs>
-struct SplitAt<std::integral_constant<T, i>, std::tuple<xs...>>
-        : ToTuple<SplitAtT<std::integral_constant<T, i>, xs...>>
+template <typename T, T i, template <typename...> class TypeListContainer, typename... xs>
+struct SplitAt<std::integral_constant<T, i>, TypeListContainer<xs...>>
+        : ReplaceTypeListContainer<SplitAtT<std::integral_constant<T, i>, xs...>, TypeListContainer>
 { };
 
 

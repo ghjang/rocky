@@ -39,20 +39,17 @@ namespace Detail
 template <typename f, typename xs, typename ys>
 struct ZipWith;
 
+template <typename f, template <typename...> class TypeListContainer, typename... xs, typename... ys>
+struct ZipWith<f, TypeListContainer<xs...>, TypeListContainer<ys...>>
+        : ReplaceTypeListContainer<
+                typename Detail::ZipWithImpl<f, TypeList<xs...>, TypeList<ys...>, TypeList<>>::type,
+                TypeListContainer
+          >
+{ };
+
 
 template <typename f, typename xs, typename ys>
 using ZipWithT = typename ZipWith<f, xs, ys>::type;
-
-
-template <typename f, typename... xs, typename... ys>
-struct ZipWith<f, TypeList<xs...>, TypeList<ys...>>
-        : Detail::ZipWithImpl<f, TypeList<xs...>, TypeList<ys...>, TypeList<>>
-{ };
-
-template <typename f, typename... xs, typename... ys>
-struct ZipWith<f, std::tuple<xs...>, std::tuple<ys...>>
-        : ToTuple<ZipWithT<f, TypeList<xs...>, TypeList<ys...>>>
-{ };
 
 
 #endif //ROCKY_SKULL_ZIPWITH_H

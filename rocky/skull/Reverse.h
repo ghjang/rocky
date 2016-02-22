@@ -27,12 +27,9 @@ template <typename... xs>
 using ReverseT = typename Reverse<xs...>::type;
 
 
-template <typename... xs>
-struct Reverse<TypeList<xs...>> : Reverse<xs...>
-{ };
-
-template <typename... xs>
-struct Reverse<std::tuple<xs...>> : ToTuple<ReverseT<xs...>>
+template <template <typename...> class TypeListContainer, typename... xs>
+struct Reverse<TypeListContainer<xs...>>
+        : ReplaceTypeListContainer<ReverseT<xs...>, TypeListContainer>
 { };
 
 

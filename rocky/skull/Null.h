@@ -2,7 +2,7 @@
 #define ROCKY_SKULL_NULL_H
 
 
-#include "rocky/base/TypeList.h"
+#include <type_traits>
 
 
 template <typename... xs>
@@ -14,12 +14,8 @@ struct Null<> : std::true_type
 { };
 
 
-template <typename... xs>
-struct Null<TypeList<xs...>> : Null<xs...>
-{ };
-
-template <typename... xs>
-struct Null<std::tuple<xs...>> : Null<xs...>
+template <template <typename...> class TypeListContainer, typename... xs>
+struct Null<TypeListContainer<xs...>> : Null<xs...>
 { };
 
 

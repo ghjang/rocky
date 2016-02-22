@@ -20,12 +20,9 @@ template <typename... xs>
 using TailT = typename Tail<xs...>::type;
 
 
-template <typename... xs>
-struct Tail<TypeList<xs...>> : Tail<xs...>
-{ };
-
-template <typename... xs>
-struct Tail<std::tuple<xs...>> : ToTuple<TailT<xs...>>
+template <template <typename...> class TypeListContainer, typename... xs>
+struct Tail<TypeListContainer<xs...>>
+        : ReplaceTypeListContainer<TailT<xs...>, TypeListContainer>
 { };
 
 
