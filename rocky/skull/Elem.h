@@ -10,12 +10,8 @@ struct Elem : std::integral_constant<bool, Find<T, xs...>::value != -1>
 { };
 
 
-template <typename T, typename... xs>
-struct Elem<T, TypeList<xs...>> : Elem<T, xs...>
-{ };
-
-template <typename T, typename... xs>
-struct Elem<T, std::tuple<xs...>> : Elem<T, xs...>
+template <typename T, template <typename...> class TypeListContainer, typename... xs>
+struct Elem<T, TypeListContainer<xs...>> : Elem<T, xs...>
 { };
 
 

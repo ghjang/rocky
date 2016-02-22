@@ -6,36 +6,43 @@
 #include "rocky/base/TypeSelection.h"
 
 
-template <std::size_t n, typename... xs>
-struct Drop;
+namespace Detail
+{
+    template <std::size_t n, typename... xs>
+    struct DropImpl;
 
-template <std::size_t n, typename... xs>
-using DropT = typename Drop<n, xs...>::type;
+    template <std::size_t n>
+    struct DropImpl<n> : type_is<TypeList<>>
+    { };
 
-template <std::size_t n>
-struct Drop<n> : type_is<TypeList<>>
-{ };
-
-template <std::size_t n, typename x, typename... xs>
-struct Drop<n, x, xs...>
+    template <std::size_t n, typename x, typename... xs>
+    struct DropImpl<n, x, xs...>
             : type_is<
                     FlattenAsTypeListT<
                             SelectTypeIfT<
                                     n == 0,
                                     TypeList<x, xs...>,
-                                    DropT<n - 1, xs...>
+                                    DropImpl<n - 1, xs...>
                             >,
                             TypeList<>
                     >
-              >
-{ };
+            >
+    { };
+} // namespace Detail
+
 
 template <std::size_t n, typename... xs>
-struct Drop<n, TypeList<xs...>> : Drop<n, xs...>
+struct Drop : Detail::DropImpl<n, xs...>
 { };
 
+
 template <std::size_t n, typename... xs>
-struct Drop<n, std::tuple<xs...>> : ToTuple<DropT<n, xs...>>
+using DropT = typename Drop<n, xs...>::type;
+
+
+template <std::size_t n, template <typename...> class TypeListContainer, typename... xs>
+struct Drop<n, TypeListContainer<xs...>>
+        : ReplaceTypeListContainer<DropT<n, xs...>, TypeListContainer>
 { };
 
 
