@@ -2,7 +2,6 @@
 #define ROCKY_APP_FIND_H
 
 
-#include "rocky/base/IntegralConstantUtility.h"
 #include "rocky/base/TypeComposition.h"
 #include "rocky/app/FindIf.h"
 #include "rocky/skull/Reverse.h"
