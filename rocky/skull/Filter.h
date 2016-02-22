@@ -18,11 +18,12 @@ private:
     using init_t = TypeList<>;
 
     template <typename lhs, typename rhs>
-    struct AppendIfTrue : SelectTypeIf<
-                                ApplyT<p, rhs>::value,
-                                FlattenAsTypeList<lhs, rhs>,
-                                lhs
-                          >
+    struct AppendIfTrue
+            : SelectTypeIf<
+                    ApplyT<p, rhs>::value,
+                    FlattenAsTypeList<lhs, rhs>,
+                    lhs
+              >
     {
         static_assert(HasValueMember<ApplyT<p, rhs>>(), "applied predicate p should have 'value' member.");
     };
@@ -36,12 +37,9 @@ template <typename p, typename... xs>
 using FilterT = typename Filter<p, xs...>::type;
 
 
-template <typename p, typename... xs>
-struct Filter<p, TypeList<xs...>> : Filter<p, xs...>
-{ };
-
-template <typename p, typename... xs>
-struct Filter<p, std::tuple<xs...>> : ToTuple<FilterT<p, xs...>>
+template <typename p, template <typename...> class TypeListContainer, typename... xs>
+struct Filter<p, TypeListContainer<xs...>>
+        : ReplaceTypeListContainer<FilterT<p, xs...>, TypeListContainer>
 { };
 
 
