@@ -109,7 +109,8 @@ set(HEADER_FILES
         ../app/Rotate.h
         ../muse/MusicalNote.h
         ../muse/MusicalScale.h
-        ../muse/MusicalScalePrint.h)
+        ../muse/MusicalScalePrint.h
+        ../muse/Interval.h)
 
 set(SOURCE_FILES
         main.cpp
@@ -207,7 +208,8 @@ set(SOURCE_FILES
         app/ExtractTest.cpp
         app/RotateTest.cpp
         muse/MusicalNoteTest.cpp
-        muse/MusicalScaleTest.cpp)
+        muse/MusicalScaleTest.cpp
+        muse/IntervalTest.cpp)
 
 add_executable(RockyTest ${HEADER_FILES} ${SOURCE_FILES})
 
