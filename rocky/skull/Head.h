@@ -15,12 +15,8 @@ template <typename x, typename... xs>
 struct Head<x, xs...> : type_is<x>
 { };
 
-template <typename... xs>
-struct Head<TypeList<xs...>> : Head<xs...>
-{ };
-
-template <typename... xs>
-struct Head<std::tuple<xs...>> : Head<xs...>
+template <template <typename...> class TypeListContainer, typename... xs>
+struct Head<TypeListContainer<xs...>> : Head<xs...>
 { };
 
 
