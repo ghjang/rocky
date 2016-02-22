@@ -7,39 +7,46 @@
 #include "rocky/base/TypeSelection.h"
 
 
-/**
- * @tparam p predicate metafunction class
- */
-template <typename p, typename... xs>
-struct TakeWhile;
+namespace Detail
+{
+    template <typename p, typename... xs>
+    struct TakeWhileImpl;
 
-template <typename p, typename... xs>
-using TakeWhileT = typename TakeWhile<p, xs...>::type;
+    template <typename p>
+    struct TakeWhileImpl<p> : type_is<TypeList<>>
+    { };
 
-template <typename p>
-struct TakeWhile<p> : type_is<TypeList<>>
-{ };
-
-template <typename p, typename x, typename... xs>
-struct TakeWhile<p, x, xs...>
+    template <typename p, typename x, typename... xs>
+    struct TakeWhileImpl<p, x, xs...>
             : FlattenAsTypeList<
                     SelectTypeIfT<
                             !ApplyT<p, x>(),
                             TypeList<>,
-                            FlattenAsTypeList<x, TakeWhileT<p, xs...>>
+                            FlattenAsTypeList<x, typename TakeWhileImpl<p, xs...>::type>
                     >,
                     TypeList<>
-              >
-{
-    static_assert(HasValueMember<ApplyT<p, x>>(), "applied predicate 'p' should have 'value' member.");
-};
+            >
+    {
+        static_assert(HasValueMember<ApplyT<p, x>>(), "applied predicate 'p' should have 'value' member.");
+    };
+} // namespace Detail
 
+
+/**
+ * @tparam p predicate metafunction class
+ */
 template <typename p, typename... xs>
-struct TakeWhile<p, TypeList<xs...>> : TakeWhile<p, xs...>
+struct TakeWhile : Detail::TakeWhileImpl<p, xs...>
 { };
 
+
 template <typename p, typename... xs>
-struct TakeWhile<p, std::tuple<xs...>> : ToTuple<TakeWhileT<p, xs...>>
+using TakeWhileT = typename TakeWhile<p, xs...>::type;
+
+
+template <typename p, template <typename...> class TypeListContainer, typename... xs>
+struct TakeWhile<p, TypeListContainer<xs...>>
+        : ReplaceTypeListContainer<TakeWhileT<p, xs...>, TypeListContainer>
 { };
 
 

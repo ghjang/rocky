@@ -6,34 +6,41 @@
 #include "rocky/base/TypeSelection.h"
 
 
-template <std::size_t n, typename... xs>
-struct Take;
+namespace Detail
+{
+    template <std::size_t n, typename... xs>
+    struct TakeImpl;
 
-template <std::size_t n, typename... xs>
-using TakeT = typename Take<n, xs...>::type;
+    template <std::size_t n>
+    struct TakeImpl<n> : type_is<TypeList<>>
+    { };
 
-template <std::size_t n>
-struct Take<n> : type_is<TypeList<>>
-{ };
-
-template <std::size_t n, typename x, typename... xs>
-struct Take<n, x, xs...>
+    template <std::size_t n, typename x, typename... xs>
+    struct TakeImpl<n, x, xs...>
             : FlattenAsTypeList<
                     SelectTypeIfT<
                             n == 0,
                             TypeList<>,
-                            FlattenAsTypeList<x, TakeT<n - 1, xs...>>
+                            FlattenAsTypeList<x, typename TakeImpl<n - 1, xs...>::type>
                     >,
                     TypeList<>
-              >
-{ };
+            >
+    { };
+} // namespace Detail
+
 
 template <std::size_t n, typename... xs>
-struct Take<n, TypeList<xs...>> : Take<n, xs...>
+struct Take : Detail::TakeImpl<n, xs...>
 { };
 
+
 template <std::size_t n, typename... xs>
-struct Take<n, std::tuple<xs...>> : ToTuple<TakeT<n, xs...>>
+using TakeT = typename Take<n, xs...>::type;
+
+
+template <std::size_t n, template <typename...> class TypeListContainer, typename... xs>
+struct Take<n, TypeListContainer<xs...>>
+        : ReplaceTypeListContainer<TakeT<n, xs...>, TypeListContainer>
 { };
 
 
