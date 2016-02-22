@@ -40,15 +40,22 @@ template <typename n, typename... xs>
 using RotateT = typename Rotate<n, xs...>::type;
 
 
+template <typename n, typename xs>
+struct RotateWithTypeListUnpack;
+
 template <typename T, T n, typename... xs>
-struct Rotate<std::integral_constant<T, n>, TypeList<xs...>>
+struct RotateWithTypeListUnpack<std::integral_constant<T, n>, TypeList<xs...>>
         : Rotate<std::integral_constant<T, n>, xs...>
 { };
 
 template <typename T, T n, typename... xs>
-struct Rotate<std::integral_constant<T, n>, std::tuple<xs...>>
+struct RotateWithTypeListUnpack<std::integral_constant<T, n>, std::tuple<xs...>>
         : ToTuple<RotateT<std::integral_constant<T, n>, xs...>>
 { };
+
+
+template <typename n, typename xs>
+using RotateWithTypeListUnpackT = typename RotateWithTypeListUnpack<n, xs>::type;
 
 
 #endif //ROCKY_APP_ROTATE_H

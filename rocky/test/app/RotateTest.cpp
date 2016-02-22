@@ -89,7 +89,7 @@ TEST_CASE("Rotate", "[Rotate]")
     static_assert(
             is_same<
                     TL<float, double, char, int, int64_t>,
-                    RotateT<int_c_t<7>, TL<char, int, int64_t, float, double>>
+                    RotateWithTypeListUnpackT<int_c_t<7>, TL<char, int, int64_t, float, double>>
             >(),
             ""
     );
@@ -97,7 +97,7 @@ TEST_CASE("Rotate", "[Rotate]")
     static_assert(
             is_same<
                     tuple<float, double, char, int, int64_t>,
-                    RotateT<int_c_t<7>, tuple<char, int, int64_t, float, double>>
+                    RotateWithTypeListUnpackT<int_c_t<7>, tuple<char, int, int64_t, float, double>>
             >(),
             ""
     );
