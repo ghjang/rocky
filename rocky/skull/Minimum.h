@@ -21,18 +21,13 @@ struct Minimum<std::integral_constant<T, i>...>
         >
 { };
 
+template <template <typename...> class TypeListContainer, typename... xs>
+struct Minimum<TypeListContainer<xs...>> : Minimum<xs...>
+{ };
+
 
 template <typename... xs>
 using MinimumT = typename Minimum<xs...>::type;
-
-
-template <typename... xs>
-struct Minimum<TypeList<xs...>> : Minimum<xs...>
-{ };
-
-template <typename... xs>
-struct Minimum<std::tuple<xs...>> : Minimum<xs...>
-{ };
 
 
 #endif //ROCKY_SKULL_MINIMUM_H

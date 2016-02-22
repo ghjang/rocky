@@ -21,18 +21,13 @@ struct Maximum<std::integral_constant<T, i>...>
             >
 { };
 
+template <template <typename...> class TypeListContainer, typename... xs>
+struct Maximum<TypeListContainer<xs...>> : Maximum<xs...>
+{ };
+
 
 template <typename... xs>
 using MaximumT = typename Maximum<xs...>::type;
-
-
-template <typename... xs>
-struct Maximum<TypeList<xs...>> : Maximum<xs...>
-{ };
-
-template <typename... xs>
-struct Maximum<std::tuple<xs...>> : Maximum<xs...>
-{ };
 
 
 #endif //ROCKY_SKULL_MAXIMUM_H
