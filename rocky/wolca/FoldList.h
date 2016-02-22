@@ -42,25 +42,20 @@ struct FoldList<f, init, x, xs...>
     static_assert(HasTypeMember<f<init, x>>(), "f should have 'type' member.");
 };
 
+template
+<
+        template <typename, typename> class f,
+        typename init,
+        template <typename...> class TypeListContainer,
+        typename... xs
+>
+struct FoldList<f, init, TypeListContainer<xs...>>
+        : ReplaceTypeListContainer<typename FoldList<f, init, xs...>::type, TypeListContainer>
+{ };
+
 
 template <template <typename, typename> class f, typename init, typename... xs>
 using FoldListT = typename FoldList<f, init, xs...>::type;
-
-
-template <template <typename, typename> class f, typename init, typename xs>
-struct FoldListWithTypeListUnpack;
-
-template <template <typename, typename> class f, typename init, typename... xs>
-struct FoldListWithTypeListUnpack<f, init, TypeList<xs...>> : FoldList<f, init, xs...>
-{ };
-
-template <template <typename, typename> class f, typename init, typename... xs>
-struct FoldListWithTypeListUnpack<f, init, std::tuple<xs...>> : FoldList<f, init, xs...>
-{ };
-
-
-template <template <typename, typename> class f, typename init, typename xs>
-using FoldListWithUnpackT = typename FoldListWithTypeListUnpack<f, init, xs>::type;
 
 
 #endif //ROCKY_WOLCA_FOLDLIST_H
