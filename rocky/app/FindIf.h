@@ -31,12 +31,8 @@ struct FindIf<p, int_c_t<i>, x, xs...>
 };
 
 
-template <typename p, typename... xs>
-struct FindIf<p, TypeList<xs...>> : FindIf<p, xs...>
-{ };
-
-template <typename p, typename... xs>
-struct FindIf<p, std::tuple<xs...>> : FindIf<p, xs...>
+template <typename p, template <typename...> class TypeListContainer, typename... xs>
+struct FindIf<p, TypeListContainer<xs...>> : FindIf<p, xs...>
 { };
 
 
@@ -56,12 +52,8 @@ public:
     constexpr operator int () const noexcept { return value; }
 };
 
-template <typename p, typename... xs>
-struct ReverseFindIf<p, TypeList<xs...>> : ReverseFindIf<p, xs...>
-{ };
-
-template <typename p, typename... xs>
-struct ReverseFindIf<p, std::tuple<xs...>> : ReverseFindIf<p, xs...>
+template <typename p, template <typename...> class TypeListContainer, typename... xs>
+struct ReverseFindIf<p, TypeListContainer<xs...>> : ReverseFindIf<p, xs...>
 { };
 
 
