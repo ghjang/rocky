@@ -15,17 +15,20 @@ private:
     template <typename lhs, typename rhs>
     struct FlattenImpl;
 
-    template <typename... lhs, typename a, typename b>
-    struct FlattenImpl<TypeList<lhs...>, TypeList<a, b>> : type_is<TypeList<lhs..., a, b>>
+    template <template <typename...> class TypeListContainer, typename... lhs, typename a, typename b>
+    struct FlattenImpl<TypeListContainer<lhs...>, TypeListContainer<a, b>>
+            : type_is<TypeListContainer<lhs..., a, b>>
     { };
 
-    // NOTE: zipped_t is TypeList of TypeLists of which length is two.
-    using zipped_t = ZipT<TL<xs...>, ReplicateT<sizeof...(xs), T>>;
-
-    using flattened_t = FoldLWithUnpackT<Quote<FlattenImpl>, TypeList<>, zipped_t>;
-
 public:
-    using type = InitT<flattened_t>;
+    using type = ApplyT<
+                    Compose<
+                            Quote<Init>,
+                            BindFirst<Quote<FoldLWithTypeListUnpack>, Quote<FlattenImpl>, TypeList<>>,
+                            Quote<Zip>
+                    >,
+                    TL<xs...>, ReplicateT<sizeof...(xs), T>
+                 >;
 };
 
 
@@ -37,12 +40,9 @@ template <typename T>
 struct Riffle<T> : type_is<TypeList<>>
 { };
 
-template <typename T, typename... xs>
-struct Riffle<T, TypeList<xs...>> : Riffle<T, xs...>
-{ };
-
-template <typename T, typename... xs>
-struct Riffle<T, std::tuple<xs...>> : ToTuple<RiffleT<T, xs...>>
+template <typename T, template <typename...> class TypeListContainer, typename... xs>
+struct Riffle<T, TypeListContainer<xs...>>
+        : ReplaceTypeListContainer<RiffleT<T, xs...>, TypeListContainer>
 { };
 
 
