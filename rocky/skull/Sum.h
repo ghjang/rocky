@@ -14,18 +14,14 @@ struct Sum<std::integral_constant<T, i>...>
         : type_is<FoldRT<Quote<Plus>, std::integral_constant<T, 0>, std::integral_constant<T, i>...>>
 { };
 
+template <template <typename...> class TypeListContainer, typename T, T... i>
+struct Sum<TypeListContainer<std::integral_constant<T, i>...>>
+        : Sum<std::integral_constant<T, i>...>
+{ };
+
 
 template <typename... xs>
 using SumT = typename Sum<xs...>::type;
-
-
-template <typename... xs>
-struct Sum<TypeList<xs...>> : Sum<xs...>
-{ };
-
-template <typename... xs>
-struct Sum<std::tuple<xs...>> : Sum<xs...>
-{ };
 
 
 #endif //ROCKY_SKULL_SUM_H
