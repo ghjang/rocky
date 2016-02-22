@@ -12,12 +12,9 @@ private:
     template <typename lhs, typename rhs>
     struct ConcatImpl;
 
-    template <typename... lhsXs, typename... rhsYs>
-    struct ConcatImpl<TypeList<lhsXs...>, TypeList<rhsYs...>> : type_is<TypeList<lhsXs..., rhsYs...>>
-    { };
-
-    template <typename... lhsXs, typename... rhsYs>
-    struct ConcatImpl<std::tuple<lhsXs...>, std::tuple<rhsYs...>> : type_is<std::tuple<lhsXs..., rhsYs...>>
+    template <template <typename...> class TypeListContainer, typename... lhsXs, typename... rhsYs>
+    struct ConcatImpl<TypeListContainer<lhsXs...>, TypeListContainer<rhsYs...>>
+            : type_is<TypeListContainer<lhsXs..., rhsYs...>>
     { };
 
 public:
