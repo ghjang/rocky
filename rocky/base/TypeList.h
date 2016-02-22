@@ -50,15 +50,19 @@ struct AsPairTuple : type_is<std::tuple<x, y>>
 
 
 template <typename SourceTypeList, template <typename...> class TargetTypeListContainer>
-struct ReplaceTypeListContainerType;
+struct ReplaceTypeListContainer;
+
+template <template <typename...> class S, typename... xs>
+struct ReplaceTypeListContainer<S<xs...>, S> : type_is<S<xs...>>
+{ };
 
 template <template <typename...> class S, typename... xs, template <typename...> class T>
-struct ReplaceTypeListContainerType<S<xs...>, T> : type_is<T<xs...>>
+struct ReplaceTypeListContainer<S<xs...>, T> : type_is<T<xs...>>
 { };
 
 
 template <typename xs>
-struct ToTuple : ReplaceTypeListContainerType<xs, std::tuple>
+struct ToTuple : ReplaceTypeListContainer<xs, std::tuple>
 { };
 
 template <typename xs>
@@ -66,7 +70,7 @@ using ToTupleT = typename ToTuple<xs>::type;
 
 
 template <typename xs>
-struct ToTypeList : ReplaceTypeListContainerType<xs, TypeList>
+struct ToTypeList : ReplaceTypeListContainer<xs, TypeList>
 { };
 
 template <typename xs>
