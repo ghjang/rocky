@@ -23,9 +23,12 @@ struct PadRight<std::integral_constant<T, n>, x, xs...>
           >
 { };
 
-template <typename T, T n, typename x, typename... xs>
-struct PadRight<std::integral_constant<T, n>, x, TypeList<xs...>>
-        : PadRight<std::integral_constant<T, n>, x, xs...>
+template <typename T, T n, typename x, template <typename...> class TypeListContainer, typename... xs>
+struct PadRight<std::integral_constant<T, n>, x, TypeListContainer<xs...>>
+        : ReplaceTypeListContainer<
+                typename PadRight<std::integral_constant<T, n>, x, xs...>::type,
+                TypeListContainer
+          >
 { };
 
 

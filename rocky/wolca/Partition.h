@@ -51,9 +51,12 @@ struct Partition<std::integral_constant<T, n>, xs...>
 };
 
 
-template <typename T, T n, typename... xs>
-struct Partition<std::integral_constant<T, n>, TypeList<xs...>>
-        : Partition<std::integral_constant<T, n>, xs...>
+template <typename T, T n, template <typename...> class TypeListContainer, typename... xs>
+struct Partition<std::integral_constant<T, n>, TypeListContainer<xs...>>
+        : ReplaceTypeListContainer<
+                typename Partition<std::integral_constant<T, n>, xs...>::type,
+                TypeListContainer
+          >
 { };
 
 
