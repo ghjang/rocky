@@ -15,6 +15,16 @@ template <typename... xs>
 using TL = TypeList<xs...>;
 
 
+namespace Detail
+{
+    /**
+     * NOTE: for internal use only
+     */
+    struct __Guard__
+    { };
+} // namespace Detail
+
+
 template <typename... xs>
 struct TypeListSize : std::integral_constant<std::size_t, sizeof...(xs)>
 { };
