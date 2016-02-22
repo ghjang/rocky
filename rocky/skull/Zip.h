@@ -8,23 +8,27 @@
 template <typename xs, typename ys>
 struct Zip;
 
-template <typename... xs, typename... ys>
-struct Zip<TypeList<xs...>, TypeList<ys...>>
-        : ZipWith<
-                Quote<AsPairTypeList>,
-                TypeList<xs...>,
-                TypeList<ys...>
-          >
-{ };
+template <template <typename...> class TypeListContainer, typename... xs, typename... ys>
+struct Zip<TypeListContainer<xs...>, TypeListContainer<ys...>>
+{
+private:
+    struct AsPairTypeListContainerImpl
+    {
+        template <typename x, typename y>
+        struct Apply : AsPairTypeListContainer<TypeListContainer, x, y>
+        { };
+    };
 
-template <typename... xs, typename... ys>
-struct Zip<std::tuple<xs...>, std::tuple<ys...>>
-        : ZipWith<
-                Quote<AsPairTuple>,
-                std::tuple<xs...>,
-                std::tuple<ys...>
-          >
-{ };
+public:
+    using type = typename ReplaceTypeListContainer<
+                                typename ZipWith<
+                                                AsPairTypeListContainerImpl,
+                                                TypeList<xs...>,
+                                                TypeList<ys...>
+                                            >::type,
+                                TypeListContainer
+                            >::type;
+};
 
 
 template <typename xs, typename ys>

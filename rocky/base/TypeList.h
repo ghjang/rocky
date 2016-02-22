@@ -50,12 +50,16 @@ struct FunctionParameterListSize<r (*) (params...)> : FunctionParameterListSize<
 { };
 
 
-template <typename x, typename y>
-struct AsPairTypeList : type_is<TypeList<x, y>>
+template <template <typename...> class TypeListContainer, typename x, typename y>
+struct AsPairTypeListContainer : type_is<TypeListContainer<x, y>>
 { };
 
 template <typename x, typename y>
-struct AsPairTuple : type_is<std::tuple<x, y>>
+struct AsPairTypeList : AsPairTypeListContainer<TypeList, x, y>
+{ };
+
+template <typename x, typename y>
+struct AsPairTuple : AsPairTypeListContainer<std::tuple, x, y>
 { };
 
 
