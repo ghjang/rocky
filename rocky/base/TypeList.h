@@ -61,6 +61,23 @@ template <template <typename...> class S, typename... xs, template <typename...>
 struct ReplaceTypeListContainer<S<xs...>, T> : type_is<T<xs...>>
 { };
 
+template <typename SourceTypeList, template <typename...> class TargetTypeListContainer>
+using ReplaceTypeListContainerT = typename ReplaceTypeListContainer<SourceTypeList, TargetTypeListContainer>::type;
+
+
+/**
+ * QuoteReplaceTypeListContainer is a metafunction class.
+ *
+ * @tparam f metafunction
+ */
+template <template <typename...> class f>
+struct QuoteReplaceTypeListContainer
+{
+    template <typename xs>
+    struct Apply : ReplaceTypeListContainer<xs, f>
+    { };
+};
+
 
 #endif //ROCKY_BASE_TYPELIST_H
 

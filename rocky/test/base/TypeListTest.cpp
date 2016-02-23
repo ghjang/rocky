@@ -2,6 +2,9 @@
 
 #include "rocky/base/TypeList.h"
 
+#include "rocky/base/TypeComposition.h"
+#include "rocky/skull/Map.h"
+
 
 TEST_CASE("TypeListSize", "[TypeList]")
 {
@@ -23,5 +26,30 @@ TEST_CASE("FunctionParameterListSize", "[TypeList]")
     static_assert(2 == FunctionParameterListSize<decltype(fopen)>(), "");
 
     static_assert(0 == FunctionParameterListSize<decltype(getchar)>(), "");
+}
+
+TEST_CASE("ReplaceTypeListContainer", "[TypeList]")
+{
+    using std::is_same;
+    using std::tuple;
+
+    static_assert(
+            is_same<
+                    tuple<char, int, float, double>,
+                    ReplaceTypeListContainerT<TypeList<char, int, float, double>, tuple>
+            >(),
+            ""
+    );
+
+    static_assert(
+            is_same<
+                    TL<tuple<char, int>, tuple<float, double>>,
+                    MapT<
+                            QuoteReplaceTypeListContainer<tuple>,
+                            TL<TL<char, int>, TL<float, double>>
+                    >
+            >(),
+            ""
+    );
 }
 
