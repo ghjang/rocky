@@ -142,6 +142,38 @@ TEST_CASE("Compose", "[TypeComposition]")
             >(),
             ""
     );
+
+    // Ooops!
+    static_assert(
+            is_same<
+                    TypeList<double, TypeList<>>,
+                    ApplyT<
+                            Compose<
+                                    Quote<FlattenTypeList>,
+                                    Quote<Swap>
+                            >,
+                            TypeList<>,
+                            double
+                    >
+            >(),
+            ""
+    );
+
+    //
+    static_assert(
+            is_same<
+                    TypeList<double>,
+                    ApplyT<
+                            Compose<
+                                    Quote<FlattenTypeListWithUnpack>,
+                                    Quote<Swap>
+                            >,
+                            TypeList<>,
+                            double
+                    >
+            >(),
+            ""
+    );
 }
 
 TEST_CASE("NegatePrdicate", "[TypeComposition]")

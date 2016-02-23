@@ -53,5 +53,16 @@ template <typename... xs>
 using FlattenTypeListT = typename FlattenTypeList<xs...>::type;
 
 
+template <typename... xs>
+struct FlattenTypeListWithUnpack;
+
+template <typename... xs>
+struct FlattenTypeListWithUnpack<TypeList<xs...>> : FlattenTypeList<xs...>
+{ };
+
+template <typename... xs>
+using FlattenTypeListWithUnpackT = typename FlattenTypeList<xs...>::type;
+
+
 #endif //ROCKY_BASE_TYPELISTFLATTEN_H
 
