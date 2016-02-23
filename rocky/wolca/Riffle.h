@@ -10,26 +10,15 @@
 
 template <typename T, typename... xs>
 struct Riffle
-{
-private:
-    template <typename lhs, typename rhs>
-    struct FlattenImpl;
-
-    template <template <typename...> class TypeListContainer, typename... lhs, typename a, typename b>
-    struct FlattenImpl<TypeListContainer<lhs...>, TypeListContainer<a, b>>
-            : type_is<TypeListContainer<lhs..., a, b>>
-    { };
-
-public:
-    using type = ApplyT<
-                    Compose<
-                            Quote<Init>,
-                            BindFirst<Quote<FoldL>, Quote<FlattenImpl>, TypeList<>>,
-                            Quote<Zip>
-                    >,
-                    TL<xs...>, ReplicateT<sizeof...(xs), T>
-                 >;
-};
+        : Apply<
+                Compose<
+                        Quote<Init>,
+                        BindFirst<Quote<FoldL>, Quote<FlattenTypeList>, TypeList<>>,
+                        Quote<Zip>
+                >,
+                TL<xs...>, ReplicateT<sizeof...(xs), T>
+          >
+{ };
 
 
 template <typename T, typename... xs>
