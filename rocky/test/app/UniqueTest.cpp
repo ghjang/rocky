@@ -2,6 +2,8 @@
 
 #include "rocky/app/Unique.h"
 
+#include "rocky/base/TypeListUtility.h"
+
 
 TEST_CASE("Unique", "[Unique]")
 {

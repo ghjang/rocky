@@ -3,6 +3,7 @@
 #include "rocky/skull/ZipWith.h"
 
 #include "rocky/base/IntegralConstantUtility.h"
+#include "rocky/base/TypeListUtility.h"
 #include "rocky/skull/Replicate.h"
 #include "rocky/skull/Range.h"
 #include "rocky/skull/Max.h"

@@ -2,6 +2,7 @@
 #define ROCKY_SKULL_ZIP_H
 
 
+#include "rocky/base/TypeListUtility.h"
 #include "rocky/skull/ZipWith.h"
 
 

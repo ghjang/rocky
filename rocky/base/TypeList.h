@@ -2,7 +2,7 @@
 #define ROCKY_BASE_TYPELIST_H
 
 
-#include <tuple>
+#include <type_traits>
 
 #include "rocky/base/Identity.h"
 
@@ -50,19 +50,6 @@ struct FunctionParameterListSize<r (*) (params...)> : FunctionParameterListSize<
 { };
 
 
-template <template <typename...> class TypeListContainer, typename x, typename y>
-struct AsPairTypeListContainer : type_is<TypeListContainer<x, y>>
-{ };
-
-template <typename x, typename y>
-struct AsPairTypeList : AsPairTypeListContainer<TypeList, x, y>
-{ };
-
-template <typename x, typename y>
-struct AsPairTuple : AsPairTypeListContainer<std::tuple, x, y>
-{ };
-
-
 template <typename SourceTypeList, template <typename...> class TargetTypeListContainer>
 struct ReplaceTypeListContainer;
 
@@ -73,22 +60,6 @@ struct ReplaceTypeListContainer<S<xs...>, S> : type_is<S<xs...>>
 template <template <typename...> class S, typename... xs, template <typename...> class T>
 struct ReplaceTypeListContainer<S<xs...>, T> : type_is<T<xs...>>
 { };
-
-
-template <typename xs>
-struct ToTuple : ReplaceTypeListContainer<xs, std::tuple>
-{ };
-
-template <typename xs>
-using ToTupleT = typename ToTuple<xs>::type;
-
-
-template <typename xs>
-struct ToTypeList : ReplaceTypeListContainer<xs, TypeList>
-{ };
-
-template <typename xs>
-using ToTypeListT = typename ToTypeList<xs>::type;
 
 
 #endif //ROCKY_BASE_TYPELIST_H
