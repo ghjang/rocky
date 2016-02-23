@@ -12,6 +12,7 @@ TEST_CASE("TypeList flatten", "[TypeListFlattenAs]")
     static_assert(is_same<TL<>, FlattenTypeListT<TL<>, TL<>> >(), "");
 
     static_assert(is_same<TL<char>, FlattenTypeListT<char, TL<>>>(), "");
+    static_assert(is_same<TL<char>, FlattenTypeListT<TL<>, char>>(), "");
 
 
     static_assert(
