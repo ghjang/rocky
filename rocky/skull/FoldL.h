@@ -39,12 +39,16 @@ template <typename f, typename init, typename... xs>
 struct FoldL : Detail::FoldLImpl<f, init, xs...>
 { };
 
+/**
+ * NOTE: You need to do some proper workarounds if you don't want to un-pack the type list parameters.
+ *       Refer to skull Concat metafunction implementation for an idea.
+ */
 template <typename f, typename init, template <typename...> class TypeListContainer, typename... xs>
 struct FoldL<f, init, TypeListContainer<xs...>> : FoldL<f, init, xs...>
 { };
 
 /**
- * NOTE: for Zipped type lists of which length is 1.
+ * NOTE: for zipped type lists of which length is 1.
  */
 template <typename f, typename init, template <typename...> class TypeListContainer, typename... xs>
 struct FoldL<f, init, TypeListContainer<TypeListContainer<xs...>>>
