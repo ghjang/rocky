@@ -15,21 +15,26 @@ template <typename p, typename... xs>
 struct Filter
 {
 private:
-    using init_t = TypeList<>;
-
-    template <typename lhs, typename rhs>
     struct AppendIfTrue
-            : SelectTypeIf<
-                    ApplyT<p, rhs>::value,
-                    FlattenTypeList<lhs, rhs>,
-                    lhs
-              >
     {
-        static_assert(HasValueMember<ApplyT<p, rhs>>(), "applied predicate p should have 'value' member.");
+        template <typename lhs, typename rhs>
+        struct Apply
+                : SelectTypeIf<
+                        ApplyT<p, rhs>::value,
+                        FlattenTypeList<lhs, rhs>,
+                        lhs
+                  >
+        {
+            static_assert(HasValueMember<ApplyT<p, rhs>>(), "applied predicate p should have 'value' member.");
+        };
     };
 
 public:
-    using type = FoldLT<Quote<AppendIfTrue>, init_t, xs...>;
+    using type = FoldLT<
+                    AppendIfTrue,
+                    TypeList<>, // init
+                    xs...
+                 >;
 };
 
 
