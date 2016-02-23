@@ -7,6 +7,8 @@ TEST_CASE("TypeList flatten", "[TypeListFlattenAs]")
 {
     using std::is_same;
 
+    static_assert(is_same<TL<>, FlattenAsTypeListT<>>(), "");
+    static_assert(is_same<TL<>, FlattenAsTypeListT<TL<>>>(), "");
     static_assert(is_same<TL<>, FlattenAsTypeListT<TL<>, TL<>> >(), "");
 
     static_assert(is_same<TL<char>, FlattenAsTypeListT<char, TL<>>>(), "");
@@ -36,10 +38,6 @@ TEST_CASE("TypeList flatten", "[TypeListFlattenAs]")
             ""
     );
 
-    /**
-     * following is not a valid pattern matching.
-     */
-    /*
     static_assert(
             is_same<
                     TL<char, int, float, double>,
@@ -47,7 +45,14 @@ TEST_CASE("TypeList flatten", "[TypeListFlattenAs]")
             >(),
             ""
     );
-     */
+
+    static_assert(
+            is_same<
+                    TL<long, char, int, float, double>,
+                    FlattenAsTypeListT<TL<long>, char, int, TL<float, double>>
+            >(),
+            ""
+    );
 
     static_assert(is_same<TL<char, int>, FlattenAsTypeListT<TL<TL<char, int>>>>(), "");
 
