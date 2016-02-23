@@ -18,11 +18,11 @@ namespace Detail
 
     template <typename p, typename x, typename... xs>
     struct TakeWhileImpl<p, x, xs...>
-            : FlattenAsTypeList<
+            : FlattenTypeList<
                     SelectTypeIfT<
                             !ApplyT<p, x>(),
                             TypeList<>,
-                            FlattenAsTypeList<x, typename TakeWhileImpl<p, xs...>::type>
+                            FlattenTypeList<x, typename TakeWhileImpl<p, xs...>::type>
                     >,
                     TypeList<>
             >

@@ -21,7 +21,7 @@ private:
     struct AppendIfTrue
             : SelectTypeIf<
                     ApplyT<p, rhs>::value,
-                    FlattenAsTypeList<lhs, rhs>,
+                    FlattenTypeList<lhs, rhs>,
                     lhs
               >
     {

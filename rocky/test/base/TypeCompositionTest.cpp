@@ -89,7 +89,7 @@ TEST_CASE("Compose", "[TypeComposition]")
                     int ***,
                     ApplyT<
                             Compose<
-                                    FlattenAsTypeListT<
+                                    FlattenTypeListT<
                                             ReplicateT<3, Quote<add_pointer>>,
                                             Quote<Head>, Quote<Filter>
                                     >

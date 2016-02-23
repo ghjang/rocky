@@ -26,11 +26,11 @@ namespace Detail
     struct RotateImpl<std::integral_constant<T, i>, xs...>
             : SelectTypeIf<
                     i < 0,
-                    FlattenAsTypeList<
+                    FlattenTypeList<
                             DropT<Abs(i) % sizeof...(xs), xs...>,
                             TakeT<Abs(i) % sizeof...(xs), xs...>
                     >, // left-rotation
-                    FlattenAsTypeList<
+                    FlattenTypeList<
                             DropT<sizeof...(xs) - (i % sizeof...(xs)), xs...>,
                             TakeT<sizeof...(xs) - (i % sizeof...(xs)), xs...>
                     > // right-rotation

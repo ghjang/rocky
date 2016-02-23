@@ -18,7 +18,7 @@ namespace Detail
     template <std::size_t n, typename x, typename... xs>
     struct DropImpl<n, x, xs...>
             : type_is<
-                    FlattenAsTypeListT<
+                    FlattenTypeListT<
                             SelectTypeIfT<
                                     n == 0,
                                     TypeList<x, xs...>,

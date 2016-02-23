@@ -17,11 +17,11 @@ namespace Detail
 
     template <std::size_t n, typename x, typename... xs>
     struct TakeImpl<n, x, xs...>
-            : FlattenAsTypeList<
+            : FlattenTypeList<
                     SelectTypeIfT<
                             n == 0,
                             TypeList<>,
-                            FlattenAsTypeList<x, typename TakeImpl<n - 1, xs...>::type>
+                            FlattenTypeList<x, typename TakeImpl<n - 1, xs...>::type>
                     >,
                     TypeList<>
             >

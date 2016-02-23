@@ -15,7 +15,7 @@ private:
     using init_t = TypeList<>;
 
     template <typename lhs, typename rhs>
-    struct SwapImpl : FlattenAsTypeList<rhs, lhs>
+    struct SwapImpl : FlattenTypeList<rhs, lhs>
     { };
 
 public:
