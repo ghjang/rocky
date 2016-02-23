@@ -21,11 +21,11 @@ private:
 
 public:
     using type = typename ReplaceTypeListContainer<
-                                typename ZipWith<
-                                                AsPairTypeListContainerImpl,
-                                                TypeList<xs...>,
-                                                TypeList<ys...>
-                                            >::type,
+                                ZipWithT<
+                                        AsPairTypeListContainerImpl,
+                                        TypeList<xs...>,
+                                        TypeList<ys...>
+                                >,
                                 TypeListContainer
                             >::type;
 };
