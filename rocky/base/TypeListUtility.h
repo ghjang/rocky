@@ -24,5 +24,16 @@ struct HasSameType<TypeListContainer<>> : std::true_type
 { };
 
 
+template <typename xs>
+struct EmptyTypeListContainerOf;
+
+template <template <typename...> class TypeListContainer, typename... xs>
+struct EmptyTypeListContainerOf<TypeListContainer<xs...>> : type_is<TypeListContainer<>>
+{ };
+
+template <typename xs>
+using EmptyTypeListContainerOfT = typename EmptyTypeListContainerOf<xs>::type;
+
+
 #endif //ROCKY_BASE_TYPELISTUTILITY_H
 
