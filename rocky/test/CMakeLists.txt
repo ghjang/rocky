@@ -12,7 +12,7 @@ endif()
 set(ROCKY_ROOT "../..")
 include_directories(${ROCKY_ROOT})
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -ftemplate-backtrace-limit=0")
 
 set(HEADER_FILES
         ../base/ConstExprArray.h
