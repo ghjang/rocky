@@ -26,6 +26,6 @@ TEST_CASE("Reversing tuple's template parameters", "[Reverse]")
 
     using T = tuple<char, short, int, float, double>;
     using ReversedT = tuple<double, float, int, short, char>;
-    static_assert(is_same<ReverseT<T>, ReversedT>(), "ReverseT<T>::type should be ReversedT.");
+    static_assert(is_same<ReverseT<T>, ReversedT>(), "ReverseT should be ReversedT.");
 }
 
