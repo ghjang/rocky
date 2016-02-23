@@ -13,6 +13,9 @@
 
 using MajorScaleNoteIndexSequenceT = std::index_sequence<0, 2, 4, 5, 7, 9, 11>;
 
+// TODO: add all the scale note indices.
+//using MinorScaleNoteIndexSequenceT = std::index_sequence<0, 2, 4, 5, 7, 9, 11>;
+
 
 using TwelveMajorScaleListT = MapT<
                                     BindFirst<Quote<Extract>, MajorScaleNoteIndexSequenceT>,
@@ -32,7 +35,7 @@ struct MajorScale<note_c_t<rootNote>>
         : Apply<
                 Compose<
                         BindFirst<Quote<Extract>, MajorScaleNoteIndexSequenceT>,
-                        Quote<RotateWithTypeListUnpack>
+                        Quote<Rotate>
                 >,
                 std::integral_constant<int, -Find<note_c_t<rootNote>, TwelveHalfMusicalNoteList>::value>,
                 TwelveHalfMusicalNoteList

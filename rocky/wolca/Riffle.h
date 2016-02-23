@@ -2,10 +2,10 @@
 #define ROCKY_WOLCA_RIFFLE_H
 
 
-#include "rocky/skull/Replicate.h"
-#include "rocky/skull/Zip.h"
-#include "rocky/skull/FoldL.h"
 #include "rocky/skull/Init.h"
+#include "rocky/skull/FoldL.h"
+#include "rocky/skull/Zip.h"
+#include "rocky/skull/Replicate.h"
 
 
 template <typename T, typename... xs>
@@ -24,7 +24,7 @@ public:
     using type = ApplyT<
                     Compose<
                             Quote<Init>,
-                            BindFirst<Quote<FoldLWithTypeListUnpack>, Quote<FlattenImpl>, TypeList<>>,
+                            BindFirst<Quote<FoldL>, Quote<FlattenImpl>, TypeList<>>,
                             Quote<Zip>
                     >,
                     TL<xs...>, ReplicateT<sizeof...(xs), T>
