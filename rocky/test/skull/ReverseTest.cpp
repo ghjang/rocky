@@ -3,7 +3,7 @@
 #include "rocky/skull/Reverse.h"
 
 
-TEST_CASE("Reversing tuple's template parameters", "[ReverseTuple]")
+TEST_CASE("Reversing tuple's template parameters", "[Reverse]")
 {
     using std::is_same;
     using std::tuple;
