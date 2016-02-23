@@ -2,6 +2,7 @@
 #define ROCKY_SKULL_CONCAT_H
 
 
+#include "rocky/base/TypeListUtility.h"
 #include "rocky/skull/FoldL.h"
 
 
@@ -18,7 +19,13 @@ private:
     { };
 
 public:
-    using type = FoldLT<Quote<ConcatImpl>, xs, xss...>;
+    using type = FoldLT<
+                    Quote<ConcatImpl>,
+                    EmptyTypeListContainerOfT<xs>,
+                    EmptyTypeListContainerOfT<xs>,
+                    xs,
+                    xss...
+                 >;
 };
 
 
