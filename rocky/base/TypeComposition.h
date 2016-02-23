@@ -7,6 +7,10 @@
 #include "rocky/skull/Init.h"
 
 
+template <typename f, typename init, typename... xs>
+struct FoldR;
+
+
 /**
  * The result is a composed metafunction class.
  *
@@ -21,7 +25,7 @@ struct Compose
 
     template <typename... xs>
     struct Apply
-            : FoldRWithTypeListUnpack<
+            : FoldR<
                     Quote<::Apply>,
                     ApplyT<LastT<f...>, xs...>,
                     InitT<f...>

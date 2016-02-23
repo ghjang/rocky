@@ -4,10 +4,31 @@
 
 #include "rocky/base/TypeList.h"
 #include "rocky/base/TypeUtility.h"
+#include "rocky/base/TypeComposition.h"
 #include "rocky/base/HasMember.h"
 
 
 // accumulation
+
+
+namespace Detail
+{
+    template <typename f, typename init, typename... xs>
+    struct FoldRImpl;
+
+    template <typename f, typename init, typename... xs>
+    using FoldRImplT = typename FoldRImpl<f, init, xs...>::type;
+
+    template <typename f, typename init>
+    struct FoldRImpl<f, init> : type_is<init>
+    { };
+
+    template <typename f, typename init, typename x, typename... xs>
+    struct FoldRImpl<f, init, x, xs...> : Apply<f, x, FoldRImplT<f, init, xs...>>
+    {
+        static_assert(HasTypeMember<Apply<f, x, init>>(), "applied metafunction class f should have 'type' member.");
+    };
+}
 
 
 /**
@@ -17,55 +38,51 @@
  *  @tparam f (binary) metafunction class
  */
 template <typename f, typename init, typename... xs>
-struct FoldR;
+struct FoldR : Detail::FoldRImpl<f, init, xs...>
+{ };
+
+template <typename f, typename init, template <typename...> class TypeListContainer, typename... xs>
+struct FoldR<f, init, TypeListContainer<xs...>> : FoldR<f, init, xs...>
+{ };
+
+
+template <typename f, typename init, template <typename...> class mf>
+struct FoldR<f, init, Quote<mf>> : Detail::FoldRImpl<f, init, Quote<mf>>
+{ };
+
+
+template <typename... f>
+struct Compose;
+
+template <typename p>
+struct NegatePredicate;
+
+template <typename f, typename... xs>
+struct BindFirst;
+
+template <typename f, typename... xs>
+struct BindLast;
+
+
+template <typename f, typename init, typename... mfc>
+struct FoldR<f, init, Compose<mfc...>> : Detail::FoldRImpl<f, init, Compose<mfc...>>
+{ };
+
+template <typename f, typename init, typename pmf>
+struct FoldR<f, init, NegatePredicate<pmf>> : Detail::FoldRImpl<f, init, NegatePredicate<pmf>>
+{ };
+
+template <typename f, typename init, typename... xs>
+struct FoldR<f, init, BindFirst<xs...>> : Detail::FoldRImpl<f, init, BindFirst<xs...>>
+{ };
+
+template <typename f, typename init, typename... xs>
+struct FoldR<f, init, BindLast<xs...>> : Detail::FoldRImpl<f, init, BindLast<xs...>>
+{ };
 
 
 template <typename f, typename init, typename... xs>
 using FoldRT = typename FoldR<f, init, xs...>::type;
-
-
-template <typename f, typename init>
-struct FoldR<f, init> : type_is<init>
-{ };
-
-template <typename f, typename init, typename x, typename... xs>
-struct FoldR<f, init, x, xs...> : Apply<f, x, FoldRT<f, init, xs...>>
-{
-    static_assert(HasTypeMember<Apply<f, x, init>>(), "applied metafunction class f should have 'type' member.");
-};
-
-
-/**
- * NOTE: An element type of the type list can be another type list itself.
- *       In that cases, the element type list will be un-packed un-expectedly.
- *       And it will result in (compile-time) errors.
- *
- *       If you need to handle a type list of type lists, use FoldRWithTypeListUnpack instead.
- */
-/*
-template <typename f, typename init, typename... xs>
-struct FoldR<f, init, TypeList<xs...>> : FoldR<f, init, xs...>
-{ };
-
-template <typename f, typename init, typename... xs>
-struct FoldR<f, init, std::tuple<xs...>> : FoldR<f, init, xs...>
-{ };
- */
-
-
-template <typename f, typename init, typename xs>
-struct FoldRWithTypeListUnpack;
-
-template <typename f, typename init, typename... xs>
-struct FoldRWithTypeListUnpack<f, init, TypeList<xs...>> : FoldR<f, init, xs...>
-{ };
-
-template <typename f, typename init, typename... xs>
-struct FoldRWithTypeListUnpack<f, init, std::tuple<xs...>> : FoldR<f, init, xs...>
-{ };
-
-template <typename f, typename init, typename xs>
-using FoldRWithUnpackT = typename FoldRWithTypeListUnpack<f, init, xs>::type;
 
 
 #endif //ROCKY_SKULL_FOLDR_H

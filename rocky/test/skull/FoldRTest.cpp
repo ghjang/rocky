@@ -49,7 +49,7 @@ TEST_CASE("fold right, integral constant in tuple sum", "[Fold]")
                                 int_c_t<5>
                              >;
 
-    using sum_t = FoldRWithUnpackT<
+    using sum_t = FoldRT<
                         Quote<Plus>,
                         int_c_t<0>,  // init
                         integral_tuple_t
@@ -79,7 +79,7 @@ TEST_CASE("TypeComposition", "[FoldR]")
     static_assert(
             is_same<
                     int,
-                    FoldRWithUnpackT<
+                    FoldRT<
                             Quote<::Apply>,
                             TypeList<int, char, long>,
                             TypeList<Quote<Head>>
