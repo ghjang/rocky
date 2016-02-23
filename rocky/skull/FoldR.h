@@ -41,8 +41,20 @@ template <typename f, typename init, typename... xs>
 struct FoldR : Detail::FoldRImpl<f, init, xs...>
 { };
 
+/**
+ * NOTE: You need to do some proper workarounds if you don't want to un-pack the type list parameters.
+ *       Refer to skull Concat metafunction implementation for an idea.
+ */
 template <typename f, typename init, template <typename...> class TypeListContainer, typename... xs>
 struct FoldR<f, init, TypeListContainer<xs...>> : FoldR<f, init, xs...>
+{ };
+
+/**
+ * NOTE: for zipped type lists of which length is 1.
+ */
+template <typename f, typename init, template <typename...> class TypeListContainer, typename... xs>
+struct FoldR<f, init, TypeListContainer<TypeListContainer<xs...>>>
+        : Detail::FoldRImpl<f, init, TypeListContainer<xs...>>
 { };
 
 
