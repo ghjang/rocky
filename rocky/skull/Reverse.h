@@ -3,24 +3,21 @@
 
 
 #include "rocky/base/TypeListFlatten.h"
+#include "rocky/base/Swap.h"
 #include "rocky/skull/FoldR.h"
 
 
-// THINK: Is it possible to introduce the underscore type place holder, '_', to simplify the codes below?
-
 template <typename... xs>
 struct Reverse
-{
-private:
-    using init_t = TypeList<>;
-
-    template <typename lhs, typename rhs>
-    struct SwapImpl : FlattenTypeList<rhs, lhs>
-    { };
-
-public:
-    using type = FoldRT<Quote<SwapImpl>, init_t, xs...>;
-};
+        : FoldR<
+                Compose<
+                        Quote<FlattenTypeListWithUnpack>,
+                        Quote<Swap>
+                >,
+                TypeList<>, // init
+                xs...
+          >
+{ };
 
 
 template <typename... xs>
