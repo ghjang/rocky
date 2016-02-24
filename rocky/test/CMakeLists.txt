@@ -57,6 +57,7 @@ set(HEADER_FILES
         ../wolca/PadLeft.h
         ../wolca/PadRight.h
         ../wolca/FromDigits.h
+        ../wolca/Flatten.h
         ../skull/Head.h
         ../skull/Tail.h
         ../skull/Take.h
@@ -156,6 +157,7 @@ set(SOURCE_FILES
         wolca/PadLeftTest.cpp
         wolca/PadRightTest.cpp
         wolca/FromDigitsTest.cpp
+        wolca/FlattenTest.cpp
         skull/HeadTest.cpp
         skull/TailTest.cpp
         skull/TakeTest.cpp
