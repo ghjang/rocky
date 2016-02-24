@@ -4,6 +4,7 @@
 
 #include "rocky/skull/FoldL.h"
 #include "rocky/skull/Elem.h"
+#include "rocky/skull/Length.h"
 #include "rocky/app/Find.h"
 
 
@@ -44,6 +45,24 @@ struct Unique<std::pair<x, y>> : Unique<x, y>
 template <template <typename...> class TypeListContainer, typename... xs>
 struct Unique<TypeListContainer<xs...>>
         : ReplaceTypeListContainer<UniqueT<xs...>, TypeListContainer>
+{ };
+
+
+template <typename... xs>
+struct HasSameType
+        : std::conditional_t<
+                Length<UniqueT<xs...>>() == 1,
+                std::true_type,
+                std::false_type
+        >
+{ };
+
+template <>
+struct HasSameType<> : std::true_type
+{ };
+
+template <template <typename...> class TypeListContainer>
+struct HasSameType<TypeListContainer<>> : std::true_type
 { };
 
 
