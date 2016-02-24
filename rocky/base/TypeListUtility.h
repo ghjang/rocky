@@ -2,8 +2,7 @@
 #define ROCKY_BASE_TYPELISTUTILITY_H
 
 
-#include "rocky/skull/Length.h"
-#include "rocky/app/Unique.h"
+#include "rocky/base/TypeList.h"
 
 
 template <typename x>
@@ -12,24 +11,6 @@ struct IsTypeListContainer : std::false_type
 
 template <template <typename...> class TypeListContainer, typename... xs>
 struct IsTypeListContainer<TypeListContainer<xs...>> : std::true_type
-{ };
-
-
-template <typename... xs>
-struct HasSameType
-        : std::conditional_t<
-                Length<UniqueT<xs...>>() == 1,
-                std::true_type,
-                std::false_type
-          >
-{ };
-
-template <>
-struct HasSameType<> : std::true_type
-{ };
-
-template <template <typename...> class TypeListContainer>
-struct HasSameType<TypeListContainer<>> : std::true_type
 { };
 
 
