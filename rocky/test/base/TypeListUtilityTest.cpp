@@ -3,6 +3,24 @@
 #include "rocky/base/TypeListUtility.h"
 
 
+TEST_CASE("IsTypeListContainer", "[TypeListUtility]")
+{
+    using std::tuple;
+    using std::pair;
+
+    static_assert(IsTypeListContainer<TL<>>(), "");
+    static_assert(IsTypeListContainer<tuple<>>(), "");
+
+    // compile-time error: too few template arguments for class template 'pair'
+    //static_assert(IsTypeListContainer<pair<>>(), "");
+
+    static_assert(IsTypeListContainer<TL<char>>(), "");
+    static_assert(IsTypeListContainer<TL<char, TL<int>>>(), "");
+    static_assert(IsTypeListContainer<TL<char, TL<int>, tuple<float>>>(), "");
+    static_assert(IsTypeListContainer<tuple<char>>(), "");
+    static_assert(IsTypeListContainer<tuple<char, tuple<int>, TL<float>>>(), "");
+}
+
 TEST_CASE("HasSameType", "[TypeListUtility]")
 {
     using std::pair;

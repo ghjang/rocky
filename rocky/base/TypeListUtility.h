@@ -6,6 +6,15 @@
 #include "rocky/app/Unique.h"
 
 
+template <typename x>
+struct IsTypeListContainer : std::false_type
+{ };
+
+template <template <typename...> class TypeListContainer, typename... xs>
+struct IsTypeListContainer<TypeListContainer<xs...>> : std::true_type
+{ };
+
+
 template <typename... xs>
 struct HasSameType
         : std::conditional_t<
