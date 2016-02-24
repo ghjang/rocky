@@ -3,7 +3,7 @@
 #include "rocky/base/TypeListFlatten.h"
 
 
-TEST_CASE("TypeList flatten", "[TypeListFlattenAs]")
+TEST_CASE("TypeList flatten", "[TypeListFlatten]")
 {
     using std::is_same;
 
