@@ -81,12 +81,25 @@ namespace Detail
 } // namespace Detail
 
 
+/**
+ * NOTE: Prefer to use Lambda Expressions to bind arguments whenever possible. It is usually more readable.
+ *       But, in some cases, following binding functions seems to be handy.
+ */
+
+/**
+ * @tparam f function
+ * @tparam args arguments to bind first
+ */
 template <typename F, typename... Args>
 auto bind_first(F && f, Args &&... args)
 {
     return Detail::FirstBinder<std::decay_t<F>, std::decay_t<Args>...>(std::forward<F>(f), std::forward<Args>(args)...);
 }
 
+/**
+ * @tparam f function
+ * @tparam args arguments to bind last
+ */
 template <typename F, typename... Args>
 auto bind_last(F && f, Args &&... args)
 {
