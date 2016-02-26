@@ -54,6 +54,7 @@ namespace Detail
 template <typename... F>
 auto compose(F &&... fs)
 {
+    static_assert(sizeof...(fs) > 0, "there should be at least one function to compose.");
     return Detail::Composer<std::decay_t<F>...>{ std::forward<F>(fs)... };
 }
 
