@@ -47,5 +47,11 @@ TEST_CASE("compose", "[FunctionComposition]")
 
     auto fs5 = compose(f, g, [](int i){ return i - 1; }, S(), objF, sum);
     REQUIRE(20 == fs5(1, 2, 3, 4, 5));
+
+    auto fs6 = compose(f);
+    REQUIRE(20 == fs6(10));
+
+    // expected compile-time error
+    //auto fs7 = compose();
 }
 
