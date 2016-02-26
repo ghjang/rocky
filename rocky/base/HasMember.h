@@ -4,49 +4,33 @@
 
 #include <type_traits>
 
+#include "rocky/base/VoidT.h"
 
-namespace Detail
-{
-    template<typename T, typename = typename T::type>
-    std::true_type HasTypeMemberImpl(int);
 
-    template<typename T>
-    std::false_type HasTypeMemberImpl(...);
-} // namespace Detail
-
+template <typename T, typename = void>
+struct HasTypeMember : std::false_type
+{ };
 
 template <typename T>
-struct HasTypeMember : decltype(Detail::HasTypeMemberImpl<T>(int{}))
+struct HasTypeMember<T, void_t<typename T::type>> : std::true_type
 { };
 
 
-namespace Detail
-{
-    template<typename T, typename = decltype(T::value)>
-    std::true_type HasValueMemberImpl(int);
-
-    template<typename T>
-    std::false_type HasValueMemberImpl(...);
-} // namespace Detail
-
+template <typename T, typename = void>
+struct HasValueMember : std::false_type
+{ };
 
 template <typename T>
-struct HasValueMember : decltype(Detail::HasValueMemberImpl<T>(int{}))
+struct HasValueMember<T, void_t<decltype (T::value)>> : std::true_type
 { };
 
 
-namespace Detail
-{
-    template<typename T, template <typename...> class = T::template Apply>
-    std::true_type HasApplyMemberImpl(int);
-
-    template<typename T>
-    std::false_type HasApplyMemberImpl(...);
-} // namespace Detail
-
+template <typename T, typename = void>
+struct HasApplyMember : std::false_type
+{ };
 
 template <typename T>
-struct HasApplyMember : decltype(Detail::HasApplyMemberImpl<T>(int{}))
+struct HasApplyMember<T, void_template_t<T::template Apply>> : std::true_type
 { };
 
 
