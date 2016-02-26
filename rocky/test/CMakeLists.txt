@@ -38,6 +38,7 @@ set(HEADER_FILES
         ../base/TypeComposition.h
         ../base/FunctionComposition.h
         ../base/FunctionArgumentBinding.h
+        ../base/VoidT.h
         ../math/Power.h
         ../math/Abs.h
         ../math/RatioString.h
