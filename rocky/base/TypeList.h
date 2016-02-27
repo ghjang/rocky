@@ -34,22 +34,6 @@ struct TypeListSize<TypeListContainer<xs...>> : TypeListSize<xs...>
 { };
 
 
-template <typename f>
-struct FunctionParameterListSize;
-
-template <typename r, typename... params>
-struct FunctionParameterListSize<r (params...)> : std::integral_constant<std::size_t, sizeof...(params)>
-{ };
-
-template <typename r, typename... params>
-struct FunctionParameterListSize<r (&) (params...)> : FunctionParameterListSize<r (params...)>
-{ };
-
-template <typename r, typename... params>
-struct FunctionParameterListSize<r (*) (params...)> : FunctionParameterListSize<r (params...)>
-{ };
-
-
 template <typename SourceTypeList, template <typename...> class TargetTypeListContainer>
 struct ReplaceTypeListContainer;
 
