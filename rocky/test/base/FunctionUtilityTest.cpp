@@ -104,7 +104,7 @@ TEST_CASE("IsCallableWith for Lambda Expression Closure Object", "[FunctionUtili
     static_assert(IsCallableWith<decltype(gl1), TypeList<B, int, int>>(), "");
 
     // SFINAE succeeds.
-    // But this results in a compile error because A object can't be multified by an int value.
+    // But this results in a compile error because A object can't be multiplied by an int value.
     //static_assert(!IsCallableWith<decltype(gl1), TypeList<A, int, int>>(), "");
 
     // Same reason here.
