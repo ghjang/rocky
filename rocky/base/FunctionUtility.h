@@ -4,6 +4,9 @@
 
 #include <type_traits>
 
+#include "rocky/base/VoidT.h"
+#include "rocky/base/TypeList.h"
+
 
 template <typename f>
 struct FunctionParameterListSize;
@@ -18,6 +21,21 @@ struct FunctionParameterListSize<r (&) (params...)> : FunctionParameterListSize<
 
 template <typename r, typename... params>
 struct FunctionParameterListSize<r (*) (params...)> : FunctionParameterListSize<r (params...)>
+{ };
+
+
+/**
+ * NOTE: assumed that the xs are DefaultConstructable.
+ */
+template <typename f, typename... xs>
+using test_function_call_t = decltype(std::declval<f>()(xs()...));
+
+template <typename f, typename xs, typename = void>
+struct IsCallableWith : std::false_type
+{ };
+
+template <typename f, typename... xs>
+struct IsCallableWith<f, TypeList<xs...>, void_t<test_function_call_t<f, xs...>>> : std::true_type
 { };
 
 
