@@ -23,8 +23,23 @@ namespace
         operator std::string () const
         { return ""; }
     };
+
+    int g(int a, int b, int c)
+    {
+        return a * b + c;
+    }
+
+    int g(int a, int b)
+    {
+        return a * b;
+    }
 } // un-named namespace
 
+
+TEST_CASE("decltype on overloaded functions", "[FunctionUtility]")
+{
+    //decltype(g) g_;
+}
 
 TEST_CASE("FunctionParameterListSize", "[FunctionUtility]")
 {
