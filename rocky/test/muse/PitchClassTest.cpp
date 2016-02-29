@@ -1,6 +1,6 @@
 #include "../catch.hpp"
 
-#include "rocky/muse/MusicalNote.h"
+#include "rocky/muse/PitchClass.h"
 
 #include "rocky/skull/Head.h"
 #include "rocky/skull/Last.h"
