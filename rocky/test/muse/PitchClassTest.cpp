@@ -6,7 +6,7 @@
 #include "rocky/skull/Last.h"
 
 
-TEST_CASE("MusicalNote", "[muse]")
+TEST_CASE("PitchClass", "[muse]")
 {
     using std::is_same;
 
