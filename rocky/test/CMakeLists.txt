@@ -112,7 +112,7 @@ set(HEADER_FILES
         ../app/Unique.h
         ../app/Extract.h
         ../app/Rotate.h
-        ../muse/MusicalNote.h
+        ../muse/PitchClass.h
         ../muse/MusicalScale.h
         ../muse/MusicalScalePrint.h
         ../muse/Interval.h)
@@ -216,7 +216,7 @@ set(SOURCE_FILES
         app/UniqueTest.cpp
         app/ExtractTest.cpp
         app/RotateTest.cpp
-        muse/MusicalNoteTest.cpp
+        muse/PitchClassTest.cpp
         muse/MusicalScaleTest.cpp
         muse/IntervalTest.cpp)
 

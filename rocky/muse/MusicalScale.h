@@ -8,7 +8,7 @@
 #include "rocky/app/Rotate.h"
 #include "rocky/app/Extract.h"
 #include "rocky/app/Find.h"
-#include "rocky/muse/MusicalNote.h"
+#include "rocky/muse/PitchClass.h"
 
 
 using MajorScalePitchClassIndexSequenceT = std::index_sequence<0, 2, 4, 5, 7, 9, 11>;

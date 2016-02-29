@@ -3,7 +3,7 @@
 
 
 #include "rocky/wolca/Nest.h"
-#include "rocky/muse/MusicalNote.h"
+#include "rocky/muse/PitchClass.h"
 
 
 template <typename PitchClass>
