@@ -3,195 +3,195 @@
 #include "rocky/muse/Interval.h"
 
 
-TEST_CASE("NextHalfMusicalNote", "[muse]")
+TEST_CASE("NextPitchClass", "[muse]")
 {
     using std::is_same;
 
-    static_assert(is_same<note_c_t<MusicalNote::Db>, NextHalfMusicalNoteT<MusicalNote::C>>(), "");
-    static_assert(is_same<note_c_t<MusicalNote::C>, NextHalfMusicalNoteT<MusicalNote::B>>(), "");
+    static_assert(is_same<pitch_class_c_t<PitchClass::Db>, NextPitchClassT<PitchClass::C>>(), "");
+    static_assert(is_same<pitch_class_c_t<PitchClass::C>, NextPitchClassT<PitchClass::B>>(), "");
 
     // perfect 4th
     static_assert(
             is_same<
-                    note_c_t<MusicalNote::F>,
-                    NestT<Quote<NextHalfMusicalNote>, note_c_t<MusicalNote::C>, 5>
-                                                                                        >(),
+                    pitch_class_c_t<PitchClass::F>,
+                    NestT<Quote<NextPitchClass>, pitch_class_c_t<PitchClass::C>, 5>
+            >(),
             ""
     );
 
     // perfect 5th
     static_assert(
             is_same<
-                    note_c_t<MusicalNote::G>,
-                    NestT<Quote<NextHalfMusicalNote>, note_c_t<MusicalNote::C>, 7>
-                                                                                        >(),
+                    pitch_class_c_t<PitchClass::G>,
+                    NestT<Quote<NextPitchClass>, pitch_class_c_t<PitchClass::C>, 7>
+            >(),
             ""
     );
 
     // 1-octave above
     static_assert(
             is_same<
-                    note_c_t<MusicalNote::C>,
-                    NestT<Quote<NextHalfMusicalNote>, note_c_t<MusicalNote::C>, 12>
-                                                                                        >(),
+                    pitch_class_c_t<PitchClass::C>,
+                    NestT<Quote<NextPitchClass>, pitch_class_c_t<PitchClass::C>, 12>
+            >(),
             ""
     );
 
     // 2-octave above
     static_assert(
             is_same<
-                    note_c_t<MusicalNote::C>,
-                    NestT<Quote<NextHalfMusicalNote>, note_c_t<MusicalNote::C>, 24>
-                                                                                        >(),
+                    pitch_class_c_t<PitchClass::C>,
+                    NestT<Quote<NextPitchClass>, pitch_class_c_t<PitchClass::C>, 24>
+            >(),
             ""
     );
 }
 
-TEST_CASE("PrevHalfMusicalNote", "[muse]")
+TEST_CASE("PrevPitchClass", "[muse]")
 {
     using std::is_same;
 
-    static_assert(is_same<note_c_t<MusicalNote::B>, PrevHalfMusicalNoteT<MusicalNote::C>>(), "");
-    static_assert(is_same<note_c_t<MusicalNote::Bb>, PrevHalfMusicalNoteT<MusicalNote::B>>(), "");
+    static_assert(is_same<pitch_class_c_t<PitchClass::B>, PrevPitchClassT<PitchClass::C>>(), "");
+    static_assert(is_same<pitch_class_c_t<PitchClass::Bb>, PrevPitchClassT<PitchClass::B>>(), "");
 
     // perfect 4th
     static_assert(
             is_same<
-                    note_c_t<MusicalNote::G>,
-                    NestT<Quote<PrevHalfMusicalNote>, note_c_t<MusicalNote::C>, 5>
-                                                                                        >(),
+                    pitch_class_c_t<PitchClass::G>,
+                    NestT<Quote<PrevPitchClass>, pitch_class_c_t<PitchClass::C>, 5>
+            >(),
             ""
     );
 
     // perfect 5th
     static_assert(
             is_same<
-                    note_c_t<MusicalNote::F>,
-                    NestT<Quote<PrevHalfMusicalNote>, note_c_t<MusicalNote::C>, 7>
-                                                                                        >(),
+                    pitch_class_c_t<PitchClass::F>,
+                    NestT<Quote<PrevPitchClass>, pitch_class_c_t<PitchClass::C>, 7>
+            >(),
             ""
     );
 
     // 1-octave below
     static_assert(
             is_same<
-                    note_c_t<MusicalNote::C>,
-                    NestT<Quote<PrevHalfMusicalNote>, note_c_t<MusicalNote::C>, 12>
-                                                                                        >(),
+                    pitch_class_c_t<PitchClass::C>,
+                    NestT<Quote<PrevPitchClass>, pitch_class_c_t<PitchClass::C>, 12>
+            >(),
             ""
     );
 
     // 2-octave below
     static_assert(
             is_same<
-                    note_c_t<MusicalNote::C>,
-                    NestT<Quote<PrevHalfMusicalNote>, note_c_t<MusicalNote::C>, 24>
-                                                                                        >(),
-            ""
-    );
-}
-
-TEST_CASE("NextMusicalNoteT", "[muse]")
-{
-    using std::is_same;
-
-    using note_list_t_0 = TypeList<
-                                NextMusicalNoteT<MusicalNote::C, MusicalNoteInterval::Unison>,
-                                NextMusicalNoteT<MusicalNote::C, MusicalNoteInterval::Minor2nd>,
-                                NextMusicalNoteT<MusicalNote::C, MusicalNoteInterval::Major2nd>,
-                                NextMusicalNoteT<MusicalNote::C, MusicalNoteInterval::Minor3rd>,
-                                NextMusicalNoteT<MusicalNote::C, MusicalNoteInterval::Major3rd>,
-                                NextMusicalNoteT<MusicalNote::C, MusicalNoteInterval::Diminished4th>,
-                                NextMusicalNoteT<MusicalNote::C, MusicalNoteInterval::Perfect4th>,
-                                NextMusicalNoteT<MusicalNote::C, MusicalNoteInterval::Augmented4th>,
-                                NextMusicalNoteT<MusicalNote::C, MusicalNoteInterval::Diminished5th>,
-                                NextMusicalNoteT<MusicalNote::C, MusicalNoteInterval::Perfect5th>,
-                                NextMusicalNoteT<MusicalNote::C, MusicalNoteInterval::Augmented5th>,
-                                NextMusicalNoteT<MusicalNote::C, MusicalNoteInterval::Minor6th>,
-                                NextMusicalNoteT<MusicalNote::C, MusicalNoteInterval::Major6th>,
-                                NextMusicalNoteT<MusicalNote::C, MusicalNoteInterval::Minor7th>,
-                                NextMusicalNoteT<MusicalNote::C, MusicalNoteInterval::Major7th>,
-                                NextMusicalNoteT<MusicalNote::C, MusicalNoteInterval::Octave>
-                            >;
-
-    using note_list_t_1 = TypeList<
-                                note_c_t<MusicalNote::C>,
-                                note_c_t<MusicalNote::Db>,
-                                note_c_t<MusicalNote::D>,
-                                note_c_t<MusicalNote::Eb>,
-                                note_c_t<MusicalNote::E>,
-                                note_c_t<MusicalNote::E>,
-                                note_c_t<MusicalNote::F>,
-                                note_c_t<MusicalNote::Gb>,
-                                note_c_t<MusicalNote::Gb>,
-                                note_c_t<MusicalNote::G>,
-                                note_c_t<MusicalNote::Ab>,
-                                note_c_t<MusicalNote::Ab>,
-                                note_c_t<MusicalNote::A>,
-                                note_c_t<MusicalNote::Bb>,
-                                note_c_t<MusicalNote::B>,
-                                note_c_t<MusicalNote::C>
-                            >;
-
-    static_assert(is_same<note_list_t_0, note_list_t_1>(), "");
-
-    static_assert(
-            is_same<
-                    NextMusicalNoteT<MusicalNote::B, MusicalNoteInterval::Perfect5th>,
-                    note_c_t<MusicalNote::Gb>
+                    pitch_class_c_t<PitchClass::C>,
+                    NestT<Quote<PrevPitchClass>, pitch_class_c_t<PitchClass::C>, 24>
             >(),
             ""
     );
 }
 
-TEST_CASE("PrevMusicalNoteT", "[muse]")
+TEST_CASE("NextPitchClassWithIntervalT", "[muse]")
 {
     using std::is_same;
 
-    using note_list_t_0 = TypeList<
-                                PrevMusicalNoteT<MusicalNote::C, MusicalNoteInterval::Unison>,
-                                PrevMusicalNoteT<MusicalNote::C, MusicalNoteInterval::Minor2nd>,
-                                PrevMusicalNoteT<MusicalNote::C, MusicalNoteInterval::Major2nd>,
-                                PrevMusicalNoteT<MusicalNote::C, MusicalNoteInterval::Minor3rd>,
-                                PrevMusicalNoteT<MusicalNote::C, MusicalNoteInterval::Major3rd>,
-                                PrevMusicalNoteT<MusicalNote::C, MusicalNoteInterval::Diminished4th>,
-                                PrevMusicalNoteT<MusicalNote::C, MusicalNoteInterval::Perfect4th>,
-                                PrevMusicalNoteT<MusicalNote::C, MusicalNoteInterval::Augmented4th>,
-                                PrevMusicalNoteT<MusicalNote::C, MusicalNoteInterval::Diminished5th>,
-                                PrevMusicalNoteT<MusicalNote::C, MusicalNoteInterval::Perfect5th>,
-                                PrevMusicalNoteT<MusicalNote::C, MusicalNoteInterval::Augmented5th>,
-                                PrevMusicalNoteT<MusicalNote::C, MusicalNoteInterval::Minor6th>,
-                                PrevMusicalNoteT<MusicalNote::C, MusicalNoteInterval::Major6th>,
-                                PrevMusicalNoteT<MusicalNote::C, MusicalNoteInterval::Minor7th>,
-                                PrevMusicalNoteT<MusicalNote::C, MusicalNoteInterval::Major7th>,
-                                PrevMusicalNoteT<MusicalNote::C, MusicalNoteInterval::Octave>
+    using pc_list_t_0 = TypeList<
+                                NextPitchClassWithIntervalT<PitchClass::C, PitchInterval::Unison>,
+                                NextPitchClassWithIntervalT<PitchClass::C, PitchInterval::Minor2nd>,
+                                NextPitchClassWithIntervalT<PitchClass::C, PitchInterval::Major2nd>,
+                                NextPitchClassWithIntervalT<PitchClass::C, PitchInterval::Minor3rd>,
+                                NextPitchClassWithIntervalT<PitchClass::C, PitchInterval::Major3rd>,
+                                NextPitchClassWithIntervalT<PitchClass::C, PitchInterval::Diminished4th>,
+                                NextPitchClassWithIntervalT<PitchClass::C, PitchInterval::Perfect4th>,
+                                NextPitchClassWithIntervalT<PitchClass::C, PitchInterval::Augmented4th>,
+                                NextPitchClassWithIntervalT<PitchClass::C, PitchInterval::Diminished5th>,
+                                NextPitchClassWithIntervalT<PitchClass::C, PitchInterval::Perfect5th>,
+                                NextPitchClassWithIntervalT<PitchClass::C, PitchInterval::Augmented5th>,
+                                NextPitchClassWithIntervalT<PitchClass::C, PitchInterval::Minor6th>,
+                                NextPitchClassWithIntervalT<PitchClass::C, PitchInterval::Major6th>,
+                                NextPitchClassWithIntervalT<PitchClass::C, PitchInterval::Minor7th>,
+                                NextPitchClassWithIntervalT<PitchClass::C, PitchInterval::Major7th>,
+                                NextPitchClassWithIntervalT<PitchClass::C, PitchInterval::Octave>
                             >;
 
-    using note_list_t_1 = TypeList<
-                                note_c_t<MusicalNote::C>,
-                                note_c_t<MusicalNote::B>,
-                                note_c_t<MusicalNote::Bb>,
-                                note_c_t<MusicalNote::A>,
-                                note_c_t<MusicalNote::Ab>,
-                                note_c_t<MusicalNote::Ab>,
-                                note_c_t<MusicalNote::G>,
-                                note_c_t<MusicalNote::Gb>,
-                                note_c_t<MusicalNote::Gb>,
-                                note_c_t<MusicalNote::F>,
-                                note_c_t<MusicalNote::E>,
-                                note_c_t<MusicalNote::E>,
-                                note_c_t<MusicalNote::Eb>,
-                                note_c_t<MusicalNote::D>,
-                                note_c_t<MusicalNote::Db>,
-                                note_c_t<MusicalNote::C>
+    using pc_list_t_1 = TypeList<
+                                pitch_class_c_t<PitchClass::C>,
+                                pitch_class_c_t<PitchClass::Db>,
+                                pitch_class_c_t<PitchClass::D>,
+                                pitch_class_c_t<PitchClass::Eb>,
+                                pitch_class_c_t<PitchClass::E>,
+                                pitch_class_c_t<PitchClass::E>,
+                                pitch_class_c_t<PitchClass::F>,
+                                pitch_class_c_t<PitchClass::Gb>,
+                                pitch_class_c_t<PitchClass::Gb>,
+                                pitch_class_c_t<PitchClass::G>,
+                                pitch_class_c_t<PitchClass::Ab>,
+                                pitch_class_c_t<PitchClass::Ab>,
+                                pitch_class_c_t<PitchClass::A>,
+                                pitch_class_c_t<PitchClass::Bb>,
+                                pitch_class_c_t<PitchClass::B>,
+                                pitch_class_c_t<PitchClass::C>
                             >;
 
-    static_assert(is_same<note_list_t_0, note_list_t_1>(), "");
+    static_assert(is_same<pc_list_t_0, pc_list_t_1>(), "");
 
     static_assert(
             is_same<
-                    PrevMusicalNoteT<MusicalNote::B, MusicalNoteInterval::Perfect5th>,
-                    note_c_t<MusicalNote::E>
+                    NextPitchClassWithIntervalT<PitchClass::B, PitchInterval::Perfect5th>,
+                    pitch_class_c_t<PitchClass::Gb>
+            >(),
+            ""
+    );
+}
+
+TEST_CASE("PrevPitchClassWithIntervalT", "[muse]")
+{
+    using std::is_same;
+
+    using pc_list_t_0 = TypeList<
+                                PrevPitchClassWithIntervalT<PitchClass::C, PitchInterval::Unison>,
+                                PrevPitchClassWithIntervalT<PitchClass::C, PitchInterval::Minor2nd>,
+                                PrevPitchClassWithIntervalT<PitchClass::C, PitchInterval::Major2nd>,
+                                PrevPitchClassWithIntervalT<PitchClass::C, PitchInterval::Minor3rd>,
+                                PrevPitchClassWithIntervalT<PitchClass::C, PitchInterval::Major3rd>,
+                                PrevPitchClassWithIntervalT<PitchClass::C, PitchInterval::Diminished4th>,
+                                PrevPitchClassWithIntervalT<PitchClass::C, PitchInterval::Perfect4th>,
+                                PrevPitchClassWithIntervalT<PitchClass::C, PitchInterval::Augmented4th>,
+                                PrevPitchClassWithIntervalT<PitchClass::C, PitchInterval::Diminished5th>,
+                                PrevPitchClassWithIntervalT<PitchClass::C, PitchInterval::Perfect5th>,
+                                PrevPitchClassWithIntervalT<PitchClass::C, PitchInterval::Augmented5th>,
+                                PrevPitchClassWithIntervalT<PitchClass::C, PitchInterval::Minor6th>,
+                                PrevPitchClassWithIntervalT<PitchClass::C, PitchInterval::Major6th>,
+                                PrevPitchClassWithIntervalT<PitchClass::C, PitchInterval::Minor7th>,
+                                PrevPitchClassWithIntervalT<PitchClass::C, PitchInterval::Major7th>,
+                                PrevPitchClassWithIntervalT<PitchClass::C, PitchInterval::Octave>
+                            >;
+
+    using pc_list_t_1 = TypeList<
+                                pitch_class_c_t<PitchClass::C>,
+                                pitch_class_c_t<PitchClass::B>,
+                                pitch_class_c_t<PitchClass::Bb>,
+                                pitch_class_c_t<PitchClass::A>,
+                                pitch_class_c_t<PitchClass::Ab>,
+                                pitch_class_c_t<PitchClass::Ab>,
+                                pitch_class_c_t<PitchClass::G>,
+                                pitch_class_c_t<PitchClass::Gb>,
+                                pitch_class_c_t<PitchClass::Gb>,
+                                pitch_class_c_t<PitchClass::F>,
+                                pitch_class_c_t<PitchClass::E>,
+                                pitch_class_c_t<PitchClass::E>,
+                                pitch_class_c_t<PitchClass::Eb>,
+                                pitch_class_c_t<PitchClass::D>,
+                                pitch_class_c_t<PitchClass::Db>,
+                                pitch_class_c_t<PitchClass::C>
+                            >;
+
+    static_assert(is_same<pc_list_t_0, pc_list_t_1>(), "");
+
+    static_assert(
+            is_same<
+                    PrevPitchClassWithIntervalT<PitchClass::B, PitchInterval::Perfect5th>,
+                    pitch_class_c_t<PitchClass::E>
             >(),
             ""
     );

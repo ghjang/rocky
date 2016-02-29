@@ -8,35 +8,35 @@
 #include "rocky/muse/MusicalScale.h"
 
 
-template <MusicalNote Note>
-void PrintNote(note_c_t<Note>)
+template <PitchClass pc>
+void PrintPitchClass(pitch_class_c_t<pc>)
 {
-    static char const * noteNameStr[] = { "C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B" };
-    std::cout << noteNameStr[static_cast<int>(Note)];
+    static char const * pitchClassNameStr[] = { "C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B" };
+    std::cout << pitchClassNameStr[static_cast<int>(pc)];
 }
 
-template <MusicalNote... Note>
-void PrintScale(TypeList<note_c_t<Note>...>)
+template <PitchClass... pc>
+void PrintScale(TypeList<pitch_class_c_t<pc>...>)
 {
-    auto n = sizeof...(Note) - 1;
+    auto n = sizeof...(pc) - 1;
     ForEachElementType(
             [&n](auto t) {
-                PrintNote(typename decltype(t)::type());
+                PrintPitchClass(typename decltype(t)::type());
                 if (n-- > 0) {
                     std::cout << '\t';
                 }
             },
-            TypeList<note_c_t<Note>...>()
+            TypeList<pitch_class_c_t<pc>...>()
     );
     std::cout << std::endl;
 }
 
-template <typename... Scale>
-void PrintScaleList(TypeList<Scale...>)
+template <typename... scale>
+void PrintScaleList(TypeList<scale...>)
 {
     ForEachElementType(
             [](auto t) { PrintScale(typename decltype(t)::type()); },
-            TypeList<Scale...>()
+            TypeList<scale...>()
     );
 }
 

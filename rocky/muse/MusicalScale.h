@@ -11,40 +11,40 @@
 #include "rocky/muse/MusicalNote.h"
 
 
-using MajorScaleNoteIndexSequenceT = std::index_sequence<0, 2, 4, 5, 7, 9, 11>;
+using MajorScalePitchClassIndexSequenceT = std::index_sequence<0, 2, 4, 5, 7, 9, 11>;
 
 // TODO: add all the scale note indices.
-//using MinorScaleNoteIndexSequenceT = std::index_sequence<0, 2, 4, 5, 7, 9, 11>;
+//using MinorScalePitchClassIndexSequenceT = std::index_sequence<0, 2, 4, 5, 7, 9, 11>;
 
 
 using TwelveMajorScaleListT = MapT<
-                                    BindFirst<Quote<Extract>, MajorScaleNoteIndexSequenceT>,
+                                    BindFirst<Quote<Extract>, MajorScalePitchClassIndexSequenceT>,
                                     NestListT<
                                             BindFirst<Quote<Rotate>, std::integral_constant<int, -1>>,
-                                            TwelveHalfMusicalNoteList,
+                                            TwelvePitchClassList,
                                             11
                                     >
                               >;
 
 
-template <typename rootNote>
+template <typename rootPitchClass>
 struct MajorScale;
 
-template <MusicalNote rootNote>
-struct MajorScale<note_c_t<rootNote>>
+template <PitchClass rootPitchClass>
+struct MajorScale<pitch_class_c_t<rootPitchClass>>
         : Apply<
                 Compose<
-                        BindFirst<Quote<Extract>, MajorScaleNoteIndexSequenceT>,
+                        BindFirst<Quote<Extract>, MajorScalePitchClassIndexSequenceT>,
                         Quote<Rotate>
                 >,
-                std::integral_constant<int, -Find<note_c_t<rootNote>, TwelveHalfMusicalNoteList>::value>,
-                TwelveHalfMusicalNoteList
+                std::integral_constant<int, -Find<pitch_class_c_t<rootPitchClass>, TwelvePitchClassList>::value>,
+                TwelvePitchClassList
           >
 { };
 
 
-template <MusicalNote rootNote>
-using MajorScaleT = typename MajorScale<note_c_t<rootNote>>::type;
+template <PitchClass rootPitchClass>
+using MajorScaleT = typename MajorScale<pitch_class_c_t<rootPitchClass>>::type;
 
 
 #endif //ROCKY_MUSE_MUSICALSCALE_H

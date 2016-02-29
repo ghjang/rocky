@@ -24,15 +24,15 @@ TEST_CASE("Major Scale", "[muse]")
     static_assert(
             is_same<
                     TypeList<
-                            note_c_t<MusicalNote::C>,
-                            note_c_t<MusicalNote::D>,
-                            note_c_t<MusicalNote::E>,
-                            note_c_t<MusicalNote::F>,
-                            note_c_t<MusicalNote::G>,
-                            note_c_t<MusicalNote::A>,
-                            note_c_t<MusicalNote::B>
+                            pitch_class_c_t<PitchClass::C>,
+                            pitch_class_c_t<PitchClass::D>,
+                            pitch_class_c_t<PitchClass::E>,
+                            pitch_class_c_t<PitchClass::F>,
+                            pitch_class_c_t<PitchClass::G>,
+                            pitch_class_c_t<PitchClass::A>,
+                            pitch_class_c_t<PitchClass::B>
                     >,
-                    MajorScaleT<MusicalNote::C>
+                    MajorScaleT<PitchClass::C>
             >(),
             ""
     );
@@ -40,15 +40,15 @@ TEST_CASE("Major Scale", "[muse]")
     static_assert(
             is_same<
                     TypeList<
-                            note_c_t<MusicalNote::G>,
-                            note_c_t<MusicalNote::A>,
-                            note_c_t<MusicalNote::B>,
-                            note_c_t<MusicalNote::C>,
-                            note_c_t<MusicalNote::D>,
-                            note_c_t<MusicalNote::E>,
-                            note_c_t<MusicalNote::Gb>
+                            pitch_class_c_t<PitchClass::G>,
+                            pitch_class_c_t<PitchClass::A>,
+                            pitch_class_c_t<PitchClass::B>,
+                            pitch_class_c_t<PitchClass::C>,
+                            pitch_class_c_t<PitchClass::D>,
+                            pitch_class_c_t<PitchClass::E>,
+                            pitch_class_c_t<PitchClass::Gb>
                     >,
-                    MajorScaleT<MusicalNote::G>
+                    MajorScaleT<PitchClass::G>
             >(),
             ""
     );

@@ -1,11 +1,11 @@
-#ifndef ROCKY_MUSE_MUSICALNOTE_H
-#define ROCKY_MUSE_MUSICALNOTE_H
+#ifndef ROCKY_MUSE_PITCHCLASS_H
+#define ROCKY_MUSE_PITCHCLASS_H
 
 
 #include "rocky/base/TypeList.h"
 
 
-enum struct MusicalNote : int
+enum struct PitchClass : int
 {
     C   = 0,
     Db  = 1,
@@ -22,29 +22,29 @@ enum struct MusicalNote : int
 };
 
 
-template <MusicalNote note>
-using note_c_t = std::integral_constant<MusicalNote, note>;
+template <PitchClass pc>
+using pitch_class_c_t = std::integral_constant<PitchClass, pc>;
 
 
-template <MusicalNote... note>
-using MusicalNoteList = TypeList<note_c_t<note>...>;
+template <PitchClass... pc>
+using PitchClassList = TypeList<pitch_class_c_t<pc>...>;
 
 
-using TwelveHalfMusicalNoteList = MusicalNoteList<
-                                        MusicalNote::C,
-                                        MusicalNote::Db,
-                                        MusicalNote::D,
-                                        MusicalNote::Eb,
-                                        MusicalNote::E,
-                                        MusicalNote::F,
-                                        MusicalNote::Gb,
-                                        MusicalNote::G,
-                                        MusicalNote::Ab,
-                                        MusicalNote::A,
-                                        MusicalNote::Bb,
-                                        MusicalNote::B
-                                    >;
+using TwelvePitchClassList = PitchClassList<
+                                    PitchClass::C,
+                                    PitchClass::Db,
+                                    PitchClass::D,
+                                    PitchClass::Eb,
+                                    PitchClass::E,
+                                    PitchClass::F,
+                                    PitchClass::Gb,
+                                    PitchClass::G,
+                                    PitchClass::Ab,
+                                    PitchClass::A,
+                                    PitchClass::Bb,
+                                    PitchClass::B
+                                >;
 
 
-#endif //ROCKY_MUSE_MUSICALNOTE_H
+#endif //ROCKY_MUSE_PITCHCLASS_H
 
