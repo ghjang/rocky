@@ -24,11 +24,8 @@ struct FunctionParameterListSize<r (*) (params...)> : FunctionParameterListSize<
 { };
 
 
-/**
- * NOTE: assumed that the xs are DefaultConstructable.
- */
 template <typename f, typename... xs>
-using test_function_call_t = decltype(std::declval<f>()(xs()...));
+using test_function_call_t = decltype(std::declval<f>()(std::declval<xs>()...));
 
 template <typename f, typename xs, typename = void>
 struct IsCallableWith : std::false_type

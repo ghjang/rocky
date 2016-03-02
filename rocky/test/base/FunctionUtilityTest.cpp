@@ -24,6 +24,18 @@ namespace
         { return ""; }
     };
 
+    /**
+     * NOTE: D is not DefaultConstructable.
+     */
+    struct D
+    {
+        D(int, int)
+        { }
+
+        operator int () const
+        { return 0; }
+    };
+
     int g(int a, int b, int c)
     {
         return a * b + c;
@@ -136,5 +148,11 @@ TEST_CASE("IsCallableWith for Lambda Expression Closure Object", "[FunctionUtili
     // THINK: Is there a way to make it safely fail without compile errors?
     //static_assert(!IsCallableWith<decltype(gl2), TypeList<A, int, int>>(), "");
     //static_assert(!IsCallableWith<decltype(gl2), TypeList<C, int, int>>(), "");
+}
+
+TEST_CASE("IsCallableWith for an object which is not DefaultConstructable", "[FunctionUtility]")
+{
+    // NOTE: D is not DefaultConstructable.
+    static_assert(IsCallableWith<decltype(f), TypeList<D, int, int>>(), "");
 }
 
