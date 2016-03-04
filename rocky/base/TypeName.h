@@ -58,5 +58,12 @@ std::string template_name_of<T, std::enable_if_t<IsTypeListContainer<std::decay_
 };
 
 
+template <typename T, typename = void>
+std::string name_of{ type_name_of<T> };
+
+template <typename T>
+std::string name_of<T, std::enable_if_t<IsTypeListContainer<std::decay_t<T>>::value>> { template_name_of<T> };
+
+
 #endif //ROCKY_BASE_TYPENAME_H
 

@@ -41,3 +41,14 @@ TEST_CASE("template_name_of", "[TypeName]")
     REQUIRE("tuple" == template_name_of<tuple_t>);
 }
 
+TEST_CASE("name_of", "[TypeName]")
+{
+    using std::tuple;
+
+    struct S { };
+    REQUIRE("S" == name_of<S>);
+
+    using tuple_t = tuple<char, int, float, double>;
+    REQUIRE("tuple" == name_of<tuple_t>);
+}
+
