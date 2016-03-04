@@ -40,6 +40,7 @@ set(HEADER_FILES
         ../base/FunctionArgumentBinding.h
         ../base/VoidT.h
         ../base/FunctionUtility.h
+        ../base/TypeName.h
         ../math/Power.h
         ../math/Abs.h
         ../math/RatioString.h
@@ -143,6 +144,7 @@ set(SOURCE_FILES
         base/FunctionCompositionTest.cpp
         base/FunctionArgumentBindingTest.cpp
         base/FunctionUtilityTest.cpp
+        base/TypeNameTest.cpp
         math/PowerTest.cpp
         math/AbsTest.cpp
         math/RatioStringTest.cpp

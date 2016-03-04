@@ -8,13 +8,6 @@
 #include "rocky/base/HasMember.h"
 
 
-/**
- * For type displaying.
- */
-template <typename T>
-struct TD;
-
-
 template <typename T>
 constexpr Identity<T> type_c{};
 
