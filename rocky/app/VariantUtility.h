@@ -5,7 +5,7 @@
 #include <string>
 #include <vector>
 
-#include "boost/variant.hpp"
+#include <boost/variant.hpp>
 
 #include "rocky/base/TypeUtility.h"
 #include "rocky/base/ForEachArgument.h"
