@@ -23,7 +23,7 @@ namespace
 }
 
 
-TEST_CASE("for each tuple element", "[ForEachTuple]")
+TEST_CASE("for each tuple element", "[ForEach]")
 {
     using std::tuple;
     using std::make_tuple;
@@ -54,7 +54,7 @@ TEST_CASE("for each tuple element", "[ForEachTuple]")
     }
 }
 
-TEST_CASE("tuple element type size sum", "[ForEachTuple]")
+TEST_CASE("tuple element type size sum", "[ForEach]")
 {
     using std::make_tuple;
 
