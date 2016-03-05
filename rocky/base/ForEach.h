@@ -30,17 +30,10 @@ decltype(auto) ForEachElement(F && f, std::tuple<Types...> && t)
 }
 
 
-template <typename F, typename... xs>
-decltype(auto) ForEachElementType(F && f, TypeList<xs...> &&)
+template <typename F, template <typename...> class TypeListContainer, typename... xs>
+decltype(auto) ForEachElementType(F && f, TypeListContainer<xs...> &&)
 {
     return ForEachArgument(std::forward<F>(f), type_c<xs>...);
-}
-
-
-template <typename F, typename... Type>
-decltype(auto) ForEachElementType(F && f, std::tuple<Type...> &&)
-{
-    return ForEachArgument(std::forward<F>(f), type_c<Type>...);
 }
 
 
