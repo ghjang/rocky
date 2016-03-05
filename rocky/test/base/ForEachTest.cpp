@@ -3,8 +3,6 @@
 
 #include "rocky/base/ForEach.h"
 
-#include <type_traits>
-
 
 namespace
 {
