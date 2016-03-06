@@ -13,7 +13,7 @@ void ForEachChildElementTypeInPreOrder(F && f, TypeListContainer<xs...>);
 namespace Detail
 {
     template<typename T, typename = void>
-    struct TypeTraversalHelper
+    struct PreOrderTypeTraversalHelper
     {
         template<typename F>
         void operator()(F & f) const
@@ -23,7 +23,7 @@ namespace Detail
     };
 
     template<typename T>
-    struct TypeTraversalHelper<T, std::enable_if_t<IsTypeListContainer<T>::value>>
+    struct PreOrderTypeTraversalHelper<T, std::enable_if_t<IsTypeListContainer<T>::value>>
     {
         template<typename F>
         void operator()(F & f) const
@@ -42,7 +42,7 @@ void ForEachChildElementTypeInPreOrder(F && f, TypeListContainer<xs...>)
     ForEachElementType(
             [&f](auto t) {
                 using arg_type_t = typename decltype(t)::type;
-                Detail::TypeTraversalHelper<arg_type_t>()(f);
+                Detail::PreOrderTypeTraversalHelper<arg_type_t>()(f);
             },
             TypeList<xs...>()
     );
