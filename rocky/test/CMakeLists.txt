@@ -42,6 +42,7 @@ set(HEADER_FILES
         ../base/FunctionUtility.h
         ../base/TypeName.h
         ../base/Random.h
+        ../base/TypeTree.h
         ../math/Power.h
         ../math/Abs.h
         ../math/RatioString.h
@@ -147,6 +148,7 @@ set(SOURCE_FILES
         base/FunctionUtilityTest.cpp
         base/TypeNameTest.cpp
         base/RandomTest.cpp
+        base/TypeTreeTest.cpp
         math/PowerTest.cpp
         math/AbsTest.cpp
         math/RatioStringTest.cpp
