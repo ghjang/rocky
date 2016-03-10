@@ -13,3 +13,11 @@ TEST_CASE("AllExtents", "[ArrayUtility]")
     static_assert(is_same<array_extents_t<3, 4, 5>, AllExtentsT<int[3][4][5]>>(), "");
 }
 
+TEST_CASE("allExtents", "[ArrayUtility]")
+{
+    constexpr auto extents = allExtents<int[][3][4]>();
+    REQUIRE(extents[0] == 0);
+    REQUIRE(extents[1] == 3);
+    REQUIRE(extents[2] == 4);
+}
+
