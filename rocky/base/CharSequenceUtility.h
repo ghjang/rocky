@@ -37,13 +37,12 @@ private:
 
     template <intmax_t N, std::size_t... i>
     struct MakeCharSequenceFromIntegerImpl<N, std::index_sequence<i...>>
-    {
-        using type = std::conditional_t<
-                            N < 0,
-                            CharSequence<'-', TIntegerDigitCharacter<N, sizeof...(i) - i>::value...>,
-                            CharSequence<TIntegerDigitCharacter<N, sizeof...(i) - i>::value...>
-                        >;
-    };
+            : std::conditional<
+                    N < 0,
+                    CharSequence<'-', TIntegerDigitCharacter<N, sizeof...(i) - i>::value...>,
+                    CharSequence<TIntegerDigitCharacter<N, sizeof...(i) - i>::value...>
+                >
+    { };
 
 public:
     using type = typename MakeCharSequenceFromIntegerImpl<
