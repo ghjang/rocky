@@ -25,7 +25,7 @@ struct terminal
 template <std::size_t i>
 struct placeholder
         : terminal<placeholder<i>>
-        , std::integral_constant<std::size_t, i> 
+        , std::integral_constant<std::size_t, i>
 { };
 
 static placeholder<1> const _1{};
@@ -51,7 +51,7 @@ private:
                     std::get<i - 1>(c.args_),
                     std::forward<R>(r)
                );
-    }    
+    }
 
     template <typename L, std::size_t i, typename Context>
     decltype(auto) call_impl(L && l, placeholder<i> const&, Context & c)
@@ -60,7 +60,7 @@ private:
                     std::forward<L>(l),
                     std::get<i - 1>(c.args_)
                );
-    }    
+    }
 
     template <std::size_t i, std::size_t j, typename Context>
     decltype(auto) call_impl(placeholder<i> const&, placeholder<j> const&, Context & c)
@@ -69,19 +69,19 @@ private:
                     std::get<i - 1>(c.args_),
                     std::get<j - 1>(c.args_)
                );
-    }    
+    }
 
     template <typename T, typename R, typename Context>
     decltype(auto) call_impl(callable<T> & l, R && r, Context & c)
     {
         return Derived::apply(l(c), std::forward<R>(r));
-    }    
+    }
 
     template <typename L, typename T, typename Context>
     decltype(auto) call_impl(L && l, callable<T> & r, Context & c)
     {
         return Derived::apply(std::forward<L>(l), r(c));
-    }    
+    }
 
     template <typename T, typename U, typename Context>
     decltype(auto) call_impl(callable<T> & l, callable<U> & r, Context & c)
@@ -158,7 +158,7 @@ struct expression
 {
     using expression_type = expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef>;
     using storage_base_type = storage<Left, Right, IsLeftRValRef, IsRightRValRef>;
-    
+
     template <typename L, typename R>
     explicit expression(L && l, R && r)
         : storage_base_type{ std::forward<L>(l), std::forward<R>(r) }
@@ -167,7 +167,7 @@ struct expression
     auto & left()
     {
         storage_base_type & s = *this;
-        return s.left_; 
+        return s.left_;
     }
 
     auto & right()
@@ -181,18 +181,38 @@ struct expression
     {
         return OpTag::apply(std::forward<L>(l), std::forward<R>(r));
     }
-
-    template <typename R>
-    auto operator << (R && r)
-    {
-        return expression<
-                    expression_type, left_shift, R,
-                    false,
-                    std::is_rvalue_reference<decltype(r)>::value
-               >{ *this, std::forward<R>(r) };
-    }
 };
 
+
+template
+<
+    typename Left, typename OpTag, typename Right,
+    bool IsLeftRValRef, bool IsRightRValRef,
+    typename Rhs
+>
+auto operator << (expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> & lhs, Rhs && rhs)
+{
+    return expression<
+                expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef>, left_shift, Rhs,
+                false,
+                std::is_rvalue_reference<decltype(rhs)>::value
+           >{ lhs, std::forward<Rhs>(rhs) };
+}
+
+template
+<
+    typename Left, typename OpTag, typename Right,
+    bool IsLeftRValRef, bool IsRightRValRef,
+    typename Rhs
+>
+auto operator << (expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> && lhs, Rhs && rhs)
+{
+    return expression<
+                expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef>, left_shift, Rhs,
+                true,
+                std::is_rvalue_reference<decltype(rhs)>::value
+           >{ std::move(lhs), std::forward<Rhs>(rhs) };
+}
 
 template <typename L, std::size_t i>
 auto operator << (L && l, placeholder<i> const& r)
