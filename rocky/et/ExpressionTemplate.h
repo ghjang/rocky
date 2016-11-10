@@ -7,19 +7,14 @@
 #include <tuple>
 
 
-struct left_shift
+template <typename Derived>
+struct terminal
 {
-    template <typename L, typename R>
-    static decltype(auto) apply(L && l, R && r)
+    auto derived()
     {
-        return std::forward<L>(l) << std::forward<R>(r);
+        return static_cast<Derived *>(this);
     }
 };
-
-
-template <typename T>
-struct terminal
-{ };
 
 
 template <std::size_t i>
@@ -28,9 +23,10 @@ struct placeholder
         , std::integral_constant<std::size_t, i>
 { };
 
-static placeholder<1> const _1{};
-static placeholder<2> const _2{};
-static placeholder<3> const _3{};
+
+static placeholder<1> _1{};
+static placeholder<2> _2{};
+static placeholder<3> _3{};
 
 
 template <typename T>
@@ -184,6 +180,16 @@ struct expression
 };
 
 
+struct left_shift
+{
+    template <typename L, typename R>
+    static decltype(auto) apply(L && l, R && r)
+    {
+        return std::forward<L>(l) << std::forward<R>(r);
+    }
+};
+
+
 template
 <
     typename Left, typename OpTag, typename Right,
@@ -214,14 +220,24 @@ auto operator << (expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> 
            >{ std::move(lhs), std::forward<Rhs>(rhs) };
 }
 
-template <typename L, std::size_t i>
-auto operator << (L && l, placeholder<i> const& r)
+template <typename Lhs, typename T>
+auto operator << (Lhs && lhs, terminal<T> & rhs)
 {
     return expression<
-                L, left_shift, placeholder<i> const,
-                std::is_rvalue_reference<L>::value,
+                Lhs, left_shift, T,
+                std::is_rvalue_reference<Lhs>::value,
                 false
-           >{ std::forward<L>(l), r };
+           >{ std::forward<Lhs>(lhs), *(rhs.derived()) };
+}
+
+template <typename Lhs, typename T>
+auto operator << (Lhs && lhs, terminal<T> && rhs)
+{
+    return expression<
+                Lhs, left_shift, T,
+                std::is_rvalue_reference<Lhs>::value,
+                true
+           >{ std::forward<Lhs>(lhs), std::move(*(rhs.derived())) };
 }
 
 
