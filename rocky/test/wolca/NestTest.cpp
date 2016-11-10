@@ -14,8 +14,7 @@ TEST_CASE("Nest", "[wolca]")
             is_same<
                     int_c_t<8>,
                     NestT<BindLast<Quote<Multiply>, int_c_t<2>>, int_c_t<1>, 3>
-            >(),
-            ""
+            >()
     );
 }
 

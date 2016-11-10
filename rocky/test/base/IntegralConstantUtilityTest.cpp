@@ -140,10 +140,10 @@ TEST_CASE("bool integral constant type alias", "[IntegralConstantUtility]")
 
 TEST_CASE("IsIntegralConstantType", "[IntegralConstantUtility]")
 {
-    static_assert(IsIntegralConstantType<std::true_type>(), "");
-    static_assert(IsIntegralConstantType<std::false_type>(), "");
-    static_assert(IsIntegralConstantType<bool_c_t<true>>(), "");
-    static_assert(IsIntegralConstantType<bool_c_t<false>>(), "");
-    static_assert(IsIntegralConstantType<int_c_t<0>>(), "");
+    static_assert(IsIntegralConstantType<std::true_type>());
+    static_assert(IsIntegralConstantType<std::false_type>());
+    static_assert(IsIntegralConstantType<bool_c_t<true>>());
+    static_assert(IsIntegralConstantType<bool_c_t<false>>());
+    static_assert(IsIntegralConstantType<int_c_t<0>>());
 }
 

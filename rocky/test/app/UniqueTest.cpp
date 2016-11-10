@@ -17,7 +17,7 @@ TEST_CASE("Unique", "[Unique]")
         using unique_t = tuple<char>;
 
         static_assert(1 == tuple_size<result_unique_t>(), "result_unique_t's size should be 1.");
-        static_assert(is_same<char, tuple_element_t<0, result_unique_t>>(), "");
+        static_assert(is_same<char, tuple_element_t<0, result_unique_t>>());
         static_assert(is_same<unique_t, result_unique_t>(), "unique tuple_t should be same as result_unique_t.");
     }
 }
@@ -27,7 +27,7 @@ TEST_CASE("unique pair element type", "[Unique]")
     using std::is_same;
     using std::pair;
 
-    static_assert(is_same<UniqueT<pair<char, char>>, TypeList<char>>(), "");
+    static_assert(is_same<UniqueT<pair<char, char>>, TypeList<char>>());
 }
 
 TEST_CASE("unique tuple element type", "[Unique]")
@@ -44,7 +44,7 @@ TEST_CASE("unique tuple element type", "[Unique]")
         using result_unique_t = UniqueT<tuple_t>;
 
         static_assert(1 == tuple_size<result_unique_t>(), "result_unique_t's size should be 1.");
-        static_assert(is_same<char, tuple_element_t<0, result_unique_t>>(), "");
+        static_assert(is_same<char, tuple_element_t<0, result_unique_t>>());
         static_assert(is_same<unique_t, result_unique_t>(), "unique tuple_t should be same as result_unique_t.");
     }
 
@@ -79,20 +79,20 @@ TEST_CASE("HasSameType", "[Unique]")
     using std::pair;
     using std::tuple;
 
-    static_assert(HasSameType<>(), "");
-    static_assert(HasSameType<TypeList<>>(), "");
-    static_assert(HasSameType<tuple<>>(), "");
+    static_assert(HasSameType<>());
+    static_assert(HasSameType<TypeList<>>());
+    static_assert(HasSameType<tuple<>>());
 
-    static_assert(HasSameType<char, char, char>(), "");
-    static_assert(!HasSameType<char, wchar_t, char>(), "");
+    static_assert(HasSameType<char, char, char>());
+    static_assert(!HasSameType<char, wchar_t, char>());
 
-    static_assert(HasSameType<TypeList<char, char, char>>(), "");
-    static_assert(!HasSameType<TypeList<char, wchar_t, char>>(), "");
+    static_assert(HasSameType<TypeList<char, char, char>>());
+    static_assert(!HasSameType<TypeList<char, wchar_t, char>>());
 
-    static_assert(HasSameType<pair<char, char>>(), "");
-    static_assert(!HasSameType<pair<char, wchar_t>>(), "");
+    static_assert(HasSameType<pair<char, char>>());
+    static_assert(!HasSameType<pair<char, wchar_t>>());
 
-    static_assert(HasSameType<tuple<char, char, char>>(), "");
-    static_assert(!HasSameType<tuple<char, wchar_t, char>>(), "");
+    static_assert(HasSameType<tuple<char, char, char>>());
+    static_assert(!HasSameType<tuple<char, wchar_t, char>>());
 }
 

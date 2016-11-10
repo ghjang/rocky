@@ -62,7 +62,7 @@ constexpr auto IntegerDigit(T n, uint8_t numOfDigit, uint8_t digitIndex)
 template <intmax_t N, std::size_t DigitIndex>
 struct TIntegerDigit
 {
-    static_assert(DigitIndex <= IntegerLength(N) && DigitIndex > 0, "");
+    static_assert(DigitIndex <= IntegerLength(N) && DigitIndex > 0);
     static constexpr int8_t value = IntegerDigit(N, IntegerLength(N), DigitIndex);
 };
 
@@ -73,7 +73,7 @@ struct TIntegerDigit
 template <intmax_t N, std::size_t DigitIndex>
 struct TIntegerDigitCharacter
 {
-    static_assert(DigitIndex <= IntegerLength(N) && DigitIndex > 0, "");
+    static_assert(DigitIndex <= IntegerLength(N) && DigitIndex > 0);
     static constexpr char value = '0' + TIntegerDigit<N, DigitIndex>::value;
 };
 

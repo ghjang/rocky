@@ -7,8 +7,8 @@
 
 TEST_CASE("Max", "[skull]")
 {
-    static_assert(3 == Max<int_c_t<3>, int_c_t<3>>(), "");
-    static_assert(3 == Max<int_c_t<2>, int_c_t<3>>(), "");
-    static_assert(3 == Max<int_c_t<3>, int_c_t<2>>(), "");
+    static_assert(3 == Max<int_c_t<3>, int_c_t<3>>());
+    static_assert(3 == Max<int_c_t<2>, int_c_t<3>>());
+    static_assert(3 == Max<int_c_t<3>, int_c_t<2>>());
 }
 

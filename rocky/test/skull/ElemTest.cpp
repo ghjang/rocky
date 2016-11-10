@@ -5,9 +5,9 @@
 
 TEST_CASE("Elem with null type list", "[skull]")
 {
-    static_assert(!Elem<int>(), "");
-    static_assert(!Elem<int, TypeList<>>(), "");
-    static_assert(!Elem<int, std::tuple<>>(), "");
+    static_assert(!Elem<int>());
+    static_assert(!Elem<int, TypeList<>>());
+    static_assert(!Elem<int, std::tuple<>>());
 }
 
 TEST_CASE("Elem", "[skull]")
@@ -64,6 +64,6 @@ TEST_CASE("Elem with tuple", "[skull]")
 
 TEST_CASE("Elem with TypeList", "[skull]")
 {
-    static_assert(Elem<int, TypeList<char, int, char, int, char, char, char>>(), "");
+    static_assert(Elem<int, TypeList<char, int, char, int, char, char, char>>());
 }
 

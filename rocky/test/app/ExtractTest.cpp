@@ -13,16 +13,14 @@ TEST_CASE("tuple element type extraction", "[Extract]")
             is_same<
                     TypeList<int, uint64_t>,
                     ExtractT<index_sequence<1, 3>, char, int, double, uint64_t, float>
-            >(),
-            ""
+            >()
     );
 
     static_assert(
             is_same<
                     TypeList<int, uint64_t>,
                     ExtractT<index_sequence<1, 3>, TypeList<char, int, double, uint64_t, float>>
-            >(),
-            ""
+            >()
     );
 
     using tuple_t = tuple<char, int, double, uint64_t, float>;

@@ -7,16 +7,15 @@ TEST_CASE("NextPitchClass", "[muse]")
 {
     using std::is_same;
 
-    static_assert(is_same<pitch_class_c_t<PitchClass::Db>, NextPitchClassT<PitchClass::C>>(), "");
-    static_assert(is_same<pitch_class_c_t<PitchClass::C>, NextPitchClassT<PitchClass::B>>(), "");
+    static_assert(is_same<pitch_class_c_t<PitchClass::Db>, NextPitchClassT<PitchClass::C>>());
+    static_assert(is_same<pitch_class_c_t<PitchClass::C>, NextPitchClassT<PitchClass::B>>());
 
     // perfect 4th
     static_assert(
             is_same<
                     pitch_class_c_t<PitchClass::F>,
                     NestT<Quote<NextPitchClass>, pitch_class_c_t<PitchClass::C>, 5>
-            >(),
-            ""
+            >()
     );
 
     // perfect 5th
@@ -24,8 +23,7 @@ TEST_CASE("NextPitchClass", "[muse]")
             is_same<
                     pitch_class_c_t<PitchClass::G>,
                     NestT<Quote<NextPitchClass>, pitch_class_c_t<PitchClass::C>, 7>
-            >(),
-            ""
+            >()
     );
 
     // 1-octave above
@@ -33,8 +31,7 @@ TEST_CASE("NextPitchClass", "[muse]")
             is_same<
                     pitch_class_c_t<PitchClass::C>,
                     NestT<Quote<NextPitchClass>, pitch_class_c_t<PitchClass::C>, 12>
-            >(),
-            ""
+            >()
     );
 
     // 2-octave above
@@ -42,8 +39,7 @@ TEST_CASE("NextPitchClass", "[muse]")
             is_same<
                     pitch_class_c_t<PitchClass::C>,
                     NestT<Quote<NextPitchClass>, pitch_class_c_t<PitchClass::C>, 24>
-            >(),
-            ""
+            >()
     );
 }
 
@@ -51,16 +47,15 @@ TEST_CASE("PrevPitchClass", "[muse]")
 {
     using std::is_same;
 
-    static_assert(is_same<pitch_class_c_t<PitchClass::B>, PrevPitchClassT<PitchClass::C>>(), "");
-    static_assert(is_same<pitch_class_c_t<PitchClass::Bb>, PrevPitchClassT<PitchClass::B>>(), "");
+    static_assert(is_same<pitch_class_c_t<PitchClass::B>, PrevPitchClassT<PitchClass::C>>());
+    static_assert(is_same<pitch_class_c_t<PitchClass::Bb>, PrevPitchClassT<PitchClass::B>>());
 
     // perfect 4th
     static_assert(
             is_same<
                     pitch_class_c_t<PitchClass::G>,
                     NestT<Quote<PrevPitchClass>, pitch_class_c_t<PitchClass::C>, 5>
-            >(),
-            ""
+            >()
     );
 
     // perfect 5th
@@ -68,8 +63,7 @@ TEST_CASE("PrevPitchClass", "[muse]")
             is_same<
                     pitch_class_c_t<PitchClass::F>,
                     NestT<Quote<PrevPitchClass>, pitch_class_c_t<PitchClass::C>, 7>
-            >(),
-            ""
+            >()
     );
 
     // 1-octave below
@@ -77,8 +71,7 @@ TEST_CASE("PrevPitchClass", "[muse]")
             is_same<
                     pitch_class_c_t<PitchClass::C>,
                     NestT<Quote<PrevPitchClass>, pitch_class_c_t<PitchClass::C>, 12>
-            >(),
-            ""
+            >()
     );
 
     // 2-octave below
@@ -86,8 +79,7 @@ TEST_CASE("PrevPitchClass", "[muse]")
             is_same<
                     pitch_class_c_t<PitchClass::C>,
                     NestT<Quote<PrevPitchClass>, pitch_class_c_t<PitchClass::C>, 24>
-            >(),
-            ""
+            >()
     );
 }
 
@@ -133,14 +125,13 @@ TEST_CASE("NextPitchClassWithIntervalT", "[muse]")
                                 pitch_class_c_t<PitchClass::C>
                             >;
 
-    static_assert(is_same<pc_list_t_0, pc_list_t_1>(), "");
+    static_assert(is_same<pc_list_t_0, pc_list_t_1>());
 
     static_assert(
             is_same<
                     NextPitchClassWithIntervalT<PitchClass::B, PitchInterval::Perfect5th>,
                     pitch_class_c_t<PitchClass::Gb>
-            >(),
-            ""
+            >()
     );
 }
 
@@ -186,14 +177,13 @@ TEST_CASE("PrevPitchClassWithIntervalT", "[muse]")
                                 pitch_class_c_t<PitchClass::C>
                             >;
 
-    static_assert(is_same<pc_list_t_0, pc_list_t_1>(), "");
+    static_assert(is_same<pc_list_t_0, pc_list_t_1>());
 
     static_assert(
             is_same<
                     PrevPitchClassWithIntervalT<PitchClass::B, PitchInterval::Perfect5th>,
                     pitch_class_c_t<PitchClass::E>
-            >(),
-            ""
+            >()
     );
 }
 

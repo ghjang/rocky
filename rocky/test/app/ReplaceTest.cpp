@@ -15,16 +15,14 @@ TEST_CASE("replace tuple element type", "[Replace]")
             is_same<
                     TypeList<char, int *, float, double, int *>,
                     ReplaceT<int, int *, char, int, float, double, int>
-            >(),
-            ""
+            >()
     );
 
     static_assert(
             is_same<
                     TypeList<char, int *, float, double, int *>,
                     ReplaceT<int, int *, TypeList<char, int, float, double, int>>
-            >(),
-            ""
+            >()
     );
 
     static_assert(

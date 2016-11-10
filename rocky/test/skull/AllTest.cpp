@@ -9,15 +9,15 @@ TEST_CASE("All", "[skull]")
     using std::is_pointer;
     using std::tuple;
 
-    static_assert(All<Quote<is_pointer>>(), "");
+    static_assert(All<Quote<is_pointer>>());
 
-    static_assert(All<Quote<is_pointer>, char *, int *, float *, double *>(), "");
-    static_assert(!All<Quote<is_pointer>, char *, int *, float, double *>(), "");
+    static_assert(All<Quote<is_pointer>, char *, int *, float *, double *>());
+    static_assert(!All<Quote<is_pointer>, char *, int *, float, double *>());
 
-    static_assert(All<Quote<is_pointer>, TypeList<char *, int *, float *, double *>>(), "");
-    static_assert(!All<Quote<is_pointer>, TypeList<char *, int *, float, double *>>(), "");
+    static_assert(All<Quote<is_pointer>, TypeList<char *, int *, float *, double *>>());
+    static_assert(!All<Quote<is_pointer>, TypeList<char *, int *, float, double *>>());
 
-    static_assert(All<Quote<is_pointer>, tuple<char *, int *, float *, double *>>(), "");
-    static_assert(!All<Quote<is_pointer>, tuple<char *, int *, float, double *>>(), "");
+    static_assert(All<Quote<is_pointer>, tuple<char *, int *, float *, double *>>());
+    static_assert(!All<Quote<is_pointer>, tuple<char *, int *, float, double *>>());
 }
 

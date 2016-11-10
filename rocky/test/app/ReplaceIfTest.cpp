@@ -16,16 +16,14 @@ TEST_CASE("replace tuple element type with condition", "[ReplaceIf]")
             is_same<
                     TypeList<char, int, int *, int *, int>,
                     ReplaceIfT<Quote<is_floating_point>, int *, char, int, float, double, int>
-            >(),
-            ""
+            >()
     );
 
     static_assert(
             is_same<
                     TypeList<char, int, int *, int *, int>,
                     ReplaceIfT<Quote<is_floating_point>, int *, TypeList<char, int, float, double, int>>
-            >(),
-            ""
+            >()
     );
 
     static_assert(

@@ -7,8 +7,8 @@
 
 TEST_CASE("Negate", "[skull]")
 {
-    static_assert(-1 == Negate<int_c_t<1>>(), "");
-    static_assert(0 == Negate<int_c_t<0>>(), "");
-    static_assert(1 == Negate<int_c_t<-1>>(), "");
+    static_assert(-1 == Negate<int_c_t<1>>());
+    static_assert(0 == Negate<int_c_t<0>>());
+    static_assert(1 == Negate<int_c_t<-1>>());
 }
 

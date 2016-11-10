@@ -8,7 +8,7 @@
 
 TEST_CASE("MusicalScales length", "[muse]")
 {
-    static_assert(12 == Length<TwelveMajorScaleListT>(), "");
+    static_assert(12 == Length<TwelveMajorScaleListT>());
 }
 
 TEST_CASE("Printing musical scales to console", "[muse]")
@@ -33,8 +33,7 @@ TEST_CASE("Major Scale", "[muse]")
                             pitch_class_c_t<PitchClass::B>
                     >,
                     MajorScaleT<PitchClass::C>
-            >(),
-            ""
+            >()
     );
 
     static_assert(
@@ -49,8 +48,7 @@ TEST_CASE("Major Scale", "[muse]")
                             pitch_class_c_t<PitchClass::Gb>
                     >,
                     MajorScaleT<PitchClass::G>
-            >(),
-            ""
+            >()
     );
 }
 

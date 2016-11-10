@@ -37,39 +37,39 @@ TEST_CASE("IntegerDigits runtime","[wolca]")
 TEST_CASE("IntegerDigit","[wolca]")
 {
     // NOTE: this is an expected static assertion failures.
-    //static_assert(5 == IntegerDigit(12345, IntegerLength(12345), 0), "");
-    //static_assert(5 == IntegerDigit(12345, IntegerLength(12345), 6), "");
+    //static_assert(5 == IntegerDigit(12345, IntegerLength(12345), 0));
+    //static_assert(5 == IntegerDigit(12345, IntegerLength(12345), 6));
 
-    static_assert(5 == IntegerDigit(12345, IntegerLength(12345), 1), "");
-    static_assert(1 == IntegerDigit(12345, IntegerLength(12345), 5), "");
+    static_assert(5 == IntegerDigit(12345, IntegerLength(12345), 1));
+    static_assert(1 == IntegerDigit(12345, IntegerLength(12345), 5));
 
-    static_assert(5 == IntegerDigit(-12345, IntegerLength(-12345), 1), "");
-    static_assert(1 == IntegerDigit(-12345, IntegerLength(-12345), 5), "");
+    static_assert(5 == IntegerDigit(-12345, IntegerLength(-12345), 1));
+    static_assert(1 == IntegerDigit(-12345, IntegerLength(-12345), 5));
 }
 
 TEST_CASE("IntegerDigitT","[wolca]")
 {
     // NOTE: this is an expected static assertion failures.
-    //static_assert(5 == IntegerDigitT<12345, 0>::value, "");
-    //static_assert(5 == IntegerDigitT<12345, 6>::value, "");
+    //static_assert(5 == IntegerDigitT<12345, 0>::value);
+    //static_assert(5 == IntegerDigitT<12345, 6>::value);
 
-    static_assert(5 == TIntegerDigit<12345, 1>::value, "");
-    static_assert(1 == TIntegerDigit<12345, 5>::value, "");
+    static_assert(5 == TIntegerDigit<12345, 1>::value);
+    static_assert(1 == TIntegerDigit<12345, 5>::value);
 
-    static_assert(5 == TIntegerDigit<-12345, 1>::value, "");
-    static_assert(1 == TIntegerDigit<-12345, 5>::value, "");
+    static_assert(5 == TIntegerDigit<-12345, 1>::value);
+    static_assert(1 == TIntegerDigit<-12345, 5>::value);
 }
 
 TEST_CASE("IntegerDigitCharacterT","[wolca]")
 {
     // NOTE: this is an expected static assertion failures.
-    //static_assert('5' == IntegerDigitCharacterT<12345, 0>::value, "");
-    //static_assert('5' == IntegerDigitCharacterT<12345, 6>::value, "");
+    //static_assert('5' == IntegerDigitCharacterT<12345, 0>::value);
+    //static_assert('5' == IntegerDigitCharacterT<12345, 6>::value);
 
-    static_assert('5' == TIntegerDigitCharacter<12345, 1>::value, "");
-    static_assert('1' == TIntegerDigitCharacter<12345, 5>::value, "");
+    static_assert('5' == TIntegerDigitCharacter<12345, 1>::value);
+    static_assert('1' == TIntegerDigitCharacter<12345, 5>::value);
 
-    static_assert('5' == TIntegerDigitCharacter<-12345, 1>::value, "");
-    static_assert('1' == TIntegerDigitCharacter<-12345, 5>::value, "");
+    static_assert('5' == TIntegerDigitCharacter<-12345, 1>::value);
+    static_assert('1' == TIntegerDigitCharacter<-12345, 5>::value);
 }
 

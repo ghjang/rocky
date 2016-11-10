@@ -5,8 +5,8 @@
 
 TEST_CASE("IsDigitChar", "[StringNumberConversion]")
 {
-    static_assert(IsDigitChar('0'), "");
-    static_assert(!IsDigitChar('-'), "");
+    static_assert(IsDigitChar('0'));
+    static_assert(!IsDigitChar('-'));
 }
 
 TEST_CASE("char to int", "[StringNumberConversion]")

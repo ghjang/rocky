@@ -22,53 +22,53 @@ TEST_CASE("CharTypeToStringType", "[TypeUtility]")
 
     {
         char a[] = "abc";
-        static_assert(is_same<decltype(a), char [4]>(), "");
-        static_assert(is_same<std::string, typename CharTypeToStringType<decltype(a)>::type>(), "");
+        static_assert(is_same<decltype(a), char [4]>());
+        static_assert(is_same<std::string, typename CharTypeToStringType<decltype(a)>::type>());
 
         wchar_t wa[] = L"abc";
-        static_assert(is_same<decltype(wa), wchar_t [4]>(), "");
-        static_assert(is_same<std::wstring, typename CharTypeToStringType<decltype(wa)>::type>(), "");
+        static_assert(is_same<decltype(wa), wchar_t [4]>());
+        static_assert(is_same<std::wstring, typename CharTypeToStringType<decltype(wa)>::type>());
     }
 
     {
         // can have the address for the "abc" string literal.
         char const (* pc)[4] = &"abc";
-        static_assert(is_same<char const (*) [4], decltype(pc)>(), "");
+        static_assert(is_same<char const (*) [4], decltype(pc)>());
 
         // array-to-pointer decay
         char const * dpc = "abc";
-        static_assert(is_same<char const *, decltype(dpc)>(), "");
+        static_assert(is_same<char const *, decltype(dpc)>());
 
         // NOTE: "abc" string literal is lvalue.
         using str_t = decltype("abc");
-        static_assert(is_same<str_t, char const (&)[4]>(), "");
-        static_assert(is_same<std::string, typename CharTypeToStringType<str_t>::type>(), "");
+        static_assert(is_same<str_t, char const (&)[4]>());
+        static_assert(is_same<std::string, typename CharTypeToStringType<str_t>::type>());
 
         using wstr_t = decltype(L"abc");
-        static_assert(is_same<wstr_t, wchar_t const (&)[4]>(), "");
-        static_assert(is_same<std::wstring, typename CharTypeToStringType<wstr_t>::type>(), "");
+        static_assert(is_same<wstr_t, wchar_t const (&)[4]>());
+        static_assert(is_same<std::wstring, typename CharTypeToStringType<wstr_t>::type>());
     }
 
     {
         char const * str = "abc";
-        static_assert(is_same<decltype(str), char const *>(), "");
-        static_assert(is_same<std::string, typename CharTypeToStringType<decltype(str)>::type>(), "");
+        static_assert(is_same<decltype(str), char const *>());
+        static_assert(is_same<std::string, typename CharTypeToStringType<decltype(str)>::type>());
 
         wchar_t const * wstr = L"abc";
-        static_assert(is_same<decltype(wstr), wchar_t const *>(), "");
-        static_assert(is_same<std::wstring, typename CharTypeToStringType<decltype(wstr)>::type>(), "");
+        static_assert(is_same<decltype(wstr), wchar_t const *>());
+        static_assert(is_same<std::wstring, typename CharTypeToStringType<decltype(wstr)>::type>());
     }
 
     {
         char a[] = "abc";
         char * pa = a;
-        static_assert(is_same<decltype(pa), char *>(), "");
-        static_assert(is_same<std::string, typename CharTypeToStringType<decltype(pa)>::type>(), "");
+        static_assert(is_same<decltype(pa), char *>());
+        static_assert(is_same<std::string, typename CharTypeToStringType<decltype(pa)>::type>());
 
         wchar_t wa[] = L"abc";
         wchar_t * pwa = wa;
-        static_assert(is_same<decltype(pwa), wchar_t *>(), "");
-        static_assert(is_same<std::wstring, typename CharTypeToStringType<decltype(pwa)>::type>(), "");
+        static_assert(is_same<decltype(pwa), wchar_t *>());
+        static_assert(is_same<std::wstring, typename CharTypeToStringType<decltype(pwa)>::type>());
     }
 }
 
@@ -81,19 +81,19 @@ TEST_CASE("Quote and ApplyT", "[TypeUtility]")
 
     using metafunction_class_t = Quote<is_integral>;
 
-    static_assert(is_same<true_type, metafunction_class_t::template Apply<int>::type>(), "");
-    static_assert(is_same<false_type, metafunction_class_t::template Apply<double>::type>(), "");
+    static_assert(is_same<true_type, metafunction_class_t::template Apply<int>::type>());
+    static_assert(is_same<false_type, metafunction_class_t::template Apply<double>::type>());
 
-    static_assert(metafunction_class_t::template Apply<int>(), "");
-    static_assert(!metafunction_class_t::template Apply<double>(), "");
+    static_assert(metafunction_class_t::template Apply<int>());
+    static_assert(!metafunction_class_t::template Apply<double>());
 
-    static_assert(is_same<true_type, ApplyT<metafunction_class_t, int>::type>(), "");
-    static_assert(is_same<false_type, ApplyT<metafunction_class_t, double>::type>(), "");
+    static_assert(is_same<true_type, ApplyT<metafunction_class_t, int>::type>());
+    static_assert(is_same<false_type, ApplyT<metafunction_class_t, double>::type>());
 
-    static_assert(ApplyT<metafunction_class_t, int>(), "");
-    static_assert(!ApplyT<metafunction_class_t, double>(), "");
+    static_assert(ApplyT<metafunction_class_t, int>());
+    static_assert(!ApplyT<metafunction_class_t, double>());
 
-    static_assert(ApplyT<Quote<is_integral>, int>(), "");
-    static_assert(!ApplyT<Quote<is_integral>, double>(), "");
+    static_assert(ApplyT<Quote<is_integral>, int>());
+    static_assert(!ApplyT<Quote<is_integral>, double>());
 }
 

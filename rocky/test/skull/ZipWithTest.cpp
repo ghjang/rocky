@@ -22,8 +22,7 @@ TEST_CASE("ZipWith", "[skull]")
                             Quote<ToTuple>,
                             ZipWithT<Quote<AsPairTuple>, TypeList<>, TypeList<>>
                     >
-            >(),
-            ""
+            >()
     );
 
     static_assert(
@@ -33,24 +32,21 @@ TEST_CASE("ZipWith", "[skull]")
                             Quote<ToTuple>,
                             ZipWithT<Quote<AsPairTuple>, TypeList<char, char>, TypeList<int, int>>
                     >
-            >(),
-            ""
+            >()
     );
 
     static_assert(
             is_same<
                     tuple<tuple<char, int>, tuple<char, int>>,
                     ToTupleT<TypeList<tuple<char, int>, tuple<char, int>>>
-            >(),
-            ""
+            >()
     );
 
     static_assert(
             is_same<
                     tuple<tuple<char, int>, tuple<char, int>>,
                     ToTupleT<ZipWithT<Quote<AsPairTuple>, TypeList<char, char>, TypeList<int, int>>>
-            >(),
-            ""
+            >()
     );
 }
 
@@ -66,8 +62,7 @@ TEST_CASE("ZipWith Plus", "[skull]")
                             TL<int_c_t<1>, int_c_t<2>, int_c_t<3>>,
                             TL<int_c_t<1>, int_c_t<2>, int_c_t<3>>
                     >
-            >(),
-            ""
+            >()
     );
 }
 
@@ -83,8 +78,7 @@ TEST_CASE("ZipWith Max", "[skull]")
                             TL<int_c_t<4>, int_c_t<7>, int_c_t<8>>,
                             TL<int_c_t<6>, int_c_t<1>, int_c_t<7>>
                     >
-            >(),
-            ""
+            >()
     );
 }
 
@@ -100,8 +94,7 @@ TEST_CASE("ZipWith Multiply", "[skull]")
                             ReplicateT<5, int_c_t<2>>,
                             RangeT<int_c_t<1>, int_c_t<5>>
                     >
-            >(),
-            ""
+            >()
     );
 }
 

@@ -7,10 +7,10 @@
 
 TEST_CASE("Pred", "[skull]")
 {
-    static_assert(-1 == Pred<int_c_t<0>>(), "");
-    static_assert(-1 == PredV<0>(), "");
+    static_assert(-1 == Pred<int_c_t<0>>());
+    static_assert(-1 == PredV<0>());
 
-    static_assert('a' == Pred<char_c_t<'b'>>(), "");
-    static_assert('a' == PredV<'b'>(), "");
+    static_assert('a' == Pred<char_c_t<'b'>>());
+    static_assert('a' == PredV<'b'>());
 }
 

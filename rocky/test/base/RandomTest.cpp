@@ -23,7 +23,7 @@ TEST_CASE("ANSI-Compliant Predefined Macros", "[Random]")
 TEST_CASE("constexpr staticRand", "[Random]")
 {
     // NOTE: well, I don't know that this is a proper condition to check.
-    static_assert(staticRand() > 0, "");
+    static_assert(staticRand() > 0);
 
     REQUIRE(staticRand() > 0);
 }

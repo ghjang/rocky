@@ -8,17 +8,17 @@ TEST_CASE("IsTypeListContainer", "[TypeListUtility]")
     using std::tuple;
     using std::pair;
 
-    static_assert(IsTypeListContainer<TL<>>(), "");
-    static_assert(IsTypeListContainer<tuple<>>(), "");
+    static_assert(IsTypeListContainer<TL<>>());
+    static_assert(IsTypeListContainer<tuple<>>());
 
     // compile-time error: too few template arguments for class template 'pair'
-    //static_assert(IsTypeListContainer<pair<>>(), "");
+    //static_assert(IsTypeListContainer<pair<>>());
 
-    static_assert(IsTypeListContainer<TL<char>>(), "");
-    static_assert(IsTypeListContainer<TL<char, TL<int>>>(), "");
-    static_assert(IsTypeListContainer<TL<char, TL<int>, tuple<float>>>(), "");
-    static_assert(IsTypeListContainer<tuple<char>>(), "");
-    static_assert(IsTypeListContainer<tuple<char, tuple<int>, TL<float>>>(), "");
+    static_assert(IsTypeListContainer<TL<char>>());
+    static_assert(IsTypeListContainer<TL<char, TL<int>>>());
+    static_assert(IsTypeListContainer<TL<char, TL<int>, tuple<float>>>());
+    static_assert(IsTypeListContainer<tuple<char>>());
+    static_assert(IsTypeListContainer<tuple<char, tuple<int>, TL<float>>>());
 }
 
 TEST_CASE("EmptyTypeListContainerOf", "[TypeListUtility]")
@@ -26,11 +26,11 @@ TEST_CASE("EmptyTypeListContainerOf", "[TypeListUtility]")
     using std::is_same;
     using std::tuple;
 
-    static_assert(is_same<EmptyTypeListContainerOfT<TypeList<>>, TypeList<>>(), "");
-    static_assert(is_same<EmptyTypeListContainerOfT<tuple<>>, tuple<>>(), "");
+    static_assert(is_same<EmptyTypeListContainerOfT<TypeList<>>, TypeList<>>());
+    static_assert(is_same<EmptyTypeListContainerOfT<tuple<>>, tuple<>>());
 
-    static_assert(is_same<EmptyTypeListContainerOfT<TypeList<char, int, float, double>>, TypeList<>>(), "");
-    static_assert(is_same<EmptyTypeListContainerOfT<tuple<char, int, float, double>>, tuple<>>(), "");
+    static_assert(is_same<EmptyTypeListContainerOfT<TypeList<char, int, float, double>>, TypeList<>>());
+    static_assert(is_same<EmptyTypeListContainerOfT<tuple<char, int, float, double>>, tuple<>>());
 }
 
 TEST_CASE("ToTuple", "[TypeListUtility]")
@@ -38,9 +38,9 @@ TEST_CASE("ToTuple", "[TypeListUtility]")
     using std::is_same;
     using std::tuple;
 
-    static_assert(is_same<tuple<>, ToTupleT<TypeList<>>>(), "");
-    static_assert(is_same<tuple<char, int>, ToTupleT<TypeList<char, int>>>(), "");
-    static_assert(!is_same<TypeList<char, int>, ToTupleT<TypeList<char, int>>>(), "");
+    static_assert(is_same<tuple<>, ToTupleT<TypeList<>>>());
+    static_assert(is_same<tuple<char, int>, ToTupleT<TypeList<char, int>>>());
+    static_assert(!is_same<TypeList<char, int>, ToTupleT<TypeList<char, int>>>());
 }
 
 TEST_CASE("ToTypeList", "[TypeListUtility]")
@@ -48,8 +48,8 @@ TEST_CASE("ToTypeList", "[TypeListUtility]")
     using std::is_same;
     using std::tuple;
 
-    static_assert(is_same<TypeList<>, ToTypeListT<tuple<>>>(), "");
-    static_assert(is_same<TypeList<char, int>, ToTypeListT<tuple<char, int>>>(), "");
-    static_assert(!is_same<tuple<char, int>, ToTypeListT<tuple<char, int>>>(), "");
+    static_assert(is_same<TypeList<>, ToTypeListT<tuple<>>>());
+    static_assert(is_same<TypeList<char, int>, ToTypeListT<tuple<char, int>>>());
+    static_assert(!is_same<tuple<char, int>, ToTypeListT<tuple<char, int>>>());
 }
 

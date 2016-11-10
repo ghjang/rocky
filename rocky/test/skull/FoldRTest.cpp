@@ -84,11 +84,10 @@ TEST_CASE("TypeComposition", "[FoldR]")
                             TypeList<int, char, long>,
                             TypeList<Quote<Head>>
                     >
-            >(),
-            ""
+            >()
     );
 
-    static_assert(is_same<Quote<Filter>, LastT<Quote<Head>, Quote<Filter>>>(), "");
+    static_assert(is_same<Quote<Filter>, LastT<Quote<Head>, Quote<Filter>>>());
     static_assert(
             is_same<
                     TypeList<int, char, long>,
@@ -96,10 +95,9 @@ TEST_CASE("TypeComposition", "[FoldR]")
                             LastT<Quote<Head>, Quote<Filter>>, Quote<is_integral>,
                             float, double, int, char, long
                     >
-            >(),
-            ""
+            >()
     );
-    static_assert(is_same<TypeList<Quote<Head>>, InitT<Quote<Head>, Quote<Filter>>>(), "");
+    static_assert(is_same<TypeList<Quote<Head>>, InitT<Quote<Head>, Quote<Filter>>>());
 
     /*
     FoldRWithTypeListUnpack<
@@ -128,7 +126,7 @@ TEST_CASE("TypeComposition", "[FoldR]")
     >::type()++;
      */
 
-    static_assert(is_same<int, FoldR<Quote<Apply>, TypeList<int, char, long>, Quote<Head>>::type>(), "");
+    static_assert(is_same<int, FoldR<Quote<Apply>, TypeList<int, char, long>, Quote<Head>>::type>());
 
     /*
     ApplyT<Quote<::Apply>, Quote<Head>, TypeList<int, char, long>>::type()++;
@@ -138,18 +136,18 @@ TEST_CASE("TypeComposition", "[FoldR]")
     Quote<::Apply>::template Apply<Quote<Head>, TypeList<int, char, long>>::type()++;
      */
 
-    static_assert(is_same<int, Quote<Apply>::template Apply<Quote<Head>, TypeList<int, char, long>>::type>(), "");
+    static_assert(is_same<int, Quote<Apply>::template Apply<Quote<Head>, TypeList<int, char, long>>::type>());
 
-    static_assert(is_same<int, ApplyT<Quote<Head>, int, char, long>>(), "");
+    static_assert(is_same<int, ApplyT<Quote<Head>, int, char, long>>());
 
-    static_assert(is_same<int, ApplyT<Quote<Head>, TypeList<int, char, long>>>(), "");
+    static_assert(is_same<int, ApplyT<Quote<Head>, TypeList<int, char, long>>>());
     /*
      * compiler bug??
-    static_assert(is_same<int, typename Apply<Quote<Head>, TypeList<int, char, long>>::type>(), "");
+    static_assert(is_same<int, typename Apply<Quote<Head>, TypeList<int, char, long>>::type>());
      */
 
-    static_assert(is_same<int, typename Quote<Head>::template Apply<TypeList<int, char, long>>::type>(), "");
+    static_assert(is_same<int, typename Quote<Head>::template Apply<TypeList<int, char, long>>::type>());
 
-    static_assert(is_same<int, ApplyT<Quote<Head>, TypeList<int, char, long>>>(), "");
+    static_assert(is_same<int, ApplyT<Quote<Head>, TypeList<int, char, long>>>());
 }
 

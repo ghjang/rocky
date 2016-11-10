@@ -61,17 +61,17 @@ TEST_CASE("HasApplyMember", "[HasApplyMember]")
     using std::is_floating_point;
 
     // binary predicate
-    static_assert(HasApplyMember<Quote<is_same>>(), "");
+    static_assert(HasApplyMember<Quote<is_same>>());
 
     // uniary predicate
-    static_assert(HasApplyMember<Quote<is_integral>>(), "");
-    static_assert(HasApplyMember<Quote<is_floating_point>>(), "");
+    static_assert(HasApplyMember<Quote<is_integral>>());
+    static_assert(HasApplyMember<Quote<is_floating_point>>());
 
     // n-template parameters
-    static_assert(HasApplyMember<Quote<TypeList>>(), "");
+    static_assert(HasApplyMember<Quote<TypeList>>());
 
     //
-    static_assert(HasApplyMember<TypeToBoolConstantType<Quote<is_integral>>>(), "");
-    static_assert(ApplyT<TypeToBoolConstantType<Quote<is_integral>>, int>::type(), "");
+    static_assert(HasApplyMember<TypeToBoolConstantType<Quote<is_integral>>>());
+    static_assert(ApplyT<TypeToBoolConstantType<Quote<is_integral>>, int>::type());
 }
 

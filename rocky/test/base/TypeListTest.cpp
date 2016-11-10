@@ -8,13 +8,13 @@
 
 TEST_CASE("TypeListSize", "[TypeList]")
 {
-    static_assert(0 == TypeListSize<>(), "");
-    static_assert(1 == TypeListSize<int>(), "");
-    static_assert(3 == TypeListSize<char, int, float>(), "");
+    static_assert(0 == TypeListSize<>());
+    static_assert(1 == TypeListSize<int>());
+    static_assert(3 == TypeListSize<char, int, float>());
 
-    static_assert(0 == TypeListSize<TypeList<>>(), "");
-    static_assert(1 == TypeListSize<TypeList<int>>(), "");
-    static_assert(3 == TypeListSize<TypeList<char, int, float>>(), "");
+    static_assert(0 == TypeListSize<TypeList<>>());
+    static_assert(1 == TypeListSize<TypeList<int>>());
+    static_assert(3 == TypeListSize<TypeList<char, int, float>>());
 }
 
 TEST_CASE("ReplaceTypeListContainer", "[TypeList]")
@@ -26,8 +26,7 @@ TEST_CASE("ReplaceTypeListContainer", "[TypeList]")
             is_same<
                     tuple<char, int, float, double>,
                     ReplaceTypeListContainerT<TypeList<char, int, float, double>, tuple>
-            >(),
-            ""
+            >()
     );
 
     static_assert(
@@ -37,8 +36,7 @@ TEST_CASE("ReplaceTypeListContainer", "[TypeList]")
                             QuoteReplaceTypeListContainer<tuple>,
                             TL<TL<char, int>, TL<float, double>>
                     >
-            >(),
-            ""
+            >()
     );
 }
 

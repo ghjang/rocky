@@ -44,11 +44,11 @@ TEST_CASE("squared integer sequence", "[TransformIntegerSequence]")
                                             SquareIntGenerator,
                                             std::make_integer_sequence<std::size_t, 4>
                                         >::type;
-    static_assert(is_same<integer_sequence<std::size_t, 0, 1, 4, 9>, square_int_seq>(), "");
+    static_assert(is_same<integer_sequence<std::size_t, 0, 1, 4, 9>, square_int_seq>());
 
     using square_int_seq_1 = MakeCustomIntegerSequence<SquareIntGenerator, 4>;
-    static_assert(is_same<integer_sequence<std::size_t, 0, 1, 4, 9>, square_int_seq_1>(), "");
-    static_assert(is_same<square_int_seq, square_int_seq_1>(), "");
+    static_assert(is_same<integer_sequence<std::size_t, 0, 1, 4, 9>, square_int_seq_1>());
+    static_assert(is_same<square_int_seq, square_int_seq_1>());
 }
 
 TEST_CASE("factorial integer sequence", "[TransformIntegerSequence]")
@@ -57,6 +57,6 @@ TEST_CASE("factorial integer sequence", "[TransformIntegerSequence]")
     using std::integer_sequence;
 
     using factorial_int_seq = MakeCustomIntegerSequence<FactorialGenerator, 5>;
-    static_assert(is_same<integer_sequence<std::size_t, 1, 1, 2, 6, 24>, factorial_int_seq>(), "");
+    static_assert(is_same<integer_sequence<std::size_t, 1, 1, 2, 6, 24>, factorial_int_seq>());
 }
 

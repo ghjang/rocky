@@ -24,8 +24,7 @@ TEST_CASE("wolca fold-list-left, integral constant sum", "[wolca]")
             is_same<
                     TL<int_c_t<0>, int_c_t<1>, int_c_t<3>, int_c_t<6>, int_c_t<10>, int_c_t<15>>,
                     sum_list_0_t
-            >(),
-            ""
+            >()
     );
 
     // (((((0 + 1) + 2) + 3) + 4) + 5) = 15
@@ -45,8 +44,7 @@ TEST_CASE("wolca fold-list-left, integral constant sum", "[wolca]")
             is_same<
                     TL<int_c_t<0>, int_c_t<1>, int_c_t<3>, int_c_t<6>, int_c_t<10>, int_c_t<15>>,
                     sum_list_1_t
-            >(),
-            ""
+            >()
     );
 }
 

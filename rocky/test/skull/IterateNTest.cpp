@@ -21,8 +21,7 @@ TEST_CASE("IterateNT, Twice", "[skull]")
             is_same<
                     TL<int_c_t<1>, int_c_t<2>, int_c_t<4>>,
                     TwiceT<int_c_t<1>>
-            >(),
-            ""
+            >()
     );
 }
 

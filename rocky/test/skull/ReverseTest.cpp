@@ -12,16 +12,14 @@ TEST_CASE("Reversing tuple's template parameters", "[Reverse]")
             is_same<
                     TypeList<double, float, int, short, char>,
                     ReverseT<char, short, int, float, double>
-            >(),
-            ""
+            >()
     );
 
     static_assert(
             is_same<
                     TypeList<double, float, int, short, char>,
                     ReverseT<TypeList<char, short, int, float, double>>
-            >(),
-            ""
+            >()
     );
 
     using T = tuple<char, short, int, float, double>;
