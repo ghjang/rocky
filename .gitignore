@@ -1,14 +1,5 @@
 
-rocky/test/.idea/workspace.xml
-
-rocky/test/.idea/test.iml
-
-rocky/test/.idea/encodings.xml
-
-rocky/test/.idea/misc.xml
-
-rocky/test/.idea/modules.xml
-
-rocky/test/.idea/vcs.xml
+rocky/test/.idea
+rocky/test/build
 
 .DS_Store
