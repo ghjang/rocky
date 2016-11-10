@@ -3,6 +3,7 @@
 
 
 #include <utility>
+#include <tuple>
 
 
 struct left_shift
@@ -35,68 +36,75 @@ template <typename Derived>
 struct callable
 {
 private:
-    template <std::size_t i, typename R, typename Args>
-    decltype(auto) call_impl(placeholder<i> const&, R && r, Args & args)
+    template <std::size_t i, typename R, typename Context>
+    decltype(auto) call_impl(placeholder<i> const&, R && r, Context & c)
     {
         return Derived::apply(
-                    std::get<i - 1>(args),
+                    std::get<i - 1>(c.args_),
                     std::forward<R>(r)
                );
     }    
 
-    template <typename L, std::size_t i, typename Args>
-    decltype(auto) call_impl(L && l, placeholder<i> const&, Args & args)
+    template <typename L, std::size_t i, typename Context>
+    decltype(auto) call_impl(L && l, placeholder<i> const&, Context & c)
     {
         return Derived::apply(
                     std::forward<L>(l),
-                    std::get<i - 1>(args)
+                    std::get<i - 1>(c.args_)
                );
     }    
 
-    template <std::size_t i, std::size_t j, typename Args>
-    decltype(auto) call_impl(placeholder<i> const&, placeholder<j> const&, Args & args)
+    template <std::size_t i, std::size_t j, typename Context>
+    decltype(auto) call_impl(placeholder<i> const&, placeholder<j> const&, Context & c)
     {
         return Derived::apply(
-                    std::get<i - 1>(args),
-                    std::get<j - 1>(args)
+                    std::get<i - 1>(c.args_),
+                    std::get<j - 1>(c.args_)
                );
     }    
 
-    template <typename T, typename R, typename Args>
-    decltype(auto) call_impl(callable<T> & l, R && r, Args & args)
+    template <typename T, typename R, typename Context>
+    decltype(auto) call_impl(callable<T> & l, R && r, Context & c)
     {
-        return Derived::apply(l(args), std::forward<R>(r));
+        return Derived::apply(l(c), std::forward<R>(r));
     }    
 
-    template <typename L, typename T, typename Args>
-    decltype(auto) call_impl(L && l, callable<T> & r, Args & args)
+    template <typename L, typename T, typename Context>
+    decltype(auto) call_impl(L && l, callable<T> & r, Context & c)
     {
-        return Derived::apply(std::forward<L>(l), r(args));
+        return Derived::apply(std::forward<L>(l), r(c));
     }    
 
-    template <typename T, typename U, typename Args>
-    decltype(auto) call_impl(callable<T> & l, callable<U> & r, Args & args)
+    template <typename T, typename U, typename Context>
+    decltype(auto) call_impl(callable<T> & l, callable<U> & r, Context & c)
     {
-        return Derived::apply(l(args), r(args));
+        return Derived::apply(l(c), r(c));
     }
 
 public:
-    template <typename... Args>
-    decltype(auto) operator () (std::tuple<Args...> & args)
+    template <typename T>
+    struct context
     {
-        return call_impl(derived()->left(), derived()->right(), args);
-    }
+        T & args_;
+    };
 
     auto derived()
     {
         return static_cast<Derived *>(this);
     }
 
+    template <typename T>
+    decltype(auto) operator () (T & c)
+    {
+        return call_impl(derived()->left(), derived()->right(), c);
+    }
+
     template <typename... Args>
     decltype(auto) operator () (Args &&... args)
     {
         auto t = std::make_tuple(std::forward<Args>(args)...);
-        return (*this)(t);
+        context<decltype(t)> c{ t };
+        return (*this)(c);
     }
 };
 
