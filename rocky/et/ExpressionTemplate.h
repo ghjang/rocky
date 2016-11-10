@@ -186,7 +186,7 @@ struct expression
     auto operator << (R && r)
     {
         return expression<
-                    expression_type, left_shift, std::decay_t<R>,
+                    expression_type, left_shift, R,
                     false,
                     std::is_rvalue_reference<decltype(r)>::value
                >{ *this, std::forward<R>(r) };
@@ -198,7 +198,7 @@ template <typename L, std::size_t i>
 auto operator << (L && l, placeholder<i> const& r)
 {
     return expression<
-                std::decay_t<L>, left_shift, placeholder<i> const,
+                L, left_shift, placeholder<i> const,
                 std::is_rvalue_reference<L>::value,
                 false
            >{ std::forward<L>(l), r };
