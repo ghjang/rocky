@@ -36,6 +36,14 @@ struct context
 };
 
 
+template
+<
+    typename Left, typename OpTag, typename Right,
+    bool IsLeftRValRef, bool IsRightRValRef
+>
+struct expression;
+
+
 template <typename Derived>
 struct callable
 {
@@ -43,20 +51,13 @@ private:
     template <std::size_t i, typename R, typename Context>
     decltype(auto) call_impl(placeholder<i> &, R & r, Context & c)
     {
-        return Derived::apply(
-                    std::get<i - 1>(c.args_),
-                    r
-               );
+        return Derived::apply(std::get<i - 1>(c.args_), r);
     }
 
-    // NOTE: This seems to be a better match than 'decltype(auto) call_impl(callable<T> & l, placeholder<i> &, Context & c)'.
     template <typename L, std::size_t i, typename Context>
     decltype(auto) call_impl(L & l, placeholder<i> &, Context & c)
     {
-        return Derived::apply(
-                    l,
-                    std::get<i - 1>(c.args_)
-               );
+        return Derived::apply(l, std::get<i - 1>(c.args_));
     }
 
     template <std::size_t i, std::size_t j, typename Context>
@@ -68,8 +69,13 @@ private:
                );
     }
 
-    template <typename T, typename R, typename Context>
-    decltype(auto) call_impl(callable<T> & l, R & r, Context & c)
+    template
+    <
+        typename Left, typename OpTag, typename Right,
+        bool IsLeftRValRef, bool IsRightRValRef,
+        typename R, typename Context
+    >
+    decltype(auto) call_impl(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> & l, R & r, Context & c)
     {
         return Derived::apply(l(c), r);
     }
@@ -82,13 +88,15 @@ private:
     }
     */
 
-    template <typename T, std::size_t i, typename Context>
-    decltype(auto) call_impl(callable<T> & l, placeholder<i> &, Context & c)
+    template 
+    <
+        typename Left, typename OpTag, typename Right,
+        bool IsLeftRValRef, bool IsRightRValRef,
+        std::size_t i, typename Context
+    >
+    decltype(auto) call_impl(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> & l, placeholder<i> &, Context & c)
     {
-        return Derived::apply(
-                    l(c),
-                    std::get<i - 1>(c.args_)
-               );
+        return Derived::apply(l(c), std::get<i - 1>(c.args_));
     }
 
     /*
