@@ -3,6 +3,7 @@
 
 
 #include <utility>
+#include <type_traits>
 #include <tuple>
 
 
@@ -30,6 +31,13 @@ struct placeholder
 static placeholder<1> const _1{};
 static placeholder<2> const _2{};
 static placeholder<3> const _3{};
+
+
+template <typename T>
+struct context
+{
+    T & args_;
+};
 
 
 template <typename Derived>
@@ -82,19 +90,13 @@ private:
     }
 
 public:
-    template <typename T>
-    struct context
-    {
-        T & args_;
-    };
-
     auto derived()
     {
         return static_cast<Derived *>(this);
     }
 
     template <typename T>
-    decltype(auto) operator () (T & c)
+    decltype(auto) operator () (context<T> & c)
     {
         return call_impl(derived()->left(), derived()->right(), c);
     }
