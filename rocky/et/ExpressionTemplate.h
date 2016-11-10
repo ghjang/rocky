@@ -41,25 +41,26 @@ struct callable
 {
 private:
     template <std::size_t i, typename R, typename Context>
-    decltype(auto) call_impl(placeholder<i> const&, R && r, Context & c)
+    decltype(auto) call_impl(placeholder<i> &, R & r, Context & c)
     {
         return Derived::apply(
                     std::get<i - 1>(c.args_),
-                    std::forward<R>(r)
+                    r
                );
     }
 
+    // NOTE: This seems to be a better match than 'decltype(auto) call_impl(callable<T> & l, placeholder<i> &, Context & c)'.
     template <typename L, std::size_t i, typename Context>
-    decltype(auto) call_impl(L && l, placeholder<i> const&, Context & c)
+    decltype(auto) call_impl(L & l, placeholder<i> &, Context & c)
     {
         return Derived::apply(
-                    std::forward<L>(l),
+                    l,
                     std::get<i - 1>(c.args_)
                );
     }
 
     template <std::size_t i, std::size_t j, typename Context>
-    decltype(auto) call_impl(placeholder<i> const&, placeholder<j> const&, Context & c)
+    decltype(auto) call_impl(placeholder<i> &, placeholder<j> &, Context & c)
     {
         return Derived::apply(
                     std::get<i - 1>(c.args_),
@@ -68,22 +69,46 @@ private:
     }
 
     template <typename T, typename R, typename Context>
-    decltype(auto) call_impl(callable<T> & l, R && r, Context & c)
+    decltype(auto) call_impl(callable<T> & l, R & r, Context & c)
     {
-        return Derived::apply(l(c), std::forward<R>(r));
+        return Derived::apply(l(c), r);
     }
 
+    /*
     template <typename L, typename T, typename Context>
-    decltype(auto) call_impl(L && l, callable<T> & r, Context & c)
+    decltype(auto) call_impl(L & l, callable<T> & r, Context & c)
     {
-        return Derived::apply(std::forward<L>(l), r(c));
+        return Derived::apply(l, r(c));
+    }
+    */
+
+    template <typename T, std::size_t i, typename Context>
+    decltype(auto) call_impl(callable<T> & l, placeholder<i> &, Context & c)
+    {
+        return Derived::apply(
+                    l(c),
+                    std::get<i - 1>(c.args_)
+               );
     }
 
+    /*
+    template <std::size_t i, typename T, typename Context>
+    decltype(auto) call_impl(placeholder<i> &, callable<T> & r, Context & c)
+    {
+        return Derived::apply(
+                    std::get<i - 1>(c.args_),
+                    r(c)
+               );
+    }
+    */
+
+    /*
     template <typename T, typename U, typename Context>
     decltype(auto) call_impl(callable<T> & l, callable<U> & r, Context & c)
     {
         return Derived::apply(l(c), r(c));
     }
+    */
 
 public:
     auto derived()
