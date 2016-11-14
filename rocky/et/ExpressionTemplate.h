@@ -87,7 +87,7 @@ struct value_holder<true, T>
     value_holder(T && t)
         : value_(std::move(t))
     { }
-    
+
     template <typename U>
     T & operator () (context<U> &)
     {
@@ -257,11 +257,9 @@ auto left_shift_expression_generator(expression<Left, OpTag, Right, IsLeftRValRe
 {
     using lhs_t = expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef>;
     using rhs_t = std::decay_t<Rhs>;
-    return expression<
-                lhs_t, left_shift, rhs_t,
-                false,
-                std::is_rvalue_reference<decltype(rhs)>::value
-           >{ lhs, std::forward<Rhs>(rhs) };
+    return expression<lhs_t, left_shift, rhs_t, false, std::is_rvalue_reference<decltype(rhs)>::value>{
+                lhs, std::forward<Rhs>(rhs)
+           };
 }
 
 template
@@ -276,11 +274,9 @@ auto left_shift_expression_generator(expression<Left, OpTag, Right, IsLeftRValRe
 {
     using lhs_t = expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef>;
     using rhs_t = value_holder<std::is_rvalue_reference<decltype(rhs)>::value, std::decay_t<Rhs>>;
-    return expression<
-                lhs_t, left_shift, rhs_t,
-                false,
-                true
-           >{ lhs, rhs_t{ std::forward<Rhs>(rhs) } };
+    return expression<lhs_t, left_shift, rhs_t, false, true>{
+                lhs, rhs_t{ std::forward<Rhs>(rhs) }
+           };
 }
 
 template
@@ -295,11 +291,9 @@ auto left_shift_expression_generator(expression<Left, OpTag, Right, IsLeftRValRe
 {
     using lhs_t = expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef>;
     using rhs_t = std::decay_t<Rhs>;
-    return expression<
-                lhs_t, left_shift, rhs_t,
-                true,
-                std::is_rvalue_reference<decltype(rhs)>::value
-           >{ std::move(lhs), std::forward<Rhs>(rhs) };
+    return expression<lhs_t, left_shift, rhs_t, true, std::is_rvalue_reference<decltype(rhs)>::value>{
+                std::move(lhs), std::forward<Rhs>(rhs)
+           };
 }
 
 template
@@ -314,11 +308,9 @@ auto left_shift_expression_generator(expression<Left, OpTag, Right, IsLeftRValRe
 {
     using lhs_t = expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef>;
     using rhs_t = value_holder<std::is_rvalue_reference<decltype(rhs)>::value, std::decay_t<Rhs>>;
-    return expression<
-                lhs_t, left_shift, rhs_t,
-                true,
-                true
-           >{ std::move(lhs), rhs_t{ std::forward<Rhs>(rhs) } };
+    return expression<lhs_t, left_shift, rhs_t, true, true>{
+                std::move(lhs), rhs_t{ std::forward<Rhs>(rhs) }
+           };
 }
 
 template
