@@ -103,14 +103,6 @@ static place_holder<2> _2{};
 static place_holder<3> _3{};
 
 
-template
-<
-    typename Left, typename OpTag, typename Right,
-    bool IsLeftRValRef, bool IsRightRValRef
->
-struct expression;
-
-
 template <typename Derived>
 struct functor
 {
