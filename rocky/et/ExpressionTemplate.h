@@ -43,6 +43,40 @@ struct place_holder
 };
 
 
+template <bool IsValRValRef, typename T>
+struct value_holder;
+
+template <typename T>
+struct value_holder<false, T>
+        : terminal<value_holder<false, T>>
+{
+    value_holder(T & t)
+        : value_(t)
+    { }
+    
+    template <typename U>
+    T & operator () (context<U> &)
+    {
+        return value_;
+    }
+
+    T & value_;
+};
+
+template <typename T>
+struct value_holder<true, T>
+        : terminal<value_holder<true, T>>
+{
+    template <typename U>
+    T & operator () (context<U> &)
+    {
+        return value_;
+    }
+
+    T value_;
+};
+
+
 static place_holder<1> _1{};
 static place_holder<2> _2{};
 static place_holder<3> _3{};
@@ -60,48 +94,10 @@ template <typename Derived>
 struct functor
 {
 private:
-    template <typename T, typename Rhs, typename Context>
-    decltype(auto) call_impl(terminal<T> & lhs, Rhs & rhs, Context & c)
-    {
-        return Derived::apply(lhs(c), rhs);
-    }
-
-    template <typename Lhs, typename T, typename Context>
-    decltype(auto) call_impl(Lhs & lhs, terminal<T> & rhs, Context & c)
-    {
-        return Derived::apply(lhs, rhs(c));
-    }
-
-    template <typename T, typename U, typename Context>
-    decltype(auto) call_impl(terminal<T> & lhs, terminal<U> & rhs, Context & c)
+    template <typename Lhs, typename Rhs, typename Context>
+    decltype(auto) call_impl(Lhs & lhs, Rhs & rhs, Context & c)
     {
         return Derived::apply(lhs(c), rhs(c));
-    }
-
-    template
-    <
-        typename Left, typename OpTag, typename Right,
-        bool IsLeftRValRef, bool IsRightRValRef,
-        typename R, typename Context
-    >
-    decltype(auto) call_impl(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> & lhs,
-                             R & rhs,
-                             Context & c)
-    {
-        return Derived::apply(lhs(c), rhs);
-    }
-
-    template 
-    <
-        typename Left, typename OpTag, typename Right,
-        bool IsLeftRValRef, bool IsRightRValRef,
-        typename T, typename Context
-    >
-    decltype(auto) call_impl(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> & lhs,
-                             terminal<T> & t,
-                             Context & c)
-    {
-        return Derived::apply(lhs(c), t(c));
     }
 
 public:
@@ -239,24 +235,22 @@ auto operator << (expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> 
            >{ std::move(lhs), std::forward<Rhs>(rhs) };
 }
 
-template <typename Lhs, typename T>
-auto operator << (Lhs && lhs, terminal<T> & rhs)
+template <typename Lhs, typename Rhs>
+auto operator << (Lhs && lhs, terminal<Rhs> & rhs)
 {
-    return expression<
-                Lhs, left_shift, T,
-                std::is_rvalue_reference<Lhs>::value,
-                false
-           >{ std::forward<Lhs>(lhs), *(rhs.derived()) };
+    using lhs_t = value_holder<std::is_rvalue_reference<decltype(lhs)>::value, Lhs>; 
+    return expression<lhs_t, left_shift, Rhs, true, false> {
+                lhs_t{ std::forward<Lhs>(lhs) }, *(rhs.derived())
+           };
 }
 
-template <typename Lhs, typename T>
-auto operator << (Lhs && lhs, terminal<T> && rhs)
+template <typename Lhs, typename Rhs>
+auto operator << (Lhs && lhs, terminal<Rhs> && rhs)
 {
-    return expression<
-                Lhs, left_shift, T,
-                std::is_rvalue_reference<Lhs>::value,
-                true
-           >{ std::forward<Lhs>(lhs), std::move(*(rhs.derived())) };
+    using lhs_t = value_holder<std::is_rvalue_reference<decltype(lhs)>::value, Lhs>; 
+    return expression<lhs_t, left_shift, Rhs, true, true> {
+                lhs_t{ std::forward<Lhs>(lhs) }, std::move(*(rhs.derived()))
+           };
 }
 
 
