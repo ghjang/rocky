@@ -60,25 +60,22 @@ template <typename Derived>
 struct functor
 {
 private:
-    template <std::size_t i, typename R, typename Context>
-    decltype(auto) call_impl(place_holder<i> &, R & r, Context & c)
+    template <typename T, typename Rhs, typename Context>
+    decltype(auto) call_impl(terminal<T> & lhs, Rhs & rhs, Context & c)
     {
-        return Derived::apply(std::get<i - 1>(c.args_), r);
+        return Derived::apply(lhs(c), rhs);
     }
 
-    template <typename L, std::size_t i, typename Context>
-    decltype(auto) call_impl(L & l, place_holder<i> &, Context & c)
+    template <typename Lhs, typename T, typename Context>
+    decltype(auto) call_impl(Lhs & lhs, terminal<T> & rhs, Context & c)
     {
-        return Derived::apply(l, std::get<i - 1>(c.args_));
+        return Derived::apply(lhs, rhs(c));
     }
 
-    template <std::size_t i, std::size_t j, typename Context>
-    decltype(auto) call_impl(place_holder<i> &, place_holder<j> &, Context & c)
+    template <typename T, typename U, typename Context>
+    decltype(auto) call_impl(terminal<T> & lhs, terminal<U> & rhs, Context & c)
     {
-        return Derived::apply(
-                    std::get<i - 1>(c.args_),
-                    std::get<j - 1>(c.args_)
-               );
+        return Derived::apply(lhs(c), rhs(c));
     }
 
     template
@@ -87,48 +84,25 @@ private:
         bool IsLeftRValRef, bool IsRightRValRef,
         typename R, typename Context
     >
-    decltype(auto) call_impl(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> & l, R & r, Context & c)
+    decltype(auto) call_impl(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> & lhs,
+                             R & rhs,
+                             Context & c)
     {
-        return Derived::apply(l(c), r);
+        return Derived::apply(lhs(c), rhs);
     }
-
-    /*
-    template <typename L, typename T, typename Context>
-    decltype(auto) call_impl(L & l, callable<T> & r, Context & c)
-    {
-        return Derived::apply(l, r(c));
-    }
-    */
 
     template 
     <
         typename Left, typename OpTag, typename Right,
         bool IsLeftRValRef, bool IsRightRValRef,
-        std::size_t i, typename Context
+        typename T, typename Context
     >
-    decltype(auto) call_impl(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> & l, place_holder<i> &, Context & c)
+    decltype(auto) call_impl(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> & lhs,
+                             terminal<T> & t,
+                             Context & c)
     {
-        return Derived::apply(l(c), std::get<i - 1>(c.args_));
+        return Derived::apply(lhs(c), t(c));
     }
-
-    /*
-    template <std::size_t i, typename T, typename Context>
-    decltype(auto) call_impl(place_holder<i> &, callable<T> & r, Context & c)
-    {
-        return Derived::apply(
-                    std::get<i - 1>(c.args_),
-                    r(c)
-               );
-    }
-    */
-
-    /*
-    template <typename T, typename U, typename Context>
-    decltype(auto) call_impl(callable<T> & l, callable<U> & r, Context & c)
-    {
-        return Derived::apply(l(c), r(c));
-    }
-    */
 
 public:
     auto derived()
