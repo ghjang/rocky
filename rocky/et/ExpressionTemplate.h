@@ -234,6 +234,16 @@ struct is_callable_node<terminal<T>>
         : std::true_type
 { };
 
+template <std::size_t i>
+struct is_callable_node<place_holder<i>>
+        : std::true_type
+{ };
+
+template <bool IsValRValRef, typename T>
+struct is_callable_node<value_holder<IsValRValRef, T>>
+        : std::true_type
+{ };
+
 
 struct left_shift
 {
