@@ -64,9 +64,30 @@ struct value_holder<false, T>
 };
 
 template <typename T>
+struct value_holder<false, T *>
+        : terminal<value_holder<false, T *>>
+{
+    value_holder(T * t)
+        : value_(t)
+    { }
+
+    template <typename U>
+    T * operator () (context<U> &)
+    {
+        return value_;
+    }
+
+    T * value_;
+};
+
+template <typename T>
 struct value_holder<true, T>
         : terminal<value_holder<true, T>>
 {
+    value_holder(T && t)
+        : value_(std::move(t))
+    { }
+    
     template <typename U>
     T & operator () (context<U> &)
     {
@@ -258,7 +279,7 @@ auto left_shift_expression_generator(expression<Left, OpTag, Right, IsLeftRValRe
     return expression<
                 lhs_t, left_shift, rhs_t,
                 false,
-                std::is_rvalue_reference<decltype(rhs)>::value
+                true
            >{ lhs, rhs_t{ std::forward<Rhs>(rhs) } };
 }
 
@@ -296,7 +317,7 @@ auto left_shift_expression_generator(expression<Left, OpTag, Right, IsLeftRValRe
     return expression<
                 lhs_t, left_shift, rhs_t,
                 true,
-                std::is_rvalue_reference<decltype(rhs)>::value
+                true
            >{ std::move(lhs), rhs_t{ std::forward<Rhs>(rhs) } };
 }
 
@@ -330,8 +351,9 @@ auto operator << (expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> 
            );
 }
 
+
 template <typename Lhs, typename Rhs>
-auto operator << (Lhs && lhs, terminal<Rhs> & rhs)
+auto left_shift_terminal_generator(Lhs && lhs, terminal<Rhs> & rhs, std::false_type)
 {
     using lhs_t = value_holder<std::is_rvalue_reference<decltype(lhs)>::value, std::decay_t<Lhs>>; 
     return expression<lhs_t, left_shift, Rhs, true, false> {
@@ -340,12 +362,51 @@ auto operator << (Lhs && lhs, terminal<Rhs> & rhs)
 }
 
 template <typename Lhs, typename Rhs>
-auto operator << (Lhs && lhs, terminal<Rhs> && rhs)
+auto left_shift_terminal_generator(Lhs && lhs, terminal<Rhs> & rhs, std::true_type)
+{
+    using lhs_t = std::decay_t<Lhs>; 
+    return expression<lhs_t, left_shift, Rhs, std::is_rvalue_reference<decltype(lhs)>::value, false> {
+                std::forward<Lhs>(lhs), *(rhs.derived())
+           };
+}
+
+template <typename Lhs, typename Rhs>
+auto left_shift_terminal_generator(Lhs && lhs, terminal<Rhs> && rhs, std::false_type)
 {
     using lhs_t = value_holder<std::is_rvalue_reference<decltype(lhs)>::value, std::decay_t<Lhs>>; 
     return expression<lhs_t, left_shift, Rhs, true, true> {
                 lhs_t{ std::forward<Lhs>(lhs) }, std::move(*(rhs.derived()))
            };
+}
+
+template <typename Lhs, typename Rhs>
+auto left_shift_terminal_generator(Lhs && lhs, terminal<Rhs> && rhs, std::true_type)
+{
+    using lhs_t = std::decay_t<Lhs>; 
+    return expression<lhs_t, left_shift, Rhs, std::is_rvalue_reference<decltype(lhs)>::value, true> {
+                std::forward<Lhs>(lhs), std::move(*(rhs.derived()))
+           };
+}
+
+
+template <typename Lhs, typename Rhs>
+auto operator << (Lhs && lhs, terminal<Rhs> & rhs)
+{
+    return left_shift_terminal_generator(
+                std::forward<Lhs>(lhs),
+                rhs,
+                is_callable_node<std::decay_t<Lhs>>()
+           );
+}
+
+template <typename Lhs, typename Rhs>
+auto operator << (Lhs && lhs, terminal<Rhs> && rhs)
+{
+    return left_shift_terminal_generator(
+                std::forward<Lhs>(lhs),
+                std::move(rhs),
+                is_callable_node<std::decay_t<Lhs>>()
+           );
 }
 
 
