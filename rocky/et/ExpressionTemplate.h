@@ -18,15 +18,15 @@ struct terminal
 
 
 template <std::size_t i>
-struct placeholder
-        : terminal<placeholder<i>>
+struct place_holder
+        : terminal<place_holder<i>>
         , std::integral_constant<std::size_t, i>
 { };
 
 
-static placeholder<1> _1{};
-static placeholder<2> _2{};
-static placeholder<3> _3{};
+static place_holder<1> _1{};
+static place_holder<2> _2{};
+static place_holder<3> _3{};
 
 
 template <typename T>
@@ -49,19 +49,19 @@ struct functor
 {
 private:
     template <std::size_t i, typename R, typename Context>
-    decltype(auto) call_impl(placeholder<i> &, R & r, Context & c)
+    decltype(auto) call_impl(place_holder<i> &, R & r, Context & c)
     {
         return Derived::apply(std::get<i - 1>(c.args_), r);
     }
 
     template <typename L, std::size_t i, typename Context>
-    decltype(auto) call_impl(L & l, placeholder<i> &, Context & c)
+    decltype(auto) call_impl(L & l, place_holder<i> &, Context & c)
     {
         return Derived::apply(l, std::get<i - 1>(c.args_));
     }
 
     template <std::size_t i, std::size_t j, typename Context>
-    decltype(auto) call_impl(placeholder<i> &, placeholder<j> &, Context & c)
+    decltype(auto) call_impl(place_holder<i> &, place_holder<j> &, Context & c)
     {
         return Derived::apply(
                     std::get<i - 1>(c.args_),
@@ -94,14 +94,14 @@ private:
         bool IsLeftRValRef, bool IsRightRValRef,
         std::size_t i, typename Context
     >
-    decltype(auto) call_impl(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> & l, placeholder<i> &, Context & c)
+    decltype(auto) call_impl(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> & l, place_holder<i> &, Context & c)
     {
         return Derived::apply(l(c), std::get<i - 1>(c.args_));
     }
 
     /*
     template <std::size_t i, typename T, typename Context>
-    decltype(auto) call_impl(placeholder<i> &, callable<T> & r, Context & c)
+    decltype(auto) call_impl(place_holder<i> &, callable<T> & r, Context & c)
     {
         return Derived::apply(
                     std::get<i - 1>(c.args_),
