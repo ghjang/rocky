@@ -45,7 +45,7 @@ struct expression;
 
 
 template <typename Derived>
-struct callable
+struct functor
 {
 private:
     template <std::size_t i, typename R, typename Context>
@@ -182,7 +182,7 @@ template
     bool IsLeftRValRef, bool IsRightRValRef
 >
 struct expression
-        : callable<expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef>>
+        : functor<expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef>>
         , private storage<Left, Right, IsLeftRValRef, IsRightRValRef>
 {
     using expression_type = expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef>;
