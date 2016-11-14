@@ -7,12 +7,25 @@
 #include <tuple>
 
 
+template <typename T>
+struct context
+{
+    T & args_;
+};
+
+
 template <typename Derived>
 struct terminal
 {
     auto derived()
     {
         return static_cast<Derived *>(this);
+    }
+
+    template <typename T>
+    decltype(auto) operator () (context<T> & c)
+    {
+        return (*derived())(c);
     }
 };
 
@@ -21,19 +34,18 @@ template <std::size_t i>
 struct place_holder
         : terminal<place_holder<i>>
         , std::integral_constant<std::size_t, i>
-{ };
+{
+    template <typename T>
+    decltype(auto) operator () (context<T> & c)
+    {
+        return std::get<i - 1>(c.args_);
+    }
+};
 
 
 static place_holder<1> _1{};
 static place_holder<2> _2{};
 static place_holder<3> _3{};
-
-
-template <typename T>
-struct context
-{
-    T & args_;
-};
 
 
 template
