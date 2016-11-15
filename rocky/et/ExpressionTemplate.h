@@ -171,11 +171,7 @@ struct storage<Left, Right, true, true>
 };
 
 
-template
-<
-    typename Left, typename OpTag, typename Right,
-    bool IsLeftRValRef, bool IsRightRValRef
->
+template<typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef>
 struct expression
         : functor<expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef>>
         , private storage<Left, Right, IsLeftRValRef, IsRightRValRef>
@@ -212,11 +208,7 @@ template <typename T>
 struct is_callable_node : std::false_type
 { };
 
-template
-<
-    typename Left, typename OpTag, typename Right,
-    bool IsLeftRValRef, bool IsRightRValRef
->
+template<typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef>
 struct is_callable_node<expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef>>
         : std::true_type
 { };
@@ -249,8 +241,7 @@ struct left_shift
 
 template
 <
-    typename Left, typename OpTag, typename Right,
-    bool IsLeftRValRef, bool IsRightRValRef,
+    typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef,
     typename Rhs
 >
 auto left_shift_expression_generator(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> & lhs,
@@ -266,8 +257,7 @@ auto left_shift_expression_generator(expression<Left, OpTag, Right, IsLeftRValRe
 
 template
 <
-    typename Left, typename OpTag, typename Right,
-    bool IsLeftRValRef, bool IsRightRValRef,
+    typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef,
     typename Rhs
 >
 auto left_shift_expression_generator(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> & lhs,
@@ -283,8 +273,7 @@ auto left_shift_expression_generator(expression<Left, OpTag, Right, IsLeftRValRe
 
 template
 <
-    typename Left, typename OpTag, typename Right,
-    bool IsLeftRValRef, bool IsRightRValRef,
+    typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef,
     typename Rhs
 >
 auto left_shift_expression_generator(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> && lhs,
@@ -300,8 +289,7 @@ auto left_shift_expression_generator(expression<Left, OpTag, Right, IsLeftRValRe
 
 template
 <
-    typename Left, typename OpTag, typename Right,
-    bool IsLeftRValRef, bool IsRightRValRef,
+    typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef,
     typename Rhs
 >
 auto left_shift_expression_generator(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> && lhs,
@@ -315,10 +303,75 @@ auto left_shift_expression_generator(expression<Left, OpTag, Right, IsLeftRValRe
            };
 }
 
+
 template
 <
-    typename Left, typename OpTag, typename Right,
-    bool IsLeftRValRef, bool IsRightRValRef,
+    typename Lhs,
+    typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef
+>
+auto left_shift_expression_generator(Lhs && lhs,
+                                     expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> & rhs,
+                                     std::true_type)
+{
+    using lhs_t = std::decay_t<Lhs>;
+    using rhs_t = expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef>;
+    return expression<lhs_t, left_shift, rhs_t, std::is_rvalue_reference<decltype(lhs)>::value, false>{
+                std::forward<Lhs>(lhs), rhs
+           };
+}
+
+template
+<
+    typename Lhs,
+    typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef
+>
+auto left_shift_expression_generator(Lhs && lhs,
+                                     expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> & rhs,
+                                     std::false_type)
+{
+    using lhs_t = value_holder<std::is_rvalue_reference<decltype(lhs)>::value, std::decay_t<Lhs>>;
+    using rhs_t = expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef>;
+    return expression<lhs_t, left_shift, rhs_t, true, false>{
+                lhs_t{ std::forward<Lhs>(lhs) }, rhs
+           };
+}
+
+template
+<
+    typename Lhs,
+    typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef
+>
+auto left_shift_expression_generator(Lhs && lhs,
+                                     expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> && rhs,
+                                     std::true_type)
+{
+    using lhs_t = std::decay_t<Lhs>;
+    using rhs_t = expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef>;
+    return expression<lhs_t, left_shift, rhs_t, std::is_rvalue_reference<decltype(lhs)>::value, true>{
+                std::forward<Lhs>(lhs), std::move(rhs)
+           };
+}
+
+template
+<
+    typename Lhs,
+    typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef
+>
+auto left_shift_expression_generator(Lhs && lhs,
+                                     expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> && rhs,
+                                     std::false_type)
+{
+    using lhs_t = value_holder<std::is_rvalue_reference<decltype(lhs)>::value, std::decay_t<Lhs>>;
+    using rhs_t = expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef>;
+    return expression<lhs_t, left_shift, rhs_t, true, true>{
+                lhs_t{ std::forward<Lhs>(lhs) }, std::move(rhs)
+           };
+}
+
+
+template
+<
+    typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef,
     typename Rhs
 >
 auto operator << (expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> & lhs, Rhs && rhs)
@@ -332,8 +385,7 @@ auto operator << (expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> 
 
 template
 <
-    typename Left, typename OpTag, typename Right,
-    bool IsLeftRValRef, bool IsRightRValRef,
+    typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef,
     typename Rhs
 >
 auto operator << (expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> && lhs, Rhs && rhs)
@@ -342,6 +394,34 @@ auto operator << (expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> 
                 std::move(lhs),
                 std::forward<Rhs>(rhs),
                 is_callable_node<std::decay_t<Rhs>>()
+           );
+}
+
+template
+<
+    typename Lhs,
+    typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef
+>
+auto operator << (Lhs && lhs, expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> & rhs)
+{
+    return left_shift_expression_generator(
+                std::forward<Lhs>(lhs),
+                rhs,
+                is_callable_node<std::decay_t<Lhs>>()
+           );
+}
+
+template
+<
+    typename Lhs,
+    typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef
+>
+auto operator << (Lhs && lhs, expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> && rhs)
+{
+    return left_shift_expression_generator(
+                std::forward<Lhs>(lhs),
+                std::move(rhs),
+                is_callable_node<std::decay_t<Lhs>>()
            );
 }
 
