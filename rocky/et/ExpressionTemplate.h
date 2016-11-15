@@ -130,11 +130,7 @@ public:
 };
 
 
-template
-<
-    typename Left, typename Right,
-    bool IsLeftRValRef, bool IsRightRValRef
->
+template<typename Left, typename Right, bool IsLeftRValRef, bool IsRightRValRef>
 struct storage;
 
 template <typename Left, typename Right>
