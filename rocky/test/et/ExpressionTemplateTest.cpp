@@ -50,6 +50,6 @@ TEST_CASE("left shift", "[et]")
 
     oss.str("");
     auto expr7 = oss << (_1 << 2);
-    expr7(10);
+    expr7(10);                  // 10 * 2 * 2 == 10 << 2
     REQUIRE(oss.str() == "40");
 }
