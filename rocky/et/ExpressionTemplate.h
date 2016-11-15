@@ -98,11 +98,6 @@ struct value_holder<true, T>
 };
 
 
-static place_holder<1> _1{};
-static place_holder<2> _2{};
-static place_holder<3> _3{};
-
-
 template <typename Derived>
 struct functor
 {
@@ -230,6 +225,24 @@ struct is_callable_node<value_holder<IsValRValRef, T>>
 
 
 #include "BinaryOperator.h"
+
+
+#include <boost/preprocessor/cat.hpp>
+#include <boost/preprocessor/iteration/local.hpp>
+
+#ifndef PLACE_HOLDER_MAX_SIZE
+#   define PLACE_HOLDER_MAX_SIZE 8
+#endif // PLACE_HOLDER_MAX_SIZE
+
+#define ET_place_holder(z, n, unused) static place_holder<n> BOOST_PP_CAT(_, n){};
+
+#define BOOST_PP_LOCAL_MACRO(n)     ET_place_holder(~, n, ~)
+#define BOOST_PP_LOCAL_LIMITS       (1, PLACE_HOLDER_MAX_SIZE)
+#include BOOST_PP_LOCAL_ITERATE()
+
+#undef BOOST_PP_LOCAL_LIMITS
+#undef BOOST_PP_LOCAL_MACRO
+#undef ET_place_holder
 
 
 #endif // ROCKY_ET_H
