@@ -43,8 +43,13 @@ TEST_CASE("left shift", "[et]")
     REQUIRE(oss.str() == "10,10, 20,20, 30,30, 40,40, 50,50, ");
 
     oss.str("");
-    auto expr5 = _1 << "10";
-    //auto expr6 = oss << expr5;
-    //expr6(10);
-    //REQUIRE(oss.str() == "1010"); 
+    auto expr5 = _1 << 1;
+    auto expr6 = oss << expr5;  // NOTE: expr5 is evaluated first.
+    expr6(10);                  // 10 * 2 == 10 << 1
+    REQUIRE(oss.str() == "20");
+
+    oss.str("");
+    auto expr7 = oss << (_1 << 2);
+    expr7(10);
+    REQUIRE(oss.str() == "40");
 }
