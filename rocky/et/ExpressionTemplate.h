@@ -384,6 +384,43 @@ auto left_shift_terminal_generator(Lhs && lhs, terminal<Rhs> && rhs, std::true_t
 
 
 template <typename Lhs, typename Rhs>
+auto left_shift_terminal_generator(terminal<Lhs> & lhs, Rhs && rhs, std::false_type)
+{
+    using rhs_t = value_holder<std::is_rvalue_reference<decltype(rhs)>::value, std::decay_t<Rhs>>; 
+    return expression<Lhs, left_shift, rhs_t, false, true> {
+                *(lhs.derived()), rhs_t{ std::forward<Rhs>(rhs) }
+           };
+}
+
+template <typename Lhs, typename Rhs>
+auto left_shift_terminal_generator(terminal<Lhs> & lhs, Rhs && rhs, std::true_type)
+{
+    using rhs_t = std::decay_t<Rhs>; 
+    return expression<Lhs, left_shift, rhs_t, false, std::is_rvalue_reference<decltype(rhs)>::value> {
+                *(lhs.derived()), std::forward<Rhs>(rhs)
+           };
+}
+
+template <typename Lhs, typename Rhs>
+auto left_shift_terminal_generator(terminal<Lhs> && lhs, Rhs && rhs, std::false_type)
+{
+    using rhs_t = value_holder<std::is_rvalue_reference<decltype(rhs)>::value, std::decay_t<Rhs>>; 
+    return expression<Lhs, left_shift, rhs_t, true, true> {
+                std::move(*(lhs.derived())), rhs_t{ std::forward<Rhs>(rhs) }
+           };
+}
+
+template <typename Lhs, typename Rhs>
+auto left_shift_terminal_generator(terminal<Lhs> && lhs, Rhs && rhs, std::true_type)
+{
+    using rhs_t = std::decay_t<Rhs>; 
+    return expression<Lhs, left_shift, rhs_t, true, std::is_rvalue_reference<decltype(rhs)>::value> {
+                std::move(*(lhs.derived())), std::forward<Rhs>(rhs)
+           };
+}
+
+
+template <typename Lhs, typename Rhs>
 auto operator << (Lhs && lhs, terminal<Rhs> & rhs)
 {
     return left_shift_terminal_generator(
@@ -400,6 +437,26 @@ auto operator << (Lhs && lhs, terminal<Rhs> && rhs)
                 std::forward<Lhs>(lhs),
                 std::move(rhs),
                 is_callable_node<std::decay_t<Lhs>>()
+           );
+}
+
+template <typename Lhs, typename Rhs>
+auto operator << (terminal<Lhs> & lhs, Rhs && rhs)
+{
+    return left_shift_terminal_generator(
+                lhs,
+                std::forward<Rhs>(rhs),
+                is_callable_node<std::decay_t<Rhs>>()
+           );
+}
+
+template <typename Lhs, typename Rhs>
+auto operator << (terminal<Lhs> && lhs, Rhs && rhs)
+{
+    return left_shift_terminal_generator(
+                std::move(lhs),
+                std::forward<Rhs>(rhs),
+                is_callable_node<std::decay_t<Rhs>>()
            );
 }
 

@@ -41,4 +41,10 @@ TEST_CASE("left shift", "[et]")
     oss.str("");
     std::for_each(v.begin(), v.end(), oss << _1 << ',' << _1 << ", ");
     REQUIRE(oss.str() == "10,10, 20,20, 30,30, 40,40, 50,50, ");
+
+    oss.str("");
+    auto expr5 = _1 << "10";
+    //auto expr6 = oss << expr5;
+    //expr6(10);
+    //REQUIRE(oss.str() == "1010"); 
 }
