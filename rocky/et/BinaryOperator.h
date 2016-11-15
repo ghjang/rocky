@@ -1,3 +1,18 @@
+#define BINARY_OPERATOR_TUPLES          \
+    (multiplication,    *)              \
+    (division,          /)              \
+    (remainder,         %)              \
+    (addition,          +)              \
+    (subtraction,       -)              \
+    (left_shift,        <<)             \
+    (right_shift,       >>)             \
+    (sum,               +=)             \
+    (difference,        -=)             \
+    (product,           *=)             \
+    (quotient,          /=)             \
+    (remainder_assign,  %=)
+
+
 struct left_shift
 {
     template <typename L, typename R>
