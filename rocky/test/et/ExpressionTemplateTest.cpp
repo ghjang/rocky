@@ -8,7 +8,7 @@
 #include <sstream>
 
 
-TEST_CASE("size of binary operator overloading", "[et]")
+TEST_CASE("size of operator overloading", "[et]")
 {
     REQUIRE(12 == BINARY_OPERATOR_TUPLES_size);
 }
