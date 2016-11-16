@@ -121,7 +121,8 @@ set(HEADER_FILES
         ../muse/MusicalScalePrint.h
         ../muse/Interval.h
         ../et/ExpressionTemplate.h
-        ../et/BinaryOperator.h)
+        ../et/BinaryOperator.h
+        ../et/BinaryOperatorSpec.h)
 
 set(SOURCE_FILES
         main.cpp
