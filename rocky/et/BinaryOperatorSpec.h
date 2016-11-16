@@ -20,7 +20,8 @@ template
     typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef,
     typename Rhs
 >
-auto BOOST_PP_CAT(BIN_OP_NAME, _expression_generator)(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> & lhs,
+auto BOOST_PP_CAT(BIN_OP_NAME, _expression_generator)(
+                                     expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> & lhs,
                                      Rhs && rhs,
                                      std::true_type)
 {
@@ -36,7 +37,8 @@ template
     typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef,
     typename Rhs
 >
-auto BOOST_PP_CAT(BIN_OP_NAME, _expression_generator)(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> & lhs,
+auto BOOST_PP_CAT(BIN_OP_NAME, _expression_generator)(
+                                     expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> & lhs,
                                      Rhs && rhs,
                                      std::false_type)
 {
@@ -52,7 +54,8 @@ template
     typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef,
     typename Rhs
 >
-auto BOOST_PP_CAT(BIN_OP_NAME, _expression_generator)(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> && lhs,
+auto BOOST_PP_CAT(BIN_OP_NAME, _expression_generator)(
+                                     expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> && lhs,
                                      Rhs && rhs,
                                      std::true_type)
 {
@@ -68,7 +71,8 @@ template
     typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef,
     typename Rhs
 >
-auto BOOST_PP_CAT(BIN_OP_NAME, _expression_generator)(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> && lhs,
+auto BOOST_PP_CAT(BIN_OP_NAME, _expression_generator)(
+                                     expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> && lhs,
                                      Rhs && rhs,
                                      std::false_type)
 {
@@ -85,7 +89,8 @@ template
     typename Lhs,
     typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef
 >
-auto BOOST_PP_CAT(BIN_OP_NAME, _expression_generator)(Lhs && lhs,
+auto BOOST_PP_CAT(BIN_OP_NAME, _expression_generator)(
+                                     Lhs && lhs,
                                      expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> & rhs,
                                      std::true_type)
 {
@@ -101,7 +106,8 @@ template
     typename Lhs,
     typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef
 >
-auto BOOST_PP_CAT(BIN_OP_NAME, _expression_generator)(Lhs && lhs,
+auto BOOST_PP_CAT(BIN_OP_NAME, _expression_generator)(
+                                     Lhs && lhs,
                                      expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> & rhs,
                                      std::false_type)
 {
@@ -117,7 +123,8 @@ template
     typename Lhs,
     typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef
 >
-auto BOOST_PP_CAT(BIN_OP_NAME, _expression_generator)(Lhs && lhs,
+auto BOOST_PP_CAT(BIN_OP_NAME, _expression_generator)(
+                                     Lhs && lhs,
                                      expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> && rhs,
                                      std::true_type)
 {
@@ -133,7 +140,8 @@ template
     typename Lhs,
     typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef
 >
-auto BOOST_PP_CAT(BIN_OP_NAME, _expression_generator)(Lhs && lhs,
+auto BOOST_PP_CAT(BIN_OP_NAME, _expression_generator)(
+                                     Lhs && lhs,
                                      expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> && rhs,
                                      std::false_type)
 {
