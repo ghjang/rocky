@@ -92,7 +92,6 @@
 
 #include <boost/preprocessor/iteration/iterate.hpp>
 #define BOOST_PP_ITERATION_LIMITS (0, BOOST_PP_SUB(BINARY_OPERATOR_TUPLES_size, 1))
-//#define BOOST_PP_ITERATION_LIMITS (0, 0)
 #define BOOST_PP_FILENAME_1 "rocky/et/BinaryOperatorSpec.h"
 #include BOOST_PP_ITERATE()
 
