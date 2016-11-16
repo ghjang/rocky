@@ -35,8 +35,14 @@
 #define BINARY_OPERATOR_name(bin_op_tuple) \
     BOOST_PP_TUPLE_ELEM(0, bin_op_tuple)
 
+#define BINARY_OPERATOR_name_str(bin_op_tuple) \
+    TO_STR(BINARY_OPERATOR_name(bin_op_tuple))
+
 #define BINARY_OPERATOR_symbol(bin_op_tuple) \
     BOOST_PP_TUPLE_ELEM(1, bin_op_tuple)
+
+#define BINARY_OPERATOR_symbol_str(bin_op_tuple) \
+    TO_STR(BINARY_OPERATOR_symbol(bin_op_tuple))
 
 
 #include "BinaryOperatorSpec.h"
