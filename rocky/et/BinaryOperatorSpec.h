@@ -321,4 +321,45 @@ auto operator BIN_OP_SYM(n) (terminal<Lhs> && lhs, Rhs && rhs)
 }
 
 
+template <typename Lhs, typename Rhs>
+auto operator BIN_OP_SYM(n) (terminal<Lhs> & lhs, terminal<Rhs> & rhs)
+{
+    return BOOST_PP_CAT(BIN_OP_NAME(n), _terminal_generator)(
+                lhs,
+                rhs,
+                std::true_type{}
+           );
+}
+
+template <typename Lhs, typename Rhs>
+auto operator BIN_OP_SYM(n) (terminal<Lhs> & lhs, terminal<Rhs> && rhs)
+{
+    return BOOST_PP_CAT(BIN_OP_NAME(n), _terminal_generator)(
+                lhs,
+                std::move(rhs),
+                std::true_type{}
+           );
+}
+
+template <typename Lhs, typename Rhs>
+auto operator BIN_OP_SYM(n) (terminal<Lhs> && lhs, terminal<Rhs> & rhs)
+{
+    return BOOST_PP_CAT(BIN_OP_NAME(n), _terminal_generator)(
+                std::move(lhs),
+                rhs,
+                std::true_type{}
+           );
+}
+
+template <typename Lhs, typename Rhs>
+auto operator BIN_OP_SYM(n) (terminal<Lhs> && lhs, terminal<Rhs> && rhs)
+{
+    return BOOST_PP_CAT(BIN_OP_NAME(n), _terminal_generator)(
+                std::move(lhs),
+                std::move(rhs),
+                std::true_type{}
+           );
+}
+
+
 #undef n
