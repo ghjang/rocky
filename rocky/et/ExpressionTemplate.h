@@ -220,6 +220,13 @@ struct is_callable_node<value_holder<IsValRValRef, T>>
 { };
 
 
+#define CREATE_PLACEHOLDER_FILLER_0(...)  \
+            ((__VA_ARGS__)) CREATE_PLACEHOLDER_FILLER_1
+#define CREATE_PLACEHOLDER_FILLER_1(...)  \
+            ((__VA_ARGS__)) CREATE_PLACEHOLDER_FILLER_0
+#define CREATE_PLACEHOLDER_FILLER_0_END
+#define CREATE_PLACEHOLDER_FILLER_1_END
+
 // refer to http://en.cppreference.com/w/cpp/language/operator_precedence
 #include "BinaryOperator.h"
 

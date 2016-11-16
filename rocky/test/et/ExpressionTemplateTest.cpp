@@ -8,6 +8,11 @@
 #include <sstream>
 
 
+TEST_CASE("size of binary operator overloading", "[et]")
+{
+    REQUIRE(12 == BINARY_OPERATOR_TUPLES_size);
+}
+
 TEST_CASE("left shift", "[et]")
 {
     std::ostringstream oss;
