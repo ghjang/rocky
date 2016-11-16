@@ -3,6 +3,7 @@
 #include "rocky/et/ExpressionTemplate.h"
 
 #include <algorithm>
+#include <numeric>
 #include <vector>
 #include <iostream>
 #include <sstream>
@@ -65,4 +66,53 @@ TEST_CASE("left shift", "[et]")
     auto expr7 = oss << (_1 << 2);
     expr7(10);                  // 10 * 2 * 2 == 10 << 2
     REQUIRE(oss.str() == "40");
+}
+
+TEST_CASE("assignment lambda expression", "[et]")
+{
+    std::vector<int> v(5);
+    std::iota(v.begin(), v.end(), 1);
+
+    std::for_each(v.begin(), v.end(), _1 += 10);
+
+    std::ostringstream oss;
+    std::for_each(v.begin(), v.end(), oss << _1 << ", ");
+
+    // FIXME
+    REQUIRE(oss.str() == "11, 12, 13, 14, 15, ");
+}
+
+TEST_CASE("when two sides are both terminal or expression", "[et]")
+{
+    // FIXME
+    //auto expr = (_1 + _2);
+
+    //auto expr = (_1 + _2) + (_1 * _2);
+    //REQUIRE(230 == expr(10, 20));
+
+    // FIXME
+    //auto expr = (_1 + 10) - (_2 * 10);
+    //REQUIRE(-180 == expr(10, 20));
+}
+
+TEST_CASE("lambda expression", "[et]")
+{
+    std::vector<int> v(5);
+    std::iota(v.begin(), v.end(), 1);
+
+    std::ostringstream oss;
+
+    std::for_each(
+        v.begin(),
+        v.end(),
+        oss << _1 << ", "
+    );
+    REQUIRE(oss.str() == "1, 2, 3, 4, 5, ");
+
+    oss.str("");
+    auto expr = oss << _2 << ", " << _1;
+    expr(10, 24);
+    REQUIRE(oss.str() == "24, 10");
+
+    REQUIRE(20 == (_1 * 10)(2));
 }
