@@ -4,6 +4,8 @@
 
 #include <boost/preprocessor/cat.hpp>
 #include <boost/preprocessor/seq/size.hpp>
+#include <boost/preprocessor/seq/elem.hpp>
+#include <boost/preprocessor/tuple/elem.hpp>
 
 
 #define BINARY_OPERATOR_TUPLES          \
@@ -26,6 +28,15 @@
 
 #define BINARY_OPERATOR_TUPLES_size \
     BOOST_PP_SEQ_SIZE(BINARY_OPERATOR_TUPLES_to_tuple_seq(BINARY_OPERATOR_TUPLES))
+
+#define BINARY_OPERATOR_TUPLES_at(i) \
+    BOOST_PP_SEQ_ELEM(i, BINARY_OPERATOR_TUPLES_to_tuple_seq(BINARY_OPERATOR_TUPLES))
+
+#define BINARY_OPERATOR_name(bin_op_tuple) \
+    BOOST_PP_TUPLE_ELEM(0, bin_op_tuple)
+
+#define BINARY_OPERATOR_symbol(bin_op_tuple) \
+    BOOST_PP_TUPLE_ELEM(1, bin_op_tuple)
 
 
 #include "BinaryOperatorSpec.h"

@@ -13,6 +13,14 @@ TEST_CASE("size of operator overloading", "[et]")
     REQUIRE(12 == BINARY_OPERATOR_TUPLES_size);
 }
 
+TEST_CASE("operator overloading helper macro", "[et]")
+{
+    std::string name = TO_STR(BINARY_OPERATOR_name(BINARY_OPERATOR_TUPLES_at(0)));
+    std::string symbol = TO_STR(BINARY_OPERATOR_symbol(BINARY_OPERATOR_TUPLES_at(0)));
+    REQUIRE("multiplication" == name);
+    REQUIRE("*" == symbol);
+}
+
 TEST_CASE("left shift", "[et]")
 {
     std::ostringstream oss;
