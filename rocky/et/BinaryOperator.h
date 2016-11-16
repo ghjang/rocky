@@ -6,6 +6,7 @@
 #include <boost/preprocessor/seq/size.hpp>
 #include <boost/preprocessor/seq/elem.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
+#include <boost/preprocessor/arithmetic/sub.hpp>
 
 
 #define BINARY_OPERATOR_TUPLES          \
@@ -45,7 +46,11 @@
     TO_STR(BINARY_OPERATOR_symbol(bin_op_tuple))
 
 
-#include "BinaryOperatorSpec.h"
+#include <boost/preprocessor/iteration/iterate.hpp>
+#define BOOST_PP_ITERATION_LIMITS (0, BOOST_PP_SUB(BINARY_OPERATOR_TUPLES_size, 1))
+//#define BOOST_PP_ITERATION_LIMITS (0, 0)
+#define BOOST_PP_FILENAME_1 "rocky/et/BinaryOperatorSpec.h"
+#include BOOST_PP_ITERATE()
 
 
 #endif // ROCKY_ET_BINARY_OPERATOR_H
