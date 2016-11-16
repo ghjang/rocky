@@ -2,26 +2,56 @@
 #define ROCKY_ET_BINARY_OPERATOR_H
 
 
-#include <boost/preprocessor/cat.hpp>
 #include <boost/preprocessor/seq/size.hpp>
 #include <boost/preprocessor/seq/elem.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
+#include <boost/preprocessor/tuple/size.hpp>
+#include <boost/preprocessor/punctuation/comma.hpp>
+#include <boost/preprocessor/cat.hpp>
 #include <boost/preprocessor/arithmetic/sub.hpp>
+#include <boost/preprocessor/control/if.hpp>
+#include <boost/preprocessor/comparison/equal.hpp>
+#include <boost/preprocessor/facilities/identity.hpp>
 
+
+// NOTE: followings are some compiler error messages.
+//       TODO: check them whether they are correct or not.
+//
+//  - overloaded 'operator=' must be a non-static member function.
+//  - overloaded 'operator->' must be a unary operator
+
+// NOTE: comma operator is treated special inside the macro expansion spec.
 
 #define BINARY_OPERATOR_TUPLES          \
-    (multiplication,    *)              \
-    (division,          /)              \
-    (remainder,         %)              \
-    (addition,          +)              \
-    (subtraction,       -)              \
-    (left_shift,        <<)             \
-    (right_shift,       >>)             \
-    (sum,               +=)             \
-    (difference,        -=)             \
-    (product,           *=)             \
-    (quotient,          /=)             \
-    (remainder_assign,  %=)
+    (addition,              +)          \
+    (subtraction,           -)          \
+    (multiplication,        *)          \
+    (division,              /)          \
+    (remainder,             %)          \
+    (bitwise_and,           &)          \
+    (bitwise_or,            |)          \
+    (bitwise_xor,           ^)          \
+    (left_shift,            <<)         \
+    (right_shift,           >>)         \
+    (sum_assign,            +=)         \
+    (difference_assign,     -=)         \
+    (product_assign,        *=)         \
+    (quotient_assign,       /=)         \
+    (remainder_assign,      %=)         \
+    (bitwise_and_assign,    &=)         \
+    (bitwise_or_assign,     |=)         \
+    (bitwise_xor_assign,    ^=)         \
+    (left_shift_assign,     <<=)        \
+    (right_shift_assign,    >>=)        \
+    (logical_and,           &&)         \
+    (logical_or,            ||)         \
+    (equal_to,              ==)         \
+    (not_equal_to,          !=)         \
+    (less_than,             <)          \
+    (greater_than,          >)          \
+    (less_or_equal,         <=)         \
+    (greater_or_equal,      >=)         \
+    (comma,                 BOOST_PP_COMMA())
 
 
 #define BINARY_OPERATOR_TUPLES_to_tuple_seq(operators) \
@@ -44,6 +74,20 @@
 
 #define BINARY_OPERATOR_symbol_str(bin_op_tuple) \
     TO_STR(BINARY_OPERATOR_symbol(bin_op_tuple))
+
+
+#define BIN_OP_NAME(i) \
+    BOOST_PP_CAT(BINARY_OPERATOR_name(BINARY_OPERATOR_TUPLES_at(i)), _t)
+
+#define BIN_OP_SYM(i)                                                           \
+    BOOST_PP_IF(                                                                \
+        BOOST_PP_EQUAL(                                                         \
+            BOOST_PP_TUPLE_SIZE(BINARY_OPERATOR_TUPLES_at(i)),                  \
+            3                                                                   \
+        ),                                                                      \
+        BOOST_PP_COMMA,                                                         \
+        BOOST_PP_IDENTITY(BINARY_OPERATOR_symbol(BINARY_OPERATOR_TUPLES_at(i))) \
+    )()
 
 
 #include <boost/preprocessor/iteration/iterate.hpp>

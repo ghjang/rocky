@@ -10,15 +10,15 @@
 
 TEST_CASE("size of operator overloading", "[et]")
 {
-    REQUIRE(12 == BINARY_OPERATOR_TUPLES_size);
+    REQUIRE(29 == BINARY_OPERATOR_TUPLES_size);
 }
 
 TEST_CASE("operator overloading helper macro", "[et]")
 {
     std::string name = BINARY_OPERATOR_name_str(BINARY_OPERATOR_TUPLES_at(0));
     std::string symbol = BINARY_OPERATOR_symbol_str(BINARY_OPERATOR_TUPLES_at(0));
-    REQUIRE("multiplication" == name);
-    REQUIRE("*" == symbol);
+    REQUIRE("addition" == name);
+    REQUIRE("+" == symbol);
 }
 
 TEST_CASE("left shift", "[et]")
