@@ -220,6 +220,7 @@ struct is_callable_node<value_holder<IsValRValRef, T>>
 { };
 
 
+// refer to http://en.cppreference.com/w/cpp/language/operator_precedence
 #include "BinaryOperator.h"
 
 
