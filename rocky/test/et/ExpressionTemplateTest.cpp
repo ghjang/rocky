@@ -92,12 +92,12 @@ TEST_CASE("when two sides are both terminal or expression", "[et]")
     // two sides are both terminal.
     //auto expr = (_1 + _2);
 
+    // two sides for the '-' operator are both expression.
+    auto expr = (_1 + 10) - (_2 * 10);
+    REQUIRE(-180 == expr(10, 20));
+
     //auto expr = (_1 + _2) + (_1 * _2);
     //REQUIRE(230 == expr(10, 20));
-
-    // FIXME
-    //auto expr = (_1 + 10) - (_2 * 10);
-    //REQUIRE(-180 == expr(10, 20));
 }
 
 TEST_CASE("lambda expression", "[et]")

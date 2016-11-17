@@ -124,23 +124,6 @@ template
 auto BOOST_PP_CAT(BIN_OP_NAME(n), _expression_generator)(
                                      Lhs && lhs,
                                      expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> && rhs,
-                                     std::true_type)
-{
-    using lhs_t = std::decay_t<Lhs>;
-    using rhs_t = expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef>;
-    return expression<lhs_t, BIN_OP_NAME(n), rhs_t, std::is_rvalue_reference<decltype(lhs)>::value, true>{
-                std::forward<Lhs>(lhs), std::move(rhs)
-           };
-}
-
-template
-<
-    typename Lhs,
-    typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef
->
-auto BOOST_PP_CAT(BIN_OP_NAME(n), _expression_generator)(
-                                     Lhs && lhs,
-                                     expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> && rhs,
                                      std::false_type)
 {
     using lhs_t = value_holder<std::is_rvalue_reference<decltype(lhs)>::value, std::decay_t<Lhs>>;
@@ -154,7 +137,8 @@ auto BOOST_PP_CAT(BIN_OP_NAME(n), _expression_generator)(
 template
 <
     typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef,
-    typename Rhs
+    typename Rhs,
+    typename = std::enable_if_t<!is_expression<std::decay_t<Rhs>>::value>
 >
 auto operator BIN_OP_SYM(n) (expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> & lhs, Rhs && rhs)
 {
@@ -168,7 +152,8 @@ auto operator BIN_OP_SYM(n) (expression<Left, OpTag, Right, IsLeftRValRef, IsRig
 template
 <
     typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef,
-    typename Rhs
+    typename Rhs,
+    typename = std::enable_if_t<!is_expression<std::decay_t<Rhs>>::value>
 >
 auto operator BIN_OP_SYM(n) (expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> && lhs, Rhs && rhs)
 {
@@ -182,7 +167,8 @@ auto operator BIN_OP_SYM(n) (expression<Left, OpTag, Right, IsLeftRValRef, IsRig
 template
 <
     typename Lhs,
-    typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef
+    typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef,
+    typename = std::enable_if_t<!is_expression<std::decay_t<Lhs>>::value>
 >
 auto operator BIN_OP_SYM(n) (Lhs && lhs, expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> & rhs)
 {
@@ -196,7 +182,8 @@ auto operator BIN_OP_SYM(n) (Lhs && lhs, expression<Left, OpTag, Right, IsLeftRV
 template
 <
     typename Lhs,
-    typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef
+    typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef,
+    typename = std::enable_if_t<!is_expression<std::decay_t<Lhs>>::value>
 >
 auto operator BIN_OP_SYM(n) (Lhs && lhs, expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> && rhs)
 {
