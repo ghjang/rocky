@@ -118,6 +118,7 @@ private:
     template <typename T>
     auto wrap(T && t, std::true_type)
     {
+        static_assert(std::is_rvalue_reference<decltype(t)>::value);
         return t;
     }
 
@@ -234,6 +235,16 @@ struct is_callable_node<place_holder<i>>
 
 template <bool IsValRValRef, typename T>
 struct is_callable_node<value_holder<IsValRValRef, T>>
+        : std::true_type
+{ };
+
+
+template <typename T>
+struct is_expression : std::false_type
+{ };
+
+template<typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef>
+struct is_expression<expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef>>
         : std::true_type
 { };
 

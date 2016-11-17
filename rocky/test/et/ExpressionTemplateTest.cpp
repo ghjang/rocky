@@ -9,6 +9,12 @@
 #include <sstream>
 
 
+TEST_CASE("is_expression meta-function", "[et]")
+{
+    static_assert(!is_expression<std::decay_t<decltype(_1)>>::value);
+    static_assert(is_expression<std::decay_t<decltype(_1 + 1)>>::value);
+}
+
 TEST_CASE("size of operator overloading", "[et]")
 {
     REQUIRE(29 == BINARY_OPERATOR_TUPLES_size);
@@ -83,7 +89,7 @@ TEST_CASE("assignment lambda expression", "[et]")
 
 TEST_CASE("when two sides are both terminal or expression", "[et]")
 {
-    // FIXME
+    // two sides are both terminal.
     //auto expr = (_1 + _2);
 
     //auto expr = (_1 + _2) + (_1 * _2);
