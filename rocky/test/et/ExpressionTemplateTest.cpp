@@ -88,12 +88,28 @@ TEST_CASE("assignment lambda expression", "[et]")
     std::vector<int> v(5);
     std::iota(v.begin(), v.end(), 1);
 
-    std::for_each(v.begin(), v.end(), _1 += 10);
+    std::for_each(
+            v.begin(),
+            v.end(),
+            _1 += 10
+    );
 
     std::ostringstream oss;
     std::for_each(v.begin(), v.end(), oss << _1 << ", ");
 
     REQUIRE(oss.str() == "11, 12, 13, 14, 15, ");
+
+    std::iota(v.begin(), v.end(), 1);
+    std::for_each(
+            v.begin(),
+            v.end(),
+            (_1 += 10, _1 /= 2) // with comma operator
+    );
+
+    oss.str("");
+    std::for_each(v.begin(), v.end(), oss << _1 << ", ");
+
+    REQUIRE(oss.str() == "5, 6, 6, 7, 7, ");
 }
 
 TEST_CASE("when two sides are both terminal or expression", "[et]")
