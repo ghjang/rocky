@@ -249,6 +249,15 @@ struct is_expression<expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRe
 { };
 
 
+template <typename T>
+struct is_terminal : std::is_base_of<terminal<T>, T>
+{ };
+
+template <typename T>
+struct is_terminal<terminal<T>> : std::true_type
+{ };
+
+
 #define CREATE_PLACEHOLDER_FILLER_0(...)  \
             ((__VA_ARGS__)) CREATE_PLACEHOLDER_FILLER_1
 #define CREATE_PLACEHOLDER_FILLER_1(...)  \
