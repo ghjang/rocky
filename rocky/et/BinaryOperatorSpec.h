@@ -1,6 +1,7 @@
 #define n BOOST_PP_ITERATION()
 
 
+//==============================================================================
 struct BIN_OP_NAME(n)
 {
     template <typename L, typename R>
@@ -11,6 +12,7 @@ struct BIN_OP_NAME(n)
 };
 
 
+//==============================================================================
 template
 <
     typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef,
@@ -205,7 +207,68 @@ auto operator BIN_OP_SYM(n) (Lhs && lhs, expression<Left, OpTag, Right, IsLeftRV
            );
 }
 
+template
+<
+    typename Left1, typename OpTag1, typename Right1, bool IsLeftRValRef1, bool IsRightRValRef1,
+    typename Left2, typename OpTag2, typename Right2, bool IsLeftRValRef2, bool IsRightRValRef2
+>
+auto operator BIN_OP_SYM(n) (expression<Left1, OpTag1, Right1, IsLeftRValRef1, IsRightRValRef1> & lhs,
+                             expression<Left2, OpTag2, Right2, IsLeftRValRef2, IsRightRValRef2> & rhs)
+{
+    return BOOST_PP_CAT(BIN_OP_NAME(n), _expression_generator)(
+                lhs,
+                rhs,
+                std::true_type{}
+           );
+}
 
+template
+<
+    typename Left1, typename OpTag1, typename Right1, bool IsLeftRValRef1, bool IsRightRValRef1,
+    typename Left2, typename OpTag2, typename Right2, bool IsLeftRValRef2, bool IsRightRValRef2
+>
+auto operator BIN_OP_SYM(n) (expression<Left1, OpTag1, Right1, IsLeftRValRef1, IsRightRValRef1> & lhs,
+                             expression<Left2, OpTag2, Right2, IsLeftRValRef2, IsRightRValRef2> && rhs)
+{
+    return BOOST_PP_CAT(BIN_OP_NAME(n), _expression_generator)(
+                lhs,
+                std::move(rhs),
+                std::true_type{}
+           );
+}
+
+template
+<
+    typename Left1, typename OpTag1, typename Right1, bool IsLeftRValRef1, bool IsRightRValRef1,
+    typename Left2, typename OpTag2, typename Right2, bool IsLeftRValRef2, bool IsRightRValRef2
+>
+auto operator BIN_OP_SYM(n) (expression<Left1, OpTag1, Right1, IsLeftRValRef1, IsRightRValRef1> && lhs,
+                             expression<Left2, OpTag2, Right2, IsLeftRValRef2, IsRightRValRef2> & rhs)
+{
+    return BOOST_PP_CAT(BIN_OP_NAME(n), _expression_generator)(
+                std::move(lhs),
+                rhs,
+                std::true_type{}
+           );
+}
+
+template
+<
+    typename Left1, typename OpTag1, typename Right1, bool IsLeftRValRef1, bool IsRightRValRef1,
+    typename Left2, typename OpTag2, typename Right2, bool IsLeftRValRef2, bool IsRightRValRef2
+>
+auto operator BIN_OP_SYM(n) (expression<Left1, OpTag1, Right1, IsLeftRValRef1, IsRightRValRef1> && lhs,
+                             expression<Left2, OpTag2, Right2, IsLeftRValRef2, IsRightRValRef2> && rhs)
+{
+    return BOOST_PP_CAT(BIN_OP_NAME(n), _expression_generator)(
+                std::move(lhs),
+                std::move(rhs),
+                std::true_type{}
+           );
+}
+
+
+//==============================================================================
 template <typename Lhs, typename Rhs>
 auto BOOST_PP_CAT(BIN_OP_NAME(n), _terminal_generator)(Lhs && lhs, terminal<Rhs> & rhs, std::false_type)
 {
@@ -362,4 +425,5 @@ auto operator BIN_OP_SYM(n) (terminal<Lhs> && lhs, terminal<Rhs> && rhs)
 }
 
 
+//==============================================================================
 #undef n
