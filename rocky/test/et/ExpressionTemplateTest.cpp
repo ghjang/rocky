@@ -78,7 +78,6 @@ TEST_CASE("assignment lambda expression", "[et]")
     std::ostringstream oss;
     std::for_each(v.begin(), v.end(), oss << _1 << ", ");
 
-    // FIXME
     REQUIRE(oss.str() == "11, 12, 13, 14, 15, ");
 }
 

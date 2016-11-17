@@ -4,6 +4,7 @@
 
 #include <utility>
 #include <type_traits>
+#include <functional>
 #include <tuple>
 
 
@@ -108,6 +109,18 @@ private:
         return Derived::apply(lhs(c), rhs(c));
     }
 
+    template <typename T>
+    auto wrap(T & t, std::false_type)
+    {
+        return std::ref(t);
+    }
+
+    template <typename T>
+    auto wrap(T && t, std::true_type)
+    {
+        return t;
+    }
+
 public:
     auto derived()
     {
@@ -123,7 +136,12 @@ public:
     template <typename... Args>
     decltype(auto) operator () (Args &&... args)
     {
-        auto t = std::make_tuple(std::forward<Args>(args)...);
+        auto t = std::make_tuple(
+                        wrap(
+                            std::forward<Args>(args),
+                            std::is_rvalue_reference<decltype(args)>()
+                        )...
+                 );
         context<decltype(t)> c{ t };
         return (*this)(c);
     }
