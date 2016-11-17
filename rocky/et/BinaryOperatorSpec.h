@@ -303,15 +303,6 @@ auto BOOST_PP_CAT(BIN_OP_NAME(n), _terminal_generator)(terminal<Lhs> & lhs, Rhs 
 }
 
 template <typename Lhs, typename Rhs>
-auto BOOST_PP_CAT(BIN_OP_NAME(n), _terminal_generator)(terminal<Lhs> & lhs, Rhs && rhs, std::true_type)
-{
-    using rhs_t = std::decay_t<Rhs>; 
-    return expression<Lhs, BIN_OP_NAME(n), rhs_t, false, std::is_rvalue_reference<decltype(rhs)>::value> {
-                *(lhs.derived()), std::forward<Rhs>(rhs)
-           };
-}
-
-template <typename Lhs, typename Rhs>
 auto BOOST_PP_CAT(BIN_OP_NAME(n), _terminal_generator)(terminal<Lhs> && lhs, Rhs && rhs, std::false_type)
 {
     using rhs_t = value_holder<std::is_rvalue_reference<decltype(rhs)>::value, std::decay_t<Rhs>>; 
@@ -330,7 +321,11 @@ auto BOOST_PP_CAT(BIN_OP_NAME(n), _terminal_generator)(terminal<Lhs> && lhs, Rhs
 }
 
 
-template <typename Lhs, typename Rhs>
+template 
+<
+    typename Lhs, typename Rhs,
+    typename = std::enable_if_t<!is_terminal<std::decay_t<Lhs>>::value>
+>
 auto operator BIN_OP_SYM(n) (Lhs && lhs, terminal<Rhs> & rhs)
 {
     return BOOST_PP_CAT(BIN_OP_NAME(n), _terminal_generator)(
@@ -340,7 +335,11 @@ auto operator BIN_OP_SYM(n) (Lhs && lhs, terminal<Rhs> & rhs)
            );
 }
 
-template <typename Lhs, typename Rhs>
+template 
+<
+    typename Lhs, typename Rhs,
+    typename = std::enable_if_t<!is_terminal<std::decay_t<Lhs>>::value>
+>
 auto operator BIN_OP_SYM(n) (Lhs && lhs, terminal<Rhs> && rhs)
 {
     return BOOST_PP_CAT(BIN_OP_NAME(n), _terminal_generator)(
@@ -350,7 +349,11 @@ auto operator BIN_OP_SYM(n) (Lhs && lhs, terminal<Rhs> && rhs)
            );
 }
 
-template <typename Lhs, typename Rhs>
+template 
+<
+    typename Lhs, typename Rhs,
+    typename = std::enable_if_t<!is_terminal<std::decay_t<Rhs>>::value>
+>
 auto operator BIN_OP_SYM(n) (terminal<Lhs> & lhs, Rhs && rhs)
 {
     return BOOST_PP_CAT(BIN_OP_NAME(n), _terminal_generator)(
@@ -360,7 +363,11 @@ auto operator BIN_OP_SYM(n) (terminal<Lhs> & lhs, Rhs && rhs)
            );
 }
 
-template <typename Lhs, typename Rhs>
+template 
+<
+    typename Lhs, typename Rhs,
+    typename = std::enable_if_t<!is_terminal<std::decay_t<Rhs>>::value>
+>
 auto operator BIN_OP_SYM(n) (terminal<Lhs> && lhs, Rhs && rhs)
 {
     return BOOST_PP_CAT(BIN_OP_NAME(n), _terminal_generator)(

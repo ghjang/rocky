@@ -99,14 +99,14 @@ TEST_CASE("assignment lambda expression", "[et]")
 TEST_CASE("when two sides are both terminal or expression", "[et]")
 {
     // two sides are both terminal.
-    //auto expr = (_1 + _2);
+    auto expr = (_1 + _2);
 
     // two sides for the '-' operator are both expression.
-    auto expr = (_1 + 10) - (_2 * 10);
-    REQUIRE(-180 == expr(10, 20));
+    auto expr1 = (_1 + 10) - (_2 * 10);
+    REQUIRE(-180 == expr1(10, 20));
 
-    //auto expr = (_1 + _2) + (_1 * _2);
-    //REQUIRE(230 == expr(10, 20));
+    auto expr2 = (_1 + _2) + (_1 * _2);
+    REQUIRE(230 == expr2(10, 20));
 }
 
 TEST_CASE("lambda expression", "[et]")
