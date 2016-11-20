@@ -214,6 +214,7 @@ struct expression
 };
 
 
+//==============================================================================
 template <typename T>
 struct is_callable_node : std::false_type
 { };
@@ -258,6 +259,7 @@ struct is_terminal<terminal<T>> : std::true_type
 { };
 
 
+//==============================================================================
 #define CREATE_PLACEHOLDER_FILLER_0(...)  \
             ((__VA_ARGS__)) CREATE_PLACEHOLDER_FILLER_1
 #define CREATE_PLACEHOLDER_FILLER_1(...)  \
@@ -272,6 +274,7 @@ struct is_terminal<terminal<T>> : std::true_type
 #include "BinaryOperator.h"
 
 
+//==============================================================================
 #include <boost/preprocessor/cat.hpp>
 #include <boost/preprocessor/iteration/local.hpp>
 
