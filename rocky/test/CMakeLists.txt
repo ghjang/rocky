@@ -123,7 +123,8 @@ set(HEADER_FILES
         ../et/ExpressionTemplate.h
         ../et/BinaryOperator.h
         ../et/BinaryOperatorSpec.h
-        ../et/Traversal.h)
+        ../et/Traversal.h
+        ../et/Print.h)
 
 set(SOURCE_FILES
         main.cpp

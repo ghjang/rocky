@@ -13,6 +13,17 @@ struct BIN_OP_NAME(n)
 
 
 //==============================================================================
+template<typename Left, typename Right, bool IsLeftRValRef, bool IsRightRValRef>
+auto op_sym_str(expression<Left, BIN_OP_NAME(n), Right, IsLeftRValRef, IsRightRValRef>)
+{
+    return BINARY_OPERATOR_name_str(BINARY_OPERATOR_TUPLES_at(n))
+           "("
+           BINARY_OPERATOR_symbol_str(BINARY_OPERATOR_TUPLES_at(n))
+           ")";
+}
+
+
+//==============================================================================
 template
 <
     typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef,

@@ -61,6 +61,11 @@ struct value_holder<false, T>
         return value_;
     }
 
+    T & get()
+    {
+        return value_;
+    } 
+
     T & value_;
 };
 
@@ -74,6 +79,11 @@ struct value_holder<false, T *>
 
     template <typename U>
     T * operator () (context<U> &)
+    {
+        return value_;
+    }
+
+    T * get()
     {
         return value_;
     }
@@ -95,8 +105,17 @@ struct value_holder<true, T>
         return value_;
     }
 
+    T & get()
+    {
+        return value_;
+    }
+
     T value_;
 };
+
+
+struct null_terminal : terminal<null_terminal>
+{ };
 
 
 template <typename Derived>
