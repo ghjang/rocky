@@ -122,7 +122,8 @@ set(HEADER_FILES
         ../muse/Interval.h
         ../et/ExpressionTemplate.h
         ../et/BinaryOperator.h
-        ../et/BinaryOperatorSpec.h)
+        ../et/BinaryOperatorSpec.h
+        ../et/Traversal.h)
 
 set(SOURCE_FILES
         main.cpp

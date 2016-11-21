@@ -1,6 +1,7 @@
 #include "../catch.hpp"
 
 #include "rocky/et/ExpressionTemplate.h"
+#include "rocky/et/Traversal.h"
 
 #include <algorithm>
 #include <numeric>
@@ -145,4 +146,46 @@ TEST_CASE("lambda expression", "[et]")
     REQUIRE(oss.str() == "24, 10");
 
     REQUIRE(20 == (_1 * 10)(2));
+}
+
+TEST_CASE("pre-order traversal", "[et]")
+{
+    // lvalue expression object
+    auto expr = _1 + 10;
+    preorder(expr, [](auto & node) { });
+
+    // rvalue expression object
+    preorder(_1 + 10, [](auto && node) { });
+
+    int nodeCnt = 0;
+    preorder(_1 + 10, [&nodeCnt](auto &&){ ++nodeCnt; });
+    REQUIRE(3 == nodeCnt);
+}
+
+TEST_CASE("in-order traversal", "[et]")
+{
+    // lvalue expression object
+    auto expr = _1 + 10;
+    inorder(expr, [](auto & node) { });
+
+    // rvalue expression object
+    inorder(_1 + 10, [](auto && node) { });
+
+    int nodeCnt = 0;
+    inorder(_1 + 10, [&nodeCnt](auto &&){ ++nodeCnt; });
+    REQUIRE(3 == nodeCnt);
+}
+
+TEST_CASE("post-order traversal", "[et]")
+{
+    // lvalue expression object
+    auto expr = _1 + 10;
+    postorder(expr, [](auto & node) { });
+
+    // rvalue expression object
+    postorder(_1 + 10, [](auto && node) { });
+
+    int nodeCnt = 0;
+    postorder(_1 + 10, [&nodeCnt](auto &&){ ++nodeCnt; });
+    REQUIRE(3 == nodeCnt);
 }
