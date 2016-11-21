@@ -2,6 +2,7 @@
 #define ROCKY_ET_PRINT_H
 
 
+#include <string>
 #include <ostream>
 
 #include "rocky/et/ExpressionTemplate.h"
@@ -13,10 +14,12 @@ struct expression_tree_printer
     void print_prefix(int level)
     {
         for (int i = 0; i < level; ++i) {
-            ostream_ << "  ";
+            for (int j = 0; j < indentSpaceCount_; ++j) {
+                ostream_.put(' ');
+            }
         }
         if (level != 0) {
-            ostream_ << "+- ";
+            ostream_ << prefix_;
         }
     }
 
@@ -46,6 +49,8 @@ struct expression_tree_printer
     }
 
     std::ostream & ostream_;
+    int indentSpaceCount_ = 2;
+    std::string prefix_ = "+- ";
 };
 
 
@@ -56,7 +61,7 @@ template
 >
 void print_tree(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> & e, OStream & o)
 {
-    preorder(e, expression_tree_printer{ o });
+    preorder(e, expression_tree_printer{ o, 2, "+- " });
 }
 
 template
@@ -66,7 +71,7 @@ template
 >
 void print_tree(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> && e, OStream & o)
 {
-    preorder(std::move(e), expression_tree_printer{ o });
+    preorder(std::move(e), expression_tree_printer{ o, 2, "+- " });
 }
 
 
