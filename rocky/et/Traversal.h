@@ -111,15 +111,26 @@ auto inorder(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> && e,
 //==============================================================================
 template
 <
-    typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef,
-    typename F
+    typename Expr, typename F,
+    typename = std::enable_if_t<!is_terminal<std::decay_t<Expr>>::value>
 >
-auto postorder(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> & e,
-               F && f)
+auto postorder_impl(Expr && e, F && f, int level)
 {
-    postorder(e.left(), std::forward<F>(f));
-    postorder(e.right(), std::forward<F>(f));
-    f(e);
+    postorder_impl(e.left(), std::forward<F>(f), level + 1);
+    postorder_impl(e.right(), std::forward<F>(f), level + 1);
+    f(std::forward<Expr>(e), level);
+}
+
+template <typename T, typename F>
+auto postorder_impl(terminal<T> & t, F && f, int level)
+{
+    f(*(t.derived()), level);
+}
+
+template <typename T, typename F>
+auto postorder_impl(terminal<T> && t, F && f, int level)
+{
+    f(*(t.derived()), level);
 }
 
 template
@@ -127,24 +138,19 @@ template
     typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef,
     typename F
 >
-auto postorder(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> && e,
-               F && f)
+auto postorder(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> & e, F && f)
 {
-    postorder(e.left(), std::forward<F>(f));
-    postorder(e.right(), std::forward<F>(f));
-    f(std::forward<expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef>>(e));
+    postorder_impl(e, std::forward<F>(f), 0);
 }
 
-template <typename T, typename F>
-auto postorder(terminal<T> & t, F && f)
+template
+<
+    typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef,
+    typename F
+>
+auto postorder(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> && e, F && f)
 {
-    f(*(t.derived()));
-}
-
-template <typename T, typename F>
-auto postorder(terminal<T> && t, F && f)
-{
-    f(*(t.derived()));
+    postorder_impl(std::move(e), std::forward<F>(f), 0);
 }
 
 
