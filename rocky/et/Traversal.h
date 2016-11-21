@@ -5,6 +5,7 @@
 #include <type_traits>
 
 
+//==============================================================================
 template<typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef>
 struct expression;
 
@@ -60,6 +61,7 @@ auto preorder(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> && e
 }
 
 
+//==============================================================================
 template
 <
     typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef,
@@ -99,6 +101,7 @@ auto inorder(terminal<T> && t, F && f)
 }
 
 
+//==============================================================================
 template
 <
     typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef,
