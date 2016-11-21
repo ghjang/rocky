@@ -199,9 +199,9 @@ TEST_CASE("print node symbol", "[et]")
     //std::ostream & out = std::cout;
 
     auto expr = _1 + 10;
-    print_symbol(expr, out);
+    print_tree(expr, out);
 
     out << '\n';
 
-    print_symbol((_1 + 10) * (_2 - 20), out);
+    print_tree((_1 + 10) * (_2 - 20), out);
 }

@@ -54,7 +54,7 @@ template
     typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef,
     typename OStream
 >
-void print_symbol(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> & e, OStream & o)
+void print_tree(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> & e, OStream & o)
 {
     preorder(e, expression_tree_printer{ o });
 }
@@ -64,7 +64,7 @@ template
     typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef,
     typename OStream
 >
-void print_symbol(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> && e, OStream & o)
+void print_tree(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> && e, OStream & o)
 {
     preorder(std::move(e), expression_tree_printer{ o });
 }
