@@ -191,7 +191,7 @@ TEST_CASE("post-order traversal", "[et]")
     REQUIRE(3 == nodeCnt);
 }
 
-TEST_CASE("print node symbol", "[et]")
+TEST_CASE("print expression tree structure", "[et]")
 {
     std::ostringstream oss;
 
