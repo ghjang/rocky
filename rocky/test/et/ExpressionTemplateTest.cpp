@@ -193,10 +193,15 @@ TEST_CASE("post-order traversal", "[et]")
 
 TEST_CASE("print node symbol", "[et]")
 {
-    auto expr = _1 + 10;
-    print_symbol(expr);
+    std::ostringstream oss;
 
-    std::cout << '\n';
-    
-    print_symbol((_1 + 10) * (_2 - 20));
+    std::ostream & out = oss;
+    //std::ostream & out = std::cout;
+
+    auto expr = _1 + 10;
+    print_symbol(expr, out);
+
+    out << '\n';
+
+    print_symbol((_1 + 10) * (_2 - 20), out);
 }
