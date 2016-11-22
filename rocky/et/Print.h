@@ -5,6 +5,8 @@
 #include <string>
 #include <ostream>
 
+#include <boost/type_index.hpp>
+
 #include "rocky/et/ExpressionTemplate.h"
 #include "rocky/et/Traversal.h"
 
@@ -36,10 +38,34 @@ struct expression_tree_printer
     }
 
     template <bool IsValRValRef, typename T, typename TraversalContext>
-    void operator () (value_holder<IsValRValRef, T> & v, TraversalContext && c)
+    void operator () (value_holder<IsValRValRef, T> & v, TraversalContext && c, std::true_type)
     {
         print_prefix(c.level_);
-        ostream_ << v.get() << '\n';
+        ostream_ << boost::typeindex::type_id<std::decay_t<decltype(v.get())>>().pretty_name()
+                 << '(' << v.get() << ")\n";
+    }
+
+    template <bool IsValRValRef, typename T, typename TraversalContext>
+    void operator () (value_holder<IsValRValRef, T> & v, TraversalContext && c, std::false_type)
+    {
+        print_prefix(c.level_);
+        ostream_ << boost::typeindex::type_id<std::decay_t<decltype(v.get())>>().pretty_name()
+                 << '\n';
+    }
+
+    template <bool IsValRValRef, typename T, typename TraversalContext>
+    void operator () (value_holder<IsValRValRef, T> & v, TraversalContext && c)
+    {
+        using value_t = std::decay_t<decltype(v.get())>;
+        (*this)(
+            v,
+            std::forward<TraversalContext>(c),
+            std::integral_constant<
+                    bool,
+                    !std::is_class<value_t>::value
+                            || std::is_convertible<value_t, std::string>::value
+            >{}
+        );
     }
 
     template <typename TraversalContext>

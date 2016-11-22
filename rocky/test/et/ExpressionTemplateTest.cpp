@@ -191,6 +191,9 @@ TEST_CASE("post-order traversal", "[et]")
     REQUIRE(3 == nodeCnt);
 }
 
+struct NotPrintableLocalStructType
+{ };
+
 TEST_CASE("print expression tree structure", "[et]")
 {
     std::ostringstream oss;
@@ -208,6 +211,19 @@ TEST_CASE("print expression tree structure", "[et]")
     out << '\n';
 
     print_tree(_1 + "C String", out);
+
+    out << '\n';
+
+    std::string s = "C++ String";
+    print_tree(_1 + s, out);
+
+    out << '\n';
+
+    NotPrintableLocalStructType np;
+    print_tree(_1 + np, out);
+
+    out << '\n';
+    print_tree(_2 + NotPrintableLocalStructType{}, out);
 }
 
 TEST_CASE("print expression to string", "[et]")
