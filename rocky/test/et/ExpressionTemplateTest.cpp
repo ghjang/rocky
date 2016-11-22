@@ -205,3 +205,24 @@ TEST_CASE("print expression tree structure", "[et]")
 
     print_tree((_1 + 10) * (_2 - 20), out);
 }
+
+TEST_CASE("print expression to string", "[et]")
+{
+    std::ostringstream oss;
+
+    auto expr = _1 + 1;
+    print_tree_to_str(expr, oss);
+    REQUIRE(oss.str() == "(_1 + 1)");
+
+    auto expr1 = (_1 + 1) * (_2 + 2);
+    oss.str("");
+    print_tree_to_str(expr1, oss);
+    REQUIRE(oss.str() == "((_1 + 1) * (_2 + 2))");
+
+    /*
+    auto expr2 = _1 + 1 * _2 + 2;
+    oss.str("");
+    print_tree_to_str(expr2, oss);
+    REQUIRE(oss.str() == "(_1 + (1 * _2) + 2)");
+    */
+}
