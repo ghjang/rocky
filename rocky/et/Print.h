@@ -42,6 +42,13 @@ struct expression_tree_printer
         ostream_ << v.get() << '\n';
     }
 
+    template <typename TraversalContext>
+    void operator () (value_holder<false, char const *> & v, TraversalContext && c)
+    {
+        print_prefix(c.level_);
+        ostream_ << '"' << v.get() << "\"\n";
+    }
+
     template <std::size_t i, typename TraversalContext>
     void operator () (place_holder<i>, TraversalContext && c)
     {
