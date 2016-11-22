@@ -17,28 +17,51 @@ struct is_terminal;
 
 
 //==============================================================================
+enum struct NodePositionType
+{
+    Root,
+    LeftChild,
+    RightChild
+};
+
+struct traversal_context
+{
+    int level_ = 0;
+    NodePositionType nodePosition_ = NodePositionType::Root;
+};
+
+
+//==============================================================================
 template
 <
     typename Expr, typename F,
     typename = std::enable_if_t<!is_terminal<std::decay_t<Expr>>::value>
 >
-auto preorder_impl(Expr && e, F && f, int level)
+auto preorder_impl(Expr && e, F && f, traversal_context && c)
 {
-    f(std::forward<Expr>(e), level);
-    preorder_impl(e.left(), std::forward<F>(f), level + 1);
-    preorder_impl(e.right(), std::forward<F>(f), level + 1);
+    f(std::forward<Expr>(e), c);
+    preorder_impl(
+        e.left(),
+        std::forward<F>(f),
+        traversal_context{ c.level_ + 1, NodePositionType::LeftChild }
+    );
+    preorder_impl(
+        e.right(),
+        std::forward<F>(f),
+        traversal_context{ c.level_ + 1, NodePositionType::RightChild }
+    );
 }
 
 template <typename T, typename F>
-auto preorder_impl(terminal<T> & t, F && f, int level)
+auto preorder_impl(terminal<T> & t, F && f, traversal_context && c)
 {
-    f(*(t.derived()), level);
+    f(*(t.derived()), c);
 }
 
 template <typename T, typename F>
-auto preorder_impl(terminal<T> && t, F && f, int level)
+auto preorder_impl(terminal<T> && t, F && f, traversal_context && c)
 {
-    f(*(t.derived()), level);
+    f(*(t.derived()), c);
 }
 
 template
@@ -48,7 +71,11 @@ template
 >
 auto preorder(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> & e, F && f)
 {
-    preorder_impl(e, std::forward<F>(f), 0);
+    preorder_impl(
+        e,
+        std::forward<F>(f),
+        traversal_context{ 0, NodePositionType::Root }
+    );
 }
 
 template
@@ -58,7 +85,11 @@ template
 >
 auto preorder(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> && e, F && f)
 {
-    preorder_impl(std::move(e), std::forward<F>(f), 0);
+    preorder_impl(
+        std::move(e),
+        std::forward<F>(f),
+        traversal_context{ 0, NodePositionType::Root }
+    );
 }
 
 
@@ -68,23 +99,31 @@ template
     typename Expr, typename F,
     typename = std::enable_if_t<!is_terminal<std::decay_t<Expr>>::value>
 >
-auto inorder_impl(Expr && e, F && f, int level)
+auto inorder_impl(Expr && e, F && f, traversal_context && c)
 {
-    inorder_impl(e.left(), std::forward<F>(f), level + 1);
-    f(std::forward<Expr>(e), level);
-    inorder_impl(e.right(), std::forward<F>(f), level + 1);
+    inorder_impl(
+        e.left(),
+        std::forward<F>(f),
+        traversal_context{ c.level_ + 1, NodePositionType::LeftChild }
+    );
+    f(std::forward<Expr>(e), c);
+    inorder_impl(
+        e.right(),
+        std::forward<F>(f),
+        traversal_context{ c.level_ + 1, NodePositionType::RightChild }
+    );
 }
 
 template <typename T, typename F>
-auto inorder_impl(terminal<T> & t, F && f, int level)
+auto inorder_impl(terminal<T> & t, F && f, traversal_context && c)
 {
-    f(*(t.derived()), level);
+    f(*(t.derived()), c);
 }
 
 template <typename T, typename F>
-auto inorder_impl(terminal<T> && t, F && f, int level)
+auto inorder_impl(terminal<T> && t, F && f, traversal_context && c)
 {
-    f(*(t.derived()), level);
+    f(*(t.derived()), c);
 }
 
 template
@@ -94,7 +133,11 @@ template
 >
 auto inorder(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> & e, F && f)
 {
-    inorder_impl(e, std::forward<F>(f), 0);
+    inorder_impl(
+        e,
+        std::forward<F>(f),
+        traversal_context{ 0, NodePositionType::Root }
+    );
 }
 
 template
@@ -104,7 +147,11 @@ template
 >
 auto inorder(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> && e, F && f)
 {
-    inorder_impl(std::move(e), std::forward<F>(f), 0);
+    inorder_impl(
+        std::move(e),
+        std::forward<F>(f),
+        traversal_context{ 0, NodePositionType::Root }
+    );
 }
 
 
@@ -114,23 +161,31 @@ template
     typename Expr, typename F,
     typename = std::enable_if_t<!is_terminal<std::decay_t<Expr>>::value>
 >
-auto postorder_impl(Expr && e, F && f, int level)
+auto postorder_impl(Expr && e, F && f, traversal_context && c)
 {
-    postorder_impl(e.left(), std::forward<F>(f), level + 1);
-    postorder_impl(e.right(), std::forward<F>(f), level + 1);
-    f(std::forward<Expr>(e), level);
+    postorder_impl(
+        e.left(),
+        std::forward<F>(f),
+        traversal_context{ c.level_ + 1, NodePositionType::LeftChild }
+    );
+    postorder_impl(
+        e.right(),
+        std::forward<F>(f),
+        traversal_context{ c.level_ + 1, NodePositionType::RightChild }
+    );
+    f(std::forward<Expr>(e), c);
 }
 
 template <typename T, typename F>
-auto postorder_impl(terminal<T> & t, F && f, int level)
+auto postorder_impl(terminal<T> & t, F && f, traversal_context && c)
 {
-    f(*(t.derived()), level);
+    f(*(t.derived()), c);
 }
 
 template <typename T, typename F>
-auto postorder_impl(terminal<T> && t, F && f, int level)
+auto postorder_impl(terminal<T> && t, F && f, traversal_context && c)
 {
-    f(*(t.derived()), level);
+    f(*(t.derived()), c);
 }
 
 template
@@ -140,7 +195,11 @@ template
 >
 auto postorder(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> & e, F && f)
 {
-    postorder_impl(e, std::forward<F>(f), 0);
+    postorder_impl(
+        e,
+        std::forward<F>(f),
+        traversal_context{ 0, NodePositionType::Root }
+    );
 }
 
 template
@@ -150,7 +209,11 @@ template
 >
 auto postorder(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> && e, F && f)
 {
-    postorder_impl(std::move(e), std::forward<F>(f), 0);
+    postorder_impl(
+        std::move(e),
+        std::forward<F>(f),
+        traversal_context{ 0, NodePositionType::Root }
+    );
 }
 
 

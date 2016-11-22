@@ -26,26 +26,26 @@ struct expression_tree_printer
 
     template
     <
-        typename Expr,
+        typename Expr, typename TraversalContext,
         typename = std::enable_if_t<!is_terminal<std::decay_t<Expr>>::value>
     >
-    void operator () (Expr && e, int level)
+    void operator () (Expr && e, TraversalContext && c)
     {
-        print_prefix(level);
+        print_prefix(c.level_);
         ostream_ << op_sym_desc(std::forward<Expr>(e)) << '\n';
     }
 
-    template <bool IsValRValRef, typename T>
-    void operator () (value_holder<IsValRValRef, T> & v, int level)
+    template <bool IsValRValRef, typename T, typename TraversalContext>
+    void operator () (value_holder<IsValRValRef, T> & v, TraversalContext && c)
     {
-        print_prefix(level);
+        print_prefix(c.level_);
         ostream_ << v.get() << '\n';
     }
 
-    template <std::size_t i>
-    void operator () (place_holder<i>, int level)
+    template <std::size_t i, typename TraversalContext>
+    void operator () (place_holder<i>, TraversalContext && c)
     {
-        print_prefix(level);
+        print_prefix(c.level_);
         ostream_ << '_' << i << '\n';
     }
 
@@ -79,29 +79,29 @@ void print_tree(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> &&
 //==============================================================================
 struct expression_string_printer
 {
-    template
-    <
-        typename Expr,
-        typename = std::enable_if_t<!is_terminal<std::decay_t<Expr>>::value>
-    >
-    void operator () (Expr && e, int level)
+    template <typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef>
+    void operator () (expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> & e)
     {
-        ostream_ << ' ' << op_sym_str(std::forward<Expr>(e)) << ' ';
+        ostream_ << '(';
+        (*this)(e.left());
+        ostream_ << ' ' << op_sym_str(e) << ' ';
+        (*this)(e.right());
+        ostream_ << ')';
     }
 
     template <bool IsValRValRef, typename T>
-    void operator () (value_holder<IsValRValRef, T> & v, int level)
+    void operator () (value_holder<IsValRValRef, T> & v)
     {
         ostream_ << v.get();
     }
 
     template <std::size_t i>
-    void operator () (place_holder<i>, int level)
+    void operator () (place_holder<i>)
     {
         ostream_ << '_' << i;
     }
 
-    std::ostream & ostream_; 
+    std::ostream & ostream_;
 };
 
 
@@ -112,7 +112,7 @@ template
 >
 void print_tree_to_str(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> & e, OStream & o)
 {
-    inorder(e, expression_string_printer{ o });
+    expression_string_printer{ o }(e);
 }
 
 template
@@ -122,7 +122,7 @@ template
 >
 void print_tree_to_str(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> && e, OStream & o)
 {
-    inorder(std::move(e), expression_string_printer{ o });
+    expression_string_printer{ o }(e);
 }
 
 
