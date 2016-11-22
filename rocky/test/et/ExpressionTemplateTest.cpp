@@ -198,8 +198,8 @@ TEST_CASE("print expression tree structure", "[et]")
 {
     std::ostringstream oss;
 
-    //std::ostream & out = oss;
-    std::ostream & out = std::cout;
+    std::ostream & out = oss;
+    //std::ostream & out = std::cout;
 
     auto expr = _1 + 10;
     print_tree(expr, out);
