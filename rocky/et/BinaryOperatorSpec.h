@@ -153,6 +153,41 @@ auto BOOST_PP_CAT(BIN_OP_NAME(n), _expression_generator)(
 
 template
 <
+    typename T,
+    typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef
+>
+auto BOOST_PP_CAT(BIN_OP_NAME(n), _expression_generator)(
+                                     terminal<T> & lhs,
+                                     expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> && rhs,
+                                     std::true_type)
+{
+    using lhs_t = std::decay_t<decltype(*(lhs.derived()))>;
+    using rhs_t = expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef>;
+    return expression<lhs_t, BIN_OP_NAME(n), rhs_t, false, true>{
+                *(lhs.derived()), std::move(rhs)
+           };
+}
+
+template
+<
+    typename T,
+    typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef
+>
+auto BOOST_PP_CAT(BIN_OP_NAME(n), _expression_generator)(
+                                     terminal<T> && lhs,
+                                     expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> && rhs,
+                                     std::true_type)
+{
+    using lhs_t = std::decay_t<decltype(*(lhs.derived()))>;
+    using rhs_t = expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef>;
+    return expression<lhs_t, BIN_OP_NAME(n), rhs_t, true, true>{
+                std::move(*(lhs.derived())), std::move(rhs)
+           };
+}
+
+
+template
+<
     typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef,
     typename Rhs,
     typename = std::enable_if_t<!is_expression<std::decay_t<Rhs>>::value>

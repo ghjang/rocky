@@ -219,10 +219,18 @@ TEST_CASE("print expression to string", "[et]")
     print_tree_to_str(expr1, oss);
     REQUIRE(oss.str() == "((_1 + 1) * (_2 + 2))");
 
-    /*
-    auto expr2 = _1 + 1 * _2 + 2;
+    auto expr2 = 1 * _2 + 2;
+    oss.str("");
+    print_tree_to_str(expr2, oss);
+    REQUIRE(oss.str() == "((1 * _2) + 2)");
+
+    auto expr3 = _1 + 1 * _2;
+    oss.str("");
+    print_tree_to_str(expr2, oss);
+    REQUIRE(oss.str() == "(_1  + (1 * _2))");
+
+    auto expr4 = _1 + 1 * _2 + 2;
     oss.str("");
     print_tree_to_str(expr2, oss);
     REQUIRE(oss.str() == "(_1 + (1 * _2) + 2)");
-    */
 }
