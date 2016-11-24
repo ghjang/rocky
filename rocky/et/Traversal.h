@@ -3,6 +3,7 @@
 
 
 #include <type_traits>
+#include <functional>
 
 
 //==============================================================================
@@ -27,6 +28,7 @@ enum struct NodePositionType
 struct traversal_context
 {
     int level_ = 0;
+    std::reference_wrapper<int> seqNo_;
     NodePositionType nodePosition_ = NodePositionType::Root;
 };
 
@@ -43,12 +45,12 @@ auto preorder_impl(Expr && e, F && f, traversal_context && c)
     preorder_impl(
         e.left(),
         std::forward<F>(f),
-        traversal_context{ c.level_ + 1, NodePositionType::LeftChild }
+        traversal_context{ c.level_ + 1, ++(c.seqNo_), NodePositionType::LeftChild }
     );
     preorder_impl(
         e.right(),
         std::forward<F>(f),
-        traversal_context{ c.level_ + 1, NodePositionType::RightChild }
+        traversal_context{ c.level_ + 1, ++(c.seqNo_), NodePositionType::RightChild }
     );
 }
 
@@ -71,10 +73,11 @@ template
 >
 auto preorder(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> & e, F && f)
 {
+    int seqNo = 0;
     preorder_impl(
         e,
         std::forward<F>(f),
-        traversal_context{ 0, NodePositionType::Root }
+        traversal_context{ 0, std::ref(seqNo), NodePositionType::Root }
     );
 }
 
@@ -85,10 +88,11 @@ template
 >
 auto preorder(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> && e, F && f)
 {
+    int seqNo = 0;
     preorder_impl(
         std::move(e),
         std::forward<F>(f),
-        traversal_context{ 0, NodePositionType::Root }
+        traversal_context{ 0, std::ref(seqNo), NodePositionType::Root }
     );
 }
 
@@ -104,13 +108,13 @@ auto inorder_impl(Expr && e, F && f, traversal_context && c)
     inorder_impl(
         e.left(),
         std::forward<F>(f),
-        traversal_context{ c.level_ + 1, NodePositionType::LeftChild }
+        traversal_context{ c.level_ + 1, ++(c.seqNo_), NodePositionType::LeftChild }
     );
     f(std::forward<Expr>(e), c);
     inorder_impl(
         e.right(),
         std::forward<F>(f),
-        traversal_context{ c.level_ + 1, NodePositionType::RightChild }
+        traversal_context{ c.level_ + 1, ++(c.seqNo_), NodePositionType::RightChild }
     );
 }
 
@@ -133,10 +137,11 @@ template
 >
 auto inorder(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> & e, F && f)
 {
+    int seqNo = 0;
     inorder_impl(
         e,
         std::forward<F>(f),
-        traversal_context{ 0, NodePositionType::Root }
+        traversal_context{ 0, std::ref(seqNo), NodePositionType::Root }
     );
 }
 
@@ -147,10 +152,11 @@ template
 >
 auto inorder(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> && e, F && f)
 {
+    int seqNo = 0;
     inorder_impl(
         std::move(e),
         std::forward<F>(f),
-        traversal_context{ 0, NodePositionType::Root }
+        traversal_context{ 0, std::ref(seqNo), NodePositionType::Root }
     );
 }
 
@@ -166,12 +172,12 @@ auto postorder_impl(Expr && e, F && f, traversal_context && c)
     postorder_impl(
         e.left(),
         std::forward<F>(f),
-        traversal_context{ c.level_ + 1, NodePositionType::LeftChild }
+        traversal_context{ c.level_ + 1, ++(c.seqNo_), NodePositionType::LeftChild }
     );
     postorder_impl(
         e.right(),
         std::forward<F>(f),
-        traversal_context{ c.level_ + 1, NodePositionType::RightChild }
+        traversal_context{ c.level_ + 1, ++(c.seqNo_), NodePositionType::RightChild }
     );
     f(std::forward<Expr>(e), c);
 }
@@ -195,10 +201,11 @@ template
 >
 auto postorder(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> & e, F && f)
 {
+    int seqNo = 0;
     postorder_impl(
         e,
         std::forward<F>(f),
-        traversal_context{ 0, NodePositionType::Root }
+        traversal_context{ 0, std::ref(seqNo), NodePositionType::Root }
     );
 }
 
@@ -209,10 +216,11 @@ template
 >
 auto postorder(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> && e, F && f)
 {
+    int seqNo = 0;
     postorder_impl(
         std::move(e),
         std::forward<F>(f),
-        traversal_context{ 0, NodePositionType::Root }
+        traversal_context{ 0, std::ref(seqNo), NodePositionType::Root }
     );
 }
 
