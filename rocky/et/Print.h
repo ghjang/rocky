@@ -169,16 +169,37 @@ struct expression_graphviz_dot_printer
     >
     void operator () (Expr && e, Context && c)
     {
+        if (0 == c.level_) { // if root,
+            return;
+        }
+        ostream_ << "  \""
+                 << c.seqNo_ << ". "
+                 << op_sym_desc(c.prevNode_)
+                 << "\" -> \""
+                 << op_sym_desc(std::forward<Expr>(e))
+                 << "\";\n";
     }
 
     template <bool IsValRValRef, typename T, typename Context>
     void operator () (value_holder<IsValRValRef, T> & v, Context && c)
     {
+        ostream_ << "  \""
+                 << c.seqNo_ << ". "
+                 << op_sym_desc(c.prevNode_)
+                 << "\" -> \""
+                 << v.get()
+                 << "\";\n";
     }
 
     template <std::size_t i, typename Context>
     void operator () (place_holder<i>, Context && c)
     {
+        ostream_ << "  \""
+                 << c.seqNo_ << ". "
+                 << op_sym_desc(c.prevNode_)
+                 << "\" -> \""
+                 << '_' << i
+                 << "\";\n";
     }
 
     std::ostream & ostream_;
