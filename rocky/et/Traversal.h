@@ -20,28 +20,45 @@ struct is_terminal;
 //==============================================================================
 enum struct NodePositionType
 {
+    Null,
     Root,
     LeftChild,
     RightChild
 };
 
-template <typename PrevNode>
+template <typename PrevNode, typename PrevContext>
 struct traversal_context
 {
     int level_ = 0;
     std::reference_wrapper<int> seqNo_;
-    NodePositionType nodePosition_ = NodePositionType::Root;
-    PrevNode & prevNode_;
+    NodePositionType nodePosition_ = NodePositionType::Null;
+    PrevNode * prevNode_ = nullptr;
+    PrevContext * prevContext_ = nullptr;
 };
+
+using null_traversal_context_t = traversal_context<void, void>;
+
+
+auto make_null_traversal_context(int & seqNo)
+{
+    return null_traversal_context_t{
+                -1, // null context level
+                std::ref(seqNo),
+                NodePositionType::Null,
+                nullptr,
+                nullptr
+           };
+}
 
 template <typename Context, typename Expr>
 auto make_next_traversal_context(Context & c, NodePositionType t, Expr & e)
 {
-    return traversal_context<Expr>{
+    return traversal_context<Expr, Context>{
                 c.level_ + 1,
                 ++(c.seqNo_),
                 t,
-                e
+                &e,
+                &c
            };
 }
 
@@ -86,16 +103,12 @@ template
 >
 auto preorder(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> & e, F && f)
 {
-    int seqNo = 0;
+    int seqNo = -1; // for null context
+    auto nullContext = make_null_traversal_context(seqNo);
     preorder_impl(
         e,
         std::forward<F>(f),
-        traversal_context<std::remove_reference_t<decltype(e)>>{ // root context
-            0,
-            std::ref(seqNo),
-            NodePositionType::Root,
-            e
-        }
+        make_next_traversal_context(nullContext, NodePositionType::Root, e)
     );
 }
 
@@ -106,16 +119,12 @@ template
 >
 auto preorder(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> && e, F && f)
 {
-    int seqNo = 0;
+    int seqNo = -1; // for null context
+    auto nullContext = make_null_traversal_context(seqNo);
     preorder_impl(
         e,
         std::forward<F>(f),
-        traversal_context<std::remove_reference_t<decltype(e)>>{ // root context
-            0,
-            std::ref(seqNo),
-            NodePositionType::Root,
-            e
-        }
+        make_next_traversal_context(nullContext, NodePositionType::Root, e)
     );
 }
 
@@ -160,16 +169,12 @@ template
 >
 auto inorder(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> & e, F && f)
 {
-    int seqNo = 0;
+    int seqNo = -1; // for null context
+    auto nullContext = make_null_traversal_context(seqNo);
     inorder_impl(
         e,
         std::forward<F>(f),
-        traversal_context<std::remove_reference_t<decltype(e)>>{ // root context
-            0,
-            std::ref(seqNo),
-            NodePositionType::Root,
-            e
-        }
+        make_next_traversal_context(nullContext, NodePositionType::Root, e)
     );
 }
 
@@ -180,16 +185,12 @@ template
 >
 auto inorder(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> && e, F && f)
 {
-    int seqNo = 0;
+    int seqNo = -1; // for null context
+    auto nullContext = make_null_traversal_context(seqNo);
     inorder_impl(
         e,
         std::forward<F>(f),
-        traversal_context<std::remove_reference_t<decltype(e)>>{ // root context
-            0,
-            std::ref(seqNo),
-            NodePositionType::Root,
-            e
-        }
+        make_next_traversal_context(nullContext, NodePositionType::Root, e)
     );
 }
 
@@ -234,16 +235,12 @@ template
 >
 auto postorder(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> & e, F && f)
 {
-    int seqNo = 0;
+    int seqNo = -1; // for null context
+    auto nullContext = make_null_traversal_context(seqNo);
     postorder_impl(
         e,
         std::forward<F>(f),
-        traversal_context<std::remove_reference_t<decltype(e)>>{ // root context
-            0,
-            std::ref(seqNo),
-            NodePositionType::Root,
-            e
-        }
+        make_next_traversal_context(nullContext, NodePositionType::Root, e)
     );
 }
 
@@ -254,16 +251,12 @@ template
 >
 auto postorder(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> && e, F && f)
 {
-    int seqNo = 0;
+    int seqNo = -1; // for null context
+    auto nullContext = make_null_traversal_context(seqNo);
     postorder_impl(
         e,
         std::forward<F>(f),
-        traversal_context<std::remove_reference_t<decltype(e)>>{ // root context
-            0,
-            std::ref(seqNo),
-            NodePositionType::Root,
-            e
-        }
+        make_next_traversal_context(nullContext, NodePositionType::Root, e)
     );
 }
 

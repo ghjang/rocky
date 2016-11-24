@@ -259,6 +259,52 @@ TEST_CASE("expression tree to graphviz DOT output", "[et]")
 {
     std::ostream & out = std::cout;
 
-    auto expr = _1 + 1 * _2 - 2;
+    //auto expr = _1 + 1 * _2 - 2;
+    auto expr = _1 + 1;
     print_tree_to_graphviz_dot(expr, out);
+
+    /*
+    traversal_context<
+        expression<
+            expression<
+                place_holder<1>,
+                addition_t,
+                expression<
+                    value_holder<true, int>,
+                    multiplication_t,
+                    place_holder<2>,
+                    true,
+                    false
+                >,
+                false,
+                true
+            >,
+            subtraction_t,
+            value_holder<true, int>,
+            true,
+            true
+        >,
+        traversal_context<
+            expression<
+                expression<
+                    place_holder<1>,
+                    addition_t,
+                    expression<
+                        value_holder<true, int>,
+                        multiplication_t, place_holder<2>,
+                        true,
+                        false
+                    >,
+                    false,
+                    true
+                >,
+                subtraction_t,
+                value_holder<true, int>,
+                true,
+                true
+            >,
+            traversal_context<void, void>
+        >
+    >
+    */
 }

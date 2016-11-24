@@ -162,6 +162,17 @@ void print_tree_to_str(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRVal
 //==============================================================================
 struct expression_graphviz_dot_printer
 {
+private:
+    template <typename Expr>
+    std::string prev_node_desc(Expr * pPrevNode)
+    {
+        if (pPrevNode) {
+            return op_sym_desc(*(pPrevNode));
+        }
+        return "";
+    }
+
+public:
     template 
     <
         typename Expr, typename Context,
@@ -174,7 +185,7 @@ struct expression_graphviz_dot_printer
         }
         ostream_ << "  \""
                  << c.seqNo_ << ". "
-                 << op_sym_desc(c.prevNode_)
+                 << prev_node_desc(c.prevNode_)
                  << "\" -> \""
                  << op_sym_desc(std::forward<Expr>(e))
                  << "\";\n";
@@ -185,7 +196,7 @@ struct expression_graphviz_dot_printer
     {
         ostream_ << "  \""
                  << c.seqNo_ << ". "
-                 << op_sym_desc(c.prevNode_)
+                 << prev_node_desc(c.prevNode_)
                  << "\" -> \""
                  << v.get()
                  << "\";\n";
@@ -196,7 +207,7 @@ struct expression_graphviz_dot_printer
     {
         ostream_ << "  \""
                  << c.seqNo_ << ". "
-                 << op_sym_desc(c.prevNode_)
+                 << prev_node_desc(c.prevNode_)
                  << "\" -> \""
                  << '_' << i
                  << "\";\n";
