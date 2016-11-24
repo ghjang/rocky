@@ -163,12 +163,17 @@ void print_tree_to_str(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRVal
 struct expression_graphviz_dot_printer
 {
 private:
-    template <typename Expr>
-    std::string prev_node_desc(Expr * pPrevNode)
+    template <typename Expr, typename Context>
+    std::string prev_node_desc(Expr * pPrevNode, Context * pPrevContext)
     {
-        if (pPrevNode) {
-            return op_sym_desc(*(pPrevNode));
-        }
+        std::ostringstream oss;
+        oss << '[' << pPrevContext->id_ << "] " << op_sym_desc(*(pPrevNode));
+        return oss.str();
+    }
+
+    template <typename Expr>
+    std::string prev_node_desc(Expr * /* pPrevNode */, void * /* pPrevContext */)
+    {
         return "";
     }
 
@@ -184,10 +189,9 @@ public:
             return;
         }
         ostream_ << "  \""
-                 << c.seqNo_ << ". "
-                 << prev_node_desc(c.prevNode_)
+                 << prev_node_desc(c.prevNode_, c.prevContext_)
                  << "\" -> \""
-                 << op_sym_desc(std::forward<Expr>(e))
+                 << '[' << c.id_ << "] " << op_sym_desc(std::forward<Expr>(e))
                  << "\";\n";
     }
 
@@ -195,10 +199,9 @@ public:
     void operator () (value_holder<IsValRValRef, T> & v, Context && c)
     {
         ostream_ << "  \""
-                 << c.seqNo_ << ". "
-                 << prev_node_desc(c.prevNode_)
+                 << prev_node_desc(c.prevNode_, c.prevContext_)
                  << "\" -> \""
-                 << v.get()
+                 << '[' << c.id_ << "] " << v.get()
                  << "\";\n";
     }
 
@@ -206,10 +209,9 @@ public:
     void operator () (place_holder<i>, Context && c)
     {
         ostream_ << "  \""
-                 << c.seqNo_ << ". "
-                 << prev_node_desc(c.prevNode_)
+                 << prev_node_desc(c.prevNode_, c.prevContext_)
                  << "\" -> \""
-                 << '_' << i
+                 << '[' << c.id_ << "] _" << i
                  << "\";\n";
     }
 
@@ -225,7 +227,7 @@ template
 void print_tree_to_graphviz_dot(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> & e, OStream & o)
 {
     o << "digraph Expression {\n";
-    preorder(e, expression_graphviz_dot_printer{ o });
+    postorder(e, expression_graphviz_dot_printer{ o });
     o << "}\n";
 }
 
@@ -237,7 +239,7 @@ template
 void print_tree_to_graphviz_dot(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> && e, OStream & o)
 {
     o << "digraph Expression {\n";
-    preorder(e, expression_graphviz_dot_printer{ o });
+    postorder(e, expression_graphviz_dot_printer{ o });
     o << "}\n";
 }
 

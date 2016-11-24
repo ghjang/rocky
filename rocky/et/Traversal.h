@@ -29,7 +29,8 @@ enum struct NodePositionType
 template <typename PrevNode, typename PrevContext>
 struct traversal_context
 {
-    int level_ = 0;
+    int level_ = -1;
+    int id_ = -1;
     std::reference_wrapper<int> seqNo_;
     NodePositionType nodePosition_ = NodePositionType::Null;
     PrevNode * prevNode_ = nullptr;
@@ -42,7 +43,8 @@ using null_traversal_context_t = traversal_context<void, void>;
 auto make_null_traversal_context(int & seqNo)
 {
     return null_traversal_context_t{
-                -1, // null context level
+                -1, // null level
+                -1, // null id
                 std::ref(seqNo),
                 NodePositionType::Null,
                 nullptr,
@@ -55,6 +57,7 @@ auto make_next_traversal_context(Context & c, NodePositionType t, Expr & e)
 {
     return traversal_context<Expr, Context>{
                 c.level_ + 1,
+                c.seqNo_ + 1,
                 ++(c.seqNo_),
                 t,
                 &e,
