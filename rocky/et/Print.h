@@ -167,7 +167,10 @@ private:
     std::string prev_node_desc(Expr * pPrevNode, Context * pPrevContext)
     {
         std::ostringstream oss;
-        oss << '[' << pPrevContext->id_ << "] " << op_sym_desc(*(pPrevNode));
+        if (0 != pPrevContext->id_) { // if not root,
+            oss << '[' << pPrevContext->id_ << "] ";
+        }
+        oss << op_sym_desc(*(pPrevNode));
         return oss.str();
     }
 
