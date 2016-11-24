@@ -34,46 +34,47 @@ struct traversal_context
     PrevNode & prevNode_;
 };
 
+template <typename Context, typename Expr>
+auto make_next_traversal_context(Context & c, NodePositionType t, Expr & e)
+{
+    return traversal_context<Expr>{
+                c.level_ + 1,
+                ++(c.seqNo_),
+                t,
+                e
+           };
+}
+
 
 //==============================================================================
 template
 <
-    typename Expr, typename F, typename T,
+    typename Expr, typename F, typename Context,
     typename = std::enable_if_t<!is_terminal<std::decay_t<Expr>>::value>
 >
-auto preorder_impl(Expr && e, F && f, traversal_context<T> && c)
+auto preorder_impl(Expr && e, F && f, Context && c)
 {
     f(std::forward<Expr>(e), c);
     preorder_impl(
         e.left(),
         std::forward<F>(f),
-        traversal_context<std::remove_reference_t<Expr>>{
-            c.level_ + 1,
-            ++(c.seqNo_),
-            NodePositionType::LeftChild,
-            e
-        }
+        make_next_traversal_context(c, NodePositionType::LeftChild, e)
     );
     preorder_impl(
         e.right(),
         std::forward<F>(f),
-        traversal_context<std::remove_reference_t<Expr>>{
-            c.level_ + 1,
-            ++(c.seqNo_),
-            NodePositionType::RightChild,
-            e
-        }
+        make_next_traversal_context(c, NodePositionType::RightChild, e)
     );
 }
 
-template <typename T, typename F, typename U>
-auto preorder_impl(terminal<T> & t, F && f, traversal_context<U> && c)
+template <typename T, typename F, typename Context>
+auto preorder_impl(terminal<T> & t, F && f, Context && c)
 {
     f(*(t.derived()), c);
 }
 
-template <typename T, typename F, typename U>
-auto preorder_impl(terminal<T> && t, F && f, traversal_context<U> && c)
+template <typename T, typename F, typename Context>
+auto preorder_impl(terminal<T> && t, F && f, Context && c)
 {
     f(*(t.derived()), c);
 }
@@ -89,7 +90,7 @@ auto preorder(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> & e,
     preorder_impl(
         e,
         std::forward<F>(f),
-        traversal_context<std::remove_reference_t<decltype(e)>>{
+        traversal_context<std::remove_reference_t<decltype(e)>>{ // root context
             0,
             std::ref(seqNo),
             NodePositionType::Root,
@@ -109,7 +110,7 @@ auto preorder(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> && e
     preorder_impl(
         e,
         std::forward<F>(f),
-        traversal_context<std::remove_reference_t<decltype(e)>>{
+        traversal_context<std::remove_reference_t<decltype(e)>>{ // root context
             0,
             std::ref(seqNo),
             NodePositionType::Root,
@@ -122,42 +123,32 @@ auto preorder(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> && e
 //==============================================================================
 template
 <
-    typename Expr, typename F, typename T,
+    typename Expr, typename F, typename Context,
     typename = std::enable_if_t<!is_terminal<std::decay_t<Expr>>::value>
 >
-auto inorder_impl(Expr && e, F && f, traversal_context<T> && c)
+auto inorder_impl(Expr && e, F && f, Context && c)
 {
     inorder_impl(
         e.left(),
         std::forward<F>(f),
-        traversal_context<std::remove_reference_t<Expr>>{
-            c.level_ + 1,
-            ++(c.seqNo_),
-            NodePositionType::LeftChild,
-            e
-        }
+        make_next_traversal_context(c, NodePositionType::LeftChild, e)
     );
     f(std::forward<Expr>(e), c);
     inorder_impl(
         e.right(),
         std::forward<F>(f),
-        traversal_context<std::remove_reference_t<Expr>>{
-            c.level_ + 1,
-            ++(c.seqNo_),
-            NodePositionType::RightChild,
-            e
-        }
+        make_next_traversal_context(c, NodePositionType::RightChild, e)
     );
 }
 
-template <typename T, typename F, typename U>
-auto inorder_impl(terminal<T> & t, F && f, traversal_context<U> && c)
+template <typename T, typename F, typename Context>
+auto inorder_impl(terminal<T> & t, F && f, Context && c)
 {
     f(*(t.derived()), c);
 }
 
-template <typename T, typename F, typename U>
-auto inorder_impl(terminal<T> && t, F && f, traversal_context<U> && c)
+template <typename T, typename F, typename Context>
+auto inorder_impl(terminal<T> && t, F && f, Context && c)
 {
     f(*(t.derived()), c);
 }
@@ -173,7 +164,7 @@ auto inorder(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> & e, 
     inorder_impl(
         e,
         std::forward<F>(f),
-        traversal_context<std::remove_reference_t<decltype(e)>>{
+        traversal_context<std::remove_reference_t<decltype(e)>>{ // root context
             0,
             std::ref(seqNo),
             NodePositionType::Root,
@@ -193,7 +184,7 @@ auto inorder(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> && e,
     inorder_impl(
         e,
         std::forward<F>(f),
-        traversal_context<std::remove_reference_t<decltype(e)>>{
+        traversal_context<std::remove_reference_t<decltype(e)>>{ // root context
             0,
             std::ref(seqNo),
             NodePositionType::Root,
@@ -206,42 +197,32 @@ auto inorder(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> && e,
 //==============================================================================
 template
 <
-    typename Expr, typename F, typename T,
+    typename Expr, typename F, typename Context,
     typename = std::enable_if_t<!is_terminal<std::decay_t<Expr>>::value>
 >
-auto postorder_impl(Expr && e, F && f, traversal_context<T> && c)
+auto postorder_impl(Expr && e, F && f, Context && c)
 {
     postorder_impl(
         e.left(),
         std::forward<F>(f),
-        traversal_context<std::remove_reference_t<Expr>>{
-            c.level_ + 1,
-            ++(c.seqNo_),
-            NodePositionType::LeftChild,
-            e
-        }
+        make_next_traversal_context(c, NodePositionType::LeftChild, e)
     );
     postorder_impl(
         e.right(),
         std::forward<F>(f),
-        traversal_context<std::remove_reference_t<Expr>>{
-            c.level_ + 1,
-            ++(c.seqNo_),
-            NodePositionType::RightChild,
-            e
-        }
+        make_next_traversal_context(c, NodePositionType::RightChild, e)
     );
     f(std::forward<Expr>(e), c);
 }
 
-template <typename T, typename F, typename U>
-auto postorder_impl(terminal<T> & t, F && f, traversal_context<U> && c)
+template <typename T, typename F, typename Context>
+auto postorder_impl(terminal<T> & t, F && f, Context && c)
 {
     f(*(t.derived()), c);
 }
 
-template <typename T, typename F, typename U>
-auto postorder_impl(terminal<T> && t, F && f, traversal_context<U> && c)
+template <typename T, typename F, typename Context>
+auto postorder_impl(terminal<T> && t, F && f, Context && c)
 {
     f(*(t.derived()), c);
 }
@@ -257,7 +238,7 @@ auto postorder(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> & e
     postorder_impl(
         e,
         std::forward<F>(f),
-        traversal_context<std::remove_reference_t<decltype(e)>>{
+        traversal_context<std::remove_reference_t<decltype(e)>>{ // root context
             0,
             std::ref(seqNo),
             NodePositionType::Root,
@@ -277,7 +258,7 @@ auto postorder(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> && 
     postorder_impl(
         e,
         std::forward<F>(f),
-        traversal_context<std::remove_reference_t<decltype(e)>>{
+        traversal_context<std::remove_reference_t<decltype(e)>>{ // root context
             0,
             std::ref(seqNo),
             NodePositionType::Root,
