@@ -257,7 +257,10 @@ TEST_CASE("print expression to string", "[et]")
 
 TEST_CASE("expression tree to graphviz DOT output", "[et]")
 {
-    std::ostream & out = std::cout;
+    std::ostringstream oss;
+
+    std::ostream & out = oss;
+    //std::ostream & out = std::cout;
 
     auto expr =(_1 + 100) * (_2 - 200) / _3;
     print_tree_to_graphviz_dot(expr, out);
