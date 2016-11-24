@@ -254,3 +254,11 @@ TEST_CASE("print expression to string", "[et]")
     print_tree_to_str(expr4, oss);
     REQUIRE(oss.str() == "((_1 + (1 * _2)) - 2)");
 }
+
+TEST_CASE("expression tree to graphviz DOT output", "[et]")
+{
+    std::ostream & out = std::cout;
+
+    auto expr = _1 + 1 * _2 - 2;
+    print_tree_to_graphviz_dot(expr, out);
+}

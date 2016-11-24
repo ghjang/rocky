@@ -159,4 +159,55 @@ void print_tree_to_str(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRVal
 }
 
 
+//==============================================================================
+struct expression_graphviz_dot_printer
+{
+    template 
+    <
+        typename Expr, typename Context,
+        typename = std::enable_if_t<!is_terminal<std::decay_t<Expr>>::value>
+    >
+    void operator () (Expr && e, Context && c)
+    {
+    }
+
+    template <bool IsValRValRef, typename T, typename Context>
+    void operator () (value_holder<IsValRValRef, T> & v, Context && c)
+    {
+    }
+
+    template <std::size_t i, typename Context>
+    void operator () (place_holder<i>, Context && c)
+    {
+    }
+
+    std::ostream & ostream_;
+};
+
+
+template
+<
+    typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef,
+    typename OStream
+>
+void print_tree_to_graphviz_dot(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> & e, OStream & o)
+{
+    o << "digraph Expression {\n";
+    preorder(e, expression_graphviz_dot_printer{ o });
+    o << "}\n";
+}
+
+template
+<
+    typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef,
+    typename OStream
+>
+void print_tree_to_graphviz_dot(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> && e, OStream & o)
+{
+    o << "digraph Expression {\n";
+    preorder(e, expression_graphviz_dot_printer{ o });
+    o << "}\n";
+}
+
+
 #endif // ROCKY_ET_PRINT_H
