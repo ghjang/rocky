@@ -26,15 +26,15 @@ enum struct NodePositionType
     RightChild
 };
 
-template <typename PrevNode, typename PrevContext>
+template <typename ParentNode, typename ParentContext>
 struct traversal_context
 {
     int level_ = -1;
     int id_ = -1;
     std::reference_wrapper<int> seqNo_;
     NodePositionType nodePosition_ = NodePositionType::Null;
-    PrevNode * prevNode_ = nullptr;
-    PrevContext * prevContext_ = nullptr;
+    ParentNode * prevNode_ = nullptr;
+    ParentContext * prevContext_ = nullptr;
 };
 
 using null_traversal_context_t = traversal_context<void, void>;

@@ -164,18 +164,18 @@ struct expression_graphviz_dot_printer
 {
 private:
     template <typename Expr, typename Context>
-    std::string prev_node_desc(Expr * pPrevNode, Context * pPrevContext)
+    std::string parent_node_desc(Expr * pParentNode, Context * pParentContext)
     {
         std::ostringstream oss;
-        if (0 != pPrevContext->id_) { // if not root,
-            oss << '[' << pPrevContext->id_ << "] ";
+        if (0 != pParentContext->id_) { // if not root,
+            oss << '[' << pParentContext->id_ << "] ";
         }
-        oss << op_sym_desc(*(pPrevNode));
+        oss << op_sym_desc(*(pParentNode));
         return oss.str();
     }
 
     template <typename Expr>
-    std::string prev_node_desc(Expr * /* pPrevNode */, void * /* pPrevContext */)
+    std::string parent_node_desc(Expr * /* pParentNode */, void * /* pParentContext */)
     {
         return "";
     }
@@ -192,7 +192,7 @@ public:
             return;
         }
         ostream_ << "  \""
-                 << prev_node_desc(c.prevNode_, c.prevContext_)
+                 << parent_node_desc(c.prevNode_, c.prevContext_)
                  << "\" -> \""
                  << '[' << c.id_ << "] " << op_sym_desc(std::forward<Expr>(e))
                  << "\";\n";
@@ -202,7 +202,7 @@ public:
     void operator () (value_holder<IsValRValRef, T> & v, Context && c)
     {
         ostream_ << "  \""
-                 << prev_node_desc(c.prevNode_, c.prevContext_)
+                 << parent_node_desc(c.prevNode_, c.prevContext_)
                  << "\" -> \""
                  << '[' << c.id_ << "] " << v.get()
                  << "\";\n";
@@ -212,7 +212,7 @@ public:
     void operator () (place_holder<i>, Context && c)
     {
         ostream_ << "  \""
-                 << prev_node_desc(c.prevNode_, c.prevContext_)
+                 << parent_node_desc(c.prevNode_, c.prevContext_)
                  << "\" -> \""
                  << '[' << c.id_ << "] _" << i
                  << "\";\n";
