@@ -192,7 +192,7 @@ public:
             return;
         }
         ostream_ << "  \""
-                 << parent_node_desc(c.prevNode_, c.prevContext_)
+                 << parent_node_desc(c.parentNode_, c.parentContext_)
                  << "\" -> \""
                  << '[' << c.id_ << "] " << op_sym_desc(std::forward<Expr>(e))
                  << "\";\n";
@@ -202,7 +202,7 @@ public:
     void operator () (value_holder<IsValRValRef, T> & v, Context && c)
     {
         ostream_ << "  \""
-                 << parent_node_desc(c.prevNode_, c.prevContext_)
+                 << parent_node_desc(c.parentNode_, c.parentContext_)
                  << "\" -> \""
                  << '[' << c.id_ << "] " << v.get()
                  << "\";\n";
@@ -212,7 +212,7 @@ public:
     void operator () (place_holder<i>, Context && c)
     {
         ostream_ << "  \""
-                 << parent_node_desc(c.prevNode_, c.prevContext_)
+                 << parent_node_desc(c.parentNode_, c.parentContext_)
                  << "\" -> \""
                  << '[' << c.id_ << "] _" << i
                  << "\";\n";

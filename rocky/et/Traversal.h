@@ -33,8 +33,8 @@ struct traversal_context
     int id_ = -1;
     std::reference_wrapper<int> seqNo_;
     NodePositionType nodePosition_ = NodePositionType::Null;
-    ParentNode * prevNode_ = nullptr;
-    ParentContext * prevContext_ = nullptr;
+    ParentNode * parentNode_ = nullptr;
+    ParentContext * parentContext_ = nullptr;
 };
 
 using null_traversal_context_t = traversal_context<void, void>;
