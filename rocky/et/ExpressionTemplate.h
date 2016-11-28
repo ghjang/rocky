@@ -7,14 +7,8 @@
 #include <functional>
 #include <tuple>
 
+#include "rocky/et/OperationPolicy.h"
 #include "rocky/et/StoragePolicy.h"
-
-
-template <typename T>
-struct context
-{
-    T & args_;
-};
 
 
 template <typename Derived>
@@ -124,59 +118,6 @@ struct null_terminal : terminal<null_terminal>
         return null_terminal{};
     }
 };
-
-
-template <typename Derived>
-struct functor
-{
-private:
-    template <typename Lhs, typename Rhs, typename Context>
-    decltype(auto) call_impl(Lhs & lhs, Rhs & rhs, Context & c)
-    {
-        return Derived::apply(lhs(c), rhs(c));
-    }
-
-    template <typename T>
-    auto wrap(T & t, std::false_type)
-    {
-        return std::ref(t);
-    }
-
-    template <typename T>
-    auto wrap(T && t, std::true_type)
-    {
-        static_assert(std::is_rvalue_reference<decltype(t)>::value);
-        return t;
-    }
-
-public:
-    auto derived()
-    {
-        return static_cast<Derived *>(this);
-    }
-
-    template <typename T>
-    decltype(auto) operator () (context<T> & c)
-    {
-        return call_impl(derived()->left(), derived()->right(), c);
-    }
-
-    template <typename... Args>
-    decltype(auto) operator () (Args &&... args)
-    {
-        auto t = std::make_tuple(
-                        wrap(
-                            std::forward<Args>(args),
-                            std::is_rvalue_reference<decltype(args)>()
-                        )...
-                 );
-        context<decltype(t)> c{ t };
-        return (*this)(c);
-    }
-};
-
-
-
 
 
 template<typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef>

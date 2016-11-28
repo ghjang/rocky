@@ -122,6 +122,7 @@ set(HEADER_FILES
         ../muse/Interval.h
         ../et/ExpressionTemplate.h
         ../et/StoragePolicy.h
+        ../et/OperationPolicy.h
         ../et/BinaryOperator.h
         ../et/BinaryOperatorSpec.h
         ../et/UnaryOperator.h
