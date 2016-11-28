@@ -268,6 +268,11 @@ TEST_CASE("print expression to string", "[et]")
     oss.str("");
     print_tree_to_str(expr4, oss);
     REQUIRE(oss.str() == "((_1 + (1 * _2)) - 2)");
+
+    auto expr5 = ++_1 + _2--;
+    oss.str("");
+    print_tree_to_str(expr5, oss);
+    REQUIRE(oss.str() == "((++_1) + (_2--))");
 }
 
 TEST_CASE("expression tree to graphviz DOT output", "[et]")

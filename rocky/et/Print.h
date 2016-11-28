@@ -129,6 +129,28 @@ struct expression_string_printer
         ostream_ << ')';
     }
 
+    template <typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef>
+    void operator () (expression<null_terminal, OpTag, Right, IsLeftRValRef, IsRightRValRef> & e)
+    {
+        ostream_ << '(';
+        (*this)(e.right());
+        ostream_ << op_sym_str(e) << ')';
+    }
+
+    template <typename Left, typename OpTag, bool IsLeftRValRef, bool IsRightRValRef>
+    void operator () (expression<Left, OpTag, null_terminal, IsLeftRValRef, IsRightRValRef> & e)
+    {
+        ostream_ << '(' << op_sym_str(e);
+        (*this)(e.left());
+        ostream_ << ')';
+    }
+
+    template <typename T>
+    void operator () (terminal<T> & t)
+    {
+        (*this)(*(t.derived()));
+    }
+    
     template <bool IsValRValRef, typename T>
     void operator () (value_holder<IsValRValRef, T> & v)
     {
@@ -140,6 +162,9 @@ struct expression_string_printer
     {
         ostream_ << '_' << i;
     }
+
+    void operator () (null_terminal)
+    { }
 
     std::ostream & ostream_;
 };
