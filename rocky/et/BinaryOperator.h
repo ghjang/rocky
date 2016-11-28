@@ -14,13 +14,11 @@
 #include <boost/preprocessor/facilities/identity.hpp>
 
 
-// NOTE: followings are some compiler error messages.
-//       TODO: check them whether they are correct or not.
-//
+// NOTE:
 //  - overloaded 'operator=' must be a non-static member function.
-//  - overloaded 'operator->' must be a unary operator
+//  - overloaded 'operator->' must be a unary operator.
 
-// NOTE: comma operator is treated special inside the macro expansion spec.
+// NOTE: comma operator is treated specially inside the macro expansion.
 
 #define BINARY_OPERATOR_TUPLES          \
     (addition,              +)          \
