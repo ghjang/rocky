@@ -29,7 +29,7 @@ TEST_CASE("is_terminal meta-function", "[et]")
 TEST_CASE("size of operator overloading", "[et]")
 {
     REQUIRE(29 == BINARY_OPERATOR_TUPLES_size);
-    REQUIRE(7 == UNARY_OPERATOR_TUPLES_size);
+    REQUIRE(9 == UNARY_OPERATOR_TUPLES_size);
 }
 
 TEST_CASE("operator overloading helper macro", "[et]")
@@ -288,4 +288,13 @@ TEST_CASE("prefix unary operator overloading", "[et]")
 
     auto expr2 = ++_1 + --_2;
     REQUIRE(expr2(10, 20) == 30);
+}
+
+TEST_CASE("postfix unary operator overloading", "[et]")
+{
+    auto expr = _1++;
+    REQUIRE(expr(10) == 10);
+
+    auto expr2 = ++_1 + _2--;
+    REQUIRE(expr2(10, 20) == 31);
 }

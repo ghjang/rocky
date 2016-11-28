@@ -8,6 +8,8 @@
 #include <boost/preprocessor/tuple/size.hpp>
 #include <boost/preprocessor/cat.hpp>
 #include <boost/preprocessor/arithmetic/sub.hpp>
+#include <boost/preprocessor/control/if.hpp>
+#include <boost/preprocessor/comparison/equal.hpp>
 
 
 // NOTE: (address_of, &) operator is not added intentionally.
@@ -16,6 +18,8 @@
 #define UNARY_OPERATOR_TUPLES           \
     (prefix_increment,  ++)             \
     (prefix_decrement,  --)             \
+    (postfix_increment, ++, int)        \
+    (postfix_decrement, --, int)        \
     (unary_plus,        +)              \
     (unary_minus,       -)              \
     (logical_not,       !)              \
@@ -44,11 +48,18 @@
 #define UNARY_OPERATOR_symbol_str(unary_op_tuple) \
     TO_STR(UNARY_OPERATOR_symbol(unary_op_tuple))
 
+#define UNARY_OPERATOR_is_postfix(unary_op_tuple) \
+    BOOST_PP_EQUAL(BOOST_PP_TUPLE_SIZE(unary_op_tuple), 3)
 
-#define UNARY_OP_NAME(i) \
-    BOOST_PP_CAT(UNARY_OPERATOR_name(UNARY_OPERATOR_TUPLES_at(i)), _t)
 
-#define UNARY_OP_SYM(i)                                                         \
+#define UNARY_OP_NAME(i)                                                            \
+    BOOST_PP_IF(                                                                    \
+        UNARY_OPERATOR_is_postfix(UNARY_OPERATOR_TUPLES_at(i)),                     \
+        BOOST_PP_CAT(UNARY_OPERATOR_name(UNARY_OPERATOR_TUPLES_at(i)), _postfix_t), \
+        BOOST_PP_CAT(UNARY_OPERATOR_name(UNARY_OPERATOR_TUPLES_at(i)), _prefix_t)   \
+    )
+
+#define UNARY_OP_SYM(i) \
     UNARY_OPERATOR_symbol(UNARY_OPERATOR_TUPLES_at(i))
 
 

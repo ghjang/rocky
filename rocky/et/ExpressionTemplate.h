@@ -236,12 +236,6 @@ struct expression
     {
         return OpTag::apply(std::forward<L>(l), std::forward<R>(r));
     }
-
-    template <typename T>
-    static decltype(auto) apply(T && t, null_terminal)
-    {
-        return OpTag::apply(std::forward<T>(t), null_terminal{});
-    }
 };
 
 
