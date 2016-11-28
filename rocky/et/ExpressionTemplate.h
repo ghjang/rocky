@@ -9,7 +9,6 @@
 
 #include "rocky/et/OperationPolicy.h"
 #include "rocky/et/StoragePolicy.h"
-#include "rocky/et/ExpressionTraits.h"
 
 
 //==============================================================================

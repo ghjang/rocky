@@ -13,6 +13,7 @@
 
 
 #include "rocky/base/MacroUtility.h"
+#include "rocky/et/ExpressionTraits.h"
 
 
 // NOTE: (address_of, &) operator is not added intentionally.

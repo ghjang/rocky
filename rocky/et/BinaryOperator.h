@@ -14,6 +14,7 @@
 #include <boost/preprocessor/facilities/identity.hpp>
 
 #include "rocky/base/MacroUtility.h"
+#include "rocky/et/ExpressionTraits.h"
 
 
 // NOTE:
