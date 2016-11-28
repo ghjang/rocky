@@ -17,15 +17,11 @@ template <typename Derived>
 struct terminal
 {
     auto derived()
-    {
-        return static_cast<Derived *>(this);
-    }
+    { return static_cast<Derived *>(this); }
 
     template <typename Context>
     decltype(auto) operator () (Context & c)
-    {
-        return (*derived())(c);
-    }
+    { return (*derived())(c); }
 };
 
 
@@ -36,9 +32,7 @@ struct place_holder
 {
     template <typename Context>
     decltype(auto) operator () (Context & c)
-    {
-        return std::get<i - 1>(c.args_);
-    }
+    { return std::get<i - 1>(c.args_); }
 };
 
 
@@ -49,20 +43,15 @@ template <typename T>
 struct value_holder<false, T>
         : terminal<value_holder<false, T>>
 {
-    value_holder(T & t)
-        : value_(t)
+    value_holder(T & t) : value_(t)
     { }
 
     template <typename Context>
     T & operator () (Context)
-    {
-        return value_;
-    }
+    { return value_; }
 
     T & get()
-    {
-        return value_;
-    } 
+    { return value_; } 
 
     T & value_;
 };
@@ -71,20 +60,15 @@ template <typename T>
 struct value_holder<false, T *>
         : terminal<value_holder<false, T *>>
 {
-    value_holder(T * t)
-        : value_(t)
+    value_holder(T * t) : value_(t)
     { }
 
     template <typename Context>
     T * operator () (Context)
-    {
-        return value_;
-    }
+    { return value_; }
 
     T * get()
-    {
-        return value_;
-    }
+    { return value_; }
 
     T * value_;
 };
@@ -93,20 +77,15 @@ template <typename T>
 struct value_holder<true, T>
         : terminal<value_holder<true, T>>
 {
-    value_holder(T && t)
-        : value_(std::move(t))
+    value_holder(T && t) : value_(std::move(t))
     { }
 
     template <typename Context>
     T & operator () (Context)
-    {
-        return value_;
-    }
+    { return value_; }
 
     T & get()
-    {
-        return value_;
-    }
+    { return value_; }
 
     T value_;
 };
@@ -116,9 +95,7 @@ struct null_terminal : terminal<null_terminal>
 {
     template <typename Context>
     null_terminal operator () (Context)
-    {
-        return null_terminal{};
-    }
+    { return null_terminal{}; }
 };
 
 
