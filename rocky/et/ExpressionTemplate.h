@@ -23,8 +23,8 @@ struct terminal
         return static_cast<Derived *>(this);
     }
 
-    template <typename T>
-    decltype(auto) operator () (context<T> & c)
+    template <typename Context>
+    decltype(auto) operator () (Context & c)
     {
         return (*derived())(c);
     }
@@ -36,8 +36,8 @@ struct place_holder
         : terminal<place_holder<i>>
         , std::integral_constant<std::size_t, i>
 {
-    template <typename T>
-    decltype(auto) operator () (context<T> & c)
+    template <typename Context>
+    decltype(auto) operator () (Context & c)
     {
         return std::get<i - 1>(c.args_);
     }
@@ -55,8 +55,8 @@ struct value_holder<false, T>
         : value_(t)
     { }
 
-    template <typename U>
-    T & operator () (context<U> &)
+    template <typename Context>
+    T & operator () (Context)
     {
         return value_;
     }
@@ -77,8 +77,8 @@ struct value_holder<false, T *>
         : value_(t)
     { }
 
-    template <typename U>
-    T * operator () (context<U> &)
+    template <typename Context>
+    T * operator () (Context)
     {
         return value_;
     }
@@ -99,8 +99,8 @@ struct value_holder<true, T>
         : value_(std::move(t))
     { }
 
-    template <typename U>
-    T & operator () (context<U> &)
+    template <typename Context>
+    T & operator () (Context)
     {
         return value_;
     }
