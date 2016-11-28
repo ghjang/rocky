@@ -123,6 +123,8 @@ set(HEADER_FILES
         ../et/ExpressionTemplate.h
         ../et/BinaryOperator.h
         ../et/BinaryOperatorSpec.h
+        ../et/UnaryOperator.h
+        ../et/UnaryOperatorSpec.h
         ../et/Traversal.h
         ../et/Print.h)
 

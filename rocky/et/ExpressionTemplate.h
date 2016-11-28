@@ -115,7 +115,13 @@ struct value_holder<true, T>
 
 
 struct null_terminal : terminal<null_terminal>
-{ };
+{
+    template <typename Context>
+    null_terminal operator () (Context)
+    {
+        return null_terminal{};
+    }
+};
 
 
 template <typename Derived>
@@ -230,6 +236,12 @@ struct expression
     {
         return OpTag::apply(std::forward<L>(l), std::forward<R>(r));
     }
+
+    template <typename T>
+    static decltype(auto) apply(T && t, null_terminal)
+    {
+        return OpTag::apply(std::forward<T>(t), null_terminal{});
+    }
 };
 
 
@@ -291,6 +303,7 @@ struct is_terminal<terminal<T>> : std::true_type
 
 // refer to http://en.cppreference.com/w/cpp/language/operator_precedence
 #include "BinaryOperator.h"
+#include "UnaryOperator.h"
 
 
 //==============================================================================
