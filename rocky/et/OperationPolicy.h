@@ -3,7 +3,7 @@
 
 
 template <typename T>
-struct context
+struct functor_context
 {
     T & args_;
 };
@@ -39,7 +39,7 @@ public:
     }
 
     template <typename T>
-    decltype(auto) operator () (context<T> & c)
+    decltype(auto) operator () (functor_context<T> & c)
     {
         return call_impl(derived()->left(), derived()->right(), c);
     }
@@ -53,7 +53,7 @@ public:
                             std::is_rvalue_reference<decltype(args)>()
                         )...
                  );
-        context<decltype(t)> c{ t };
+        functor_context<decltype(t)> c{ t };
         return (*this)(c);
     }
 };
