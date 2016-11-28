@@ -44,6 +44,7 @@ set(HEADER_FILES
         ../base/Random.h
         ../base/TypeTree.h
         ../base/ArrayUtility.h
+        ../base/MacroUtility.h
         ../math/Power.h
         ../math/Abs.h
         ../math/RatioString.h

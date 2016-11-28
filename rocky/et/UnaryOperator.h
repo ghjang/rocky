@@ -12,6 +12,9 @@
 #include <boost/preprocessor/comparison/equal.hpp>
 
 
+#include "rocky/base/MacroUtility.h"
+
+
 // NOTE: (address_of, &) operator is not added intentionally.
 //       It causes some compile error at the moment.
 

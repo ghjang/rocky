@@ -13,6 +13,8 @@
 #include <boost/preprocessor/comparison/equal.hpp>
 #include <boost/preprocessor/facilities/identity.hpp>
 
+#include "rocky/base/MacroUtility.h"
+
 
 // NOTE:
 //  - overloaded 'operator=' must be a non-static member function.
