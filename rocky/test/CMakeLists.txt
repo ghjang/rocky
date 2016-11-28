@@ -129,6 +129,7 @@ set(HEADER_FILES
         ../et/BinaryOperatorSpec.h
         ../et/UnaryOperator.h
         ../et/UnaryOperatorSpec.h
+        ../et/PlaceHolderDef.h
         ../et/Traversal.h
         ../et/Print.h)
 
