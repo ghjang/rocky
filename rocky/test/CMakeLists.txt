@@ -123,6 +123,7 @@ set(HEADER_FILES
         ../et/ExpressionTemplate.h
         ../et/StoragePolicy.h
         ../et/OperationPolicy.h
+        ../et/ExpressionTraits.h
         ../et/BinaryOperator.h
         ../et/BinaryOperatorSpec.h
         ../et/UnaryOperator.h

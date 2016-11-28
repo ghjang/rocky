@@ -9,8 +9,10 @@
 
 #include "rocky/et/OperationPolicy.h"
 #include "rocky/et/StoragePolicy.h"
+#include "rocky/et/ExpressionTraits.h"
 
 
+//==============================================================================
 template <typename Derived>
 struct terminal
 {
@@ -120,6 +122,7 @@ struct null_terminal : terminal<null_terminal>
 };
 
 
+//==============================================================================
 template<typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef>
 struct expression
         : functor<expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef>>
@@ -154,51 +157,6 @@ struct expression
 
 
 //==============================================================================
-template <typename T>
-struct is_callable_node : std::false_type
-{ };
-
-template<typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef>
-struct is_callable_node<expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef>>
-        : std::true_type
-{ };
-
-template <typename T>
-struct is_callable_node<terminal<T>>
-        : std::true_type
-{ };
-
-template <std::size_t i>
-struct is_callable_node<place_holder<i>>
-        : std::true_type
-{ };
-
-template <bool IsValRValRef, typename T>
-struct is_callable_node<value_holder<IsValRValRef, T>>
-        : std::true_type
-{ };
-
-
-template <typename T>
-struct is_expression : std::false_type
-{ };
-
-template<typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef>
-struct is_expression<expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef>>
-        : std::true_type
-{ };
-
-
-template <typename T>
-struct is_terminal : std::is_base_of<terminal<T>, T>
-{ };
-
-template <typename T>
-struct is_terminal<terminal<T>> : std::true_type
-{ };
-
-
-//==============================================================================
 #define CREATE_PLACEHOLDER_FILLER_0(...)  \
             ((__VA_ARGS__)) CREATE_PLACEHOLDER_FILLER_1
 #define CREATE_PLACEHOLDER_FILLER_1(...)  \
@@ -210,8 +168,8 @@ struct is_terminal<terminal<T>> : std::true_type
 #define TO_STR(s) TO_STR_IMPL(s)
 
 // refer to http://en.cppreference.com/w/cpp/language/operator_precedence
-#include "BinaryOperator.h"
-#include "UnaryOperator.h"
+#include "rocky/et/BinaryOperator.h"
+#include "rocky/et/UnaryOperator.h"
 
 
 //==============================================================================
