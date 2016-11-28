@@ -150,7 +150,7 @@ struct expression_string_printer
     {
         (*this)(*(t.derived()));
     }
-    
+
     template <bool IsValRValRef, typename T>
     void operator () (value_holder<IsValRValRef, T> & v)
     {
@@ -248,6 +248,16 @@ public:
                  << "\" -> \""
                  << '[' << c.id_ << "] _" << i
                  << "\";\n";
+    }
+
+    template <typename Context>
+    void operator () (null_terminal, Context && c)
+    {
+        ostream_ << "  \""
+                 << parent_node_desc(c.parentNode_, c.parentContext_)
+                 << "\" -> \""
+                 << '[' << c.id_ << "] null"
+                 << "\";\n";        
     }
 
     std::ostream & ostream_;

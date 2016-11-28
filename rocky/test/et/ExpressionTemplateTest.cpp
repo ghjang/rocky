@@ -284,6 +284,11 @@ TEST_CASE("expression tree to graphviz DOT output", "[et]")
 
     auto expr =(_1 + 100) * (_2 - 200) / _3;
     print_tree_to_graphviz_dot(expr, out);
+
+    out << '\n';
+
+    auto expr1 = ++_1 + _2--;
+    print_tree_to_graphviz_dot(expr1, out);
 }
 
 TEST_CASE("prefix unary operator overloading", "[et]")
