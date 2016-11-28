@@ -236,6 +236,9 @@ TEST_CASE("print expression tree structure", "[et]")
 
     out << '\n';
     print_tree(_2 + NotPrintableLocalStructType{}, out);
+
+    out << '\n';
+    print_tree(++_1 + _2--, out);
 }
 
 TEST_CASE("print expression to string", "[et]")

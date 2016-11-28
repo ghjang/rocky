@@ -82,6 +82,13 @@ struct expression_tree_printer
         ostream_ << '_' << i << '\n';
     }
 
+    template <typename TraversalContext>
+    void operator () (null_terminal, TraversalContext && c)
+    {
+        print_prefix(c.level_);
+        ostream_ << "null\n";
+    }
+
     std::ostream & ostream_;
     int indentSpaceCount_ = 2;
     std::string prefix_ = "+- ";

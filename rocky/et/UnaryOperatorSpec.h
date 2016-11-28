@@ -33,9 +33,9 @@ auto op_sym_str(expression<Left, UNARY_OP_NAME(n), Right, IsLeftRValRef, IsRight
 template<typename Left, typename Right, bool IsLeftRValRef, bool IsRightRValRef>
 auto op_sym_desc(expression<Left, UNARY_OP_NAME(n), Right, IsLeftRValRef, IsRightRValRef>)
 {
-    return UNARY_OPERATOR_name_str(UNARYARY_OPERATOR_TUPLES_at(n))
+    return UNARY_OPERATOR_name_str(UNARY_OPERATOR_TUPLES_at(n))
            "("
-           UNARY_OPERATOR_symbol_str(UNARYARY_OPERATOR_TUPLES_at(n))
+           UNARY_OPERATOR_symbol_str(UNARY_OPERATOR_TUPLES_at(n))
            ")";
 }
 
