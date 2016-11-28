@@ -121,6 +121,7 @@ set(HEADER_FILES
         ../muse/MusicalScalePrint.h
         ../muse/Interval.h
         ../et/ExpressionTemplate.h
+        ../et/StoragePolicy.h
         ../et/BinaryOperator.h
         ../et/BinaryOperatorSpec.h
         ../et/UnaryOperator.h
