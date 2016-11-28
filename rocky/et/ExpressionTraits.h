@@ -3,22 +3,6 @@
 
 
 //==============================================================================
-template <typename Derived>
-struct terminal;
-
-template <std::size_t i>
-struct place_holder;
-
-template <bool IsValRValRef, typename T>
-struct value_holder;
-
-struct null_terminal;
-
-template<typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef>
-struct expression;
-
-
-//==============================================================================
 template <typename T>
 struct is_callable_node : std::false_type
 { };

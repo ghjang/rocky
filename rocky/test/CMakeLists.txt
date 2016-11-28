@@ -122,6 +122,7 @@ set(HEADER_FILES
         ../muse/MusicalScalePrint.h
         ../muse/Interval.h
         ../et/ExpressionTemplate.h
+        ../et/ExpressionTemplateFwd.h
         ../et/StoragePolicy.h
         ../et/OperationPolicy.h
         ../et/ExpressionTraits.h
