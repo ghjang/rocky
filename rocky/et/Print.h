@@ -7,7 +7,7 @@
 
 #include <boost/type_index.hpp>
 
-#include "rocky/et/ExpressionTemplate.h"
+#include "rocky/et/ExpressionTemplateFwd.h"
 #include "rocky/et/Traversal.h"
 
 
