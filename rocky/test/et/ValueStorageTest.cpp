@@ -30,6 +30,8 @@ TEST_CASE("value storage", "[et]")
     >
     */
 
+    // FIXME: this fails. Huh???
     REQUIRE(expr(10) == 20);
+
     REQUIRE(10 == i);
 }
