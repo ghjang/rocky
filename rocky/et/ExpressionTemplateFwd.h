@@ -13,7 +13,11 @@ struct value_holder;
 
 struct null_terminal;
 
-template<typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef>
+template
+<
+    typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef,
+    template <typename, typename, bool, bool> class Storage
+>
 struct expression;
 
 

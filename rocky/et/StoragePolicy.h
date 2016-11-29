@@ -2,32 +2,42 @@
 #define ROCKY_ET_STORAGE_POLICY_H
 
 
+//==============================================================================
 template<typename Left, typename Right, bool IsLeftRValRef, bool IsRightRValRef>
-struct storage;
+struct default_storage;
 
 template <typename Left, typename Right>
-struct storage<Left, Right, false, false>
+struct default_storage<Left, Right, false, false>
 {
     Left & left_;
     Right & right_;
 };
 
 template <typename Left, typename Right>
-struct storage<Left, Right, false, true>
+struct default_storage<Left, Right, false, true>
 {
     Left & left_;
     Right right_;
 };
 
 template <typename Left, typename Right>
-struct storage<Left, Right, true, false>
+struct default_storage<Left, Right, true, false>
 {
     Left left_;
     Right & right_;
 };
 
 template <typename Left, typename Right>
-struct storage<Left, Right, true, true>
+struct default_storage<Left, Right, true, true>
+{
+    Left left_;
+    Right right_;
+};
+
+
+//==============================================================================
+template<typename Left, typename Right, bool IsLeftRValRef, bool IsRightRValRef>
+struct value_storage
 {
     Left left_;
     Right right_;

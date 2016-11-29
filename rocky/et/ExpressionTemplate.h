@@ -99,13 +99,21 @@ struct null_terminal : terminal<null_terminal>
 
 
 //==============================================================================
-template<typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef>
+#ifndef ET_STORAGE_TYPE
+#   define ET_STORAGE_TYPE default_storage
+#endif // ET_STORAGE_TYPE
+
+template
+<
+    typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef,
+    template <typename, typename, bool, bool> class Storage = ET_STORAGE_TYPE
+>
 struct expression
         : functor<expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef>>
-        , private storage<Left, Right, IsLeftRValRef, IsRightRValRef>
+        , private Storage<Left, Right, IsLeftRValRef, IsRightRValRef>
 {
     using expression_type = expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef>;
-    using storage_base_type = storage<Left, Right, IsLeftRValRef, IsRightRValRef>;
+    using storage_base_type = Storage<Left, Right, IsLeftRValRef, IsRightRValRef>;
 
     template <typename L, typename R>
     explicit expression(L && l, R && r)
