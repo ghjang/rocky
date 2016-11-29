@@ -136,7 +136,5 @@ struct expression
 #include "rocky/et/BinaryOperator.h"
 #include "rocky/et/UnaryOperator.h"
 
-#include "rocky/et/PlaceHolderDef.h"
-
 
 #endif // ROCKY_ET_H

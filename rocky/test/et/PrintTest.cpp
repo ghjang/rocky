@@ -2,6 +2,7 @@
 
 #include "rocky/et/ExpressionTemplate.h"
 #include "rocky/et/Print.h"
+#include "rocky/et/PlaceHolderDef.h"
 
 
 struct NotPrintableLocalStructType

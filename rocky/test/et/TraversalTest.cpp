@@ -2,6 +2,7 @@
 
 #include "rocky/et/ExpressionTemplate.h"
 #include "rocky/et/Traversal.h"
+#include "rocky/et/PlaceHolderDef.h"
 
 
 TEST_CASE("pre-order traversal", "[et]")

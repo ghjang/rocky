@@ -1,6 +1,7 @@
 #include "../catch.hpp"
 
 #include "rocky/et/ExpressionTemplate.h"
+#include "rocky/et/PlaceHolderDef.h"
 
 
 TEST_CASE("is_expression meta-function", "[et]")
