@@ -132,7 +132,8 @@ set(HEADER_FILES
         ../et/UnaryOperatorSpec.h
         ../et/PlaceHolderDef.h
         ../et/Traversal.h
-        ../et/Print.h)
+        ../et/Print.h
+        ../et/LambdaExpression.h)
 
 set(SOURCE_FILES
         main.cpp
@@ -241,10 +242,11 @@ set(SOURCE_FILES
         muse/PitchClassTest.cpp
         muse/MusicalScaleTest.cpp
         muse/IntervalTest.cpp
-        et/ExpressionTemplateTest.cpp
+        et/OperatorOverloadingTest.cpp
         et/TraversalTest.cpp
         et/PrintTest.cpp
-        et/ExpressionTraitsTest.cpp)
+        et/ExpressionTraitsTest.cpp
+        et/LambdaExpressionTest.cpp)
 
 add_executable(RockyTest ${HEADER_FILES} ${SOURCE_FILES})
 
