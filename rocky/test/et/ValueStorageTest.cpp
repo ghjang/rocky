@@ -5,21 +5,26 @@
 #define ROCKY_ET_STORAGE_POLICY value_storage
 #include "rocky/et/ExpressionTemplate.h"
 #include "rocky/et/PlaceHolderDef.h"
-#include "rocky/et/Print.h"
 
 
-template <typename T>
-struct TD;
-
-TEST_CASE("value storage", "[et]")
+// NOTE: This is OK.
+TEST_CASE("value storage, -= operator", "[et]")
 {
     int i = 10;
+    auto expr = i -= _1; // NOTE: i's value is copied.
+
+    REQUIRE(expr(3) == 7);
+    REQUIRE(10 == i);
+}
+
+// NOTE: This is NOT OK. A clang compiler bug??
+TEST_CASE("value storage, += operator", "[et]")
+{
+    int i = 10;
+
     auto expr = i += _1; // NOTE: i's value is copied.
 
-    print_tree(expr, std::cout);
-
     /*
-    TD<decltype(expr)> td;
     expression<
         value_holder<false, int>,
         sum_assign_t,
@@ -30,8 +35,8 @@ TEST_CASE("value storage", "[et]")
     >
     */
 
-    // FIXME: this fails. Huh???
-    REQUIRE(expr(10) == 20);
+    // FIXME: This fails. Huh?? A compiler bug??
+    REQUIRE(expr(3) == 13);
 
     REQUIRE(10 == i);
 }
