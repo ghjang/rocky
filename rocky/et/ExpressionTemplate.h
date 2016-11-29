@@ -81,6 +81,7 @@ struct value_holder<true, T>
         : value_{ std::move(t) }
     { }
 
+    // NOTE: copy from the lvalue reference.
     value_holder(value_holder<false, T> && v)
         : value_{ v.get() }
     { }
