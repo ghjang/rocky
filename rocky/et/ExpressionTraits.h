@@ -2,6 +2,9 @@
 #define ROCKY_ET_EXPRESSION_TRAITS_H
 
 
+#include "rocky/et/ExpressionTemplateFwd.h"
+
+
 //==============================================================================
 template <typename T>
 struct is_callable_node : std::false_type

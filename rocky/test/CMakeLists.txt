@@ -241,7 +241,8 @@ set(SOURCE_FILES
         muse/PitchClassTest.cpp
         muse/MusicalScaleTest.cpp
         muse/IntervalTest.cpp
-        et/ExpressionTemplateTest.cpp)
+        et/ExpressionTemplateTest.cpp
+        et/TraversalTest.cpp)
 
 add_executable(RockyTest ${HEADER_FILES} ${SOURCE_FILES})
 

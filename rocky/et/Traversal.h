@@ -5,16 +5,7 @@
 #include <type_traits>
 #include <functional>
 
-
-//==============================================================================
-template<typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef>
-struct expression;
-
-template <typename Derived>
-struct terminal;
-
-template <typename T>
-struct is_terminal;
+#include "rocky/et/ExpressionTemplateFwd.h"
 
 
 //==============================================================================
@@ -40,7 +31,8 @@ struct traversal_context
 using null_traversal_context_t = traversal_context<void, void>;
 
 
-auto make_null_traversal_context(int & seqNo)
+template <typename Number>
+auto make_null_traversal_context(Number & seqNo)
 {
     return null_traversal_context_t{
                 -1, // null level
