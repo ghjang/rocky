@@ -2,10 +2,7 @@
 #define ROCKY_ET_H
 
 
-#include <utility>
 #include <type_traits>
-#include <functional>
-#include <tuple>
 
 #include "rocky/et/OperationPolicy.h"
 #include "rocky/et/StoragePolicy.h"
@@ -42,8 +39,7 @@ template <typename T>
 struct value_holder<false, T>
         : terminal<value_holder<false, T>>
 {
-    value_holder(T & t) : value_(t)
-    { }
+    value_holder(T & t) : value_{ t } { }
 
     template <typename Context>
     T & operator () (Context)
@@ -52,6 +48,9 @@ struct value_holder<false, T>
     T & get()
     { return value_; } 
 
+    std::decay_t<T> copy()
+    { return value_; }
+
     T & value_;
 };
 
@@ -59,14 +58,16 @@ template <typename T>
 struct value_holder<false, T *>
         : terminal<value_holder<false, T *>>
 {
-    value_holder(T * t) : value_(t)
-    { }
+    value_holder(T * t) : value_{ t } { }
 
     template <typename Context>
     T * operator () (Context)
     { return value_; }
 
     T * get()
+    { return value_; }
+
+    T * copy()
     { return value_; }
 
     T * value_;
@@ -76,7 +77,12 @@ template <typename T>
 struct value_holder<true, T>
         : terminal<value_holder<true, T>>
 {
-    value_holder(T && t) : value_(std::move(t))
+    value_holder(T && t)
+        : value_{ std::move(t) }
+    { }
+
+    value_holder(value_holder<false, T> && v)
+        : value_{ v.get() }
     { }
 
     template <typename Context>
@@ -84,6 +90,9 @@ struct value_holder<true, T>
     { return value_; }
 
     T & get()
+    { return value_; }
+
+    std::decay_t<T> copy()
     { return value_; }
 
     T value_;
@@ -99,18 +108,18 @@ struct null_terminal : terminal<null_terminal>
 
 
 //==============================================================================
-#ifndef ET_STORAGE_TYPE
-#   define ET_STORAGE_TYPE default_storage
-#endif // ET_STORAGE_TYPE
+#ifndef ROCKY_ET_STORAGE_POLICY
+#   define ROCKY_ET_STORAGE_POLICY default_storage
+#endif // ROCKY_ET_STORAGE_POLICY
 
 template
 <
     typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef,
-    template <typename, typename, bool, bool> class Storage = ET_STORAGE_TYPE
+    template <typename, typename, bool, bool> class Storage = ROCKY_ET_STORAGE_POLICY
 >
 struct expression
         : functor<expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef>>
-        , private Storage<Left, Right, IsLeftRValRef, IsRightRValRef>
+        , Storage<Left, Right, IsLeftRValRef, IsRightRValRef>
 {
     using expression_type = expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef>;
     using storage_base_type = Storage<Left, Right, IsLeftRValRef, IsRightRValRef>;
@@ -119,18 +128,6 @@ struct expression
     explicit expression(L && l, R && r)
         : storage_base_type{ std::forward<L>(l), std::forward<R>(r) }
     { }
-
-    auto & left()
-    {
-        storage_base_type & s = *this;
-        return s.left_;
-    }
-
-    auto & right()
-    {
-        storage_base_type & s = *this;
-        return s.right_;
-    }
 
     template <typename L, typename R>
     static decltype(auto) apply(L && l, R && r)

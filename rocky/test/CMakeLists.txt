@@ -246,7 +246,8 @@ set(SOURCE_FILES
         et/TraversalTest.cpp
         et/PrintTest.cpp
         et/ExpressionTraitsTest.cpp
-        et/LambdaExpressionTest.cpp)
+        et/LambdaExpressionTest.cpp
+        et/DefaultStorageTest.cpp
+        et/ValueStorageTest.cpp)
 
 add_executable(RockyTest ${HEADER_FILES} ${SOURCE_FILES})
-
