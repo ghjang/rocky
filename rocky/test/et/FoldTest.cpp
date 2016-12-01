@@ -57,3 +57,29 @@ TEST_CASE("fold expression tree", "[et]")
     auto rexpr = foldr_expr(1, 2, 3, 4, 5);
     print_tree_to_graphviz_dot(rexpr, out);
 }
+
+
+struct to_str
+{
+    // binary op for foldr.
+    // print them to string in reverse order.
+    template <typename Lhs, typename Rhs>
+    auto operator () (Lhs && l, Rhs && acc)
+    {
+        std::ostringstream oss;
+        oss << std::forward<Rhs>(acc)
+            << ", "
+            << std::forward<Lhs>(l);
+        return oss.str();
+    }
+};
+
+TEST_CASE("arguments to reversed order string", "[et]")
+{
+    auto s = foldr(
+                to_str{},               // binary op
+                "init",                 // init
+                1, 'F', "abc", 2.2      // sequence
+             );
+    REQUIRE(s == "init, 2.2, abc, F, 1");
+}
