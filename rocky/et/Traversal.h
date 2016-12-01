@@ -110,14 +110,30 @@ template <typename Derived>
 struct pre_order
 {
 private:
+    template <typename F, typename Node, typename Context>
+    void call_impl(Node && node, F && f, Context && c)
+    {
+        f(node, c);
+    }
+
+    template <typename F, typename Node>
+    void call_impl(Node && node, F && f, empty_traversal_context &&)
+    {
+        f(node);
+    }
+
     template
     <
         typename Expr, typename F, typename Context,
         typename = std::enable_if_t<!is_terminal<std::decay_t<Expr>>::value>
     >
-    auto preorder_impl(Expr && e, F && f, Context && c)
+    void preorder_impl(Expr && e, F && f, Context && c)
     {
-        f(std::forward<Expr>(e), c);
+        call_impl(
+            std::forward<Expr>(e),
+            std::forward<F>(f),
+            std::forward<Context>(c)
+        );
         preorder_impl(
             e.left(),
             std::forward<F>(f),
@@ -131,15 +147,15 @@ private:
     }
 
     template <typename T, typename F, typename Context>
-    auto preorder_impl(terminal<T> & t, F && f, Context && c)
+    void preorder_impl(terminal<T> & t, F && f, Context && c)
     {
-        f(*(t.derived()), c);
+        call_impl(*(t.derived()), std::forward<F>(f), std::forward<Context>(c));
     }
 
     template <typename T, typename F, typename Context>
-    auto preorder_impl(terminal<T> && t, F && f, Context && c)
+    void preorder_impl(terminal<T> && t, F && f, Context && c)
     {
-        f(*(t.derived()), c);
+        call_impl(*(t.derived()), std::forward<F>(f), std::forward<Context>(c));
     }
 
 public:
@@ -148,7 +164,7 @@ public:
         typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef,
         typename F
     >
-    auto go(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> & e, F && f)
+    void go(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> & e, F && f)
     {
         int seqNo = -1; // for null context
         auto nullContext = Derived::make_null_context(seqNo);
@@ -164,7 +180,7 @@ public:
         typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef,
         typename F
     >
-    auto go(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> && e, F && f)
+    void go(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> && e, F && f)
     {
         int seqNo = -1; // for null context
         auto nullContext = Derived::make_null_context(seqNo);
@@ -182,19 +198,35 @@ template <typename Derived>
 struct in_order
 {
 private:
+    template <typename F, typename Node, typename Context>
+    void call_impl(Node && node, F && f, Context && c)
+    {
+        f(node, c);
+    }
+
+    template <typename F, typename Node>
+    void call_impl(Node && node, F && f, empty_traversal_context &&)
+    {
+        f(node);
+    }
+
     template
     <
         typename Expr, typename F, typename Context,
         typename = std::enable_if_t<!is_terminal<std::decay_t<Expr>>::value>
     >
-    auto inorder_impl(Expr && e, F && f, Context && c)
+    void inorder_impl(Expr && e, F && f, Context && c)
     {
         inorder_impl(
             e.left(),
             std::forward<F>(f),
             Derived::make_next_context(c, NodePositionType::LeftChild, e)
         );
-        f(std::forward<Expr>(e), c);
+        call_impl(
+            std::forward<Expr>(e),
+            std::forward<F>(f),
+            std::forward<Context>(c)
+        );
         inorder_impl(
             e.right(),
             std::forward<F>(f),
@@ -203,15 +235,15 @@ private:
     }
 
     template <typename T, typename F, typename Context>
-    auto inorder_impl(terminal<T> & t, F && f, Context && c)
+    void inorder_impl(terminal<T> & t, F && f, Context && c)
     {
-        f(*(t.derived()), c);
+        call_impl(*(t.derived()), std::forward<F>(f), std::forward<Context>(c));
     }
 
     template <typename T, typename F, typename Context>
-    auto inorder_impl(terminal<T> && t, F && f, Context && c)
+    void inorder_impl(terminal<T> && t, F && f, Context && c)
     {
-        f(*(t.derived()), c);
+        call_impl(*(t.derived()), std::forward<F>(f), std::forward<Context>(c));
     }
 
 public:
@@ -220,7 +252,7 @@ public:
         typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef,
         typename F
     >
-    auto go(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> & e, F && f)
+    void go(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> & e, F && f)
     {
         int seqNo = -1; // for null context
         auto nullContext = Derived::make_null_context(seqNo);
@@ -236,7 +268,7 @@ public:
         typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef,
         typename F
     >
-    auto go(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> && e, F && f)
+    void go(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> && e, F && f)
     {
         int seqNo = -1; // for null context
         auto nullContext = Derived::make_null_context(seqNo);
@@ -254,12 +286,24 @@ template <typename Derived>
 struct post_order
 {
 private:
+    template <typename F, typename Node, typename Context>
+    void call_impl(Node && node, F && f, Context && c)
+    {
+        f(node, c);
+    }
+
+    template <typename F, typename Node>
+    void call_impl(Node && node, F && f, empty_traversal_context &&)
+    {
+        f(node);
+    }
+
     template
     <
         typename Expr, typename F, typename Context,
         typename = std::enable_if_t<!is_terminal<std::decay_t<Expr>>::value>
     >
-    auto postorder_impl(Expr && e, F && f, Context && c)
+    void postorder_impl(Expr && e, F && f, Context && c)
     {
         postorder_impl(
             e.left(),
@@ -271,19 +315,23 @@ private:
             std::forward<F>(f),
             Derived::make_next_context(c, NodePositionType::RightChild, e)
         );
-        f(std::forward<Expr>(e), c);
+        call_impl(
+            std::forward<Expr>(e),
+            std::forward<F>(f),
+            std::forward<Context>(c)
+        );
     }
 
     template <typename T, typename F, typename Context>
-    auto postorder_impl(terminal<T> & t, F && f, Context && c)
+    void postorder_impl(terminal<T> & t, F && f, Context && c)
     {
-        f(*(t.derived()), c);
+        call_impl(*(t.derived()), std::forward<F>(f), std::forward<Context>(c));
     }
 
     template <typename T, typename F, typename Context>
-    auto postorder_impl(terminal<T> && t, F && f, Context && c)
+    void postorder_impl(terminal<T> && t, F && f, Context && c)
     {
-        f(*(t.derived()), c);
+        call_impl(*(t.derived()), std::forward<F>(f), std::forward<Context>(c));
     }
 
 public:
@@ -292,7 +340,7 @@ public:
         typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef,
         typename F
     >
-    auto go(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> & e, F && f)
+    void go(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> & e, F && f)
     {
         int seqNo = -1; // for null context
         auto nullContext = Derived::make_null_context(seqNo);
@@ -308,7 +356,7 @@ public:
         typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef,
         typename F
     >
-    auto go(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> && e, F && f)
+    void go(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> && e, F && f)
     {
         int seqNo = -1; // for null context
         auto nullContext = Derived::make_null_context(seqNo);
