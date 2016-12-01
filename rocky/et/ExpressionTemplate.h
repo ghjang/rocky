@@ -147,4 +147,6 @@ struct expression
 #include "rocky/et/UnaryOperator.h"
 
 
-#endif // ROCKY_ET_H
+#else   // ROCKY_ET_H
+#   pragma message("CAUTION: ExpressionTemplate.h file was tried to be included more than once. Well, possibly the policies might not be the ones that you expected...")
+#endif  // ROCKY_ET_H
