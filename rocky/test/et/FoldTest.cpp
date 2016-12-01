@@ -1,5 +1,6 @@
 #include "../catch.hpp"
 
+#include <numeric>
 #include <iostream>
 
 #include "rocky/et/Fold.h"
@@ -82,4 +83,46 @@ TEST_CASE("arguments to reversed order string", "[et]")
                 1, 'F', "abc", 2.2      // sequence
              );
     REQUIRE(s == "init, 2.2, abc, F, 1");
+}
+
+
+template <typename... T>
+auto sum_impl_fold(T... args)
+{
+    return (... + args);
+}
+
+template <typename T, std::size_t n, std::size_t... i>
+auto sum_impl(std::array<T, n> & a, std::index_sequence<i...>)
+{
+    return sum_impl_fold(std::get<i>(a)...);
+}
+
+template <typename T, std::size_t n>
+auto sum(std::array<T, n> & a)
+{
+    return sum_impl(a, std::make_index_sequence<n>{});
+}
+
+TEST_CASE("max function argument count", "[et]")
+{
+    // NOTE: compile error
+    //       clang: error: unable to execute command: Segmentation fault: 11
+    //       clang: error: clang frontend command failed due to signal (use -v to see invocation)
+    //       Apple LLVM version 8.0.0 (clang-800.0.38)
+    //       Target: x86_64-apple-darwin16.1.0
+    //std::array<int, 1024 * 2 * 2 * 2 * 2 * 2> a;
+
+    // NOTE: This works. But it takes too much time to wait.
+    //std::array<int, 1024 * 2 * 2 * 2 * 2> a;
+
+    std::array<int, 100> a;
+    std::iota(a.begin(), a.end(), 1);
+
+    /*
+    std::cout << "array size: " << a.size() << '\n'
+              << "sum: " << sum(a) << '\n';
+    */
+
+    REQUIRE(sum(a) == 5050);
 }

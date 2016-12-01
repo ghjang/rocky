@@ -2,6 +2,8 @@
 #define ROCKY_ET_FOLD_H
 
 
+#include <array>
+
 #define ROCKY_ET_OPERATION_POLICY fold_functor
 #include "rocky/et/ExpressionTemplate.h"
 #include "rocky/et/PlaceHolderDef.h"
