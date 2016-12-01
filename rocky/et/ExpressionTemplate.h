@@ -109,6 +109,10 @@ struct null_terminal : terminal<null_terminal>
 
 
 //==============================================================================
+#ifndef ROCKY_ET_OPERATION_POLICY
+#   define ROCKY_ET_OPERATION_POLICY functor
+#endif // ROCKY_ET_OPERATION_POLICY
+
 #ifndef ROCKY_ET_STORAGE_POLICY
 #   define ROCKY_ET_STORAGE_POLICY default_storage
 #endif // ROCKY_ET_STORAGE_POLICY
@@ -116,13 +120,13 @@ struct null_terminal : terminal<null_terminal>
 template
 <
     typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef,
+    template <typename> class Operation = ROCKY_ET_OPERATION_POLICY,
     template <typename, typename, bool, bool> class Storage = ROCKY_ET_STORAGE_POLICY
 >
 struct expression
-        : functor<expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef>>
+        : Operation<expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef>>
         , Storage<Left, Right, IsLeftRValRef, IsRightRValRef>
 {
-    using expression_type = expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef>;
     using storage_base_type = Storage<Left, Right, IsLeftRValRef, IsRightRValRef>;
 
     template <typename L, typename R>

@@ -16,6 +16,7 @@ struct null_terminal;
 template
 <
     typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef,
+    template <typename> class Operation,
     template <typename, typename, bool, bool> class Storage
 >
 struct expression;

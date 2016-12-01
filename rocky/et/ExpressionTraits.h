@@ -13,9 +13,18 @@ struct is_callable_node : std::false_type
 template
 <
     typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef,
+    template <typename> class Operation,
     template <typename, typename, bool, bool> class Storage
 >
-struct is_callable_node<expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef, Storage>>
+struct is_callable_node
+<
+        expression
+        <
+                Left, OpTag, Right, IsLeftRValRef, IsRightRValRef,
+                Operation,
+                Storage
+        >
+>
         : std::true_type
 { };
 
@@ -47,9 +56,18 @@ struct is_expression : std::false_type
 template
 <
     typename Left, typename OpTag, typename Right, bool IsLeftRValRef, bool IsRightRValRef,
+    template <typename> class Operation,
     template <typename, typename, bool, bool> class Storage
 >
-struct is_expression<expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef, Storage>>
+struct is_expression
+<
+        expression
+        <
+                Left, OpTag, Right, IsLeftRValRef, IsRightRValRef,
+                Operation,
+                Storage
+        >
+>
         : std::true_type
 { };
 

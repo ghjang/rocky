@@ -24,17 +24,6 @@ TEST_CASE("value storage, += operator", "[et]")
 
     auto expr = i += _1; // NOTE: i's value is copied.
 
-    /*
-    expression<
-        value_holder<false, int>,
-        sum_assign_t,
-        place_holder<1>,
-        true,
-        false,
-        value_storage
-    >
-    */
-
     // FIXME: This fails. Huh?? A compiler bug??
     REQUIRE(expr(3) == 13);
 
