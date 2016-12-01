@@ -102,7 +102,10 @@ template
 >
 void print_tree(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> & e, OStream & o)
 {
-    preorder(e, expression_tree_printer{ o, 2, "+- " });
+    expression_traversal<
+        pre_order,
+        traversal_context_with_level_info
+    >{}.go(e, expression_tree_printer{ o, 2, "+- " });
 }
 
 template
@@ -112,7 +115,10 @@ template
 >
 void print_tree(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> && e, OStream & o)
 {
-    preorder(std::move(e), expression_tree_printer{ o, 2, "+- " });
+    expression_traversal<
+        pre_order,
+        traversal_context_with_level_info
+    >{}.go(std::move(e), expression_tree_printer{ o, 2, "+- " });
 }
 
 
@@ -272,7 +278,10 @@ template
 void print_tree_to_graphviz_dot(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> & e, OStream & o)
 {
     o << "digraph Expression {\n";
-    postorder(e, expression_graphviz_dot_printer{ o });
+    expression_traversal<
+        post_order,
+        traversal_context_with_parent_info
+    >{}.go(e, expression_graphviz_dot_printer{ o });
     o << "}\n";
 }
 
@@ -284,7 +293,10 @@ template
 void print_tree_to_graphviz_dot(expression<Left, OpTag, Right, IsLeftRValRef, IsRightRValRef> && e, OStream & o)
 {
     o << "digraph Expression {\n";
-    postorder(e, expression_graphviz_dot_printer{ o });
+    expression_traversal<
+        post_order,
+        traversal_context_with_parent_info
+    >{}.go(e, expression_graphviz_dot_printer{ o });
     o << "}\n";
 }
 

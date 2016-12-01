@@ -7,42 +7,48 @@
 
 TEST_CASE("pre-order traversal", "[et]")
 {
+    expression_traversal<pre_order> runner;
+
     // lvalue expression object
     auto expr = _1 + 10;
-    preorder(expr, [](auto & node, auto & context) { });
+    runner.go(expr, [](auto & node, auto & context) { });
 
     // rvalue expression object
-    preorder(_1 + 10, [](auto && node, auto && context) { });
+    runner.go(_1 + 10, [](auto && node, auto && context) { });
 
     int nodeCnt = 0;
-    preorder(_1 + 10, [&nodeCnt](auto &&, auto &&){ ++nodeCnt; });
+    runner.go(_1 + 10, [&nodeCnt](auto &&, auto &&){ ++nodeCnt; });
     REQUIRE(3 == nodeCnt);
 }
 
 TEST_CASE("in-order traversal", "[et]")
 {
+    expression_traversal<in_order> runner;
+
     // lvalue expression object
     auto expr = _1 + 10;
-    inorder(expr, [](auto & node, auto & context) { });
+    runner.go(expr, [](auto & node, auto & context) { });
 
     // rvalue expression object
-    inorder(_1 + 10, [](auto && node, auto && context) { });
+    runner.go(_1 + 10, [](auto && node, auto && context) { });
 
     int nodeCnt = 0;
-    inorder(_1 + 10, [&nodeCnt](auto &&, auto &&){ ++nodeCnt; });
+    runner.go(_1 + 10, [&nodeCnt](auto &&, auto &&){ ++nodeCnt; });
     REQUIRE(3 == nodeCnt);
 }
 
 TEST_CASE("post-order traversal", "[et]")
 {
+    expression_traversal<post_order> runner;
+
     // lvalue expression object
     auto expr = _1 + 10;
-    postorder(expr, [](auto & node, auto & context) { });
+    runner.go(expr, [](auto & node, auto & context) { });
 
     // rvalue expression object
-    postorder(_1 + 10, [](auto && node, auto && context) { });
+    runner.go(_1 + 10, [](auto && node, auto && context) { });
 
     int nodeCnt = 0;
-    postorder(_1 + 10, [&nodeCnt](auto &&, auto &&){ ++nodeCnt; });
+    runner.go(_1 + 10, [&nodeCnt](auto &&, auto &&){ ++nodeCnt; });
     REQUIRE(3 == nodeCnt);
 }
