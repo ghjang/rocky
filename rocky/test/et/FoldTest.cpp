@@ -126,3 +126,23 @@ TEST_CASE("max function argument count", "[et]")
 
     REQUIRE(sum(a) == 5050);
 }
+
+TEST_CASE("std::array sum by using folds", "[et]")
+{
+    std::array<int, 100> a;
+    std::iota(a.begin(), a.end(), 1);
+    
+    auto result = foldl(
+                        [](int acc, int n) { return acc + n; },
+                        0,
+                        a
+                  );
+    REQUIRE(5050 == result);
+
+    auto result1 = foldr(
+                        [](int acc, int n) { return acc + n; },
+                        0,
+                        a
+                   );
+    REQUIRE(5050 == result1);
+}
