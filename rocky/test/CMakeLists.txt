@@ -138,6 +138,7 @@ set(HEADER_FILES
 
 set(SOURCE_FILES
         main.cpp
+        MiscTest.cpp
         base/ConstExprArrayTest.cpp
         base/StringNumberConversionTest.cpp
         base/TypeSizeTest.cpp
