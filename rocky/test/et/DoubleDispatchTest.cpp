@@ -17,11 +17,15 @@ struct stop { };
 // state machine
 struct player
 {
+private:
     states state_ = Stopped;
 
     states get_state() const { return state_; }
     void set_state(states s) { state_ = s; }
 
+    friend class if_t;
+
+public:
     void start_playback(play const& e)
     {
         std::cout << "start_playback is called.\n";
@@ -65,10 +69,10 @@ struct player
     void process_event_by_folding(play const& e)
     {
         foldl(
-            if_t{},
-            this,
-            if_condition(Stopped, [&e](auto && m) { m->start_playback(e); }, Playing),
-            if_condition(Paused, [&e](auto && m) { m->resume_playback(e); }, Playing),
+            if_t{},     // binary op
+            this,       // init
+            if_condition(Stopped, [&e](auto t) { t->start_playback(e); }, Playing),
+            if_condition(Paused, [&e](auto t) { t->resume_playback(e); }, Playing),
             else_final([]{ std::cout << "no transition.\n"; })
         );
     }
@@ -77,26 +81,17 @@ struct player
 TEST_CASE("double dispatch by using 'switch'", "[et]")
 {
     player p;
-    p.state_ = Stopped;
-    p.process_event_by_switch(play{});
-    p.state_ = Paused;
     p.process_event_by_switch(play{});
 }
 
 TEST_CASE("double dispatch by using 'if ~ else'", "[et]")
 {
     player p;
-    p.state_ = Stopped;
-    p.process_event_by_if_else(play{});
-    p.state_ = Paused;
     p.process_event_by_if_else(play{});
 }
 
 TEST_CASE("double dispatch by using folding", "[et]")
 {
     player p;
-    p.state_ = Stopped;
-    p.process_event_by_folding(play{});
-    p.state_ = Paused;
     p.process_event_by_folding(play{});
 }
