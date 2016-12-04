@@ -134,7 +134,8 @@ set(HEADER_FILES
         ../et/Traversal.h
         ../et/Print.h
         ../et/LambdaExpression.h
-        ../et/Fold.h)
+        ../et/Fold.h
+        ../et/DoubleDispatch.h)
 
 set(SOURCE_FILES
         main.cpp
@@ -251,6 +252,7 @@ set(SOURCE_FILES
         et/LambdaExpressionTest.cpp
         et/DefaultStorageTest.cpp
         et/ValueStorageTest.cpp
-        et/FoldTest.cpp)
+        et/FoldTest.cpp
+        et/DoubleDispatchTest.cpp)
 
 add_executable(RockyTest ${HEADER_FILES} ${SOURCE_FILES})
