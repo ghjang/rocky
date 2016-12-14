@@ -132,6 +132,7 @@ set(HEADER_FILES
         ../et/UnaryOperatorSpec.h
         ../et/PlaceHolderDef.h
         ../et/Traversal.h
+        ../et/PassiveIterator.h
         ../et/Print.h
         ../et/LambdaExpression.h
         ../et/Fold.h
