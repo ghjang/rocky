@@ -20,6 +20,7 @@ enum struct NodePositionType
 
 //==============================================================================
 #include "rocky/et/PassiveIterator.h"
+#include "rocky/et/ActiveIterator.h"
 
 
 #endif // ROCKY_ET_TRAVERSAL_H

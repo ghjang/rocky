@@ -133,6 +133,7 @@ set(HEADER_FILES
         ../et/PlaceHolderDef.h
         ../et/Traversal.h
         ../et/PassiveIterator.h
+        ../et/ActiveIterator.h
         ../et/Print.h
         ../et/LambdaExpression.h
         ../et/Fold.h
