@@ -1,5 +1,5 @@
-#ifndef ROCKY_BASE_RATIOSTRING_H
-#define ROCKY_BASE_RATIOSTRING_H
+#ifndef ROCKY_MATH_RATIOSTRING_H
+#define ROCKY_MATH_RATIOSTRING_H
 
 
 #include <ratio>
@@ -27,5 +27,5 @@ constexpr auto ToConstExprString(std::ratio<Num, Denom>)
 }
 
 
-#endif //ROCKY_BASE_RATIOSTRING_H
+#endif //ROCKY_MATH_RATIOSTRING_H
 

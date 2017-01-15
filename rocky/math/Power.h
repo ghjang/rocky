@@ -1,5 +1,5 @@
-#ifndef ROCKY_BASE_POWER_H
-#define ROCKY_BASE_POWER_H
+#ifndef ROCKY_MATH_POWER_H
+#define ROCKY_MATH_POWER_H
 
 
 #include <cassert>
@@ -19,5 +19,5 @@ constexpr int Power(int base, int n)
 }
 
 
-#endif //ROCKY_BASE_POWER_H
+#endif //ROCKY_MATH_POWER_H
 
