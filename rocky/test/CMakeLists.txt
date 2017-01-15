@@ -1,13 +1,16 @@
 cmake_minimum_required(VERSION 3.3)
 project(RockyTest)
 
-set(BOOST_ROOT "../../../boost_1_62_0")
-find_package(Boost 1.62.0)
+set(BOOST_ROOT "../../../boost_1_63_0")
+find_package(Boost 1.63.0)
 if(Boost_FOUND)
     include_directories(${BOOST_ROOT})
 else()
     message(FATAL_ERROR "Could not find boost!")
 endif()
+
+set(RANGE_ROOT "../../../range-v3/include")
+include_directories(${RANGE_ROOT})
 
 set(ROCKY_ROOT "../..")
 include_directories(${ROCKY_ROOT})
@@ -52,6 +55,7 @@ set(HEADER_FILES
         ../math/Gcd.h
         ../math/Lcm.h
         ../math/Distance.h
+        ../math/NumberSequence.h
         ../wolca/StringUtility.h
         ../wolca/Range.h
         ../wolca/IntegerLength.h
@@ -177,6 +181,7 @@ set(SOURCE_FILES
         math/GcdTest.cpp
         math/LcmTest.cpp
         math/DistanceTest.cpp
+        math/NumberSequenceTest.cpp
         wolca/StringUtilityTest.cpp
         wolca/RangeTest.cpp
         wolca/IntegerLengthTest.cpp
@@ -255,6 +260,7 @@ set(SOURCE_FILES
         et/DefaultStorageTest.cpp
         et/ValueStorageTest.cpp
         et/FoldTest.cpp
-        et/DoubleDispatchTest.cpp)
+        et/DoubleDispatchTest.cpp
+        et/NumberSequenceTest.cpp)
 
 add_executable(RockyTest ${HEADER_FILES} ${SOURCE_FILES})
