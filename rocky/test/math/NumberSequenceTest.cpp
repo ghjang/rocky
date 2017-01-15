@@ -16,7 +16,6 @@ TEST_CASE("number sequence generator", "[math]")
 TEST_CASE("number sequence with range", "[math]")
 {
     using namespace ranges;
-
     auto generator = number_seq([](auto x) { return 2 * x + 1; });
     std::vector<int> seq = view::generate(generator) | view::take(3);
     REQUIRE(ranges::equal(seq, { 1, 3, 5 }));
