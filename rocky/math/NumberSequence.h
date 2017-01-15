@@ -13,14 +13,14 @@ public:
         : x_{ 0 }
         , f_{ f }
     { }
-    
+
     number_seq_generator(F && f)
         : x_{ 0 }
         , f_{ std::move(f) }
     { }
 
 public:
-    auto operator () ()
+    decltype(auto) operator () ()
     { return f_(x_++); }
 
 private:
