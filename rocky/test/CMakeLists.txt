@@ -141,7 +141,9 @@ set(HEADER_FILES
         ../et/Print.h
         ../et/LambdaExpression.h
         ../et/Fold.h
-        ../et/DoubleDispatch.h)
+        ../et/DoubleDispatch.h
+        ../et/MathFunction.h
+        ../et/MathFunctionSpec.h)
 
 set(SOURCE_FILES
         main.cpp
@@ -261,6 +263,7 @@ set(SOURCE_FILES
         et/ValueStorageTest.cpp
         et/FoldTest.cpp
         et/DoubleDispatchTest.cpp
-        et/NumberSequenceTest.cpp)
+        et/NumberSequenceTest.cpp
+        et/MathFunctionTest.cpp)
 
 add_executable(RockyTest ${HEADER_FILES} ${SOURCE_FILES})
