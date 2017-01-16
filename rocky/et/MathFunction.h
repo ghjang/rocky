@@ -9,6 +9,7 @@
 #include <boost/preprocessor/arithmetic/sub.hpp>
 #include <boost/preprocessor/seq/size.hpp>
 #include <boost/preprocessor/seq/elem.hpp>
+#include <boost/preprocessor/seq/for_each.hpp>
 
 #include "rocky/et/ExpressionTemplate.h"
 
@@ -43,7 +44,11 @@ struct math_func_terminal_generator
 };
 
 
-math_func_terminal_generator<sin_func_terminal_t> const sin_{};
+#define DEFINE_MATH_FUNC_KEYWORD_OBJ(r, data, func) \
+            math_func_terminal_generator<BOOST_PP_CAT(func, _func_terminal_t)> const BOOST_PP_CAT(func, _){};
+
+
+BOOST_PP_SEQ_FOR_EACH(DEFINE_MATH_FUNC_KEYWORD_OBJ, ~, MATH_FUNCTION_SEQUENCE)
 
 
 #endif // ROCKY_ET_MATH_FUNCTION_H
