@@ -5,8 +5,10 @@
 #include <tuple>
 #include <iostream>
 
+#include "rocky/et/ExpressionTemplate.h"
 #include "rocky/et/MathFunction.h"
 #include "rocky/et/PlaceHolderDef.h"
+
 
 namespace
 {
@@ -65,4 +67,13 @@ TEST_CASE("trig function terminal", "[et]")
     auto r = tan(c);    // Hmm...
     //std::cout << std::fetestexcept(FE_INVALID) << '\n';
     // TODO: check the validness of return value.
+}
+
+TEST_CASE("trig function terminal - 1", "[et]")
+{
+    auto sin = sin_[_1];
+    REQUIRE(is_same(sin(M_PI_2), 1));
+
+    auto cos = cos_[_1];
+    REQUIRE(is_same(cos(M_PI_2), 0));
 }

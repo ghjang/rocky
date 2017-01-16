@@ -4,6 +4,7 @@
 
 #include <cmath>
 #include <type_traits>
+#include <tuple>
 
 #include <boost/preprocessor/cat.hpp>
 #include <boost/preprocessor/arithmetic/sub.hpp>
@@ -11,7 +12,8 @@
 #include <boost/preprocessor/seq/elem.hpp>
 #include <boost/preprocessor/seq/for_each.hpp>
 
-#include "rocky/et/ExpressionTemplate.h"
+#include "rocky/et/ExpressionTemplateFwd.h"
+#include "rocky/et/OperationPolicy.h"
 
 
 //==============================================================================

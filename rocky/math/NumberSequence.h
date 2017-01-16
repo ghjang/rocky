@@ -30,7 +30,7 @@ public:
         if (x_ > max_) {
             // TODO: need to throw an exception
         }
-        
+
         auto tmp{ f_(x_) };
 
         // TODO: need to check overflow.
@@ -47,17 +47,20 @@ private:
 };
 
 
-template <typename F, typename T = int, typename U = T, typename V = T>
+template <typename F, typename T = int, typename U = T, typename V = std::common_type_t<T, U>>
 auto number_seq(F && f, T init = 0, U increment = 1, V max = std::numeric_limits<V>::max())
 {
     assert(init <= max);
     if (init > max) {
         // TODO: throw an exception
     }
-    return number_seq_generator<
-                std::decay_t<F>,
-                std::common_type_t<T, U, V>
-           >{ std::forward<F>(f), init, increment, max };
+    using common_t = std::common_type_t<T, U, V>;
+    return number_seq_generator<std::decay_t<F>, common_t>{
+                std::forward<F>(f),
+                static_cast<common_t>(init),
+                static_cast<common_t>(increment),
+                static_cast<common_t>(max)
+            };
 }
 
 #endif // ROCKY_MATH_NUMBER_SEQUENCE_H

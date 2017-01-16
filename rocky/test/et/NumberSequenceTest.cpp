@@ -1,8 +1,11 @@
 #include "../catch.hpp"
 
+#include <iostream>
+
 #include <range/v3/all.hpp>
 
 #include "rocky/et/ExpressionTemplate.h"
+#include "rocky/et/MathFunction.h"
 #include "rocky/et/PlaceHolderDef.h"
 
 #include "rocky/math/NumberSequence.h"
@@ -27,5 +30,16 @@ TEST_CASE("number sequence with range and et", "[et]")
 
 TEST_CASE("number sequence with range and et - 1", "[et]")
 {
+    using namespace ranges;
 
+    auto sin = number_seq(sin_[_1], 0, M_PI_2);
+    std::vector<double> seq = view::generate(sin) | view::take(4);
+
+    // NOTE: If a generic lambda is used, then it results in a compiler error:
+    //
+    //          ranges::for_each(seq, [](auto a){ std::cout << a << '\n'; });
+    //
+    //       The current implementation seems not to handle this case correctly.
+
+    ranges::for_each(seq, [](double a){ std::cout << a << '\n'; });
 }
