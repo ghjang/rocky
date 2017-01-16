@@ -1,6 +1,7 @@
 #include "../catch.hpp"
 
 #include <limits>
+#include <cfenv>
 #include <tuple>
 #include <iostream>
 
@@ -58,4 +59,10 @@ TEST_CASE("trig function terminal", "[et]")
 
     auto cos = cos_[_1];
     REQUIRE(is_same(cos(c), 0));
+
+    auto tan = tan_[_1];
+    std::feclearexcept(FE_ALL_EXCEPT);
+    auto r = tan(c);    // Hmm...
+    //std::cout << std::fetestexcept(FE_INVALID) << '\n';
+    // TODO: check the validness of return value.
 }
