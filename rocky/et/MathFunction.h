@@ -3,6 +3,7 @@
 
 
 #include <cmath>
+#include <type_traits>
 
 #include <boost/preprocessor/arithmetic/sub.hpp>
 #include <boost/preprocessor/seq/size.hpp>
@@ -20,23 +21,32 @@ template <typename SubExpr>
 struct sin_func_terminal_t
         : terminal<sin_func_terminal_t<SubExpr>>
 {
+    sin_func_terminal_t(SubExpr const& expr)
+        : subExpr_{ expr }
+    { }
+
+    sin_func_terminal_t(SubExpr && expr)
+        : subExpr_{ std::move(expr) }
+    { }
+
     template <typename Context>
-    decltype(auto) operator () (Context & c)
+    auto operator () (Context & c)
     { return std::sin(subExpr_(c)); }
 
     SubExpr subExpr_;
 };
 
 
-struct sin_func_terminal_generator
+template <template <typename> class MathFuncTerminal>
+struct math_func_terminal_generator
 {
     template <typename SubExpr>
-    decltype(auto) operator [] (SubExpr expr)
-    { return sin_func_terminal_t<SubExpr>{ expr }; }
+    auto operator [] (SubExpr && expr) const
+    { return MathFuncTerminal<std::decay_t<SubExpr>>{ std::forward<SubExpr>(expr) }; }
 };
 
 
-sin_func_terminal_generator const sin_{};
+math_func_terminal_generator<sin_func_terminal_t> const sin_{};
 
 
 #include <boost/preprocessor/iteration/iterate.hpp>
