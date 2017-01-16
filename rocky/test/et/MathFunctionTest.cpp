@@ -7,6 +7,8 @@
 #include "rocky/et/PlaceHolderDef.h"
 
 
+// refer to the following for the math constants:
+//  https://msdn.microsoft.com/en-us/library/4hwaceh6.aspx
 TEST_CASE("sin function terminal", "[et]")
 {
     auto f = sin_[_1];
