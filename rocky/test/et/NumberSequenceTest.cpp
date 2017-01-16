@@ -43,3 +43,25 @@ TEST_CASE("number sequence with range and et - 1", "[et]")
 
     ranges::for_each(seq, [](double a){ std::cout << a << '\n'; });
 }
+
+TEST_CASE("number sequence with range and et - 2", "[et]")
+{
+    using namespace ranges;
+
+    auto sin = number_seq(sin_[_1] + 1, 0, M_PI_2);
+    std::vector<double> seq = view::generate(sin) | view::take(4);
+    ranges::for_each(seq, [](double a){ std::cout << a << '\n'; });
+}
+
+TEST_CASE("number sequence with range and et - 3", "[et]")
+{
+    using namespace ranges;
+
+    auto sin = number_seq(10 * sin_[2 * _1] + 5, 0, M_PI_2);
+    std::vector<double> seq = view::generate(sin) | view::take(4);
+    ranges::for_each(seq, [](double a){ std::cout << a << '\n'; });
+
+    auto sin1 = number_seq(10 * sin_[3 * _1] + 5, 0, M_PI_2);
+    std::vector<double> seq1 = view::generate(sin1) | view::take(4);
+    ranges::for_each(seq1, [](double a){ std::cout << a << '\n'; });
+}
