@@ -43,6 +43,7 @@ TEST_CASE("number comparison by using is_same", "[et]")
     d2 = std::cos(M_PI_2);  // pi / 2
     REQUIRE_FALSE(d1 == d2);
     REQUIRE(is_same(d1, d2));
+    REQUIRE(is_same(0, d2));
 }
 
 // refer to the following for the math constants:
