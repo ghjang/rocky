@@ -125,3 +125,29 @@ TEST_CASE("number sequence with range and et - 4", "[et]")
     REQUIRE(ranges::equal(seq2, { 10, 12, 14, 18, 26 }));
     */
 }
+
+TEST_CASE("number sequence with range and et - 5", "[et]")
+{
+    using namespace ranges;
+
+    // NOTE: '^' is a normal bitwise operator here.
+    auto gen = number_seq(0xFF ^ _1);
+    std::vector<int> seq = view::generate(gen) | view::take(3);
+    REQUIRE(ranges::equal(seq, { 0xFF, 0xFE, 0xFD }));
+
+    // NOTE: number_seq2 will replace bitwise_xor_t type
+    //          in the expression template type tree with pow_t type.
+    //          This means that '^' will be used as a power operator
+    //          rather than bitwise xor one.
+    auto gen1 = number_seq2(2 ^ _1);
+    std::vector<int> seq1 = view::generate(gen1) | view::take(5);
+    REQUIRE(ranges::equal(seq1, { 1, 2, 4, 8, 16 }));
+
+    auto gen2 = number_seq(sin_[_1] + 1, 0, M_PI_2);
+    std::vector<double> seq2 = view::generate(gen2) | view::take(4);
+    REQUIRE(ranges::equal(
+                seq2,
+                { 1, 2, 1, 0 },
+                [](double a, double b) { return is_almost_equal(a, b, 2); }
+            ));
+}
