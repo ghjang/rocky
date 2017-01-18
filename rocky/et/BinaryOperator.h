@@ -2,6 +2,8 @@
 #define ROCKY_ET_BINARY_OPERATOR_H
 
 
+#include <cmath>
+
 #include <boost/preprocessor/seq/size.hpp>
 #include <boost/preprocessor/seq/elem.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
@@ -97,6 +99,17 @@
 #include BOOST_PP_ITERATE()
 #undef BOOST_PP_FILENAME_1
 #undef BOOST_PP_ITERATION_LIMITS
+
+
+// binary OpTag type for power
+struct pow_t
+{
+    template <typename L, typename R>
+    static auto apply(L && l, R && r)
+    {
+        return std::pow(std::forward<L>(l), std::forward<R>(r));
+    }
+};
 
 
 #endif // ROCKY_ET_BINARY_OPERATOR_H
