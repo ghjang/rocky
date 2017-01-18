@@ -24,6 +24,28 @@ TEST_CASE("replace OpTag", "[et]")
     }
 
     {
+        auto expr = _1 * (1 + _2);
+        auto expr1 = _1 * (1 - _2);
+        static_assert(
+            std::is_same<
+                ReplaceOpTagT<decltype(expr), addition_t, subtraction_t>,
+                decltype(expr1)
+            >()
+        );
+    }
+
+    {
+        auto expr = -_1 + 1;
+        auto expr1 = -_1 - 1;
+        static_assert(
+            std::is_same<
+                ReplaceOpTagT<decltype(expr), addition_t, subtraction_t>,
+                decltype(expr1)
+            >()
+        );
+    }
+
+    {
         auto expr = _1 ^ 1;
         static_assert(
             std::is_same<
