@@ -56,6 +56,7 @@ set(HEADER_FILES
         ../math/Lcm.h
         ../math/Distance.h
         ../math/NumberSequence.h
+        ../math/NumberCompare.h
         ../wolca/StringUtility.h
         ../wolca/Range.h
         ../wolca/IntegerLength.h

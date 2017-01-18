@@ -9,6 +9,7 @@
 #include "rocky/et/PlaceHolderDef.h"
 
 #include "rocky/math/NumberSequence.h"
+#include "rocky/math/NumberCompare.h"
 
 
 TEST_CASE("number sequence with range and et", "[et]")
@@ -41,7 +42,16 @@ TEST_CASE("number sequence with range and et - 1", "[et]")
     //
     //       The current implementation seems not to handle this case correctly.
 
-    ranges::for_each(seq, [](double a){ std::cout << a << '\n'; });
+    //ranges::for_each(seq, [](double a){ std::cout << a << '\n'; });
+
+    REQUIRE(ranges::equal(
+                seq,
+                { 0, 1, 0, -1 },
+                [](double a, double b){
+                    //std::cout << "a: " << a << ", b: " << b << '\n';
+                    return is_almost_equal(a, b);
+                }
+            ));
 }
 
 TEST_CASE("number sequence with range and et - 2", "[et]")
@@ -50,7 +60,17 @@ TEST_CASE("number sequence with range and et - 2", "[et]")
 
     auto sin = number_seq(sin_[_1] + 1, 0, M_PI_2);
     std::vector<double> seq = view::generate(sin) | view::take(4);
-    ranges::for_each(seq, [](double a){ std::cout << a << '\n'; });
+    
+    //ranges::for_each(seq, [](double a){ std::cout << a << '\n'; });
+
+    REQUIRE(ranges::equal(
+                seq,
+                { 1, 2, 1, 0 },
+                [](double a, double b) {
+                    //std::cout << "a: " << a << ", b: " << b << '\n';
+                    return is_almost_equal(a, b, 2);
+                }
+            ));
 }
 
 TEST_CASE("number sequence with range and et - 3", "[et]")
@@ -59,9 +79,23 @@ TEST_CASE("number sequence with range and et - 3", "[et]")
 
     auto sin = number_seq(10 * sin_[2 * _1] + 5, 0, M_PI_2);
     std::vector<double> seq = view::generate(sin) | view::take(4);
-    ranges::for_each(seq, [](double a){ std::cout << a << '\n'; });
+    REQUIRE(ranges::equal(
+                seq,
+                { 5, 5, 5, 5 },
+                [](double a, double b) {
+                    //std::cout << "a: " << a << ", b: " << b << '\n';
+                    return is_almost_equal(a, b, 20); // TODO, FIXME: how do we decide a correct ulp argument value?
+                }
+            ));
 
     auto sin1 = number_seq(10 * sin_[3 * _1] + 5, 0, M_PI_2);
     std::vector<double> seq1 = view::generate(sin1) | view::take(4);
-    ranges::for_each(seq1, [](double a){ std::cout << a << '\n'; });
+    REQUIRE(ranges::equal(
+                seq1,
+                { 5, -5, 5, 15 },
+                [](double a, double b) {
+                    //std::cout << "a: " << a << ", b: " << b << '\n';
+                    return is_almost_equal(a, b, 20); // TODO, FIXME: how do we decide a correct ulp argument value?
+                }
+            ));
 }
