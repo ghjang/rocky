@@ -130,6 +130,11 @@ struct expression
     using storage_base_type = Storage<Left, Right, IsLeftRValRef, IsRightRValRef>;
 
     template <typename RhsOpTag>
+    expression(expression<Left, RhsOpTag, Right, IsLeftRValRef, IsRightRValRef, Operation, Storage> & rhs)
+        : expression{ rhs.left(), rhs.right() }
+    { }
+
+    template <typename RhsOpTag>
     expression(expression<Left, RhsOpTag, Right, IsLeftRValRef, IsRightRValRef, Operation, Storage> && rhs)
         : expression{ rhs.left(), rhs.right() }
     { }

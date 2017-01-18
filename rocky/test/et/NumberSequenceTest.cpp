@@ -117,4 +117,11 @@ TEST_CASE("number sequence with range and et - 4", "[et]")
     auto gen1 = number_seq2(2 ^ _1);
     std::vector<int> seq1 = view::generate(gen1) | view::take(5);
     REQUIRE(ranges::equal(seq1, { 1, 2, 4, 8, 16 }));
+
+    // NOTE: This doesn't compile... FIXME if it is possible...
+    /*
+    auto gen2 = number_seq2((2 ^ _1) + 10);
+    std::vector<int> seq2 = view::generate(gen2) | view::take(5);
+    REQUIRE(ranges::equal(seq2, { 10, 12, 14, 18, 26 }));
+    */
 }
