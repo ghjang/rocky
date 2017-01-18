@@ -144,7 +144,8 @@ set(HEADER_FILES
         ../et/Fold.h
         ../et/DoubleDispatch.h
         ../et/MathFunction.h
-        ../et/MathFunctionSpec.h)
+        ../et/MathFunctionSpec.h
+        ../et/ReplaceOpTag.h)
 
 set(SOURCE_FILES
         main.cpp
@@ -265,6 +266,7 @@ set(SOURCE_FILES
         et/FoldTest.cpp
         et/DoubleDispatchTest.cpp
         et/NumberSequenceTest.cpp
-        et/MathFunctionTest.cpp)
+        et/MathFunctionTest.cpp
+        et/ReplaceOpTagTest.cpp)
 
 add_executable(RockyTest ${HEADER_FILES} ${SOURCE_FILES})
