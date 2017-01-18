@@ -7,9 +7,6 @@
 #include "rocky/et/PlaceHolderDef.h"
 
 
-template <typename T>
-struct TD;
-
 TEST_CASE("replace OpTag", "[et]")
 {
     {

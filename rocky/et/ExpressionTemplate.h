@@ -129,6 +129,11 @@ struct expression
 {
     using storage_base_type = Storage<Left, Right, IsLeftRValRef, IsRightRValRef>;
 
+    template <typename RhsOpTag>
+    expression(expression<Left, RhsOpTag, Right, IsLeftRValRef, IsRightRValRef, Operation, Storage> && rhs)
+        : expression{ rhs.left(), rhs.right() }
+    { }
+
     template <typename L, typename R>
     explicit expression(L && l, R && r)
         : storage_base_type{ std::forward<L>(l), std::forward<R>(r) }
