@@ -267,6 +267,7 @@ set(SOURCE_FILES
         et/DoubleDispatchTest.cpp
         et/NumberSequenceTest.cpp
         et/MathFunctionTest.cpp
-        et/ReplaceOpTagTest.cpp)
+        et/ReplaceOpTagTest.cpp
+        etc/VectorTest.cpp)
 
 add_executable(RockyTest ${HEADER_FILES} ${SOURCE_FILES})
