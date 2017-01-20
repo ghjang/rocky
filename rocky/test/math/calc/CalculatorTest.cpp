@@ -4,34 +4,41 @@
 #include "rocky/math/calc/Utility.h"
 
 
-TEST_CASE("calculator expr - 0", "[math]")
+TEST_CASE("calculator expr", "[math]")
 {
-    namespace qi = boost::spirit::qi;
+    using tools::test_phrase_parser;
     using rocky::math::calc::calculator;
 
-    std::string exprStr = "10 * (-20 + 30)";
-    
     calculator<std::string::iterator> calc_;
 
-    auto begin = exprStr.begin();
-    auto end = exprStr.end();
-    bool r = qi::phrase_parse(begin, end, calc_, qi::ascii::space);
-    REQUIRE(r);
-    REQUIRE(begin == end);
-}
+    std::string successExprs[] = {
+        "10",
+        "-10",
+        "+10",
+        "10^2",
+        "10^-2",
+        "10 + 20",
+        "10 + +20",
+        "10 + -20",
+        "10 * -(20 + 30)",
+        "10 * (-20 + 30)",
+        "10^2 * (-20 + 30)",
+        "10 * (-20 + 30) ^ 2",
+        "10 * (-20 + 30) ^ 2 ^ 3"
+        "10 * -(-20^2 + 30) ^ 2 ^ 3"
+    };
 
-TEST_CASE("calculator expr - 1", "[math]")
-{
-    namespace qi = boost::spirit::qi;
-    using rocky::math::calc::calculator;
+    for (auto & s : successExprs) {
+        REQUIRE(test_phrase_parser(s, calc_));
+    }
 
-    std::string exprStr = "10 * (-20 + 30) ^ 2";
-    
-    calculator<std::string::iterator> calc_;
+    std::string failExprs[] = {
+        "10 20",
+        "--10",
+        "10^^2"
+    };
 
-    auto begin = exprStr.begin();
-    auto end = exprStr.end();
-    bool r = qi::phrase_parse(begin, end, calc_, qi::ascii::space);
-    REQUIRE(r);
-    REQUIRE(begin == end);
+    for (auto & s : failExprs) {
+        REQUIRE_FALSE(test_phrase_parser(s, calc_));
+    }
 }
