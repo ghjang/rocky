@@ -21,10 +21,13 @@ namespace rocky::math::calc
                               | '-' >> term_
                               );
 
-            term_ = factor_ >> *(
-                                    '*' >> factor_
-                                |   '/' >> factor_
-                                );
+            term_ = factorExp_ >> *(
+                                        '*' >> factorExp_
+                                   |    '/' >> factorExp_
+                                   );
+
+            factorExp_ = factor_
+                            >> -('^' >> expr_);
 
             factor_ = uint_
                         | '(' >> expr_ >> ')'
@@ -34,7 +37,9 @@ namespace rocky::math::calc
 
         qi::rule<Iterator, qi::ascii::space_type> expr_;
         qi::rule<Iterator, qi::ascii::space_type> term_;
+        qi::rule<Iterator, qi::ascii::space_type> factorExp_;
         qi::rule<Iterator, qi::ascii::space_type> factor_;
+        qi::rule<Iterator, qi::ascii::space_type> number_;
     };
 } // namespace rocky::math::calc
 
