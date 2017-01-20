@@ -16,35 +16,36 @@ namespace rocky::math::calc
         {
             using qi::uint_;
 
-            expr_ = term_ >> *(
+            expr_ = term_
+                        >> *(
                                 '+' >> term_
-                              | '-' >> term_
-                              );
+                            |   '-' >> term_
+                            );
 
-            term_ = factorUnary_ >> *(
-                                        '*' >> factorUnary_
-                                     |  '/' >> factorUnary_
-                                     );
+            term_ = factor_
+                        >> *(
+                                '*' >> factor_
+                            |   '/' >> factor_
+                            );
 
-            factorUnary_ = factorExp_
-                                | ('-' >> factorExp_)
-                                | ('+' >> factorExp_);
+            factor_ = power_
+                        | ('-' >> power_)
+                        | ('+' >> power_);
 
-            factorExp_ = factor_
-                            >> *(
-                                    '^' >> expr_
-                                );
+            power_ = base_
+                        >> *(
+                                '^' >> expr_
+                            );
 
-            factor_ = uint_
+            base_ = uint_
                         | '(' >> expr_ >> ')';
         }
 
         qi::rule<Iterator, qi::ascii::space_type> expr_;
         qi::rule<Iterator, qi::ascii::space_type> term_;
-        qi::rule<Iterator, qi::ascii::space_type> factorUnary_;
-        qi::rule<Iterator, qi::ascii::space_type> factorExp_;
         qi::rule<Iterator, qi::ascii::space_type> factor_;
-        qi::rule<Iterator, qi::ascii::space_type> number_;
+        qi::rule<Iterator, qi::ascii::space_type> power_;
+        qi::rule<Iterator, qi::ascii::space_type> base_;
     };
 } // namespace rocky::math::calc
 
