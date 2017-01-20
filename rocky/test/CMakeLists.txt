@@ -57,6 +57,7 @@ set(HEADER_FILES
         ../math/Distance.h
         ../math/NumberSequence.h
         ../math/NumberCompare.h
+        ../math/calc/Calculator.h
         ../wolca/StringUtility.h
         ../wolca/Range.h
         ../wolca/IntegerLength.h
@@ -186,6 +187,7 @@ set(SOURCE_FILES
         math/LcmTest.cpp
         math/DistanceTest.cpp
         math/NumberSequenceTest.cpp
+        math/calc/CalculatorTest.cpp
         wolca/StringUtilityTest.cpp
         wolca/RangeTest.cpp
         wolca/IntegerLengthTest.cpp
