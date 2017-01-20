@@ -12,7 +12,7 @@ TEST_CASE("calculator expr", "[math]")
     calculator<std::string::iterator> calc_;
 
     std::string successExprs[] = {
-        "10"
+          "10"
         , "-10"
         , "+10"
         , "10^2"
@@ -36,7 +36,7 @@ TEST_CASE("calculator expr", "[math]")
     }
 
     std::string failExprs[] = {
-        "10 20"
+          "10 20"
         , "--10"
         , "---10"
         , "- --10"
