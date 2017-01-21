@@ -1,6 +1,7 @@
 #include "../../catch.hpp"
 
 #include <utility>
+#include <iostream>
 
 #include "rocky/math/calc/Calculator.h"
 #include "rocky/math/calc/Utility.h"
@@ -85,6 +86,11 @@ TEST_CASE("calculator expr eval", "[math]")
         , { "2^(2^3)",                  256     }
         , { "(2^2)^3",                  64      }
         , { "(1+1)^(1+1)^(1+1)^2",      65536   }
+        , { "(2 + (1 + -10))^2",        49      }
+        , { "10 * (-5 + 20 / 2^2)",     0       }
+        , { "2^2^(1+2)",                256     }
+        , { "(2 + (1 + -10))^2 + 10 * (-5 + 20 / 2^2)",     49      }
+        , { "(2 + (1 + -10))^2 - 2^2^(1+2)",                -207    }
     };
 
     for (auto & pair : exprAndResultPairs) {
@@ -102,4 +108,38 @@ TEST_CASE("calculator expr eval", "[math]")
         vm.execute(code);
         REQUIRE(vm.top() == pair.second);
     }
+}
+
+TEST_CASE("calculator expr eval - 1", "[math]")
+{
+    namespace qi = boost::spirit::qi;
+    using namespace rocky::math::calc;
+
+    // calculator grammar
+    calculator<std::string::iterator> calc_;
+
+    // sample calculator expression
+    std::string s = "(2 + (1 + -10))^2 + 10 * (-5 + 20 / 2^2) - 2^2^(1+2)";
+
+    // building the AST.
+    ast::expression expr;
+    auto begin = s.begin();
+    auto end = s.end();
+    REQUIRE(qi::phrase_parse(
+                    begin, end,
+                    calc_,              // the grammar
+                    qi::ascii::space,   // white space skipper
+                    expr                // AST output
+            ));
+    REQUIRE(begin == end);
+
+    // compiling into byte codes.
+    std::vector<int> code;
+    compiler compile(code);
+    compile(expr);
+
+    // executing the byte codes.
+    vmachine vm;
+    vm.execute(code);
+    REQUIRE(vm.top() == -207);
 }
