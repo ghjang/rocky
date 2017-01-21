@@ -2,6 +2,7 @@
 #define ROCKY_MATH_CALC_CALCULATOR_H
 
 
+#include <cmath>
 #include <vector>
 
 #include <boost/variant/recursive_variant.hpp>
@@ -70,6 +71,7 @@ namespace rocky::math::calc
         op_sub,
         op_mul,
         op_div,
+        op_pow,
         op_int,
     };
 
@@ -122,6 +124,11 @@ namespace rocky::math::calc
                     stackPtr_[-1] /= stackPtr_[0];
                     break;
 
+                case op_pow:
+                    --stackPtr_;
+                    stackPtr_[-1] = std::pow(stackPtr_[-1], stackPtr_[0]);
+                    break;
+
                 case op_int:
                     *stackPtr_++ = *pc++;
                     break;
@@ -156,6 +163,7 @@ namespace rocky::math::calc
                 case '-': code_.push_back(op_sub); break;
                 case '*': code_.push_back(op_mul); break;
                 case '/': code_.push_back(op_div); break;
+                case '^': code_.push_back(op_pow); break;
                 default: BOOST_ASSERT(0); break;
             }
         }
@@ -209,6 +217,7 @@ namespace rocky::math::calc
                         | (char_('-') >> power_)
                         | (char_('+') >> power_);
 
+            // NOTE: '^' has right-to-left associativity here.
             power_ = base_
                         >> *(
                                 char_('^') >> expr_
