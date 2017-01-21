@@ -220,7 +220,7 @@ namespace rocky::math::calc
             // NOTE: '^' has right-to-left associativity here.
             power_ = base_
                         >> *(
-                                char_('^') >> expr_
+                                char_('^') >> factor_
                             );
 
             base_ = uint_
