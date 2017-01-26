@@ -48,6 +48,7 @@ set(HEADER_FILES
         ../base/TypeTree.h
         ../base/ArrayUtility.h
         ../base/MacroUtility.h
+        ../base/BitOperation.h
         ../math/Power.h
         ../math/Abs.h
         ../math/RatioString.h
@@ -179,6 +180,7 @@ set(SOURCE_FILES
         base/RandomTest.cpp
         base/TypeTreeTest.cpp
         base/ArrayUtilityTest.cpp
+        base/BitOperationTest.cpp
         math/PowerTest.cpp
         math/AbsTest.cpp
         math/RatioStringTest.cpp
