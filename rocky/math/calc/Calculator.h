@@ -13,9 +13,33 @@
 #include <boost/spirit/include/qi.hpp>
 
 
+namespace rocky::math::calc
+{
+    using number_t = boost::variant<int, double>;
+
+    enum instruction
+    {
+        op_neg,
+
+        op_add,
+        op_sub,
+        op_mul,
+        op_div,
+
+        op_pow,
+
+        op_int,
+        op_double
+    };
+
+    using byte_code_t = boost::variant<number_t, instruction>;
+} // namespace rocky::math::calc
+
+
 namespace rocky::math::calc::ast
 {
     struct nil { };
+    struct math_function;
     struct unary;
     struct expression;
 
@@ -23,6 +47,7 @@ namespace rocky::math::calc::ast
                         nil,
                         unsigned int,
                         double,
+                        boost::recursive_wrapper<math_function>,
                         boost::recursive_wrapper<unary>,
                         boost::recursive_wrapper<expression>
                     >;
@@ -44,6 +69,12 @@ namespace rocky::math::calc::ast
         operand first_;
         std::vector<operation> rest_;
     };
+
+    struct math_function
+    {
+        rocky::math::calc::instruction instruction_;
+        expression expr_;
+    };
 } // namespacde rocky::math::calc::ast
 
 BOOST_FUSION_ADAPT_STRUCT(
@@ -64,26 +95,15 @@ BOOST_FUSION_ADAPT_STRUCT(
     (std::vector<rocky::math::calc::ast::operation>, rest_)
 )
 
+BOOST_FUSION_ADAPT_STRUCT(
+    rocky::math::calc::ast::math_function,
+    (rocky::math::calc::instruction, instruction_)
+    (rocky::math::calc::ast::expression, expr_)
+)
+
 
 namespace rocky::math::calc
 {
-    using number_t = boost::variant<int, double>;
-
-    enum instruction
-    {
-        op_neg,
-        op_add,
-        op_sub,
-        op_mul,
-        op_div,
-        op_pow,
-        op_int,
-        op_double
-    };
-
-    using byte_code_t = boost::variant<number_t, instruction>;
-
-
     namespace detail
     {
         template <typename F, typename R = number_t>
@@ -243,10 +263,10 @@ namespace rocky::math::calc
           : code_(code)
         { }
 
-        void operator()(ast::nil) const
+        void operator () (ast::nil) const
         { BOOST_ASSERT(0); }
 
-        void operator()(unsigned int n) const
+        void operator () (unsigned int n) const
         {
             code_.push_back(op_int);
 
@@ -254,13 +274,13 @@ namespace rocky::math::calc
             code_.push_back(number_t{ static_cast<int>(n) });
         }
 
-        void operator()(double n) const
+        void operator () (double n) const
         {
             code_.push_back(op_double);
             code_.push_back(number_t{ n });
         }
 
-        void operator()(ast::operation const& x) const
+        void operator () (ast::operation const& x) const
         {
             boost::apply_visitor(*this, x.operand_);
             switch (x.operator_)
@@ -274,7 +294,12 @@ namespace rocky::math::calc
             }
         }
 
-        void operator()(ast::unary const& x) const
+        void operator () (ast::math_function const& x) const
+        {
+
+        }
+
+        void operator () (ast::unary const& x) const
         {
             boost::apply_visitor(*this, x.operand_);
             switch (x.operator_)
@@ -285,7 +310,7 @@ namespace rocky::math::calc
             }
         }
 
-        void operator()(ast::expression const& x) const
+        void operator () (ast::expression const& x) const
         {
             boost::apply_visitor(*this, x.first_);
             for (ast::operation const& oper : x.rest_)
@@ -333,18 +358,25 @@ namespace rocky::math::calc
 
             base_expr_ = udouble_
                             | uint_
+                            | math_function_expr_
                             | '(' >> additive_expr_ >> ')';
+
+            math_function_expr_ = math_function_symbol_ >> '(' >> additive_expr_ >> ')';
         }
 
         using expression_t = qi::rule<Iterator, ast::expression(), qi::ascii::space_type>;
         using unary_t = qi::rule<Iterator, ast::unary(), qi::ascii::space_type>;
         using operand_t = qi::rule<Iterator, ast::operand(), qi::ascii::space_type>;
+        using math_function_t = qi::rule<Iterator, ast::math_function(), qi::ascii::space_type>;
+
+        qi::symbols<char, instruction> math_function_symbol_;
 
         expression_t    additive_expr_;
         expression_t    multiplicative_expr;
         unary_t         unary_expr_;
         expression_t    primary_expr_;
         operand_t       base_expr_;
+        math_function_t math_function_expr_;
     };
 
 
