@@ -3,9 +3,38 @@
 #include <utility>
 #include <iostream>
 
+#include "rocky/math/NumberCompare.h"
 #include "rocky/math/calc/Calculator.h"
 #include "rocky/math/calc/Utility.h"
 
+
+TEST_CASE("boost spirit real_parser", "[math]")
+{
+    namespace qi = boost::spirit::qi;
+    using tools::test_phrase_parser;
+
+    qi::real_parser<double, qi::strict_ureal_policies<double>> udouble_;
+
+    std::string s;
+
+    s = "10";
+    REQUIRE_FALSE(test_phrase_parser(s, udouble_));
+
+    s = "+10";
+    REQUIRE_FALSE(test_phrase_parser(s, udouble_));
+
+    s = "-10";
+    REQUIRE_FALSE(test_phrase_parser(s, udouble_));
+
+    s = ".10";
+    REQUIRE(test_phrase_parser(s, udouble_));
+
+    s = "10.";
+    REQUIRE(test_phrase_parser(s, udouble_));
+
+    s = "1.10";
+    REQUIRE(test_phrase_parser(s, udouble_));
+}
 
 TEST_CASE("calculator expr match", "[math]")
 {
@@ -15,6 +44,7 @@ TEST_CASE("calculator expr match", "[math]")
     calculator<std::string::iterator> calc_;
 
     std::string successExprs[] = {
+        // integer
           "10"
         , "-10"
         , "+10"
@@ -32,6 +62,17 @@ TEST_CASE("calculator expr match", "[math]")
         , "10 * -(-20^2 + 30) ^ 2 ^ 3"
         , "10 * -(-20^2 + 30) ^ 2 ^ 3^(1)"
         , "10 * -(-20^2 + 30) ^ 2 ^ 3^(1*1)"
+
+        // real number
+        , ".1"
+        , "10."
+        , "10.0"
+        , "10.00001"
+        , "+10.00001"
+        , "-10.00001"
+        , "-10.00001^2"
+        , "2^(0.5)"
+        , "2^(.5)"
     };
 
     for (auto & s : successExprs) {
@@ -142,4 +183,28 @@ TEST_CASE("calculator expr eval - 1", "[math]")
     vmachine vm;
     vm.execute(code);
     REQUIRE(vm.top_as_int() == -207);
+}
+
+TEST_CASE("calculator expr eval - 2", "[math]")
+{
+    using namespace rocky::math::calc;
+
+    REQUIRE(boost::get<double>(calculate("10.0")) == 10);
+    REQUIRE(boost::get<double>(calculate("10.1")) == 10.1);
+
+    //std::cout << calculate("2^.5") << '\n';
+
+    number_t val = calculate("2^0.5");
+    REQUIRE(is_almost_equal(boost::get<double>(val), std::pow(2, 0.5)));
+
+    val = calculate("10.5 * 3");
+    REQUIRE(is_almost_equal(boost::get<double>(val), 10.5 * 3));
+
+    // NOTE: this is an integer division.
+    val = calculate("10 / 3");
+    REQUIRE(boost::get<int>(val) == 3);
+
+    // NOTE: this is a real number division.
+    val = calculate("10 / 3.");
+    REQUIRE(is_almost_equal(boost::get<double>(val), 10 / 3.));
 }

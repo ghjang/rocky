@@ -22,6 +22,7 @@ namespace rocky::math::calc::ast
     using operand = boost::variant<
                         nil,
                         unsigned int,
+                        double,
                         boost::recursive_wrapper<unary>,
                         boost::recursive_wrapper<expression>
                     >;
@@ -133,19 +134,28 @@ namespace rocky::math::calc
         }
 
 
-        struct number_to_int
+        template <typename T>
+        struct number_to
         {
-            constexpr int operator () (int n) const
+            constexpr T operator () (int n) const
             { return n; }
 
-            constexpr int operator () (double n) const
-            { return static_cast<int>(n); }
+            constexpr T operator () (double n) const
+            { return static_cast<T>(n); }
         };
 
         int to_int(number_t const& n)
         {
             return boost::apply_visitor(
-                            unary_op<number_to_int, int>{ number_to_int{} },
+                            unary_op<number_to<int>, int>{ number_to<int>{} },
+                            n
+                    );
+        }
+
+        int to_double(number_t const& n)
+        {
+            return boost::apply_visitor(
+                            unary_op<number_to<double>, double>{ number_to<double>{} },
                             n
                     );
         }
@@ -162,6 +172,7 @@ namespace rocky::math::calc
 
         number_t top() const { return stackPtr_[-1]; };
         int top_as_int() const { return detail::to_int(top()); };
+        double top_as_double() const { return detail::to_double(top()); };
 
         void execute(std::vector<byte_code_t> const& code);
 
@@ -295,6 +306,8 @@ namespace rocky::math::calc
             using qi::char_;
             using qi::uint_;
             using qi::attr;
+            
+            qi::real_parser<double, qi::strict_ureal_policies<double>> udouble_;
 
             additive_expr_ = multiplicative_expr
                                 >> *(
@@ -318,7 +331,8 @@ namespace rocky::math::calc
                                         char_('^') >> unary_expr_
                                     );
 
-            base_expr_ = uint_
+            base_expr_ = udouble_
+                            | uint_
                             | '(' >> additive_expr_ >> ')';
         }
 
@@ -332,6 +346,34 @@ namespace rocky::math::calc
         expression_t    primary_expr_;
         operand_t       base_expr_;
     };
+
+
+    number_t calculate(std::string calcExpr)
+    {
+        // calculator VM
+        vmachine vm;
+
+        // calculator grammar
+        calculator<std::string::iterator> calc_;
+
+        // building the AST
+        ast::expression expr;
+        auto begin = calcExpr.begin();
+        auto end = calcExpr.end();
+        bool r = qi::phrase_parse(begin, end, calc_, qi::ascii::space, expr);
+        if (!r || begin != end) {
+            // TODO: thrown an exception
+            return std::numeric_limits<int>::min();
+        }
+
+        // compile & execute
+        std::vector<byte_code_t> code;
+        compiler compile(code);
+        compile(expr);
+        vm.execute(code);
+
+        return vm.top();
+    }
 } // namespace rocky::math::calc
 
 
