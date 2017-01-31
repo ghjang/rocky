@@ -227,11 +227,15 @@ namespace rocky::math::calc
                         | '(' >> additive_expr_ >> ')';
         }
 
-        qi::rule<Iterator, ast::expression(), qi::ascii::space_type> additive_expr_;
-        qi::rule<Iterator, ast::expression(), qi::ascii::space_type> multiplicative_expr;
-        qi::rule<Iterator, ast::unary(), qi::ascii::space_type> unary_expr_;
-        qi::rule<Iterator, ast::expression(), qi::ascii::space_type> primary_expr_;
-        qi::rule<Iterator, ast::operand(), qi::ascii::space_type> base_;
+        using expression_t = qi::rule<Iterator, ast::expression(), qi::ascii::space_type>;
+        using unary_t = qi::rule<Iterator, ast::unary(), qi::ascii::space_type>;
+        using operand_t = qi::rule<Iterator, ast::operand(), qi::ascii::space_type>;
+
+        expression_t    additive_expr_;
+        expression_t    multiplicative_expr;
+        unary_t         unary_expr_;
+        expression_t    primary_expr_;
+        operand_t       base_;
     };
 } // namespace rocky::math::calc
 
