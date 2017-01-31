@@ -66,7 +66,9 @@ BOOST_FUSION_ADAPT_STRUCT(
 
 namespace rocky::math::calc
 {
-    enum byte_code
+    using number_t = boost::variant<int, double>;
+
+    enum instruction
     {
         op_neg,
         op_add,
@@ -75,9 +77,10 @@ namespace rocky::math::calc
         op_div,
         op_pow,
         op_int,
+        op_double
     };
 
-    using number_t = boost::variant<int, double>;
+    using byte_code_t = boost::variant<number_t, instruction>;
 
 
     namespace detail
@@ -160,7 +163,7 @@ namespace rocky::math::calc
         number_t top() const { return stackPtr_[-1]; };
         int top_as_int() const { return detail::to_int(top()); };
 
-        void execute(std::vector<int> const& code);
+        void execute(std::vector<byte_code_t> const& code);
 
     private:
         template <typename F>
@@ -174,16 +177,16 @@ namespace rocky::math::calc
         std::vector<number_t>::iterator stackPtr_;
     };
 
-    void vmachine::execute(std::vector<int> const& code)
+    void vmachine::execute(std::vector<byte_code_t> const& code)
     {
-        std::vector<int>::const_iterator pc = code.begin();
+        auto pc = code.begin();
         stackPtr_ = stack_.begin();
 
         auto const power = [](auto lhs, auto rhs) { return std::pow(lhs, rhs); };
 
         while (pc != code.end())
         {
-            switch (*pc++)
+            switch (boost::get<instruction>(*pc++))
             {
                 case op_neg: execute_unary_op(std::negate<>{}); break;
 
@@ -194,7 +197,8 @@ namespace rocky::math::calc
                 case op_pow: execute_binary_op(power);                  break;
 
                 case op_int:
-                    *stackPtr_++ = *pc++;
+                case op_double:
+                    *stackPtr_++ = boost::get<number_t>(*pc++);
                     break;
             }
         }
@@ -203,22 +207,28 @@ namespace rocky::math::calc
     template <typename F>
     void vmachine::execute_unary_op(F && f)
     {
-        stackPtr_[-1] = detail::exec_unary_op(stackPtr_[-1], std::forward<F>(f));
+        stackPtr_[-1] = detail::exec_unary_op(
+                                    stackPtr_[-1],
+                                    std::forward<F>(f)
+                        );
     }
 
     template <typename F>
     void vmachine::execute_binary_op(F && f)
     {
         --stackPtr_;
-        stackPtr_[-1] = detail::exec_binary_op(stackPtr_[-1], stackPtr_[0], std::forward<F>(f));
+        stackPtr_[-1] = detail::exec_binary_op(
+                                    stackPtr_[-1], stackPtr_[0],
+                                    std::forward<F>(f)
+                        );
     }
 
 
     struct compiler : boost::static_visitor<>
     {
-        std::vector<int>& code_;
+        std::vector<byte_code_t> & code_;
 
-        compiler(std::vector<int> & code)
+        compiler(std::vector<byte_code_t> & code)
           : code_(code)
         { }
 
@@ -228,7 +238,15 @@ namespace rocky::math::calc
         void operator()(unsigned int n) const
         {
             code_.push_back(op_int);
-            code_.push_back(n);
+
+            // TODO: check this unsigned int to int conversion is safe.
+            code_.push_back(number_t{ static_cast<int>(n) });
+        }
+
+        void operator()(double n) const
+        {
+            code_.push_back(op_double);
+            code_.push_back(number_t{ n });
         }
 
         void operator()(ast::operation const& x) const

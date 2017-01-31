@@ -102,7 +102,7 @@ TEST_CASE("calculator expr eval", "[math]")
         REQUIRE(begin == end);
 
         // compile & execute
-        std::vector<int> code;
+        std::vector<byte_code_t> code;
         compiler compile(code);
         compile(expr);
         vm.execute(code);
@@ -134,7 +134,7 @@ TEST_CASE("calculator expr eval - 1", "[math]")
     REQUIRE(begin == end);
 
     // compiling into byte codes.
-    std::vector<int> code;
+    std::vector<byte_code_t> code;
     compiler compile(code);
     compile(expr);
 
