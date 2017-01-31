@@ -163,6 +163,13 @@ namespace rocky::math::calc
         void execute(std::vector<int> const& code);
 
     private:
+        template <typename F>
+        void execute_unary_op(F && f);
+
+        template <typename F>
+        void execute_binary_op(F && f);
+
+    private:
         std::vector<number_t> stack_;
         std::vector<number_t>::iterator stackPtr_;
     };
@@ -172,44 +179,38 @@ namespace rocky::math::calc
         std::vector<int>::const_iterator pc = code.begin();
         stackPtr_ = stack_.begin();
 
+        auto const power = [](auto lhs, auto rhs) { return std::pow(lhs, rhs); };
+
         while (pc != code.end())
         {
             switch (*pc++)
             {
-                case op_neg:
-                    stackPtr_[-1] = detail::exec_unary_op(stackPtr_[-1], std::negate<>{});
-                    break;
+                case op_neg: execute_unary_op(std::negate<>{}); break;
 
-                case op_add:
-                    --stackPtr_;
-                    stackPtr_[-1] = detail::exec_binary_op(stackPtr_[-1], stackPtr_[0], std::plus<>{});
-                    break;
-
-                case op_sub:
-                    --stackPtr_;
-                    stackPtr_[-1] = detail::exec_binary_op(stackPtr_[-1], stackPtr_[0], std::minus<>{});
-                    break;
-
-                case op_mul:
-                    --stackPtr_;
-                    stackPtr_[-1] = detail::exec_binary_op(stackPtr_[-1], stackPtr_[0], std::multiplies<>{});
-                    break;
-
-                case op_div:
-                    --stackPtr_;
-                    stackPtr_[-1] = detail::exec_binary_op(stackPtr_[-1], stackPtr_[0], std::divides<>{});
-                    break;
-
-                case op_pow:
-                    --stackPtr_;
-                    stackPtr_[-1] = detail::exec_binary_op(stackPtr_[-1], stackPtr_[0], [](auto lhs, auto rhs) { return std::pow(lhs, rhs); });
-                    break;
+                case op_add: execute_binary_op(std::plus<>{});          break;
+                case op_sub: execute_binary_op(std::minus<>{});         break;
+                case op_mul: execute_binary_op(std::multiplies<>{});    break;
+                case op_div: execute_binary_op(std::divides<>{});       break;
+                case op_pow: execute_binary_op(power);                  break;
 
                 case op_int:
                     *stackPtr_++ = *pc++;
                     break;
             }
         }
+    }
+
+    template <typename F>
+    void vmachine::execute_unary_op(F && f)
+    {
+        stackPtr_[-1] = detail::exec_unary_op(stackPtr_[-1], std::forward<F>(f));
+    }
+
+    template <typename F>
+    void vmachine::execute_binary_op(F && f)
+    {
+        --stackPtr_;
+        stackPtr_[-1] = detail::exec_binary_op(stackPtr_[-1], stackPtr_[0], std::forward<F>(f));
     }
 
 
