@@ -218,13 +218,13 @@ namespace rocky::math::calc
                             | (char_('+') >> primary_expr_);
 
             // NOTE: '^' has right-to-left associativity here.
-            primary_expr_ = base_
+            primary_expr_ = base_expr_
                                 >> *(
                                         char_('^') >> unary_expr_
                                     );
 
-            base_ = uint_
-                        | '(' >> additive_expr_ >> ')';
+            base_expr_ = uint_
+                            | '(' >> additive_expr_ >> ')';
         }
 
         using expression_t = qi::rule<Iterator, ast::expression(), qi::ascii::space_type>;
@@ -235,7 +235,7 @@ namespace rocky::math::calc
         expression_t    multiplicative_expr;
         unary_t         unary_expr_;
         expression_t    primary_expr_;
-        operand_t       base_;
+        operand_t       base_expr_;
     };
 } // namespace rocky::math::calc
 
