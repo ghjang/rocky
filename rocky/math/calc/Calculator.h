@@ -195,42 +195,42 @@ namespace rocky::math::calc
     template <typename Iterator>
     struct calculator : qi::grammar<Iterator, ast::expression(), qi::ascii::space_type>
     {
-        calculator() : calculator::base_type(expr_)
+        calculator() : calculator::base_type(additive_expr_)
         {
             using qi::char_;
             using qi::uint_;
             using qi::attr;
 
-            expr_ = term_
-                        >> *(
-                                char_('+') >> term_
-                            |   char_('-') >> term_
-                            );
+            additive_expr_ = multiplicative_expr
+                                >> *(
+                                        char_('+') >> multiplicative_expr
+                                    |   char_('-') >> multiplicative_expr
+                                    );
 
-            term_ = factor_
-                        >> *(
-                                char_('*') >> factor_
-                            |   char_('/') >> factor_
-                            );
+            multiplicative_expr = unary_expr_
+                                    >> *(
+                                            char_('*') >> unary_expr_
+                                        |   char_('/') >> unary_expr_
+                                        );
 
-            factor_ = (attr('+') >> power_)
-                        | (char_('-') >> power_)
-                        | (char_('+') >> power_);
+            unary_expr_ = (attr('+') >> primary_expr_)
+                            | (char_('-') >> primary_expr_)
+                            | (char_('+') >> primary_expr_);
 
             // NOTE: '^' has right-to-left associativity here.
-            power_ = base_
-                        >> *(
-                                char_('^') >> factor_
-                            );
+            primary_expr_ = base_
+                                >> *(
+                                        char_('^') >> unary_expr_
+                                    );
 
             base_ = uint_
-                        | '(' >> expr_ >> ')';
+                        | '(' >> additive_expr_ >> ')';
         }
 
-        qi::rule<Iterator, ast::expression(), qi::ascii::space_type> expr_;
-        qi::rule<Iterator, ast::expression(), qi::ascii::space_type> term_;
-        qi::rule<Iterator, ast::unary(), qi::ascii::space_type> factor_;
-        qi::rule<Iterator, ast::expression(), qi::ascii::space_type> power_;
+        qi::rule<Iterator, ast::expression(), qi::ascii::space_type> additive_expr_;
+        qi::rule<Iterator, ast::expression(), qi::ascii::space_type> multiplicative_expr;
+        qi::rule<Iterator, ast::unary(), qi::ascii::space_type> unary_expr_;
+        qi::rule<Iterator, ast::expression(), qi::ascii::space_type> primary_expr_;
         qi::rule<Iterator, ast::operand(), qi::ascii::space_type> base_;
     };
 } // namespace rocky::math::calc
