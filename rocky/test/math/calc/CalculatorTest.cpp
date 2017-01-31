@@ -106,7 +106,7 @@ TEST_CASE("calculator expr eval", "[math]")
         compiler compile(code);
         compile(expr);
         vm.execute(code);
-        REQUIRE(vm.top() == pair.second);
+        REQUIRE(vm.top_as_int() == pair.second);
     }
 }
 
@@ -141,5 +141,5 @@ TEST_CASE("calculator expr eval - 1", "[math]")
     // executing the byte codes.
     vmachine vm;
     vm.execute(code);
-    REQUIRE(vm.top() == -207);
+    REQUIRE(vm.top_as_int() == -207);
 }

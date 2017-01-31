@@ -3,6 +3,8 @@
 
 
 #include <cmath>
+#include <functional>
+#include <type_traits>
 #include <vector>
 
 #include <boost/variant/recursive_variant.hpp>
@@ -75,6 +77,78 @@ namespace rocky::math::calc
         op_int,
     };
 
+    using number_t = boost::variant<int, double>;
+
+
+    namespace detail
+    {
+        template <typename F, typename R = number_t>
+        struct unary_op : boost::static_visitor<R>
+        {
+            unary_op(F f)
+                : f_(f)
+            { }
+
+            template <typename Number>
+            R operator () (Number n) const
+            { return f_(n); }
+
+            F f_;
+        };
+
+        template <typename UnaryOp>
+        number_t exec_unary_op(number_t const& n, UnaryOp && op)
+        {
+            return boost::apply_visitor(
+                            unary_op<std::decay_t<UnaryOp>>{ std::forward<UnaryOp>(op) },
+                            n
+                    );
+        }
+
+
+        template <typename F, typename R = number_t>
+        struct binary_op : boost::static_visitor<R>
+        {
+            binary_op(F f)
+                : f_(f)
+            { }
+
+            template <typename N1, typename N2>
+            R operator () (N1 lhs, N2 rhs) const
+            { return f_(lhs, rhs); }
+
+            F f_;
+        };
+
+        template <typename BinaryOp>
+        number_t exec_binary_op(number_t const& lhs, number_t const& rhs, BinaryOp && op)
+        {
+            return boost::apply_visitor(
+                            binary_op<std::decay_t<BinaryOp>>{ std::forward<BinaryOp>(op) },
+                            lhs, rhs
+                    );
+        }
+
+
+        struct number_to_int
+        {
+            constexpr int operator () (int n) const
+            { return n; }
+
+            constexpr int operator () (double n) const
+            { return static_cast<int>(n); }
+        };
+
+        int to_int(number_t const& n)
+        {
+            return boost::apply_visitor(
+                            unary_op<number_to_int, int>{ number_to_int{} },
+                            n
+                    );
+        }
+    } // namespace detail
+
+
     class vmachine
     {
     public:
@@ -83,12 +157,14 @@ namespace rocky::math::calc
           , stackPtr_(stack_.begin())
         {  }
 
-        int top() const { return stackPtr_[-1]; };
+        number_t top() const { return stackPtr_[-1]; };
+        int top_as_int() const { return detail::to_int(top()); };
+
         void execute(std::vector<int> const& code);
 
     private:
-        std::vector<int> stack_;
-        std::vector<int>::iterator stackPtr_;
+        std::vector<number_t> stack_;
+        std::vector<number_t>::iterator stackPtr_;
     };
 
     void vmachine::execute(std::vector<int> const& code)
@@ -101,32 +177,32 @@ namespace rocky::math::calc
             switch (*pc++)
             {
                 case op_neg:
-                    stackPtr_[-1] = -stackPtr_[-1];
+                    stackPtr_[-1] = detail::exec_unary_op(stackPtr_[-1], std::negate<>{});
                     break;
 
                 case op_add:
                     --stackPtr_;
-                    stackPtr_[-1] += stackPtr_[0];
+                    stackPtr_[-1] = detail::exec_binary_op(stackPtr_[-1], stackPtr_[0], std::plus<>{});
                     break;
 
                 case op_sub:
                     --stackPtr_;
-                    stackPtr_[-1] -= stackPtr_[0];
+                    stackPtr_[-1] = detail::exec_binary_op(stackPtr_[-1], stackPtr_[0], std::minus<>{});
                     break;
 
                 case op_mul:
                     --stackPtr_;
-                    stackPtr_[-1] *= stackPtr_[0];
+                    stackPtr_[-1] = detail::exec_binary_op(stackPtr_[-1], stackPtr_[0], std::multiplies<>{});
                     break;
 
                 case op_div:
                     --stackPtr_;
-                    stackPtr_[-1] /= stackPtr_[0];
+                    stackPtr_[-1] = detail::exec_binary_op(stackPtr_[-1], stackPtr_[0], std::divides<>{});
                     break;
 
                 case op_pow:
                     --stackPtr_;
-                    stackPtr_[-1] = std::pow(stackPtr_[-1], stackPtr_[0]);
+                    stackPtr_[-1] = detail::exec_binary_op(stackPtr_[-1], stackPtr_[0], [](auto lhs, auto rhs) { return std::pow(lhs, rhs); });
                     break;
 
                 case op_int:
