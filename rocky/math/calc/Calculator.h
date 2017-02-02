@@ -159,8 +159,11 @@ namespace rocky::math::calc::detail
                         lhs, rhs
                 );
     }
+} // namespace rocky::math::calc::detail
 
 
+namespace rocky::math::calc
+{
     template <typename T>
     struct number_to
     {
@@ -174,7 +177,7 @@ namespace rocky::math::calc::detail
     int to_int(number_t const& n)
     {
         return boost::apply_visitor(
-                        unary_op<number_to<int>, int>{ number_to<int>{} },
+                        detail::unary_op<number_to<int>, int>{ number_to<int>{} },
                         n
                 );
     }
@@ -182,15 +185,12 @@ namespace rocky::math::calc::detail
     int to_double(number_t const& n)
     {
         return boost::apply_visitor(
-                        unary_op<number_to<double>, double>{ number_to<double>{} },
+                        detail::unary_op<number_to<double>, double>{ number_to<double>{} },
                         n
                 );
     }
-} // namespace rocky::math::calc::detail
 
 
-namespace rocky::math::calc
-{
     class vmachine
     {
     public:
@@ -200,8 +200,8 @@ namespace rocky::math::calc
         {  }
 
         number_t top() const { return stackPtr_[-1]; };
-        int top_as_int() const { return detail::to_int(top()); };
-        double top_as_double() const { return detail::to_double(top()); };
+        int top_as_int() const { return to_int(top()); };
+        double top_as_double() const { return to_double(top()); };
 
         void execute(std::vector<byte_code_t> const& code, number_t const& x = number_t{ 0 });
 
