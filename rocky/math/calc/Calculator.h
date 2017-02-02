@@ -28,6 +28,12 @@ namespace rocky::math::calc
 
         op_pow,
 
+        op_sin,
+        op_cos,
+        op_tan,
+        op_log,
+        op_ln,
+
         op_int,
         op_double
     };
@@ -227,6 +233,12 @@ namespace rocky::math::calc
                 case op_div: execute_binary_op(std::divides<>{});       break;
                 case op_pow: execute_binary_op(power);                  break;
 
+                case op_sin: execute_unary_op([](auto x) { return std::sin(x); });      break;
+                case op_cos: execute_unary_op([](auto x) { return std::cos(x); });      break;
+                case op_tan: execute_unary_op([](auto x) { return std::tan(x); });      break;
+                case op_log: execute_unary_op([](auto x) { return std::log10(x); });    break;
+                case op_ln:  execute_unary_op([](auto x) { return std::log(x); });      break;
+
                 case op_int:
                 case op_double:
                     *stackPtr_++ = boost::get<number_t>(*pc++);
@@ -296,7 +308,8 @@ namespace rocky::math::calc
 
         void operator () (ast::math_function const& x) const
         {
-
+            (*this)(x.expr_);
+            code_.push_back(x.instruction_);
         }
 
         void operator () (ast::unary const& x) const
@@ -326,8 +339,11 @@ namespace rocky::math::calc
     template <typename Iterator>
     struct calculator : qi::grammar<Iterator, ast::expression(), qi::ascii::space_type>
     {
+    public:
         calculator() : calculator::base_type(additive_expr_)
         {
+            init_math_function_symbol();
+
             using qi::char_;
             using qi::attr;
             
@@ -367,6 +383,19 @@ namespace rocky::math::calc
             math_function_expr_ = math_function_symbol_ >> '(' >> additive_expr_ >> ')';
         }
 
+    private:
+        void init_math_function_symbol()
+        {
+            math_function_symbol_.add
+                ("sin",     op_sin)
+                ("cos",     op_cos)
+                ("tan",     op_tan)
+                ("log",     op_log)
+                ("ln",      op_ln)
+            ;
+        }
+
+    private:
         using expression_t = qi::rule<Iterator, ast::expression(), qi::ascii::space_type>;
         using unary_t = qi::rule<Iterator, ast::unary(), qi::ascii::space_type>;
         using operand_t = qi::rule<Iterator, ast::operand(), qi::ascii::space_type>;

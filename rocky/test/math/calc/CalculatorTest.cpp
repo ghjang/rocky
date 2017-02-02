@@ -208,3 +208,16 @@ TEST_CASE("calculator expr eval - 2", "[math]")
     val = calculate("10 / 3.");
     REQUIRE(is_almost_equal(boost::get<double>(val), 10 / 3.));
 }
+
+TEST_CASE("calculator expr eval - 3, math functions", "[math]")
+{
+    using namespace rocky::math::calc;
+
+    number_t val = calculate("sin(3.14159)");
+    std::cout << val << '\n';
+    //REQUIRE(is_almost_equal(boost::get<double>(val), 0));
+
+    val = calculate("sin(3.14159) + 10");
+    std::cout << val << '\n';
+    //REQUIRE(is_almost_equal(boost::get<double>(val), 10));
+}
