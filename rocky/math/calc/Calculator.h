@@ -342,7 +342,7 @@ namespace rocky::math::calc
     public:
         calculator() : calculator::base_type(additive_expr_)
         {
-            init_math_function_symbol();
+            init_math_symbol();
 
             using qi::char_;
             using qi::attr;
@@ -377,6 +377,7 @@ namespace rocky::math::calc
 
             base_expr_ = udouble_
                             | uint_
+                            | math_constant_symbol_
                             | math_function_expr_
                             | '(' >> additive_expr_ >> ')';
 
@@ -384,8 +385,13 @@ namespace rocky::math::calc
         }
 
     private:
-        void init_math_function_symbol()
+        void init_math_symbol()
         {
+            math_constant_symbol_.add
+                ("pi",      M_PI)
+                ("e",       M_E)
+            ;
+
             math_function_symbol_.add
                 ("sin",     op_sin)
                 ("cos",     op_cos)
@@ -401,6 +407,7 @@ namespace rocky::math::calc
         using operand_t = qi::rule<Iterator, ast::operand(), qi::ascii::space_type>;
         using math_function_t = qi::rule<Iterator, ast::math_function(), qi::ascii::space_type>;
 
+        qi::symbols<char, double> math_constant_symbol_;
         qi::symbols<char, instruction> math_function_symbol_;
 
         expression_t    additive_expr_;

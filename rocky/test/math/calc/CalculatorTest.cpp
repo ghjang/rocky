@@ -213,11 +213,12 @@ TEST_CASE("calculator expr eval - 3, math functions", "[math]")
 {
     using namespace rocky::math::calc;
 
-    number_t val = calculate("sin(3.14159)");
-    std::cout << val << '\n';
-    //REQUIRE(is_almost_equal(boost::get<double>(val), 0));
+    number_t val = calculate("sin(pi)");
+    REQUIRE(is_almost_equal(boost::get<double>(val), 0));
 
-    val = calculate("sin(3.14159) + 10");
-    std::cout << val << '\n';
-    //REQUIRE(is_almost_equal(boost::get<double>(val), 10));
+    val = calculate("sin(pi) + 10");
+    REQUIRE(is_almost_equal(boost::get<double>(val), 10));
+
+    val = calculate("sin(pi/2)^2");
+    REQUIRE(is_almost_equal(boost::get<double>(val), 1));
 }
