@@ -102,86 +102,86 @@ BOOST_FUSION_ADAPT_STRUCT(
 )
 
 
+namespace rocky::math::calc::detail
+{
+    template <typename F, typename R = number_t>
+    struct unary_op : boost::static_visitor<R>
+    {
+        unary_op(F f)
+            : f_(f)
+        { }
+
+        template <typename Number>
+        R operator () (Number n) const
+        { return f_(n); }
+
+        F f_;
+    };
+
+    template <typename UnaryOp>
+    number_t exec_unary_op(number_t const& n, UnaryOp && op)
+    {
+        return boost::apply_visitor(
+                        unary_op<std::decay_t<UnaryOp>>{ std::forward<UnaryOp>(op) },
+                        n
+                );
+    }
+
+
+    template <typename F, typename R = number_t>
+    struct binary_op : boost::static_visitor<R>
+    {
+        binary_op(F f)
+            : f_(f)
+        { }
+
+        template <typename N1, typename N2>
+        R operator () (N1 lhs, N2 rhs) const
+        { return f_(lhs, rhs); }
+
+        F f_;
+    };
+
+    template <typename BinaryOp>
+    number_t exec_binary_op(number_t const& lhs, number_t const& rhs, BinaryOp && op)
+    {
+        return boost::apply_visitor(
+                        binary_op<std::decay_t<BinaryOp>>{ std::forward<BinaryOp>(op) },
+                        lhs, rhs
+                );
+    }
+
+
+    template <typename T>
+    struct number_to
+    {
+        constexpr T operator () (int n) const
+        { return n; }
+
+        constexpr T operator () (double n) const
+        { return static_cast<T>(n); }
+    };
+
+    int to_int(number_t const& n)
+    {
+        return boost::apply_visitor(
+                        unary_op<number_to<int>, int>{ number_to<int>{} },
+                        n
+                );
+    }
+
+    int to_double(number_t const& n)
+    {
+        return boost::apply_visitor(
+                        unary_op<number_to<double>, double>{ number_to<double>{} },
+                        n
+                );
+    }
+} // namespace rocky::math::calc::detail
+
+
 namespace rocky::math::calc
 {
-    namespace detail
-    {
-        template <typename F, typename R = number_t>
-        struct unary_op : boost::static_visitor<R>
-        {
-            unary_op(F f)
-                : f_(f)
-            { }
-
-            template <typename Number>
-            R operator () (Number n) const
-            { return f_(n); }
-
-            F f_;
-        };
-
-        template <typename UnaryOp>
-        number_t exec_unary_op(number_t const& n, UnaryOp && op)
-        {
-            return boost::apply_visitor(
-                            unary_op<std::decay_t<UnaryOp>>{ std::forward<UnaryOp>(op) },
-                            n
-                    );
-        }
-
-
-        template <typename F, typename R = number_t>
-        struct binary_op : boost::static_visitor<R>
-        {
-            binary_op(F f)
-                : f_(f)
-            { }
-
-            template <typename N1, typename N2>
-            R operator () (N1 lhs, N2 rhs) const
-            { return f_(lhs, rhs); }
-
-            F f_;
-        };
-
-        template <typename BinaryOp>
-        number_t exec_binary_op(number_t const& lhs, number_t const& rhs, BinaryOp && op)
-        {
-            return boost::apply_visitor(
-                            binary_op<std::decay_t<BinaryOp>>{ std::forward<BinaryOp>(op) },
-                            lhs, rhs
-                    );
-        }
-
-
-        template <typename T>
-        struct number_to
-        {
-            constexpr T operator () (int n) const
-            { return n; }
-
-            constexpr T operator () (double n) const
-            { return static_cast<T>(n); }
-        };
-
-        int to_int(number_t const& n)
-        {
-            return boost::apply_visitor(
-                            unary_op<number_to<int>, int>{ number_to<int>{} },
-                            n
-                    );
-        }
-
-        int to_double(number_t const& n)
-        {
-            return boost::apply_visitor(
-                            unary_op<number_to<double>, double>{ number_to<double>{} },
-                            n
-                    );
-        }
-    } // namespace detail
-
-
     class vmachine
     {
     public:
