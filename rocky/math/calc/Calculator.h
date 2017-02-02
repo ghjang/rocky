@@ -329,9 +329,12 @@ namespace rocky::math::calc
         calculator() : calculator::base_type(additive_expr_)
         {
             using qi::char_;
-            using qi::uint_;
             using qi::attr;
             
+            // NOTE: unsigned version of numeric parsers are needed
+            //          to make '^' operator have higher precedence
+            //          over unary '+' and '-' operators.
+            using qi::uint_;
             qi::real_parser<double, qi::strict_ureal_policies<double>> udouble_;
 
             additive_expr_ = multiplicative_expr
