@@ -222,3 +222,11 @@ TEST_CASE("calculator expr eval - 3, math functions", "[math]")
     val = calculate("sin(pi/2)^2");
     REQUIRE(is_almost_equal(boost::get<double>(val), 1));
 }
+
+TEST_CASE("calculator expr eval - 4, unknown variable x", "[math]")
+{
+    using namespace rocky::math::calc;
+
+    number_t val = calculate("x");
+    REQUIRE(boost::get<int>(val) == 0);
+}

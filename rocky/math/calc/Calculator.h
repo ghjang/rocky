@@ -35,7 +35,9 @@ namespace rocky::math::calc
         op_ln,
 
         op_int,
-        op_double
+        op_double,
+
+        op_load
     };
 
     using byte_code_t = boost::variant<number_t, instruction>;
@@ -53,6 +55,7 @@ namespace rocky::math::calc::ast
                         nil,
                         unsigned int,
                         double,
+                        char,
                         boost::recursive_wrapper<math_function>,
                         boost::recursive_wrapper<unary>,
                         boost::recursive_wrapper<expression>
@@ -200,7 +203,7 @@ namespace rocky::math::calc
         int top_as_int() const { return detail::to_int(top()); };
         double top_as_double() const { return detail::to_double(top()); };
 
-        void execute(std::vector<byte_code_t> const& code);
+        void execute(std::vector<byte_code_t> const& code, number_t const& x = number_t{ 0 });
 
     private:
         template <typename F>
@@ -214,7 +217,7 @@ namespace rocky::math::calc
         std::vector<number_t>::iterator stackPtr_;
     };
 
-    void vmachine::execute(std::vector<byte_code_t> const& code)
+    void vmachine::execute(std::vector<byte_code_t> const& code, number_t const& x)
     {
         auto pc = code.begin();
         stackPtr_ = stack_.begin();
@@ -242,6 +245,10 @@ namespace rocky::math::calc
                 case op_int:
                 case op_double:
                     *stackPtr_++ = boost::get<number_t>(*pc++);
+                    break;
+
+                case op_load:
+                    *stackPtr_++ = x;
                     break;
             }
         }
@@ -290,6 +297,12 @@ namespace rocky::math::calc
         {
             code_.push_back(op_double);
             code_.push_back(number_t{ n });
+        }
+
+        void operator () (char x) const
+        {
+            assert('x' == x);
+            code_.push_back(op_load);
         }
 
         void operator () (ast::operation const& x) const
@@ -379,6 +392,7 @@ namespace rocky::math::calc
                             | uint_
                             | math_constant_symbol_
                             | math_function_expr_
+                            | char_('x')
                             | '(' >> additive_expr_ >> ')';
 
             math_function_expr_ = math_function_symbol_ >> '(' >> additive_expr_ >> ')';
