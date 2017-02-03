@@ -459,6 +459,55 @@ namespace rocky::math::calc
 
         return vm.top();
     }
+
+
+    class calculator_machine
+    {
+    public:
+        calculator_machine()
+            : x_{ 0 }
+        { }
+
+    public:
+        number_t get_x() const { return x_; }
+        void set_x(number_t const& n) { x_ = n; }
+
+    public:
+        void set_expr(std::string calcExpr)
+        {
+            // calculator grammar
+            calculator<std::string::iterator> calc_;
+
+            // building the AST
+            ast::expression expr;
+            auto begin = calcExpr.begin();
+            auto end = calcExpr.end();
+            bool r = qi::phrase_parse(begin, end, calc_, qi::ascii::space, expr);
+            if (!r || begin != end) {
+                // TODO: thrown an exception
+                return;
+            }
+
+            // compile
+            std::vector<byte_code_t> code;
+            compiler compile(code);
+            compile(expr);
+
+            std::swap(code, code_);
+        }
+
+    public:
+        number_t execute() const
+        {
+            vmachine vm;
+            vm.execute(code_, x_);
+            return vm.top();
+        }
+
+    private:
+        number_t x_;
+        std::vector<byte_code_t> code_;
+    };
 } // namespace rocky::math::calc
 
 

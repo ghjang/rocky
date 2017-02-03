@@ -228,5 +228,33 @@ TEST_CASE("calculator expr eval - 4, unknown variable x", "[math]")
     using namespace rocky::math::calc;
 
     number_t val = calculate("x");
-    REQUIRE(boost::get<int>(val) == 0);
+    REQUIRE(to_int(val) == 0);
+}
+
+TEST_CASE("calculator expr eval - 5, unknown variable x, calculator machine", "[math]")
+{
+    using namespace rocky::math::calc;
+
+    calculator_machine cm;
+
+    // a polynomial calculator expression
+    cm.set_expr("x^2 + 2 * x + 1");
+
+    // x has '0' as default value.
+    REQUIRE(to_int(cm.execute()) == 1);
+
+    cm.set_x(1);
+    REQUIRE(to_int(cm.execute()) == 4);
+
+    cm.set_x(2);
+    REQUIRE(to_int(cm.execute()) == 9);
+
+    // a trigonometric calculator expression
+    cm.set_expr("x * sin(pi * x / 2) + 1");
+
+    cm.set_x(1);
+    REQUIRE(to_int(cm.execute()) == 2);
+
+    cm.set_x(3);
+    REQUIRE(to_int(cm.execute()) == -2);
 }
