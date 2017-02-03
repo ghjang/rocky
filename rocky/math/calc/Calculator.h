@@ -464,16 +464,7 @@ namespace rocky::math::calc
     class calculator_machine
     {
     public:
-        calculator_machine()
-            : x_{ 0 }
-        { }
-
-    public:
-        number_t get_x() const { return x_; }
-        void set_x(number_t const& n) { x_ = n; }
-
-    public:
-        void set_expr(std::string calcExpr)
+        calculator_machine(std::string calcExpr)
         {
             // calculator grammar
             calculator<std::string::iterator> calc_;
@@ -497,15 +488,18 @@ namespace rocky::math::calc
         }
 
     public:
-        number_t execute() const
+        number_t execute(number_t const& n = number_t{ 0 }) const
         {
             vmachine vm;
-            vm.execute(code_, x_);
+            vm.execute(code_, n);
             return vm.top();
         }
 
+    public:
+        number_t operator () (number_t const& n = number_t{ 0 }) const
+        { return execute(n); }
+
     private:
-        number_t x_;
         std::vector<byte_code_t> code_;
     };
 } // namespace rocky::math::calc

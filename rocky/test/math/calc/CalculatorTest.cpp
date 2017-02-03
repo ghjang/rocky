@@ -235,26 +235,15 @@ TEST_CASE("calculator expr eval - 5, unknown variable x, calculator machine", "[
 {
     using namespace rocky::math::calc;
 
-    calculator_machine cm;
+    // a polynomial calculator
+    calculator_machine cm("x^2 + 2 * x + 1");
 
-    // a polynomial calculator expression
-    cm.set_expr("x^2 + 2 * x + 1");
+    REQUIRE(to_int(cm()) == 1); // x has '0' as default value.
+    REQUIRE(to_int(cm(1)) == 4);
+    REQUIRE(to_int(cm(2)) == 9);
 
-    // x has '0' as default value.
-    REQUIRE(to_int(cm.execute()) == 1);
-
-    cm.set_x(1);
-    REQUIRE(to_int(cm.execute()) == 4);
-
-    cm.set_x(2);
-    REQUIRE(to_int(cm.execute()) == 9);
-
-    // a trigonometric calculator expression
-    cm.set_expr("x * sin(pi * x / 2) + 1");
-
-    cm.set_x(1);
-    REQUIRE(to_int(cm.execute()) == 2);
-
-    cm.set_x(3);
-    REQUIRE(to_int(cm.execute()) == -2);
+    // a trigonometric calculator
+    calculator_machine cm1("x * sin(pi * x / 2) + 1");
+    REQUIRE(to_int(cm1(1)) == 2);
+    REQUIRE(to_int(cm1(3)) == -2);
 }
