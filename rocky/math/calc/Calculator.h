@@ -174,7 +174,7 @@ namespace rocky::math::calc
         { return static_cast<T>(n); }
     };
 
-    int to_int(number_t const& n)
+    inline int to_int(number_t const& n)
     {
         return boost::apply_visitor(
                         detail::unary_op<number_to<int>, int>{ number_to<int>{} },
@@ -182,7 +182,7 @@ namespace rocky::math::calc
                 );
     }
 
-    int to_double(number_t const& n)
+    inline int to_double(number_t const& n)
     {
         return boost::apply_visitor(
                         detail::unary_op<number_to<double>, double>{ number_to<double>{} },
@@ -203,7 +203,7 @@ namespace rocky::math::calc
         int top_as_int() const { return to_int(top()); };
         double top_as_double() const { return to_double(top()); };
 
-        void execute(std::vector<byte_code_t> const& code, number_t const& x = number_t{ 0 });
+        inline void execute(std::vector<byte_code_t> const& code, number_t const& x = number_t{ 0 });
 
     private:
         template <typename F>
@@ -217,7 +217,7 @@ namespace rocky::math::calc
         std::vector<number_t>::iterator stackPtr_;
     };
 
-    void vmachine::execute(std::vector<byte_code_t> const& code, number_t const& x)
+    inline void vmachine::execute(std::vector<byte_code_t> const& code, number_t const& x)
     {
         auto pc = code.begin();
         stackPtr_ = stack_.begin();
@@ -433,7 +433,7 @@ namespace rocky::math::calc
     };
 
 
-    number_t calculate(std::string calcExpr)
+    inline number_t calculate(std::string calcExpr)
     {
         // calculator VM
         vmachine vm;
