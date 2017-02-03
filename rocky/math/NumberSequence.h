@@ -5,6 +5,8 @@
 #include <type_traits>
 #include <limits>
 
+#include "rocky/math/calc/Calculator.h"
+
 
 template <typename F, typename T>
 class number_seq_generator
@@ -62,5 +64,16 @@ auto number_seq(F && f, T init = 0, U increment = 1, V max = std::numeric_limits
                 static_cast<common_t>(max)
             };
 }
+
+
+template <typename T = int, typename U = T, typename V = std::common_type_t<T, U>>
+auto calc_seq(std::string const& calcExpr, T init = 0, U increment = 1, V max = std::numeric_limits<V>::max())
+{
+    return number_seq(
+                rocky::math::calc::calculator_machine{ calcExpr },
+                init, increment, max
+            );
+}
+
 
 #endif // ROCKY_MATH_NUMBER_SEQUENCE_H
